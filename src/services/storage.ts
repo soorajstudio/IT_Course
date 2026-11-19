@@ -1,19 +1,144 @@
 import type { CertificateRecord, LearnerState } from '../types/course';
 import { createEmptyLearnerState, getTodayIsoDate } from '../utils/progress';
+import { supabase, isSupabaseConfigured } from './supabaseClient';
 
 const STORAGE_KEY = 'it_courses_learner_state_v1';
 const THEME_KEY = 'it_courses_theme_v1';
 
+let syncTimer: number | null = null;
+
 /**
  * StorageAdapter decouples UI persistence from localStorage so a Supabase
  * adapter (auth + Postgres progress tables + public certificate verification)
- * can be swapped in later without modifying UI components.
+ * can be swapped or synced in without modifying UI components.
  */
 export interface StorageAdapter {
   loadState(): LearnerState;
   saveState(state: LearnerState): void;
   findCertificateById(certId: string): CertificateRecord | null;
   clearState(): void;
+}
+
+/**
+ * Asynchronously syncs state to Supabase when configured and user is signed in.
+ * Debounced to avoid excessive DB writes.
+ */
+export async function syncStateToSupabase(state: LearnerState): Promise<void> {
+  if (!isSupabaseConfigured() || !supabase || !state.profile?.id || state.profile.isGuest) {
+    return;
+  }
+
+  try {
+    const { error: stateError } = await supabase.from('learner_state').upsert(
+      {
+        user_id: state.profile.id,
+        courses: state.courses,
+        certificates: state.certificates,
+        solved_dsa_ids: state.solvedDsaIds,
+        dsa_drafts: state.dsaDrafts,
+        flashcard_mastered: state.flashcardMastered,
+        activity_dates: state.activityDates,
+        study_minutes: state.studyMinutes,
+        last_active_course_slug: state.lastActiveCourseSlug ?? null,
+        last_active_lesson_id: state.lastActiveLessonId ?? null,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: 'user_id' }
+    );
+
+    if (stateError) {
+      console.warn('Supabase learner_state sync warning:', stateError.message);
+    }
+
+    // Sync any earned certificates to public_certificates for public lookup
+    const certList = Object.values(state.certificates);
+    if (certList.length > 0) {
+      for (const cert of certList) {
+        await supabase.from('public_certificates').upsert(
+          {
+            id: cert.id.toUpperCase(),
+            user_id: state.profile.id,
+            course_slug: cert.courseSlug,
+            course_title: cert.courseTitle,
+            course_area: cert.courseArea,
+            learner_name: cert.learnerName,
+            level_label: cert.levelLabel,
+            final_score: cert.finalScore,
+            issued_at: cert.issuedAt,
+          },
+          { onConflict: 'id' }
+        );
+      }
+    }
+  } catch (err) {
+    console.warn('Failed to sync state to Supabase:', err);
+  }
+}
+
+/**
+ * Loads learner state from Supabase for a given authenticated user ID.
+ */
+export async function loadStateFromSupabase(userId: string): Promise<Partial<LearnerState> | null> {
+  if (!isSupabaseConfigured() || !supabase) return null;
+  try {
+    const { data, error } = await supabase
+      .from('learner_state')
+      .select('*')
+      .eq('user_id', userId)
+      .maybeSingle();
+
+    if (error || !data) return null;
+
+    return {
+      courses: data.courses ?? {},
+      certificates: data.certificates ?? {},
+      solvedDsaIds: Array.isArray(data.solved_dsa_ids) ? data.solved_dsa_ids : [],
+      dsaDrafts: data.dsa_drafts ?? {},
+      flashcardMastered: Array.isArray(data.flashcard_mastered) ? data.flashcard_mastered : [],
+      activityDates: Array.isArray(data.activity_dates) ? data.activity_dates : [],
+      studyMinutes: typeof data.study_minutes === 'number' ? data.study_minutes : 0,
+      lastActiveCourseSlug: data.last_active_course_slug,
+      lastActiveLessonId: data.last_active_lesson_id,
+    };
+  } catch (err) {
+    console.warn('Failed to load state from Supabase:', err);
+    return null;
+  }
+}
+
+/**
+ * Asynchronously looks up a certificate in local storage first, then checks Supabase.
+ */
+export async function fetchCertificateById(certId: string): Promise<CertificateRecord | null> {
+  const localMatch = storageAdapter.findCertificateById(certId);
+  if (localMatch) return localMatch;
+
+  if (isSupabaseConfigured() && supabase) {
+    try {
+      const { data, error } = await supabase
+        .from('public_certificates')
+        .select('*')
+        .eq('id', certId.trim().toUpperCase())
+        .maybeSingle();
+
+      if (!error && data) {
+        return {
+          id: data.id,
+          courseSlug: data.course_slug,
+          courseTitle: data.course_title,
+          courseArea: data.course_area,
+          learnerName: data.learner_name,
+          levelLabel: data.level_label,
+          finalScore: Number(data.final_score),
+          issuedAt: data.issued_at,
+        };
+      }
+    } catch (err) {
+      console.warn('Error fetching certificate from Supabase:', err);
+    }
+  }
+
+  return null;
 }
 
 class LocalStorageAdapter implements StorageAdapter {
@@ -49,6 +174,14 @@ class LocalStorageAdapter implements StorageAdapter {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch {
       // Ignore quota errors cleanly
+    }
+
+    // Debounced sync to Supabase if signed in
+    if (isSupabaseConfigured() && supabase && state.profile?.id && !state.profile.isGuest) {
+      if (syncTimer) window.clearTimeout(syncTimer);
+      syncTimer = window.setTimeout(() => {
+        void syncStateToSupabase(state);
+      }, 1500);
     }
   }
 

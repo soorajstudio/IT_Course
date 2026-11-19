@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Code2, ShieldCheck } from 'lucide-react';
+import { Code2, Database, ShieldCheck, Loader2 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { isSupabaseConfigured, supabase } from '../services/supabaseClient';
 
 export const AuthPage: React.FC = () => {
-  const { signIn, state } = useApp();
+  const { signIn, state, notify } = useApp();
   const navigate = useNavigate();
 
   const [mode, setMode] = useState<'signup' | 'login'>('signup');
@@ -12,8 +13,11 @@ export const AuthPage: React.FC = () => {
   const [email, setEmail] = useState(state.profile?.email ?? '');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const isConnected = isSupabaseConfigured();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -38,7 +42,48 @@ export const AuthPage: React.FC = () => {
         ? trimmedName
         : trimmedName || trimmedEmail.split('@')[0].replace(/[._-]/g, ' ');
 
-    signIn(displayName, trimmedEmail);
+    if (isConnected && supabase) {
+      setSubmitting(true);
+      try {
+        if (mode === 'signup') {
+          const { error: signUpError } = await supabase.auth.signUp({
+            email: trimmedEmail,
+            password,
+            options: {
+              data: {
+                name: displayName,
+              },
+            },
+          });
+          if (signUpError) {
+            setError(signUpError.message);
+            setSubmitting(false);
+            return;
+          }
+          notify('Account created successfully with Supabase!', 'success');
+        } else {
+          const { error: signInError } = await supabase.auth.signInWithPassword({
+            email: trimmedEmail,
+            password,
+          });
+          if (signInError) {
+            setError(signInError.message);
+            setSubmitting(false);
+            return;
+          }
+          notify(`Welcome back, ${displayName}!`, 'success');
+        }
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : 'Authentication failed';
+        setError(message);
+        setSubmitting(false);
+        return;
+      }
+      setSubmitting(false);
+    } else {
+      signIn(displayName, trimmedEmail);
+    }
+
     navigate('/dashboard');
   };
 
@@ -53,9 +98,16 @@ export const AuthPage: React.FC = () => {
             <h1 className="text-xl font-bold text-slate-900 dark:text-white">
               {mode === 'signup' ? 'Create Learner Profile' : 'Sign In to IT Courses'}
             </h1>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
-              Saved locally · Ready for Supabase Auth migration
-            </p>
+            <div className="mt-0.5 flex items-center gap-1.5">
+              <span
+                className={`inline-block h-2 w-2 rounded-full ${
+                  isConnected ? 'bg-emerald-500' : 'bg-amber-400'
+                }`}
+              />
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                {isConnected ? 'Connected to Supabase PostgreSQL' : 'Local Storage Mode'}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -159,18 +211,25 @@ export const AuthPage: React.FC = () => {
 
           <button
             type="submit"
-            className="h-11 w-full rounded-xl bg-indigo-600 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 cursor-pointer"
+            disabled={submitting}
+            className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 cursor-pointer disabled:opacity-50"
           >
-            {mode === 'signup' ? 'Create Account & Continue' : 'Sign In'}
+            {submitting ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : mode === 'signup' ? (
+              'Create Account & Continue'
+            ) : (
+              'Sign In'
+            )}
           </button>
         </form>
 
         <div className="mt-6 flex items-start gap-2.5 border-t border-slate-100 pt-5 text-xs text-slate-500 dark:border-slate-800 dark:text-slate-400">
-          <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-indigo-600 dark:text-indigo-400" />
+          <Database className="mt-0.5 h-4 w-4 shrink-0 text-indigo-600 dark:text-indigo-400" />
           <p>
-            Your profile, quiz scores, and earned certificates are persisted in local
-            storage via a clean repository adapter designed for seamless Supabase
-            connection.
+            {isConnected
+              ? 'Connected to Supabase. Your courses, progress, and certificates sync to the cloud database across devices.'
+              : 'Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to .env.local to enable multi-device PostgreSQL cloud sync.'}
           </p>
         </div>
       </div>

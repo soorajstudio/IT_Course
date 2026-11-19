@@ -1,11 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Award, CheckCircle2, SearchX } from 'lucide-react';
-import { storageAdapter } from '../services/storage';
+import { Award, CheckCircle2, Loader2, SearchX } from 'lucide-react';
+import type { CertificateRecord } from '../types/course';
+import { fetchCertificateById, storageAdapter } from '../services/storage';
 
 export const VerifyCertificatePage: React.FC = () => {
   const { certId = '' } = useParams<{ certId: string }>();
-  const cert = storageAdapter.findCertificateById(certId);
+  const [cert, setCert] = useState<CertificateRecord | null>(() =>
+    storageAdapter.findCertificateById(certId)
+  );
+  const [loading, setLoading] = useState<boolean>(!cert && Boolean(certId));
+
+  useEffect(() => {
+    let active = true;
+    if (!cert && certId) {
+      setLoading(true);
+      fetchCertificateById(certId)
+        .then((record) => {
+          if (active) {
+            setCert(record);
+            setLoading(false);
+          }
+        })
+        .catch(() => {
+          if (active) setLoading(false);
+        });
+    }
+    return () => {
+      active = false;
+    };
+  }, [certId, cert]);
+
+  if (loading) {
+    return (
+      <div className="mx-auto max-w-xl px-4 py-20 text-center">
+        <Loader2 className="mx-auto h-8 w-8 animate-spin text-indigo-600" />
+        <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
+          Verifying credential {certId} with registry...
+        </p>
+      </div>
+    );
+  }
 
   if (!cert) {
     return (
@@ -14,13 +49,12 @@ export const VerifyCertificatePage: React.FC = () => {
           <SearchX className="h-6 w-6" />
         </div>
         <h1 className="mt-4 text-2xl font-bold text-slate-900 dark:text-white">
-          Certificate record not found locally
+          Certificate record not found
         </h1>
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
           No certificate matching ID{' '}
-          <span className="font-mono font-semibold">{certId}</span> was found in this
-          browser&apos;s local registry. When connected to a Supabase backend, public
-          certificate IDs verify globally across devices.
+          <span className="font-mono font-semibold">{certId}</span> was found in the
+          registry.
         </p>
         <Link
           to="/certificates"
@@ -81,7 +115,7 @@ export const VerifyCertificatePage: React.FC = () => {
         <div className="mt-6 flex items-center justify-between gap-4">
           <span className="inline-flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
             <Award className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
-            All 12 section quizzes, timed exam &amp; capstone project verified
+            All section quizzes, timed exam &amp; capstone project verified
           </span>
           <Link
             to="/certificates"

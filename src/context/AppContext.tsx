@@ -11,9 +11,11 @@ import { getCourseMeta } from '../content/loader';
 import {
   buildSampleProgressState,
   loadSavedTheme,
+  loadStateFromSupabase,
   saveTheme,
   storageAdapter,
 } from '../services/storage';
+import { isSupabaseConfigured, supabase } from '../services/supabaseClient';
 import {
   buildCertificateRecord,
   createEmptyLearnerState,
@@ -145,6 +147,74 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return () => window.clearInterval(timer);
   }, []);
 
+  // Supabase Auth session & remote state hydration
+  useEffect(() => {
+    if (!isSupabaseConfigured() || !supabase) return;
+
+    const syncSessionUser = async (user: { id: string; email?: string; user_metadata?: { name?: string; full_name?: string } }) => {
+      const displayName =
+        user.user_metadata?.name ||
+        user.user_metadata?.full_name ||
+        user.email?.split('@')[0] ||
+        'Learner';
+
+      const profile: UserProfile = {
+        id: user.id,
+        name: displayName,
+        email: user.email || '',
+        createdAt: new Date().toISOString(),
+        isGuest: false,
+      };
+
+      const remoteState = await loadStateFromSupabase(user.id);
+      setState((prev) => {
+        const mergedCourses = { ...prev.courses, ...(remoteState?.courses ?? {}) };
+        const mergedCerts = { ...prev.certificates, ...(remoteState?.certificates ?? {}) };
+        const mergedDsa = Array.from(
+          new Set([...prev.solvedDsaIds, ...(remoteState?.solvedDsaIds ?? [])])
+        );
+        const mergedFlashcards = Array.from(
+          new Set([...prev.flashcardMastered, ...(remoteState?.flashcardMastered ?? [])])
+        );
+        const mergedDates = Array.from(
+          new Set([...prev.activityDates, ...(remoteState?.activityDates ?? [])])
+        ).sort();
+
+        return {
+          ...prev,
+          profile,
+          courses: mergedCourses,
+          certificates: mergedCerts,
+          solvedDsaIds: mergedDsa,
+          dsaDrafts: { ...prev.dsaDrafts, ...(remoteState?.dsaDrafts ?? {}) },
+          flashcardMastered: mergedFlashcards,
+          activityDates: mergedDates,
+          studyMinutes: Math.max(prev.studyMinutes, remoteState?.studyMinutes ?? 0),
+          lastActiveCourseSlug: remoteState?.lastActiveCourseSlug ?? prev.lastActiveCourseSlug,
+          lastActiveLessonId: remoteState?.lastActiveLessonId ?? prev.lastActiveLessonId,
+        };
+      });
+    };
+
+    void supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        void syncSessionUser(session.user);
+      }
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        void syncSessionUser(session.user);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
   const notify = useCallback(
     (text: string, tone: 'success' | 'info' | 'error' = 'info') => {
       const id = Date.now() + Math.floor(Math.random() * 1000);
@@ -194,6 +264,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   );
 
   const signOut = useCallback(() => {
+    if (isSupabaseConfigured() && supabase) {
+      void supabase.auth.signOut();
+    }
     setState((prev) => ({ ...prev, profile: null }));
     notify('Signed out. Your local progress remains saved on this device.', 'info');
   }, [notify]);
