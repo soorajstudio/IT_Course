@@ -46,7 +46,7 @@ export const AuthPage: React.FC = () => {
       setSubmitting(true);
       try {
         if (mode === 'signup') {
-          const { error: signUpError } = await supabase.auth.signUp({
+          const { data, error: signUpError } = await supabase.auth.signUp({
             email: trimmedEmail,
             password,
             options: {
@@ -60,9 +60,20 @@ export const AuthPage: React.FC = () => {
             setSubmitting(false);
             return;
           }
-          notify('Account created successfully with Supabase!', 'success');
+
+          const userId = data.user?.id || `user-${Date.now()}`;
+          signIn(displayName, trimmedEmail, userId);
+
+          if (!data.session) {
+            notify(
+              `Welcome, ${displayName}! Account created. (Check your email inbox if verification is enabled).`,
+              'success'
+            );
+          } else {
+            notify(`Welcome, ${displayName}! Account created and connected.`, 'success');
+          }
         } else {
-          const { error: signInError } = await supabase.auth.signInWithPassword({
+          const { data, error: signInError } = await supabase.auth.signInWithPassword({
             email: trimmedEmail,
             password,
           });
@@ -71,7 +82,14 @@ export const AuthPage: React.FC = () => {
             setSubmitting(false);
             return;
           }
-          notify(`Welcome back, ${displayName}!`, 'success');
+          const userObj = data.user;
+          const resolvedName =
+            userObj?.user_metadata?.name ||
+            userObj?.user_metadata?.full_name ||
+            displayName;
+
+          signIn(resolvedName, trimmedEmail, userObj?.id);
+          notify(`Welcome back, ${resolvedName}!`, 'success');
         }
       } catch (err: unknown) {
         const message = err instanceof Error ? err.message : 'Authentication failed';

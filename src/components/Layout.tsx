@@ -90,12 +90,24 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               )}
             </button>
 
-            <Link
-              to={state.profile ? '/dashboard' : '/auth'}
-              className="hidden sm:inline-flex h-10 items-center justify-center rounded-lg bg-indigo-600 px-4 text-sm font-medium text-white transition-colors hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 whitespace-nowrap shrink-0"
-            >
-              {state.profile ? state.profile.name.split(' ')[0] : 'Sign in'}
-            </Link>
+            {state.profile ? (
+              <Link
+                to="/dashboard"
+                className="hidden sm:inline-flex h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-800 shadow-sm transition-all hover:border-indigo-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-indigo-600"
+              >
+                <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-indigo-600 text-xs font-bold text-white uppercase">
+                  {state.profile.name.charAt(0)}
+                </span>
+                <span className="max-w-[120px] truncate">{state.profile.name}</span>
+              </Link>
+            ) : (
+              <Link
+                to="/auth"
+                className="hidden sm:inline-flex h-10 items-center justify-center rounded-xl bg-indigo-600 px-4 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 whitespace-nowrap shrink-0"
+              >
+                Sign in
+              </Link>
+            )}
 
             <button
               type="button"

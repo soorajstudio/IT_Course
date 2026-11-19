@@ -36,7 +36,7 @@ interface AppContextValue {
   toasts: ToastMessage[];
   notify: (text: string, tone?: 'success' | 'info' | 'error') => void;
   dismissToast: (id: number) => void;
-  signIn: (name: string, email: string) => void;
+  signIn: (name: string, email: string, userId?: string) => void;
   signOut: () => void;
   updateLearnerName: (name: string) => void;
   markLessonComplete: (courseSlug: string, lessonId: string) => void;
@@ -235,9 +235,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   }, []);
 
   const signIn = useCallback(
-    (name: string, email: string) => {
+    (name: string, email: string, userId?: string) => {
       const profile: UserProfile = {
-        id: `user-${Date.now()}`,
+        id: userId || `user-${Date.now()}`,
         name: name.trim(),
         email: email.trim().toLowerCase(),
         createdAt: new Date().toISOString(),
