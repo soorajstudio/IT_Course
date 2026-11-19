@@ -1,0 +1,31 @@
+{
+  "slug": "javascript",
+  "order": 3,
+  "title": "JavaScript (Vanilla)",
+  "shortTitle": "JavaScript",
+  "area": "Web",
+  "tagline": "Closures, prototypes, the Event Loop, Promises, DOM engineering, and modern ES2024 internals.",
+  "description": "Build deep mastery of vanilla JavaScript: lexical scoping, closures, this binding, prototypal inheritance, microtasks vs macrotasks, async/await concurrency, ES modules, DOM delegation, memory profiling, and interview output tracing.",
+  "codeLanguage": "javascript",
+  "estimatedHours": 28,
+  "prerequisites": [
+    "HTML and CSS fundamentals"
+  ],
+  "whatYoullLearn": [
+    "Trace hoisting, Temporal Dead Zone, lexical closures, and garbage collection",
+    "Predict this binding across method calls, arrow functions, call/apply/bind, and new",
+    "Master Promises, async/await, AbortController, and Event Loop microtask ordering",
+    "Use modern ES2023+ immutable array methods (toSorted, toSpliced, Map, Set, WeakMap)",
+    "Architect fast DOM interactions with Event Delegation, IntersectionObserver, and Fetch",
+    "Implement Metaprogramming with Proxy, Reflect, Symbols, Generators, and Iterators"
+  ],
+  "levelSummaries": {
+    "Beginner": "Variables, types, coercion, control flow, functions, arrays, objects, and destructuring.",
+    "Intermediate": "Closures, this binding, prototypes, classes, DOM events, Fetch API, and error handling.",
+    "Advanced": "Event Loop microtasks, Promise combinators, ES modules, Proxy/Symbols, generators, and memory tuning."
+  },
+  "sectionCount": 12,
+  "lessonCount": 48,
+  "examQuestionCount": 30,
+  "projectTitle": "Zero-Dependency Reactive Task & Pomodoro Engine"
+}

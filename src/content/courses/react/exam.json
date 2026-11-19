@@ -1,0 +1,506 @@
+{
+  "courseSlug": "react",
+  "title": "React Final Certification Exam",
+  "durationMinutes": 45,
+  "passMark": 70,
+  "questions": [
+    {
+      "id": "react-exam-beginner-1",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Components, JSX & Composition",
+      "prompt": "What renders when `count` is `0`?",
+      "codeSnippet": {
+        "language": "tsx",
+        "code": "function View() { const count = 0; return <p>{count && 'Ready'}</p>; }"
+      },
+      "options": [
+        "<p>0</p>",
+        "<p></p>",
+        "<p>Ready</p>",
+        "Error"
+      ],
+      "correctIndex": 0,
+      "explanation": "`0 && \"Ready\"` evaluates to `0`, which JSX renders as text."
+    },
+    {
+      "id": "react-exam-beginner-2",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Components, JSX & Composition",
+      "prompt": "Why must React component names begin with an uppercase letter?",
+      "options": [
+        "JSX compiles lowercase tags as built-in HTML strings rather than custom components",
+        "JavaScript requires uppercase functions",
+        "It speeds up DOM rendering",
+        "Vite rejects lowercase exports"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lowercase JSX tags compile to HTML tag strings like `\"div\"` instead of component references."
+    },
+    {
+      "id": "react-exam-beginner-3",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Components, JSX & Composition",
+      "prompt": "How should a child component update data passed down through props?",
+      "options": [
+        "Call an event callback prop provided by the parent that updates parent state",
+        "Reassign `props.value` directly",
+        "Mutate the parent DOM via `querySelector`",
+        "Use `window.postMessage`"
+      ],
+      "correctIndex": 0,
+      "explanation": "Unidirectional data flow sends data down as props and change requests up via callbacks."
+    },
+    {
+      "id": "react-exam-beginner-4",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "State, Events & Immutable Updates",
+      "prompt": "What value does `count` hold after one click starting from `5`?",
+      "codeSnippet": {
+        "language": "tsx",
+        "code": "const bump = () => { setCount((c) => c + 1); setCount((c) => c + 1); };"
+      },
+      "options": [
+        "7 in a single batched render",
+        "6",
+        "5",
+        "Two separate repaints"
+      ],
+      "correctIndex": 0,
+      "explanation": "Functional updaters queue sequentially (5 -> 6 -> 7) inside one batched render."
+    },
+    {
+      "id": "react-exam-beginner-5",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "State, Events & Immutable Updates",
+      "prompt": "Starting from `n = 0`, what is `n` after calling `setN(n + 1); setN(n + 1);` in one click?",
+      "options": [
+        "1",
+        "2",
+        "0",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "Both calls read the same snapshot (`0 + 1`); use `setN((x) => x + 1)` to reach 2."
+    },
+    {
+      "id": "react-exam-beginner-6",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "State, Events & Immutable Updates",
+      "prompt": "Why does `arr.push(5); setArr(arr);` not update the rendered list?",
+      "options": [
+        "`Object.is(prevArr, arr)` is true because the array reference did not change",
+        "React forbids arrays in useState",
+        "`push` returns a number",
+        "State arrays are frozen by JS"
+      ],
+      "correctIndex": 0,
+      "explanation": "Create a new array reference (`[...prev, 5]`) so React detects the state change."
+    },
+    {
+      "id": "react-exam-beginner-7",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Effects, Refs & Rules of Hooks",
+      "prompt": "When `id` changes from `1` to `2`, what logs first?",
+      "codeSnippet": {
+        "language": "tsx",
+        "code": "useEffect(() => {\n  console.log('open', id);\n  return () => console.log('close', id);\n}, [id]);"
+      },
+      "options": [
+        "\"close 1\" then \"open 2\"",
+        "\"open 2\" then \"close 1\"",
+        "Only \"open 2\"",
+        "Only \"close 2\""
+      ],
+      "correctIndex": 0,
+      "explanation": "React always runs the previous effect’s cleanup before running the new effect."
+    },
+    {
+      "id": "react-exam-beginner-8",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Effects, Refs & Rules of Hooks",
+      "prompt": "Which scenario legitimately requires `useEffect`?",
+      "options": [
+        "Subscribing to a global `keydown` listener or mounting an external editor instance",
+        "Computing `total = a + b`",
+        "Handling a form submit click",
+        "Filtering an array prop"
+      ],
+      "correctIndex": 0,
+      "explanation": "useEffect bridges React to external browser or third-party systems."
+    },
+    {
+      "id": "react-exam-beginner-9",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Effects, Refs & Rules of Hooks",
+      "prompt": "Why can’t the callback passed directly to `useEffect` be marked `async`?",
+      "options": [
+        "It returns a Promise instead of `void` or a synchronous cleanup function",
+        "React forbids `await` in components",
+        "Browsers block async effects",
+        "It runs before render"
+      ],
+      "correctIndex": 0,
+      "explanation": "useEffect expects either undefined or a cleanup function, never a Promise."
+    },
+    {
+      "id": "react-exam-beginner-10",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Custom Hooks, Routing, Error Boundaries & Portals",
+      "prompt": "Which React Router hook reads `:slug` from `/courses/:slug`?",
+      "codeSnippet": {
+        "language": "tsx",
+        "code": "const { slug } = useParams();"
+      },
+      "options": [
+        "useParams()",
+        "useLocation()",
+        "useNavigate()",
+        "useHref()"
+      ],
+      "correctIndex": 0,
+      "explanation": "useParams returns dynamic URL segment parameters."
+    },
+    {
+      "id": "react-exam-intermediate-1",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Context API, useReducer & Scalable State",
+      "prompt": "Why does `<Ctx.Provider value={{ theme, toggle }}>` re-render consumers when its parent re-renders even if `theme` didn’t change?",
+      "codeSnippet": {
+        "language": "tsx",
+        "code": "<Ctx.Provider value={{ theme, toggle }}>{children}</Ctx.Provider>"
+      },
+      "options": [
+        "Inline object literal creates a brand-new reference every render",
+        "React re-renders Context every 16ms",
+        "toggle mutates theme",
+        "StrictMode forces it"
+      ],
+      "correctIndex": 0,
+      "explanation": "Wrap `{ theme, toggle }` in `useMemo(..., [theme])` so reference identity stays stable."
+    },
+    {
+      "id": "react-exam-intermediate-2",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Context API, useReducer & Scalable State",
+      "prompt": "What happens to consumers of `AppContext` when `<AppContext.Provider value={{ user, theme }}>` gets a new object reference?",
+      "options": [
+        "All consumers re-render even if they only read `user` and only `theme` changed",
+        "Only consumers reading `theme` re-render",
+        "No consumers re-render",
+        "React deeply compares all fields"
+      ],
+      "correctIndex": 0,
+      "explanation": "Context notifies every subscriber whenever `Object.is(prevValue, nextValue)` is false."
+    },
+    {
+      "id": "react-exam-intermediate-3",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Context API, useReducer & Scalable State",
+      "prompt": "What stability guarantee does React provide for `dispatch` from `useReducer`?",
+      "options": [
+        "Its function reference stays permanently identical across every render",
+        "It changes on every action",
+        "It persists to localStorage",
+        "It runs in a Web Worker"
+      ],
+      "correctIndex": 0,
+      "explanation": "Stable `dispatch` identity avoids invalidating `React.memo` and effect dependency arrays."
+    },
+    {
+      "id": "react-exam-intermediate-4",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Reconciliation, Memoization & Code Splitting",
+      "prompt": "Why does `<Child opts={{ a: 1 }} />` still re-render when `Child` is wrapped in `React.memo`?",
+      "codeSnippet": {
+        "language": "tsx",
+        "code": "const Child = memo(({ opts }: { opts: { a: number } }) => <div>{opts.a}</div>);\nfunction Parent() { const [n, setN] = useState(0); return <Child opts={{ a: 1 }} />; }"
+      },
+      "options": [
+        "`{ a: 1 }` creates a new object reference on every Parent render",
+        "React.memo ignores objects",
+        "`n` is passed implicitly",
+        "Missing key prop"
+      ],
+      "correctIndex": 0,
+      "explanation": "Shallow equality sees a fresh object reference each render; hoist or `useMemo` `opts`."
+    },
+    {
+      "id": "react-exam-intermediate-5",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Reconciliation, Memoization & Code Splitting",
+      "prompt": "What happens if you declare `function Inner() { ... }` inside `function Outer() { ... }`?",
+      "options": [
+        "Inner gets a new identity every Outer render, causing React to unmount and remount it each time",
+        "React hoists Inner automatically",
+        "Inner is memoized automatically",
+        "TypeScript forbids it"
+      ],
+      "correctIndex": 0,
+      "explanation": "Reconciliation compares component references (`Prev !== Next`), unmounting and remounting on mismatch."
+    },
+    {
+      "id": "react-exam-intermediate-6",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Reconciliation, Memoization & Code Splitting",
+      "prompt": "When does `useCallback(fn, [])` actually stop a child component from re-rendering?",
+      "options": [
+        "When the child is wrapped in `React.memo` (and all other props are referentially stable)",
+        "Always on every child",
+        "Only inside StrictMode",
+        "Never"
+      ],
+      "correctIndex": 0,
+      "explanation": "Without `React.memo`, children re-render when parents re-render regardless of prop stability."
+    },
+    {
+      "id": "react-exam-intermediate-7",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Concurrent UI & React 19 Modern Features",
+      "prompt": "In React 19, how does a custom `<Field />` component accept a `ref`?",
+      "codeSnippet": {
+        "language": "tsx",
+        "code": "function Field({ ref, ...props }: React.ComponentProps<'input'>) { return <input ref={ref} {...props} />; }"
+      },
+      "options": [
+        "Directly as a normal prop (`ref`) without `forwardRef`",
+        "Only via `React.forwardRef`",
+        "Only via class components",
+        "Via `createPortal`"
+      ],
+      "correctIndex": 0,
+      "explanation": "React 19 passes `ref` directly as a standard component prop."
+    },
+    {
+      "id": "react-exam-intermediate-8",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Concurrent UI & React 19 Modern Features",
+      "prompt": "Why should you NOT wrap a controlled `<input>`’s `setValue(e.target.value)` inside `startTransition`?",
+      "options": [
+        "Typing updates must remain urgent/synchronous so input feedback and cursor position never lag",
+        "startTransition rejects strings",
+        "Inputs cannot use hooks",
+        "It disables keyboard events"
+      ],
+      "correctIndex": 0,
+      "explanation": "Keep input text urgent and defer expensive downstream list rendering."
+    },
+    {
+      "id": "react-exam-intermediate-9",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Concurrent UI & React 19 Modern Features",
+      "prompt": "Where must `useFormStatus()` be called to read `pending`?",
+      "options": [
+        "Inside a child component rendered within the `<form>`",
+        "In the same component rendering `<form>`",
+        "Inside `useEffect` only",
+        "Outside `BrowserRouter`"
+      ],
+      "correctIndex": 0,
+      "explanation": "`useFormStatus` subscribes to its nearest ancestor `<form>`."
+    },
+    {
+      "id": "react-exam-intermediate-10",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Advanced Hook Internals & Escape Hatches",
+      "prompt": "In what order do these log on mount?",
+      "codeSnippet": {
+        "language": "tsx",
+        "code": "useEffect(() => console.log('E'), []);\nuseLayoutEffect(() => console.log('L'), []);\nconsole.log('R');"
+      },
+      "options": [
+        "R -> L -> E",
+        "R -> E -> L",
+        "L -> R -> E",
+        "E -> L -> R"
+      ],
+      "correctIndex": 0,
+      "explanation": "Render runs first (R), then useLayoutEffect before paint (L), then useEffect after paint (E)."
+    },
+    {
+      "id": "react-exam-advanced-1",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Server Rendering, RSC, Accessibility & Security",
+      "prompt": "What renders for `<p>{msg}</p>` when `msg` is `\"<img src=x onerror=alert(1)>\"`?",
+      "codeSnippet": {
+        "language": "tsx",
+        "code": "<p>{'<img src=x onerror=alert(1)>'}</p>"
+      },
+      "options": [
+        "Escaped literal text — zero script execution",
+        "Executes alert(1)",
+        "Throws ReactSecurityError",
+        "Renders a broken image"
+      ],
+      "correctIndex": 0,
+      "explanation": "React escapes text interpolations automatically."
+    },
+    {
+      "id": "react-exam-advanced-2",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Server Rendering, RSC, Accessibility & Security",
+      "prompt": "What happens during React hydration?",
+      "options": [
+        "React attaches event listeners and Fiber state onto pre-rendered server HTML",
+        "React deletes all CSS",
+        "React compiles JSX on the server",
+        "React disables localStorage"
+      ],
+      "correctIndex": 0,
+      "explanation": "Hydration turns static SSR HTML into a live interactive React tree."
+    },
+    {
+      "id": "react-exam-advanced-3",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Server Rendering, RSC, Accessibility & Security",
+      "prompt": "How can a `\"use client\"` wrapper render a React Server Component inside it?",
+      "options": [
+        "By accepting the Server Component through `children` (or slot props) from a parent Server Component",
+        "By importing the Server Component directly",
+        "Via `useEffect`",
+        "It is impossible"
+      ],
+      "correctIndex": 0,
+      "explanation": "Server-rendered JSX passed via `children` slots cleanly into Client wrappers."
+    },
+    {
+      "id": "react-exam-advanced-4",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Architecture, Performance Profiling & Production Polish",
+      "prompt": "What happens when a user clicks `<button onClick={onCancel}>Cancel</button>` inside `<form onSubmit={onSave}>`?",
+      "codeSnippet": {
+        "language": "tsx",
+        "code": "<form onSubmit={onSave}><button onClick={onCancel}>Cancel</button></form>"
+      },
+      "options": [
+        "Both `onCancel` AND `onSave` fire because `<button>` defaults to `type=\"submit\"`",
+        "Only `onCancel` fires",
+        "Only `onSave` fires",
+        "Throws a React warning"
+      ],
+      "correctIndex": 0,
+      "explanation": "Always add `type=\"button\"` to non-submit buttons inside forms."
+    },
+    {
+      "id": "react-exam-advanced-5",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Architecture, Performance Profiling & Production Polish",
+      "prompt": "Why should you profile React rendering bottlenecks in a production build rather than dev mode?",
+      "options": [
+        "Dev mode adds StrictMode double-renders and runtime debug checks that skew timing dramatically",
+        "Production builds disable `useState`",
+        "DevTools only works in production",
+        "Dev mode skips JSX"
+      ],
+      "correctIndex": 0,
+      "explanation": "Production builds strip dev checks and double-renders, showing true user-facing frame costs."
+    },
+    {
+      "id": "react-exam-advanced-6",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Architecture, Performance Profiling & Production Polish",
+      "prompt": "Four independent JSON files each take 100ms to load. How long do they take sequentially vs with `Promise.all`?",
+      "options": [
+        "~400ms sequentially vs ~100ms with `Promise.all`",
+        "~100ms sequentially vs ~400ms with `Promise.all`",
+        "Both take 400ms",
+        "Both take 100ms"
+      ],
+      "correctIndex": 0,
+      "explanation": "`Promise.all` fires all 4 independent requests concurrently so total latency matches the slowest single request."
+    },
+    {
+      "id": "react-exam-advanced-7",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "React Fiber Internals, Batching & Custom Renderers",
+      "prompt": "Why does `const data = use(fetch(\"/api\"))` inside a component body loop infinitely?",
+      "codeSnippet": {
+        "language": "tsx",
+        "code": "function Bad() { const d = use(fetch('/api').then((r) => r.json())); return <p>{d}</p>; }"
+      },
+      "options": [
+        "Every render creates a new pending Promise, suspending endlessly",
+        "`fetch` cannot return JSON",
+        "`use()` only accepts numbers",
+        "React forbids `then()`"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pass a cached Promise created outside render (e.g., from a loader or parent) into `use()`."
+    },
+    {
+      "id": "react-exam-advanced-8",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "React Fiber Internals, Batching & Custom Renderers",
+      "prompt": "Why did React replace its original Stack Reconciler with Fiber?",
+      "options": [
+        "To pause, prioritize, and resume rendering work without blocking urgent user interactions",
+        "To eliminate JSX",
+        "To run CSS in WebAssembly",
+        "To remove hooks"
+      ],
+      "correctIndex": 0,
+      "explanation": "Fiber splits rendering into interruptible units of work scheduled by priority lanes."
+    },
+    {
+      "id": "react-exam-advanced-9",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "React Fiber Internals, Batching & Custom Renderers",
+      "prompt": "Why does an uncleaned CodeMirror or Chart.js `useEffect` render TWO editors side by side in React dev mode?",
+      "options": [
+        "StrictMode runs mount -> cleanup -> remount to expose missing `.destroy()` teardown logic",
+        "React duplicates all refs in dev",
+        "CodeMirror requires two divs",
+        "Vite runs App twice"
+      ],
+      "correctIndex": 0,
+      "explanation": "Always return `() => instance.destroy()` from effects mounting imperative DOM libraries."
+    },
+    {
+      "id": "react-exam-advanced-10",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Production React Engineering: State Libraries, Animations & i18n",
+      "prompt": "Why does adding `tabular-nums` improve `<span className=\"tabular-nums\">{mm}:{ss}</span>`?",
+      "codeSnippet": {
+        "language": "tsx",
+        "code": "<span className=\"tabular-nums\">44:59</span>"
+      },
+      "options": [
+        "Every numeral occupies equal width so the timer stays completely steady without horizontal jitter",
+        "It converts the timer to uppercase",
+        "It enables 24-hour time",
+        "It pauses the timer in dark mode"
+      ],
+      "correctIndex": 0,
+      "explanation": "`tabular-nums` aligns digits into uniform columns so live timers and tables never wobble."
+    }
+  ]
+}

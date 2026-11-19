@@ -1,0 +1,29 @@
+{
+  "slug": "react",
+  "order": 5,
+  "title": "React",
+  "shortTitle": "React",
+  "area": "Web",
+  "tagline": "Build modern, accessible, high-performance user interfaces with React 19, hooks, routing, and clean state architecture.",
+  "description": "Go from JSX fundamentals and immutable state updates to custom hooks, race-free effects, Context/reducers, React Router, concurrent transitions, and rendering optimization.",
+  "codeLanguage": "tsx",
+  "estimatedHours": 28,
+  "prerequisites": [
+    "HTML, CSS, and modern JavaScript (ES6+)"
+  ],
+  "whatYoullLearn": [
+    "Think declaratively in components, unidirectional data flow, and immutable state updates",
+    "Master useState, useEffect, useRef, useReducer, useContext, and reusable custom hooks",
+    "Eliminate redundant effects, stale closures, and race conditions in async data fetching",
+    "Optimize rendering with memoization, code splitting, Error Boundaries, and React 19 transitions"
+  ],
+  "levelSummaries": {
+    "Beginner": "JSX & components, props & composition, useState & events, conditional rendering, lists & keys.",
+    "Intermediate": "useEffect & cleanup, refs, controlled forms, custom hooks, routing, Context & useReducer.",
+    "Advanced": "Reconciliation & memoization, concurrent UI (useTransition/useDeferredValue), React 19 Actions, RSC & security."
+  },
+  "sectionCount": 12,
+  "lessonCount": 48,
+  "examQuestionCount": 30,
+  "projectTitle": "Interactive Kanban & Study Sprint Board in React 19"
+}

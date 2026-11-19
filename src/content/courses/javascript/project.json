@@ -1,0 +1,77 @@
+{
+  "courseSlug": "javascript",
+  "title": "Zero-Dependency Reactive Task & Pomodoro Engine",
+  "estimatedHours": 6,
+  "difficulty": "Beginner to Advanced",
+  "brief": "Build a modular vanilla ES2024 task board and focus timer using Proxy-based reactive state, Event Delegation, AbortController cleanup, localStorage persistence, debounced search filtering, and a clean immutable reducer layer.",
+  "requirements": [
+    {
+      "id": "req-1",
+      "text": "Implement a Proxy-backed reactive store that notifies subscribers automatically when state updates."
+    },
+    {
+      "id": "req-2",
+      "text": "Handle all task list clicks (toggle complete, delete, edit) with a single delegated event listener using event.target.closest()."
+    },
+    {
+      "id": "req-3",
+      "text": "Implement a reusable debounce() utility for live task search filtering."
+    },
+    {
+      "id": "req-4",
+      "text": "Use AbortController to cancel pending async quote fetches and detach window keyboard shortcuts cleanly."
+    },
+    {
+      "id": "req-5",
+      "text": "Use ES2023 immutable array helpers (toSorted, filter, map) and persist tasks cleanly to localStorage with safe JSON error handling."
+    },
+    {
+      "id": "req-6",
+      "text": "Build an accurate drift-corrected Pomodoro timer using Date.now() deltas and clean teardown."
+    }
+  ],
+  "steps": [
+    {
+      "stepNumber": 1,
+      "title": "Create Reactive Proxy Store",
+      "details": "Build store.js wrapping state in a Proxy + Reflect.set that dispatches subscriber callbacks cleanly."
+    },
+    {
+      "stepNumber": 2,
+      "title": "Write Pure Task Reducers",
+      "details": "Implement pure addTask, toggleTask, deleteTask, and filterTasks helpers using immutable array patterns."
+    },
+    {
+      "stepNumber": 3,
+      "title": "Build Delegated DOM Renderer",
+      "details": "Render task rows via DocumentFragment + textContent (zero innerHTML XSS) and bind one delegated listener."
+    },
+    {
+      "stepNumber": 4,
+      "title": "Add Debounced Search & Keyboard Shortcuts",
+      "details": "Wire debounce(render, 150) on the search input and register Ctrl+K shortcut using AbortController."
+    },
+    {
+      "stepNumber": 5,
+      "title": "Build Drift-Free Timer",
+      "details": "Compute remaining milliseconds from targetEndTime - Date.now() instead of trusting setInterval drift."
+    },
+    {
+      "stepNumber": 6,
+      "title": "Persist & Verify Edge Cases",
+      "details": "Load/save safely with try/catch around localStorage and test empty, invalid, and rapid-click states."
+    }
+  ],
+  "referenceSolution": [
+    {
+      "filename": "store.js",
+      "language": "javascript",
+      "code": "export function createStore(initialState) {\n  const listeners = new Set();\n  const proxy = new Proxy(initialState, {\n    set(target, prop, value, receiver) {\n      const ok = Reflect.set(target, prop, value, receiver);\n      if (ok) listeners.forEach((fn) => fn(proxy, prop));\n      return ok;\n    },\n  });\n  return {\n    state: proxy,\n    subscribe(fn) {\n      listeners.add(fn);\n      return () => listeners.delete(fn);\n    },\n  };\n}\n\nexport function debounce(fn, ms = 180) {\n  let id;\n  return (...args) => {\n    clearTimeout(id);\n    id = setTimeout(() => fn(...args), ms);\n  };\n}"
+    },
+    {
+      "filename": "app.js",
+      "language": "javascript",
+      "code": "import { createStore, debounce } from './store.js';\n\nconst STORAGE_KEY = 'vanilla_tasks_v1';\nconst loadTasks = () => {\n  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]'); }\n  catch { return []; }\n};\n\nconst { state, subscribe } = createStore({ tasks: loadTasks(), query: '' });\nconst listEl = document.getElementById('task-list');\nconst controller = new AbortController();\n\nfunction render() {\n  localStorage.setItem(STORAGE_KEY, JSON.stringify(state.tasks));\n  const q = state.query.trim().toLowerCase();\n  const visible = state.tasks\n    .filter((t) => !q || t.title.toLowerCase().includes(q))\n    .toSorted((a, b) => Number(a.done) - Number(b.done));\n\n  const frag = document.createDocumentFragment();\n  for (const task of visible) {\n    const li = document.createElement('li');\n    const toggle = document.createElement('button');\n    toggle.dataset.action = 'toggle';\n    toggle.dataset.id = task.id;\n    toggle.textContent = task.done ? '[x] ' + task.title : '[ ] ' + task.title;\n    const del = document.createElement('button');\n    del.dataset.action = 'delete';\n    del.dataset.id = task.id;\n    del.textContent = 'Delete';\n    li.append(toggle, del);\n    frag.append(li);\n  }\n  listEl.replaceChildren(frag);\n}\n\nsubscribe(render);\n\nlistEl.addEventListener('click', (e) => {\n  const btn = e.target.closest('button[data-action]');\n  if (!btn) return;\n  const { action, id } = btn.dataset;\n  if (action === 'toggle') {\n    state.tasks = state.tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t));\n  } else if (action === 'delete') {\n    state.tasks = state.tasks.filter((t) => t.id !== id);\n  }\n}, { signal: controller.signal });\n\ndocument.getElementById('search')?.addEventListener(\n  'input',\n  debounce((e) => { state.query = e.target.value; }, 150),\n  { signal: controller.signal }\n);\n\nrender();"
+    }
+  ]
+}

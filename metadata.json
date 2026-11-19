@@ -1,0 +1,6 @@
+{
+  "name": "IT Courses",
+  "description": "Production-grade programming and technical interview learning platform with 23 full multi-level courses, quizzes, timed exams, projects, DSA practice, and PDF certificates.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

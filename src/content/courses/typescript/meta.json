@@ -1,0 +1,29 @@
+{
+  "slug": "typescript",
+  "order": 4,
+  "title": "TypeScript",
+  "shortTitle": "TS",
+  "area": "Web",
+  "tagline": "Write rock-solid, self-documenting JavaScript with static types, generics, narrowing, and type-level programming.",
+  "description": "Master TypeScript 5+ from strict compiler configuration and structural typing to discriminated unions, advanced generics, conditional/mapped types, and end-to-end API type safety.",
+  "codeLanguage": "typescript",
+  "estimatedHours": 24,
+  "prerequisites": [
+    "Solid JavaScript (ES6+) fundamentals"
+  ],
+  "whatYoullLearn": [
+    "Configure strict tsconfig.json flags including strictNullChecks and noUncheckedIndexedAccess",
+    "Model domain states cleanly with discriminated unions, exhaustiveness checking, and narrowing",
+    "Write reusable generic functions, classes, and mapped/conditional utility types",
+    "Combine static TypeScript types with runtime schema validation at API boundaries"
+  ],
+  "levelSummaries": {
+    "Beginner": "Primitive & object types, strict config, unions/intersections, functions, and interfaces vs type aliases.",
+    "Intermediate": "Type narrowing, discriminated unions, generics with constraints, utility types, and classes/modules.",
+    "Advanced": "Conditional types, infer, template literal types, variance, declaration files, and runtime boundary validation."
+  },
+  "sectionCount": 12,
+  "lessonCount": 48,
+  "examQuestionCount": 30,
+  "projectTitle": "Type-Safe Full-Stack API Client & Schema Validation Kit"
+}

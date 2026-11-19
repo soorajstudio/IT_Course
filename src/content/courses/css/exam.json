@@ -1,0 +1,506 @@
+{
+  "courseSlug": "css",
+  "title": "CSS Final Certification Exam",
+  "durationMinutes": 45,
+  "passMark": 70,
+  "questions": [
+    {
+      "id": "css-exam-beginner-1",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Selectors, Cascade & Specificity",
+      "prompt": "Which color is applied to <p id=\"intro\" class=\"lead highlight\">Hello</p>?",
+      "codeSnippet": {
+        "language": "css",
+        "code": "#intro { color: navy; }\n.lead.highlight { color: crimson; }\np.lead.highlight { color: green; }"
+      },
+      "options": [
+        "navy",
+        "crimson",
+        "green",
+        "Browser default black"
+      ],
+      "correctIndex": 0,
+      "explanation": "#intro has specificity (1,0,0), which strictly beats (0,2,1) regardless of how many classes are chained."
+    },
+    {
+      "id": "css-exam-beginner-2",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Selectors, Cascade & Specificity",
+      "prompt": "If .alpha and .beta both set color and .beta appears later in the CSS file, what color applies to <p class=\"beta alpha\">?",
+      "options": [
+        "The color declared in .beta",
+        "The color declared in .alpha",
+        "The browser averages both colors",
+        "Neither applies due to conflict"
+      ],
+      "correctIndex": 0,
+      "explanation": "Equal specificity ties are always resolved by later stylesheet source order, never HTML class order."
+    },
+    {
+      "id": "css-exam-beginner-3",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Selectors, Cascade & Specificity",
+      "prompt": "What is the specificity of ul#menu > li.active a:hover?",
+      "options": [
+        "(1, 2, 3)",
+        "(1, 3, 2)",
+        "(2, 2, 2)",
+        "(0, 3, 3)"
+      ],
+      "correctIndex": 0,
+      "explanation": "1 ID (#menu), 2 class/pseudo-class (.active, :hover), and 3 element types (ul, li, a) = (1, 2, 3)."
+    },
+    {
+      "id": "css-exam-beginner-4",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Box Model, Sizing & Spacing",
+      "prompt": "What is the total rendered width (border box) of .panel?",
+      "codeSnippet": {
+        "language": "css",
+        "code": ".panel {\n  box-sizing: border-box;\n  width: 240px;\n  padding: 20px;\n  border: 4px solid #cbd5e1;\n  margin: 16px;\n}"
+      },
+      "options": [
+        "240px",
+        "288px",
+        "320px",
+        "272px"
+      ],
+      "correctIndex": 0,
+      "explanation": "Under box-sizing: border-box, padding and border fit inside the declared 240px width (margin is external)."
+    },
+    {
+      "id": "css-exam-beginner-5",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Box Model, Sizing & Spacing",
+      "prompt": "An element has box-sizing: content-box; width: 100px; padding: 10px; border: 2px solid black. What is its total rendered width?",
+      "options": [
+        "124px",
+        "100px",
+        "112px",
+        "120px"
+      ],
+      "correctIndex": 0,
+      "explanation": "Under content-box, rendered width = 100 + (10 * 2) + (2 * 2) = 124px."
+    },
+    {
+      "id": "css-exam-beginner-6",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Box Model, Sizing & Spacing",
+      "prompt": "Two sibling <p> elements in normal block flow have margin-bottom: 24px and margin-top: 16px respectively. What is the vertical space between them?",
+      "options": [
+        "24px",
+        "40px",
+        "16px",
+        "8px"
+      ],
+      "correctIndex": 0,
+      "explanation": "Adjacent vertical margins collapse to max(24px, 16px) = 24px."
+    },
+    {
+      "id": "css-exam-beginner-7",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Units, Typography & Color Systems",
+      "prompt": "What is the computed font-size of .inner given default root 16px?",
+      "codeSnippet": {
+        "language": "css",
+        "code": ".outer { font-size: 1.5em; }\n.inner { font-size: 1.5em; }\n/* <div class=\"outer\"><div class=\"inner\">Hi</div></div> */"
+      },
+      "options": [
+        "36px",
+        "24px",
+        "16px",
+        "48px"
+      ],
+      "correctIndex": 0,
+      "explanation": "em compounds relative to its parent: .outer is 16 * 1.5 = 24px, and .inner is 24 * 1.5 = 36px."
+    },
+    {
+      "id": "css-exam-beginner-8",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Units, Typography & Color Systems",
+      "prompt": "Which viewport unit dynamically adjusts height as mobile browser address bars collapse and expand?",
+      "options": [
+        "100dvh",
+        "100vh",
+        "100vmin",
+        "100vw"
+      ],
+      "correctIndex": 0,
+      "explanation": "dvh (dynamic viewport height) updates continuously as browser UI chrome shifts."
+    },
+    {
+      "id": "css-exam-beginner-9",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Units, Typography & Color Systems",
+      "prompt": "Why is line-height: 1.5 preferred over line-height: 150% on a parent container?",
+      "options": [
+        "Unitless 1.5 inherits the scaling factor to children of any font size rather than a fixed computed pixel value",
+        "Percentage line-height is invalid in CSS3",
+        "Unitless values render faster on the GPU",
+        "150% applies only to monospace fonts"
+      ],
+      "correctIndex": 0,
+      "explanation": "Percentage line-height inherits its computed pixel length from the parent, causing text overlap on larger descendants."
+    },
+    {
+      "id": "css-exam-beginner-10",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Display, Positioning & Stacking Contexts",
+      "prompt": "Which box appears on top visually?",
+      "codeSnippet": {
+        "language": "css",
+        "code": ".parent-a { position: relative; z-index: 1; }\n.child-a  { position: absolute; z-index: 9999; }\n.parent-b { position: relative; z-index: 2; }"
+      },
+      "options": [
+        ".parent-b appears on top of .child-a",
+        ".child-a appears on top of .parent-b",
+        "They blend at 50% opacity",
+        "Browser throws a layout warning"
+      ],
+      "correctIndex": 0,
+      "explanation": ".child-a is trapped inside .parent-a’s stacking context (z-index: 1), which sits below sibling .parent-b (z-index: 2)."
+    },
+    {
+      "id": "css-exam-intermediate-1",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Flexbox Layout Mastery",
+      "prompt": "Inside a 600px wide flex container with 0 gap, what are the widths of .a and .b?",
+      "codeSnippet": {
+        "language": "css",
+        "code": ".row { display: flex; width: 600px; }\n.a { flex: 1; }\n.b { flex: 2; }"
+      },
+      "options": [
+        ".a is 200px, .b is 400px",
+        ".a is 300px, .b is 300px",
+        ".a is 100px, .b is 200px",
+        "Depends strictly on their text length"
+      ],
+      "correctIndex": 0,
+      "explanation": "flex: 1 and flex: 2 both set flex-basis: 0%, dividing 600px in a 1:2 ratio (200px and 400px)."
+    },
+    {
+      "id": "css-exam-intermediate-2",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Flexbox Layout Mastery",
+      "prompt": "In a container with display: flex; flex-direction: column;, which property centers children horizontally?",
+      "options": [
+        "align-items: center",
+        "justify-content: center",
+        "justify-items: center",
+        "text-align: center"
+      ],
+      "correctIndex": 0,
+      "explanation": "In flex-direction: column, the cross axis is horizontal, controlled by align-items."
+    },
+    {
+      "id": "css-exam-intermediate-3",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Flexbox Layout Mastery",
+      "prompt": "What longhand values does flex: 1 expand to in CSS?",
+      "options": [
+        "flex-grow: 1; flex-shrink: 1; flex-basis: 0%",
+        "flex-grow: 1; flex-shrink: 0; flex-basis: auto",
+        "flex-grow: 1; flex-shrink: 1; flex-basis: auto",
+        "flex-grow: 1; flex-shrink: 0; flex-basis: 100%"
+      ],
+      "correctIndex": 0,
+      "explanation": "flex: 1 sets grow: 1, shrink: 1, and basis: 0% so columns distribute space equally."
+    },
+    {
+      "id": "css-exam-intermediate-4",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "CSS Grid & Subgrid Systems",
+      "prompt": "How many columns does .grid create on a 1000px container?",
+      "codeSnippet": {
+        "language": "css",
+        "code": ".grid {\n  display: grid;\n  width: 1000px;\n  grid-template-columns: 200px 1fr 2fr;\n}"
+      },
+      "options": [
+        "3 columns: 200px, ~266.7px, ~533.3px",
+        "3 equal columns of 333.3px",
+        "2 columns: 200px and 800px",
+        "Invalid mixing of px and fr"
+      ],
+      "correctIndex": 0,
+      "explanation": "After subtracting the fixed 200px column, 800px remains and is split in a 1:2 ratio (266.67px and 533.33px)."
+    },
+    {
+      "id": "css-exam-intermediate-5",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "CSS Grid & Subgrid Systems",
+      "prompt": "Why is minmax(0, 1fr) safer than plain 1fr for columns holding code snippets or long URLs?",
+      "options": [
+        "It lowers the track minimum from auto to 0 so unbreakable content cannot blow out the column width",
+        "It doubles rendering performance in Safari",
+        "It automatically enables vertical scrolling",
+        "It converts the grid into Flexbox on mobile"
+      ],
+      "correctIndex": 0,
+      "explanation": "Plain 1fr behaves as minmax(auto, 1fr); lowering the minimum to 0 prevents track blowout."
+    },
+    {
+      "id": "css-exam-intermediate-6",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "CSS Grid & Subgrid Systems",
+      "prompt": "On a 1200px wide row containing only 2 cards, how does auto-fit behave compared to auto-fill?",
+      "options": [
+        "auto-fit collapses empty tracks so the 2 cards stretch to fill 1200px; auto-fill preserves empty slots",
+        "auto-fill stretches the 2 cards to 1200px; auto-fit keeps them narrow",
+        "Both produce identical layouts in all cases",
+        "auto-fit stacks cards vertically while auto-fill keeps them horizontal"
+      ],
+      "correctIndex": 0,
+      "explanation": "auto-fit collapses empty trailing tracks so populated items expand; auto-fill preserves the empty track space."
+    },
+    {
+      "id": "css-exam-intermediate-7",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Responsive Design & Modern Queries",
+      "prompt": "When a .card-host is 320px wide inside a 1440px desktop window, which background color applies to .card?",
+      "codeSnippet": {
+        "language": "css",
+        "code": ".card-host { container-type: inline-size; }\n.card { background: white; }\n@container (width >= 500px) { .card { background: indigo; } }"
+      },
+      "options": [
+        "white",
+        "indigo",
+        "transparent",
+        "Both merge"
+      ],
+      "correctIndex": 0,
+      "explanation": "@container evaluates the container’s width (320px), NOT the 1440px viewport, so (width >= 500px) is false."
+    },
+    {
+      "id": "css-exam-intermediate-8",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Responsive Design & Modern Queries",
+      "prompt": "Which modern media query matches viewports strictly between 640px (inclusive) and 1024px (exclusive)?",
+      "options": [
+        "@media (640px <= width < 1024px)",
+        "@media (min-width: 640px) and (max-width: 1024px)",
+        "@media (width in 640px..1024px)",
+        "@media (640px < width <= 1024px)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Media Queries Level 4 range syntax cleanly expresses inclusive/exclusive bounds without 1px overlap."
+    },
+    {
+      "id": "css-exam-intermediate-9",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Responsive Design & Modern Queries",
+      "prompt": "Which container-type value enables width-based @container queries while keeping automatic content height?",
+      "options": [
+        "inline-size",
+        "size",
+        "block-size",
+        "normal"
+      ],
+      "correctIndex": 0,
+      "explanation": "inline-size applies inline-axis size containment without collapsing automatic block height."
+    },
+    {
+      "id": "css-exam-intermediate-10",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Transitions, Transforms & Keyframes",
+      "prompt": "After a 1s fade-in animation finishes with animation-fill-mode: none (default), what opacity does the element return to?",
+      "codeSnippet": {
+        "language": "css",
+        "code": ".box { opacity: 0; animation: show 1s; }\n@keyframes show { to { opacity: 1; } }"
+      },
+      "options": [
+        "0 (snaps back to its base CSS rule)",
+        "1 (stays visible)",
+        "0.5",
+        "Browser keeps the last frame automatically"
+      ],
+      "correctIndex": 0,
+      "explanation": "With default fill-mode: none, animated values are discarded as soon as the animation completes unless fill-mode: forwards/both is specified."
+    },
+    {
+      "id": "css-exam-advanced-1",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Cascade Layers, Nesting & :has()",
+      "prompt": "Which background color applies to <button class=\"btn primary\">Save</button>?",
+      "codeSnippet": {
+        "language": "css",
+        "code": "@layer components, overrides;\n@layer overrides { .primary { background: teal; } }\n@layer components { button.btn.primary { background: orange; } }"
+      },
+      "options": [
+        "teal",
+        "orange",
+        "transparent",
+        "Browser default gray"
+      ],
+      "correctIndex": 0,
+      "explanation": "@layer overrides is declared after @layer components, so .primary beats the higher-specificity rule in components."
+    },
+    {
+      "id": "css-exam-advanced-2",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Cascade Layers, Nesting & :has()",
+      "prompt": "Given @layer base, utilities;, which declaration wins on <p class=\"lead text-indigo\" id=\"hero\">?",
+      "options": [
+        ".text-indigo inside @layer utilities",
+        "#hero.lead inside @layer base",
+        "Whichever has more classes",
+        "They throw a cascade error"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cascade layer precedence outranks specificity; @layer utilities comes after @layer base, so it wins."
+    },
+    {
+      "id": "css-exam-advanced-3",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Cascade Layers, Nesting & :has()",
+      "prompt": "Which selector selects a <label> element that contains a checked checkbox?",
+      "options": [
+        "label:has(input:checked)",
+        "label:contains(input:checked)",
+        "input:checked < label",
+        "label:parent(input:checked)"
+      ],
+      "correctIndex": 0,
+      "explanation": ":has() matches any element whose relative selector matches at least one descendant or sibling."
+    },
+    {
+      "id": "css-exam-advanced-4",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Design Systems, Custom Properties & Performance",
+      "prompt": "What color renders on .btn when --brand is NOT defined anywhere?",
+      "codeSnippet": {
+        "language": "css",
+        "code": ".btn {\n  color: red;\n  color: var(--brand, indigo);\n}"
+      },
+      "options": [
+        "indigo",
+        "red",
+        "black",
+        "transparent"
+      ],
+      "correctIndex": 0,
+      "explanation": "Because --brand is unset, var() resolves to its fallback value indigo."
+    },
+    {
+      "id": "css-exam-advanced-5",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Design Systems, Custom Properties & Performance",
+      "prompt": "In Tailwind CSS v4, why must you add @custom-variant dark (&:where(.dark, .dark *)); when using a manual Light/Dark class toggle?",
+      "options": [
+        "By default Tailwind v4 binds dark:* to prefers-color-scheme media query and ignores <html class=\"dark\">",
+        "Tailwind v4 removed dark mode completely without plugins",
+        "It improves CSS minification size by 50%",
+        "Browsers require @custom-variant to read localStorage"
+      ],
+      "correctIndex": 0,
+      "explanation": "Without @custom-variant dark, Tailwind v4 dark:* classes only follow OS prefers-color-scheme."
+    },
+    {
+      "id": "css-exam-advanced-6",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Design Systems, Custom Properties & Performance",
+      "prompt": "What does registering a CSS custom property with @property { syntax: \"<color>\"; ... } enable?",
+      "options": [
+        "Smooth CSS transitions and keyframe interpolation of that variable inside gradients and color functions",
+        "Compile-time TypeScript checking",
+        "Automatic dark-mode inversion",
+        "Cross-origin stylesheet sharing"
+      ],
+      "correctIndex": 0,
+      "explanation": "@property teaches the browser the data type of a CSS variable so it can interpolate intermediate frames."
+    },
+    {
+      "id": "css-exam-advanced-7",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Modern Color Spaces, Blending & Visual Effects",
+      "prompt": "Which background lets backdrop-filter: blur(10px) actually show a frosted glass effect?",
+      "codeSnippet": {
+        "language": "css",
+        "code": ".panel-a { background: #ffffff; backdrop-filter: blur(10px); }\n.panel-b { background: rgb(255 255 255 / 0.75); backdrop-filter: blur(10px); }"
+      },
+      "options": [
+        ".panel-b only",
+        ".panel-a only",
+        "Both .panel-a and .panel-b",
+        "Neither—blur requires z-index: 999"
+      ],
+      "correctIndex": 0,
+      "explanation": "backdrop-filter blurs content visible behind the element; an opaque #ffffff background hides the backdrop completely."
+    },
+    {
+      "id": "css-exam-advanced-8",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Modern Color Spaces, Blending & Visual Effects",
+      "prompt": "Why do gradients and color scales built in OKLCH look more consistent than HSL?",
+      "options": [
+        "OKLCH models uniform human perceptual lightness across all hues",
+        "OKLCH only uses 256 web-safe colors",
+        "HSL does not support alpha transparency",
+        "OKLCH automatically disables dark mode"
+      ],
+      "correctIndex": 0,
+      "explanation": "OKLCH is perceptually uniform, meaning equal L values look equally bright regardless of hue."
+    },
+    {
+      "id": "css-exam-advanced-9",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Modern Color Spaces, Blending & Visual Effects",
+      "prompt": "Why is mask-image preferred over a background-colored overlay div for fading the edge of a scrollable list?",
+      "options": [
+        "It fades the element’s own alpha channel so it works over any background or theme automatically",
+        "It improves database query speed",
+        "It forces the container to use CSS Grid",
+        "It automatically adds scrollbars in all browsers"
+      ],
+      "correctIndex": 0,
+      "explanation": "mask-image modulates element opacity directly, avoiding mismatched overlay colors in dark mode or over gradients."
+    },
+    {
+      "id": "css-exam-advanced-10",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "CSS Architecture, Accessibility & Print Engineering",
+      "prompt": "When a page switches to <html dir=\"rtl\">, which edge gets the 4px indigo border?",
+      "codeSnippet": {
+        "language": "css",
+        "code": ".note { border-inline-start: 4px solid #4f46e5; }"
+      },
+      "options": [
+        "The right edge",
+        "The left edge",
+        "The top edge",
+        "Both left and right edges"
+      ],
+      "correctIndex": 0,
+      "explanation": "border-inline-start mirrors automatically to the right side in RTL reading direction."
+    }
+  ]
+}

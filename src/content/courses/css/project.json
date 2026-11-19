@@ -1,0 +1,77 @@
+{
+  "courseSlug": "css",
+  "title": "Dual-Theme SaaS Pricing & Dashboard System in Pure Modern CSS",
+  "estimatedHours": 5,
+  "difficulty": "Beginner to Advanced",
+  "brief": "Build a responsive Light/Dark SaaS pricing matrix and analytics grid powered strictly by modern CSS: @layer architecture, OKLCH custom properties, Container Queries for portable cards, CSS Subgrid for row alignment, :has() interactive billing toggle styling, and prefers-reduced-motion compositor animations.",
+  "requirements": [
+    {
+      "id": "req-1",
+      "text": "Organize styles into explicit @layer reset, tokens, layout, components, utilities."
+    },
+    {
+      "id": "req-2",
+      "text": "Define Light and Dark semantic tokens using CSS custom properties and oklch() colors meeting WCAG AA (4.5:1+) contrast."
+    },
+    {
+      "id": "req-3",
+      "text": "Build an intrinsic responsive pricing card grid with CSS Grid and align card titles, prices, and CTA buttons across columns using CSS Subgrid."
+    },
+    {
+      "id": "req-4",
+      "text": "Implement a Container Query (@container) card component that switches from stacked to horizontal layout when its host is >= 460px wide."
+    },
+    {
+      "id": "req-5",
+      "text": "Style the monthly/annual billing toggle and highlighted plan card purely via CSS :has(input:checked)."
+    },
+    {
+      "id": "req-6",
+      "text": "Add compositor-only hover transitions (transform, opacity) and wrap motion cleanly with @media (prefers-reduced-motion: reduce)."
+    }
+  ],
+  "steps": [
+    {
+      "stepNumber": 1,
+      "title": "Establish Cascade Layers & Reset",
+      "details": "Declare @layer order at the top of styles.css and apply border-box + font: inherit resets."
+    },
+    {
+      "stepNumber": 2,
+      "title": "Build OKLCH Dual-Theme Tokens",
+      "details": "Create :root and .dark semantic variables for canvas, surface, border, primary text, muted text, and indigo accent."
+    },
+    {
+      "stepNumber": 3,
+      "title": "Compose the Subgrid Pricing Matrix",
+      "details": "Set up a 3-column grid with minmax(0, 1fr) and configure each card with grid-row: span 4; grid-template-rows: subgrid;."
+    },
+    {
+      "stepNumber": 4,
+      "title": "Add Container Query Portability",
+      "details": "Wrap feature callouts in container-type: inline-size so the same card adapts inside sidebars and main columns."
+    },
+    {
+      "stepNumber": 5,
+      "title": "Wire :has() Interactive States",
+      "details": "Highlight the selected plan card border and elevation using .plan-card:has(input:checked) without extra state classes."
+    },
+    {
+      "stepNumber": 6,
+      "title": "Polish Motion & Accessibility",
+      "details": "Add 180ms compositor-only hover transitions, tabular-nums on pricing metrics, and prefers-reduced-motion safeguards."
+    }
+  ],
+  "referenceSolution": [
+    {
+      "filename": "styles.css",
+      "language": "css",
+      "code": "@layer reset, tokens, layout, components, utilities;\n\n@layer reset {\n  *, *::before, *::after { box-sizing: border-box; }\n  body { margin: 0; font-family: \"Plus Jakarta Sans\", system-ui, sans-serif; line-height: 1.6; }\n  button, input { font: inherit; }\n}\n\n@layer tokens {\n  :root {\n    --canvas: oklch(98.4% 0.003 247);\n    --surface: oklch(100% 0 0);\n    --border: oklch(90% 0.01 255);\n    --ink: oklch(20% 0.03 260);\n    --muted: oklch(48% 0.02 255);\n    --accent: oklch(52% 0.22 268);\n  }\n  .dark {\n    --canvas: oklch(16% 0.02 260);\n    --surface: oklch(21% 0.02 260);\n    --border: oklch(30% 0.02 260);\n    --ink: oklch(97% 0.005 247);\n    --muted: oklch(72% 0.02 255);\n    --accent: oklch(64% 0.20 268);\n  }\n}\n\n@layer layout {\n  .pricing-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));\n    gap: 1.5rem;\n    max-inline-size: 72rem;\n    margin-inline: auto;\n    padding: 2rem 1rem;\n  }\n}\n\n@layer components {\n  .plan-card {\n    display: grid;\n    grid-row: span 4;\n    grid-template-rows: subgrid;\n    gap: 0.75rem;\n    padding: 1.5rem;\n    border-radius: 1rem;\n    background: var(--surface);\n    border: 1px solid var(--border);\n    transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), border-color 180ms ease;\n  }\n\n  .plan-card:has(input:checked) {\n    border-color: var(--accent);\n  }\n\n  .plan-price {\n    font-variant-numeric: tabular-nums;\n    font-size: clamp(1.75rem, 1.2rem + 1.5vw, 2.5rem);\n    font-weight: 800;\n  }\n\n  .feature-slot { container-type: inline-size; }\n  @container (width >= 460px) {\n    .feature-banner { display: grid; grid-template-columns: 1fr auto; align-items: center; }\n  }\n}\n\n@media (hover: hover) {\n  .plan-card:hover { transform: translateY(-2px); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  *, *::before, *::after { transition-duration: 0.01ms !important; }\n}"
+    },
+    {
+      "filename": "index.html",
+      "language": "html",
+      "code": "<section class=\"pricing-grid\" aria-label=\"Plans\">\n  <label class=\"plan-card\">\n    <input type=\"radio\" name=\"plan\" value=\"starter\" checked />\n    <h2>Starter</h2>\n    <p class=\"plan-price\">$0</p>\n    <p>All 23 core tracks, quizzes, and local progress tracking.</p>\n  </label>\n  <label class=\"plan-card\">\n    <input type=\"radio\" name=\"plan\" value=\"team\" />\n    <h2>Team Engineering</h2>\n    <p class=\"plan-price\">$29</p>\n    <p>Shared cohort analytics, SSO, and team benchmark exams.</p>\n  </label>\n</section>"
+    }
+  ]
+}

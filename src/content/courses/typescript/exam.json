@@ -1,0 +1,506 @@
+{
+  "courseSlug": "typescript",
+  "title": "TypeScript Final Certification Exam",
+  "durationMinutes": 45,
+  "passMark": 70,
+  "questions": [
+    {
+      "id": "typescript-exam-beginner-1",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Type System Foundations & Strict Mode",
+      "prompt": "What happens when you compile this TypeScript snippet with strict: true?",
+      "codeSnippet": {
+        "language": "typescript",
+        "code": "const val: unknown = 'hello';\nconsole.log(val.toUpperCase());"
+      },
+      "options": [
+        "Compile-time error: val is of type unknown",
+        "Prints HELLO cleanly",
+        "Prints undefined",
+        "Runtime error only"
+      ],
+      "correctIndex": 0,
+      "explanation": "TypeScript refuses property access on unknown until narrowed with typeof val === \"string\"."
+    },
+    {
+      "id": "typescript-exam-beginner-2",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Type System Foundations & Strict Mode",
+      "prompt": "Why does passing { x: 3, y: 4, z: 10 } stored in a variable satisfy a Point2D ({ x: number; y: number }) parameter?",
+      "options": [
+        "TypeScript uses structural typing and the variable contains all required Point2D properties",
+        "TypeScript strips the z property at runtime",
+        "TypeScript ignores object properties on variables",
+        "number automatically converts to Point2D"
+      ],
+      "correctIndex": 0,
+      "explanation": "Structural typing allows any value whose shape contains at least the required members."
+    },
+    {
+      "id": "typescript-exam-beginner-3",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Type System Foundations & Strict Mode",
+      "prompt": "Which TypeScript type accepts any value on assignment but forbids accessing properties until narrowed?",
+      "options": [
+        "unknown",
+        "any",
+        "object",
+        "never"
+      ],
+      "correctIndex": 0,
+      "explanation": "unknown is TypeScript’s type-safe top type: safe to assign to, unsafe to use until narrowed."
+    },
+    {
+      "id": "typescript-exam-beginner-4",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Objects, Interfaces, Type Aliases & Tuples",
+      "prompt": "What happens when compiling this satisfies snippet?",
+      "codeSnippet": {
+        "language": "typescript",
+        "code": "const colors = { ok: '#10b981' } satisfies Record<string, string>;\nconst hex = colors.missing;"
+      },
+      "options": [
+        "Compile-time error: Property \"missing\" does not exist",
+        "hex is inferred as string",
+        "hex is inferred as undefined",
+        "Runtime error only"
+      ],
+      "correctIndex": 0,
+      "explanation": "satisfies retains the exact keys of colors ({ ok: string }), so accessing colors.missing fails at compile time."
+    },
+    {
+      "id": "typescript-exam-beginner-5",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Objects, Interfaces, Type Aliases & Tuples",
+      "prompt": "Which feature is supported by interface declarations but NOT by type aliases?",
+      "options": [
+        "Declaration merging across multiple declarations with the same name",
+        "Defining union types",
+        "Generic type parameters",
+        "Optional properties"
+      ],
+      "correctIndex": 0,
+      "explanation": "Duplicate interface names merge automatically, whereas duplicate type aliases produce a compile error."
+    },
+    {
+      "id": "typescript-exam-beginner-6",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Objects, Interfaces, Type Aliases & Tuples",
+      "prompt": "What happens if a function parameter is typed as items: readonly string[] and you call items.push(\"x\")?",
+      "options": [
+        "TypeScript raises a compile-time error because push does not exist on readonly string[]",
+        "It silently returns a new array",
+        "It throws a TypeError only at runtime",
+        "It succeeds normally"
+      ],
+      "correctIndex": 0,
+      "explanation": "readonly string[] omits mutating methods like push, pop, and splice at compile time."
+    },
+    {
+      "id": "typescript-exam-beginner-7",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Functions, Overloads & Call Signatures",
+      "prompt": "What is the inferred type of result here?",
+      "codeSnippet": {
+        "language": "typescript",
+        "code": "function id(x: string): string;\nfunction id(x: number): number;\nfunction id(x: string | number) { return x; }\nconst result = id(100);"
+      },
+      "options": [
+        "number",
+        "string | number",
+        "any",
+        "string"
+      ],
+      "correctIndex": 0,
+      "explanation": "Overload resolution matches the second overload (x: number): number."
+    },
+    {
+      "id": "typescript-exam-beginner-8",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Functions, Overloads & Call Signatures",
+      "prompt": "Why does TypeScript allow passing `(x) => results.push(x)` (which returns a number) where a `(x: string) => void` callback is expected?",
+      "options": [
+        "Contextual void indicates the caller ignores any returned value",
+        "Array.prototype.push returns void",
+        "TypeScript disables return checks on arrow functions",
+        "number is assignable to void everywhere"
+      ],
+      "correctIndex": 0,
+      "explanation": "void in a callback type means the caller ignores the return value, not that returning a value is illegal."
+    },
+    {
+      "id": "typescript-exam-beginner-9",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Functions, Overloads & Call Signatures",
+      "prompt": "Which signature does TypeScript use when checking a call to an overloaded function?",
+      "options": [
+        "The first matching overload signature from top to bottom (never the implementation signature)",
+        "The implementation signature only",
+        "The last overload signature always",
+        "A random matching signature"
+      ],
+      "correctIndex": 0,
+      "explanation": "TypeScript resolves overload calls top-down against public overload signatures only."
+    },
+    {
+      "id": "typescript-exam-beginner-10",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Modules, tsconfig.json & Interop Essentials",
+      "prompt": "Which directive reports a compile error if the next line actually compiles cleanly?",
+      "codeSnippet": {
+        "language": "typescript",
+        "code": "// @ts-expect-error\nconst n: number = 42;"
+      },
+      "options": [
+        "@ts-expect-error fails because no error occurred on the next line",
+        "Compiles cleanly with zero warnings",
+        "Converts 42 to string",
+        "Throws a runtime exception"
+      ],
+      "correctIndex": 0,
+      "explanation": "@ts-expect-error requires an error on the following line and flags unused suppressions."
+    },
+    {
+      "id": "typescript-exam-intermediate-1",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Type Narrowing & Discriminated Unions",
+      "prompt": "What type does `x` have inside the `if` block?",
+      "codeSnippet": {
+        "language": "typescript",
+        "code": "function isStr(v: unknown): v is string { return typeof v === 'string'; }\nfunction run(x: number | string) { if (isStr(x)) { /* here */ } }"
+      },
+      "options": [
+        "string",
+        "number | string",
+        "unknown",
+        "never"
+      ],
+      "correctIndex": 0,
+      "explanation": "The user-defined type predicate narrows x to string inside the true branch."
+    },
+    {
+      "id": "typescript-exam-intermediate-2",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Type Narrowing & Discriminated Unions",
+      "prompt": "After checking `if (typeof x === \"string\") return;`, what type does x have if it started as `string | number | boolean`?",
+      "options": [
+        "number | boolean",
+        "string",
+        "unknown",
+        "never"
+      ],
+      "correctIndex": 0,
+      "explanation": "Control-flow analysis eliminates string from the union after the early return."
+    },
+    {
+      "id": "typescript-exam-intermediate-3",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Type Narrowing & Discriminated Unions",
+      "prompt": "What property enables TypeScript to narrow `{ ok: true; data: number } | { ok: false; error: string }` in a single `if (res.ok)` check?",
+      "options": [
+        "The shared literal discriminant property `ok`",
+        "The `data` property type",
+        "A runtime class constructor",
+        "An explicit type assertion"
+      ],
+      "correctIndex": 0,
+      "explanation": "Literal tags like `ok: true` vs `ok: false` act as discriminants for automatic union narrowing."
+    },
+    {
+      "id": "typescript-exam-intermediate-4",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Generics, Constraints & Default Type Parameters",
+      "prompt": "What is the return type of `getProp({ id: 1, title: \"TS\" }, \"title\")`?",
+      "codeSnippet": {
+        "language": "typescript",
+        "code": "function getProp<T, K extends keyof T>(obj: T, key: K): T[K] { return obj[key]; }\nconst v = getProp({ id: 1, title: 'TS' }, 'title');"
+      },
+      "options": [
+        "string",
+        "string | number",
+        "unknown",
+        "keyof T"
+      ],
+      "correctIndex": 0,
+      "explanation": "K is inferred as \"title\", so T[K] resolves directly to string."
+    },
+    {
+      "id": "typescript-exam-intermediate-5",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Generics, Constraints & Default Type Parameters",
+      "prompt": "What type is inferred for `res` when calling `function wrap<T>(v: T) { return { value: v }; } const res = wrap(\"TS\");`?",
+      "options": [
+        "{ value: string }",
+        "{ value: unknown }",
+        "{ value: any }",
+        "string"
+      ],
+      "correctIndex": 0,
+      "explanation": "TypeScript infers T = string from the argument and substitutes it into the return shape."
+    },
+    {
+      "id": "typescript-exam-intermediate-6",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Generics, Constraints & Default Type Parameters",
+      "prompt": "Given `interface Book { title: string; pages: number }`, what is the type `Book[\"pages\"]`?",
+      "options": [
+        "number",
+        "string | number",
+        "\"pages\"",
+        "Book"
+      ],
+      "correctIndex": 0,
+      "explanation": "Indexed access `Book[\"pages\"]` looks up the exact property type (`number`)."
+    },
+    {
+      "id": "typescript-exam-intermediate-7",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Built-In Utility Types & Practical Transformations",
+      "prompt": "What type does `Exclude<\"a\" | \"b\" | \"c\", \"a\" | \"c\">` evaluate to?",
+      "codeSnippet": {
+        "language": "typescript",
+        "code": "type OnlyB = Exclude<'a' | 'b' | 'c', 'a' | 'c'>;"
+      },
+      "options": [
+        "\"b\"",
+        "\"a\" | \"c\"",
+        "never",
+        "string"
+      ],
+      "correctIndex": 0,
+      "explanation": "Exclude removes \"a\" and \"c\" from the union, leaving only \"b\"."
+    },
+    {
+      "id": "typescript-exam-intermediate-8",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Built-In Utility Types & Practical Transformations",
+      "prompt": "Which utility type produces a version of `User` where `id` cannot be supplied and all remaining fields are optional?",
+      "options": [
+        "Partial<Omit<User, \"id\">>",
+        "Pick<User, \"id\">",
+        "Required<User>",
+        "Readonly<User>"
+      ],
+      "correctIndex": 0,
+      "explanation": "Omit removes `id`, and Partial makes all remaining properties optional."
+    },
+    {
+      "id": "typescript-exam-intermediate-9",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Built-In Utility Types & Practical Transformations",
+      "prompt": "Why can `Pick<User, \"id\" | \"name\">` be safer than `Omit<User, \"passwordHash\">` for a public API response type?",
+      "options": [
+        "If a new sensitive field is later added to User, Pick won’t accidentally expose it",
+        "Pick runs faster at runtime",
+        "Omit cannot remove string properties",
+        "Pick makes properties immutable"
+      ],
+      "correctIndex": 0,
+      "explanation": "Allowlist selection (Pick) prevents newly added internal properties from leaking automatically."
+    },
+    {
+      "id": "typescript-exam-intermediate-10",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Classes, Decorators & React/DOM TypeScript Patterns",
+      "prompt": "What type does `const [items, setItems] = useState([])` infer for `items` with strict: true?",
+      "codeSnippet": {
+        "language": "typescript",
+        "code": "const [items, setItems] = useState([]);"
+      },
+      "options": [
+        "never[]",
+        "any[]",
+        "unknown[]",
+        "string[]"
+      ],
+      "correctIndex": 0,
+      "explanation": "Without a generic argument, an empty array literal infers never[] in strict mode."
+    },
+    {
+      "id": "typescript-exam-advanced-1",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Conditional Types, Distribution & `infer`",
+      "prompt": "What does `type Out = (string | number) extends string ? 1 : 0` evaluate to?",
+      "codeSnippet": {
+        "language": "typescript",
+        "code": "type Out = (string | number) extends string ? 1 : 0;"
+      },
+      "options": [
+        "0 (no distribution without a naked type parameter)",
+        "1 | 0",
+        "1",
+        "never"
+      ],
+      "correctIndex": 0,
+      "explanation": "Distribution only happens on naked generic type parameters, not concrete unions."
+    },
+    {
+      "id": "typescript-exam-advanced-2",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Conditional Types, Distribution & `infer`",
+      "prompt": "What does `type IsString<T> = T extends string ? \"yes\" : \"no\"; type R = IsString<42>;` evaluate to?",
+      "options": [
+        "\"no\"",
+        "\"yes\"",
+        "boolean",
+        "never"
+      ],
+      "correctIndex": 0,
+      "explanation": "42 does not extend string, so the false branch (\"no\") is chosen."
+    },
+    {
+      "id": "typescript-exam-advanced-3",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Conditional Types, Distribution & `infer`",
+      "prompt": "What does `type Box<T> = T extends any ? { v: T } : never; type R = Box<string | number>;` resolve to?",
+      "options": [
+        "{ v: string } | { v: number }",
+        "{ v: string | number }",
+        "{ v: any }",
+        "never"
+      ],
+      "correctIndex": 0,
+      "explanation": "Because T is a naked type parameter, Box distributes over the union into `{ v: string } | { v: number }`."
+    },
+    {
+      "id": "typescript-exam-advanced-4",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Mapped Types, Key Remapping & Template Literal Types",
+      "prompt": "What type does `` type EventName = `on${Capitalize<\"load\" | \"save\">}` `` resolve to?",
+      "codeSnippet": {
+        "language": "typescript",
+        "code": "type EventName = `on${Capitalize<'load' | 'save'>}`;"
+      },
+      "options": [
+        "\"onLoad\" | \"onSave\"",
+        "\"onload\" | \"onsave\"",
+        "\"ONLOAD\" | \"ONSAVE\"",
+        "string"
+      ],
+      "correctIndex": 0,
+      "explanation": "Capitalize uppercases the first character of each union member cleanly."
+    },
+    {
+      "id": "typescript-exam-advanced-5",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Mapped Types, Key Remapping & Template Literal Types",
+      "prompt": "What does `{ [K in keyof T]-?: T[K] }` implement?",
+      "options": [
+        "Required<T>",
+        "Partial<T>",
+        "Readonly<T>",
+        "Omit<T, K>"
+      ],
+      "correctIndex": 0,
+      "explanation": "Removing the optional modifier (`-?`) from every property of T is the exact definition of Required<T>."
+    },
+    {
+      "id": "typescript-exam-advanced-6",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Mapped Types, Key Remapping & Template Literal Types",
+      "prompt": "In `{ [K in keyof T as T[K] extends string ? K : never]: T[K] }`, what happens to properties whose value type is `number`?",
+      "options": [
+        "They are excluded completely from the resulting type",
+        "Their value becomes never",
+        "Their key becomes \"never\"",
+        "A compile error occurs"
+      ],
+      "correctIndex": 0,
+      "explanation": "Remapping a key to `never` inside an `as` clause omits that property from the mapped type."
+    },
+    {
+      "id": "typescript-exam-advanced-7",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Runtime Boundary Validation & End-to-End Type Safety",
+      "prompt": "What happens when you compile this strict type test?",
+      "codeSnippet": {
+        "language": "typescript",
+        "code": "type Expect<T extends true> = T;\ntype Check = Expect<false>;"
+      },
+      "options": [
+        "Compile-time error: Type \"false\" does not satisfy constraint \"true\"",
+        "Compiles cleanly",
+        "Evaluates Check to true",
+        "Throws at runtime"
+      ],
+      "correctIndex": 0,
+      "explanation": "Expect<T extends true> turns a failing type-level test into an immediate compile error."
+    },
+    {
+      "id": "typescript-exam-advanced-8",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Runtime Boundary Validation & End-to-End Type Safety",
+      "prompt": "Why does TypeScript NOT prevent a runtime crash if an external REST API unexpectedly returns `price: \"free\"` instead of a number?",
+      "options": [
+        "TypeScript types are erased at compile time and do not inspect live network payloads",
+        "fetch() disables TypeScript checking",
+        "TypeScript only checks numbers above 0",
+        "JSON cannot hold numbers"
+      ],
+      "correctIndex": 0,
+      "explanation": "Static types verify source code at build time; runtime boundary parsers are required for external data."
+    },
+    {
+      "id": "typescript-exam-advanced-9",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Runtime Boundary Validation & End-to-End Type Safety",
+      "prompt": "What advantage does returning `Result<User, \"NOT_FOUND\" | \"UNAUTHORIZED\">` have over throwing an Error?",
+      "options": [
+        "The exact failure cases appear in the function’s static signature and callers must narrow `ok` before reading `value`",
+        "It executes without allocating any memory",
+        "It disables try/catch globally",
+        "It automatically retries failed calls"
+      ],
+      "correctIndex": 0,
+      "explanation": "Result<T, E> encodes expected failure modes directly into the type system so callers cannot ignore them."
+    },
+    {
+      "id": "typescript-exam-advanced-10",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "TypeScript 5+ Modern Patterns & Real-World Architecture",
+      "prompt": "In what order do `using a = res(\"A\"); using b = res(\"B\");` dispose when the block exits?",
+      "codeSnippet": {
+        "language": "typescript",
+        "code": "{\n  using a = makeRes('A');\n  using b = makeRes('B');\n}"
+      },
+      "options": [
+        "B disposes first, then A (LIFO)",
+        "A disposes first, then B (FIFO)",
+        "Both dispose concurrently in random order",
+        "Neither disposes without an error"
+      ],
+      "correctIndex": 0,
+      "explanation": "Explicit Resource Management disposes resources in reverse declaration order (LIFO)."
+    }
+  ]
+}

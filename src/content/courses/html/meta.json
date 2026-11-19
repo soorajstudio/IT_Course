@@ -1,0 +1,31 @@
+{
+  "slug": "html",
+  "order": 1,
+  "title": "HTML",
+  "shortTitle": "HTML5",
+  "area": "Web",
+  "tagline": "Semantic document architecture, accessible forms, media APIs, and modern web standards.",
+  "description": "Master HTML5 from foundational document structure and semantic landmarks through accessible form engineering, responsive media, ARIA patterns, microdata SEO, and native browser elements like dialog and popover.",
+  "codeLanguage": "html",
+  "estimatedHours": 16,
+  "prerequisites": [
+    "Basic familiarity with a web browser and text editor"
+  ],
+  "whatYoullLearn": [
+    "Author valid, accessible HTML5 documents with proper landmark hierarchy",
+    "Build keyboard-friendly forms with native Constraint Validation API attributes",
+    "Optimize responsive images with srcset, sizes, picture, and lazy loading",
+    "Apply WCAG AA semantics, ARIA roles, live regions, and focus management",
+    "Use modern native elements including dialog, details, template, and popover",
+    "Structure metadata, Open Graph tags, and JSON-LD for search engine indexing"
+  ],
+  "levelSummaries": {
+    "Beginner": "Document anatomy, headings, semantic landmarks, links, lists, and core text markup.",
+    "Intermediate": "Accessible forms, validation attributes, responsive media, tables, and embedded content.",
+    "Advanced": "WAI-ARIA engineering, native interactive dialogs/templates, performance hints, and structured SEO."
+  },
+  "sectionCount": 12,
+  "lessonCount": 48,
+  "examQuestionCount": 30,
+  "projectTitle": "Accessible Developer Conference Landing & Registration Page"
+}

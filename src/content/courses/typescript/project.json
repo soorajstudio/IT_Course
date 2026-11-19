@@ -1,0 +1,77 @@
+{
+  "courseSlug": "typescript",
+  "title": "Type-Safe Full-Stack API Client & Schema Validation Kit",
+  "estimatedHours": 6,
+  "difficulty": "Beginner to Advanced",
+  "brief": "Build a zero-dependency TypeScript 5 utility library featuring branded domain IDs, a typed Result<T, E> error model, compile-time route parameter extraction with template literal types, runtime boundary schema parsers, and a strict type-level test suite.",
+  "requirements": [
+    {
+      "id": "req-1",
+      "text": "Configure tsconfig.json with strict: true, noUncheckedIndexedAccess: true, and verbatimModuleSyntax: true."
+    },
+    {
+      "id": "req-2",
+      "text": "Implement branded types (UserId, CourseId) with constructor guards that reject invalid empty strings."
+    },
+    {
+      "id": "req-3",
+      "text": "Build a Result<T, E> discriminated union with mapResult, unwrapOr, and exhaustive error formatting using assertNever."
+    },
+    {
+      "id": "req-4",
+      "text": "Implement a compile-time ExtractRouteParams<Path> template literal type and typed buildUrl() helper."
+    },
+    {
+      "id": "req-5",
+      "text": "Create runtime boundary parsers that transform unknown JSON payloads into validated domain objects safely."
+    },
+    {
+      "id": "req-6",
+      "text": "Include a compile-time Expect<Equal<A, B>> + @ts-expect-error verification suite that passes `tsc --noEmit`."
+    }
+  ],
+  "steps": [
+    {
+      "stepNumber": 1,
+      "title": "Define Branded Primitives",
+      "details": "Use unique symbols to create CourseId and UserId along with runtime factory functions."
+    },
+    {
+      "stepNumber": 2,
+      "title": "Build Result<T, E> & assertNever",
+      "details": "Implement ok(), err(), mapResult(), and an exhaustive switch helper using never."
+    },
+    {
+      "stepNumber": 3,
+      "title": "Author Template Literal Route Extractor",
+      "details": "Extract `:param` names from path strings into a typed params object required by buildUrl()."
+    },
+    {
+      "stepNumber": 4,
+      "title": "Write Runtime Schema Parsers",
+      "details": "Validate raw unknown API payloads with explicit typeof/property guards returning Result<T, ValidationError>."
+    },
+    {
+      "stepNumber": 5,
+      "title": "Create Typed ApiClient Wrapper",
+      "details": "Bind an EndpointMap interface so client.get(\"/courses/:slug\", { slug: \"ts\" }) infers the exact response type."
+    },
+    {
+      "stepNumber": 6,
+      "title": "Add Type-Level & Runtime Tests",
+      "details": "Verify both valid inferences with Expect<Equal<...>> and rejected bad calls with @ts-expect-error."
+    }
+  ],
+  "referenceSolution": [
+    {
+      "filename": "src/result.ts",
+      "language": "typescript",
+      "code": "export type Result<T, E> = { ok: true; value: T } | { ok: false; error: E };\n\nexport const ok = <T>(value: T): Result<T, never> => ({ ok: true, value });\nexport const err = <E>(error: E): Result<never, E> => ({ ok: false, error });\n\nexport function mapResult<T, U, E>(r: Result<T, E>, fn: (v: T) => U): Result<U, E> {\n  return r.ok ? ok(fn(r.value)) : r;\n}\n\nexport function assertNever(x: never): never {\n  throw new Error(`Unexpected value: ${JSON.stringify(x)}`);\n}"
+    },
+    {
+      "filename": "src/routes.ts",
+      "language": "typescript",
+      "code": "export type ExtractParams<Path extends string> =\n  Path extends `${string}:${infer Param}/${infer Rest}`\n    ? Param | ExtractParams<Rest>\n    : Path extends `${string}:${infer Param}`\n      ? Param\n      : never;\n\nexport type ParamsRecord<Path extends string> = [ExtractParams<Path>] extends [never]\n  ? Record<string, never>\n  : Record<ExtractParams<Path>, string>;\n\nexport function buildUrl<Path extends string>(template: Path, params: ParamsRecord<Path>): string {\n  return template.replace(/:([a-zA-Z0-9_]+)/g, (_, key: string) =>\n    encodeURIComponent((params as Record<string, string>)[key] ?? '')\n  );\n}\n\n// Usage: buildUrl('/courses/:slug/quiz/:id', { slug: 'typescript', id: 's1' })"
+    }
+  ]
+}

@@ -1,0 +1,1997 @@
+{
+  "courseSlug": "react",
+  "quizzes": [
+    {
+      "sectionId": "react-s1",
+      "sectionTitle": "Components, JSX & Composition",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "react-s1-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Components, JSX & Composition",
+          "prompt": "Why must React component names begin with an uppercase letter?",
+          "options": [
+            "JSX compiles lowercase tags as built-in HTML strings rather than custom components",
+            "JavaScript requires uppercase functions",
+            "It speeds up DOM rendering",
+            "Vite rejects lowercase exports"
+          ],
+          "correctIndex": 0,
+          "explanation": "Lowercase JSX tags compile to HTML tag strings like `\"div\"` instead of component references."
+        },
+        {
+          "id": "react-s1-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Components, JSX & Composition",
+          "prompt": "When working with JSX Compilation & Pure Rendering in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Clone before sorting (`[...props.items].sort()`) to keep renders pure.",
+            "Always rely on \"Mutating a prop array during render (`props.items.sort()`)\" as the default pattern",
+            "Ignore JSX Compilation & Pure Rendering constraints during runtime execution",
+            "Replace JSX Compilation & Pure Rendering with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Mutating a prop array during render (`props.items.sort()`). Recommended fix: Clone before sorting (`[...props.items].sort()`) to keep renders pure."
+        },
+        {
+          "id": "react-s1-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Components, JSX & Composition",
+          "prompt": "How should a child component update data passed down through props?",
+          "options": [
+            "Call an event callback prop provided by the parent that updates parent state",
+            "Reassign `props.value` directly",
+            "Mutate the parent DOM via `querySelector`",
+            "Use `window.postMessage`"
+          ],
+          "correctIndex": 0,
+          "explanation": "Unidirectional data flow sends data down as props and change requests up via callbacks."
+        },
+        {
+          "id": "react-s1-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Components, JSX & Composition",
+          "prompt": "When working with Props, Children & Composition in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Treat props as immutable and notify the parent via callback props.",
+            "Always rely on \"Mutating `props.title = \"X\"` directly\" as the default pattern",
+            "Ignore Props, Children & Composition constraints during runtime execution",
+            "Replace Props, Children & Composition with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Mutating `props.title = \"X\"` directly. Recommended fix: Treat props as immutable and notify the parent via callback props."
+        },
+        {
+          "id": "react-s1-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Components, JSX & Composition",
+          "prompt": "What renders for `<div>{items.length && <span>Items</span>}</div>` when `items` is `[]`?",
+          "options": [
+            "Literal text \"0\"",
+            "Nothing",
+            "<span>Items</span>",
+            "Runtime error"
+          ],
+          "correctIndex": 0,
+          "explanation": "Because `0` is falsy, `&&` returns `0`, which React renders visibly as text."
+        },
+        {
+          "id": "react-s1-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Components, JSX & Composition",
+          "prompt": "When working with Conditional Rendering & The Zero-Leak Pitfall in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "When empty, `0 && ...` renders `\"0\"` on screen; compare `items.length > 0`.",
+            "Always rely on \"Writing `{items.length && <List />}`\" as the default pattern",
+            "Ignore Conditional Rendering & The Zero-Leak Pitfall constraints during runtime execution",
+            "Replace Conditional Rendering & The Zero-Leak Pitfall with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing `{items.length && <List />}`. Recommended fix: When empty, `0 && ...` renders `\"0\"` on screen; compare `items.length > 0`."
+        },
+        {
+          "id": "react-s1-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Components, JSX & Composition",
+          "prompt": "What happens if a list item uses `key={Math.random()}`?",
+          "options": [
+            "React unmounts and remounts the item on every render, losing focus and internal state",
+            "React deduplicates random keys",
+            "List rendering becomes faster",
+            "TypeScript blocks it"
+          ],
+          "correctIndex": 0,
+          "explanation": "A fresh key each render signals a brand-new element identity, forcing unmount + remount."
+        },
+        {
+          "id": "react-s1-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Components, JSX & Composition",
+          "prompt": "When working with Lists & Stable Key Reconciliation in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use stable record IDs so state stays bound to the right item.",
+            "Always rely on \"Using `key={index}` on a list with delete/sort/inputs\" as the default pattern",
+            "Ignore Lists & Stable Key Reconciliation constraints during runtime execution",
+            "Replace Lists & Stable Key Reconciliation with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using `key={index}` on a list with delete/sort/inputs. Recommended fix: Use stable record IDs so state stays bound to the right item."
+        },
+        {
+          "id": "react-s1-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Components, JSX & Composition",
+          "prompt": "What renders when `count` is `0`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "function View() { const count = 0; return <p>{count && 'Ready'}</p>; }"
+          },
+          "options": [
+            "<p>0</p>",
+            "<p></p>",
+            "<p>Ready</p>",
+            "Error"
+          ],
+          "correctIndex": 0,
+          "explanation": "`0 && \"Ready\"` evaluates to `0`, which JSX renders as text."
+        },
+        {
+          "id": "react-s1-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Components, JSX & Composition",
+          "prompt": "What happens to `<Quiz key={sectionId} />` when `sectionId` changes from `\"s1\"` to `\"s2\"`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "<Quiz key={sectionId} />"
+          },
+          "options": [
+            "React unmounts the old Quiz and mounts a fresh Quiz with reset state",
+            "React keeps old quiz answers",
+            "Nothing re-renders",
+            "Throws a duplicate key error"
+          ],
+          "correctIndex": 0,
+          "explanation": "Changing `key` resets the component instance and all internal hook state."
+        }
+      ]
+    },
+    {
+      "sectionId": "react-s2",
+      "sectionTitle": "State, Events & Immutable Updates",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "react-s2-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "State, Events & Immutable Updates",
+          "prompt": "Starting from `n = 0`, what is `n` after calling `setN(n + 1); setN(n + 1);` in one click?",
+          "options": [
+            "1",
+            "2",
+            "0",
+            "3"
+          ],
+          "correctIndex": 0,
+          "explanation": "Both calls read the same snapshot (`0 + 1`); use `setN((x) => x + 1)` to reach 2."
+        },
+        {
+          "id": "react-s2-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "State, Events & Immutable Updates",
+          "prompt": "When working with useState Snapshots & Functional Updaters in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Both read the same snapshot `n`; use functional updaters `setN((x) => x + 1)`.",
+            "Always rely on \"Calling `setN(n + 1); setN(n + 1);` expecting +2\" as the default pattern",
+            "Ignore useState Snapshots & Functional Updaters constraints during runtime execution",
+            "Replace useState Snapshots & Functional Updaters with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Calling `setN(n + 1); setN(n + 1);` expecting +2. Recommended fix: Both read the same snapshot `n`; use functional updaters `setN((x) => x + 1)`."
+        },
+        {
+          "id": "react-s2-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "State, Events & Immutable Updates",
+          "prompt": "Why does `arr.push(5); setArr(arr);` not update the rendered list?",
+          "options": [
+            "`Object.is(prevArr, arr)` is true because the array reference did not change",
+            "React forbids arrays in useState",
+            "`push` returns a number",
+            "State arrays are frozen by JS"
+          ],
+          "correctIndex": 0,
+          "explanation": "Create a new array reference (`[...prev, 5]`) so React detects the state change."
+        },
+        {
+          "id": "react-s2-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "State, Events & Immutable Updates",
+          "prompt": "When working with Immutable Object & Array Updates in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Reference didn’t change so React bails out; write `setItems((prev) => [...prev, x])`.",
+            "Always rely on \"Mutating `items.push(x); setItems(items);`\" as the default pattern",
+            "Ignore Immutable Object & Array Updates constraints during runtime execution",
+            "Replace Immutable Object & Array Updates with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Mutating `items.push(x); setItems(items);`. Recommended fix: Reference didn’t change so React bails out; write `setItems((prev) => [...prev, x])`."
+        },
+        {
+          "id": "react-s2-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "State, Events & Immutable Updates",
+          "prompt": "Where should `filteredCourses` live when a component already has `courses` prop and `search` state?",
+          "options": [
+            "Computed directly during render from `courses` and `search`",
+            "In a separate `useState` synced via `useEffect`",
+            "In `localStorage` only",
+            "In a `useRef`"
+          ],
+          "correctIndex": 0,
+          "explanation": "Deriving values inline keeps a single source of truth with zero extra effects."
+        },
+        {
+          "id": "react-s2-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "State, Events & Immutable Updates",
+          "prompt": "When working with Derived State & Lifting State Up in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Triggers a redundant stale render; derive directly during render.",
+            "Always rely on \"Syncing `filteredItems` in `useState` via `useEffect`\" as the default pattern",
+            "Ignore Derived State & Lifting State Up constraints during runtime execution",
+            "Replace Derived State & Lifting State Up with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Syncing `filteredItems` in `useState` via `useEffect`. Recommended fix: Triggers a redundant stale render; derive directly during render."
+        },
+        {
+          "id": "react-s2-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "State, Events & Immutable Updates",
+          "prompt": "What causes \"A component is changing an uncontrolled input to be controlled\"?",
+          "options": [
+            "Passing `value={undefined}` on initial render and later updating it to a string",
+            "Calling `e.preventDefault()`",
+            "Adding `required`",
+            "Using `defaultValue`"
+          ],
+          "correctIndex": 0,
+          "explanation": "Always initialize controlled input values to `\"\"` rather than `undefined`."
+        },
+        {
+          "id": "react-s2-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "State, Events & Immutable Updates",
+          "prompt": "When working with Controlled vs Uncontrolled Forms in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Triggers the uncontrolled-to-controlled warning; write `value={user.bio ?? \"\"}`.",
+            "Always rely on \"Passing `value={user.bio}` when `bio` starts `undefined`\" as the default pattern",
+            "Ignore Controlled vs Uncontrolled Forms constraints during runtime execution",
+            "Replace Controlled vs Uncontrolled Forms with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Passing `value={user.bio}` when `bio` starts `undefined`. Recommended fix: Triggers the uncontrolled-to-controlled warning; write `value={user.bio ?? \"\"}`."
+        },
+        {
+          "id": "react-s2-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "State, Events & Immutable Updates",
+          "prompt": "What value does `count` hold after one click starting from `5`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "const bump = () => { setCount((c) => c + 1); setCount((c) => c + 1); };"
+          },
+          "options": [
+            "7 in a single batched render",
+            "6",
+            "5",
+            "Two separate repaints"
+          ],
+          "correctIndex": 0,
+          "explanation": "Functional updaters queue sequentially (5 -> 6 -> 7) inside one batched render."
+        },
+        {
+          "id": "react-s2-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "State, Events & Immutable Updates",
+          "prompt": "Why does `items.sort(); setItems(items);` fail to re-render the list?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "const onSort = () => { items.sort(); setItems(items); };"
+          },
+          "options": [
+            "`sort()` mutates in place so `Object.is(prev, next)` is true",
+            "`sort()` is async",
+            "React disables sorting",
+            "`setItems` rejects arrays"
+          ],
+          "correctIndex": 0,
+          "explanation": "Use `[...items].sort()` or `items.toSorted()` to pass a fresh array reference."
+        }
+      ]
+    },
+    {
+      "sectionId": "react-s3",
+      "sectionTitle": "Effects, Refs & Rules of Hooks",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "react-s3-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Effects, Refs & Rules of Hooks",
+          "prompt": "Which scenario legitimately requires `useEffect`?",
+          "options": [
+            "Subscribing to a global `keydown` listener or mounting an external editor instance",
+            "Computing `total = a + b`",
+            "Handling a form submit click",
+            "Filtering an array prop"
+          ],
+          "correctIndex": 0,
+          "explanation": "useEffect bridges React to external browser or third-party systems."
+        },
+        {
+          "id": "react-s3-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Effects, Refs & Rules of Hooks",
+          "prompt": "When working with useEffect Synchronization & Cleanup in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Creates stale closures reading outdated props/state.",
+            "Always rely on \"Omitting changing variables from the dependency array\" as the default pattern",
+            "Ignore useEffect Synchronization & Cleanup constraints during runtime execution",
+            "Replace useEffect Synchronization & Cleanup with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Omitting changing variables from the dependency array. Recommended fix: Creates stale closures reading outdated props/state."
+        },
+        {
+          "id": "react-s3-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Effects, Refs & Rules of Hooks",
+          "prompt": "Why can’t the callback passed directly to `useEffect` be marked `async`?",
+          "options": [
+            "It returns a Promise instead of `void` or a synchronous cleanup function",
+            "React forbids `await` in components",
+            "Browsers block async effects",
+            "It runs before render"
+          ],
+          "correctIndex": 0,
+          "explanation": "useEffect expects either undefined or a cleanup function, never a Promise."
+        },
+        {
+          "id": "react-s3-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Effects, Refs & Rules of Hooks",
+          "prompt": "When working with Race-Free Async Fetching in Effects in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Define an inner async helper or `.then()` chain so the effect returns a synchronous cleanup function.",
+            "Always rely on \"Writing `useEffect(async () => { ... }, [id])`\" as the default pattern",
+            "Ignore Race-Free Async Fetching in Effects constraints during runtime execution",
+            "Replace Race-Free Async Fetching in Effects with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing `useEffect(async () => { ... }, [id])`. Recommended fix: Define an inner async helper or `.then()` chain so the effect returns a synchronous cleanup function."
+        },
+        {
+          "id": "react-s3-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Effects, Refs & Rules of Hooks",
+          "prompt": "What happens when you mutate `timerRef.current = 123` inside an event handler?",
+          "options": [
+            "The value updates immediately with zero component re-render",
+            "React triggers an immediate re-render",
+            "React throws an immutability error",
+            "The ref resets on next render"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ref mutations stay outside React’s render cycle."
+        },
+        {
+          "id": "react-s3-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Effects, Refs & Rules of Hooks",
+          "prompt": "When working with useRef for DOM Nodes & Mutable Handles in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use `useState` for anything shown in JSX.",
+            "Always rely on \"Storing a displayed score inside `useRef` expecting UI updates\" as the default pattern",
+            "Ignore useRef for DOM Nodes & Mutable Handles constraints during runtime execution",
+            "Replace useRef for DOM Nodes & Mutable Handles with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Storing a displayed score inside `useRef` expecting UI updates. Recommended fix: Use `useState` for anything shown in JSX."
+        },
+        {
+          "id": "react-s3-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Effects, Refs & Rules of Hooks",
+          "prompt": "Why does calling `useEffect` after `if (!course) return null;` crash when `course` loads?",
+          "options": [
+            "The number and order of hook calls changed between renders, breaking React’s Fiber hook list",
+            "Early returns are illegal in React",
+            "useEffect cannot run when props are objects",
+            "StrictMode deletes effects"
+          ],
+          "correctIndex": 0,
+          "explanation": "Hooks must execute in the exact same count and order on every render."
+        },
+        {
+          "id": "react-s3-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Effects, Refs & Rules of Hooks",
+          "prompt": "When working with Rules of Hooks & Fiber Hook Lists in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Call all hooks at the top before any conditional `return`.",
+            "Always rely on \"Placing `useState` after `if (loading) return <Spinner />;`\" as the default pattern",
+            "Ignore Rules of Hooks & Fiber Hook Lists constraints during runtime execution",
+            "Replace Rules of Hooks & Fiber Hook Lists with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Placing `useState` after `if (loading) return <Spinner />;`. Recommended fix: Call all hooks at the top before any conditional `return`."
+        },
+        {
+          "id": "react-s3-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Effects, Refs & Rules of Hooks",
+          "prompt": "When `id` changes from `1` to `2`, what logs first?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "useEffect(() => {\n  console.log('open', id);\n  return () => console.log('close', id);\n}, [id]);"
+          },
+          "options": [
+            "\"close 1\" then \"open 2\"",
+            "\"open 2\" then \"close 1\"",
+            "Only \"open 2\"",
+            "Only \"close 2\""
+          ],
+          "correctIndex": 0,
+          "explanation": "React always runs the previous effect’s cleanup before running the new effect."
+        },
+        {
+          "id": "react-s3-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Effects, Refs & Rules of Hooks",
+          "prompt": "What is wrong with `if (!ready) return null; const [x, setX] = useState(0);`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "function Box({ ready }: { ready: boolean }) { if (!ready) return null; const [x] = useState(0); return <p>{x}</p>; }"
+          },
+          "options": [
+            "Violates Rules of Hooks by calling useState conditionally after an early return",
+            "useState cannot start at 0",
+            "Components cannot return null",
+            "Nothing is wrong"
+          ],
+          "correctIndex": 0,
+          "explanation": "All hooks must be called unconditionally at the top of the component."
+        }
+      ]
+    },
+    {
+      "sectionId": "react-s4",
+      "sectionTitle": "Custom Hooks, Routing, Error Boundaries & Portals",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "react-s4-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Custom Hooks, Routing, Error Boundaries & Portals",
+          "prompt": "If Header and Sidebar both call `useDebouncedValue(text, 200)`, do they share state?",
+          "options": [
+            "No—each component gets isolated state; custom hooks share logic only",
+            "Yes—they share one singleton state",
+            "Only inside BrowserRouter",
+            "Only in production"
+          ],
+          "correctIndex": 0,
+          "explanation": "Custom hooks allocate independent Fiber hook slots per caller."
+        },
+        {
+          "id": "react-s4-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Custom Hooks, Routing, Error Boundaries & Portals",
+          "prompt": "When working with Authoring Reusable Custom Hooks in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Lift state up or use Context to share state; custom hooks share logic only.",
+            "Always rely on \"Expecting two components calling `useTimer()` to share the same seconds value\" as the default pattern",
+            "Ignore Authoring Reusable Custom Hooks constraints during runtime execution",
+            "Replace Authoring Reusable Custom Hooks with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Expecting two components calling `useTimer()` to share the same seconds value. Recommended fix: Lift state up or use Context to share state; custom hooks share logic only."
+        },
+        {
+          "id": "react-s4-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Custom Hooks, Routing, Error Boundaries & Portals",
+          "prompt": "Why should internal links in a React SPA use `<Link to=\"/dashboard\">` instead of `<a href=\"/dashboard\">`?",
+          "options": [
+            "`<Link>` transitions client-side via History API without reloading the page or losing state",
+            "`<a href>` throws in React",
+            "`<Link>` encrypts the URL",
+            "`<a href>` cannot wrap icons"
+          ],
+          "correctIndex": 0,
+          "explanation": "`<Link>` performs instant client-side routing inside the SPA."
+        },
+        {
+          "id": "react-s4-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Custom Hooks, Routing, Error Boundaries & Portals",
+          "prompt": "When working with React Router: Nested Layouts, Params & Search Params in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Triggers full browser reloads; use `<Link to=\"/courses\">`.",
+            "Always rely on \"Using `<a href=\"/courses\">` for internal SPA navigation\" as the default pattern",
+            "Ignore React Router: Nested Layouts, Params & Search Params constraints during runtime execution",
+            "Replace React Router: Nested Layouts, Params & Search Params with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using `<a href=\"/courses\">` for internal SPA navigation. Recommended fix: Triggers full browser reloads; use `<Link to=\"/courses\">`."
+        },
+        {
+          "id": "react-s4-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Custom Hooks, Routing, Error Boundaries & Portals",
+          "prompt": "Does an Error Boundary catch an exception thrown inside a button’s `onClick` handler?",
+          "options": [
+            "No—handle event handler errors with try/catch; Error Boundaries catch render/lifecycle errors",
+            "Yes—it catches all JS errors globally",
+            "Only in StrictMode",
+            "Only in class components"
+          ],
+          "correctIndex": 0,
+          "explanation": "Error Boundaries catch rendering and lifecycle exceptions, not imperative event callbacks."
+        },
+        {
+          "id": "react-s4-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Custom Hooks, Routing, Error Boundaries & Portals",
+          "prompt": "When working with Error Boundaries & Graceful Recovery in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Catch event handler errors explicitly with `try/catch`.",
+            "Always rely on \"Expecting an Error Boundary to catch an error thrown inside `onClick`\" as the default pattern",
+            "Ignore Error Boundaries & Graceful Recovery constraints during runtime execution",
+            "Replace Error Boundaries & Graceful Recovery with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Expecting an Error Boundary to catch an error thrown inside `onClick`. Recommended fix: Catch event handler errors explicitly with `try/catch`."
+        },
+        {
+          "id": "react-s4-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Custom Hooks, Routing, Error Boundaries & Portals",
+          "prompt": "Does a modal rendered via `createPortal(<Dialog />, document.body)` still receive values from ancestor React Context Providers?",
+          "options": [
+            "Yes—Portals only change the DOM mount target while preserving React Fiber Context and event bubbling",
+            "No—Context disconnects completely",
+            "Only ThemeContext works",
+            "Portals cannot use hooks"
+          ],
+          "correctIndex": 0,
+          "explanation": "Context and React events follow the logical React component tree."
+        },
+        {
+          "id": "react-s4-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Custom Hooks, Routing, Error Boundaries & Portals",
+          "prompt": "When working with Portals & Accessible Overlay Modals in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Portals stay connected to the React Fiber tree, so Context works seamlessly.",
+            "Always rely on \"Assuming Portal children lose access to ancestor React Context\" as the default pattern",
+            "Ignore Portals & Accessible Overlay Modals constraints during runtime execution",
+            "Replace Portals & Accessible Overlay Modals with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Assuming Portal children lose access to ancestor React Context. Recommended fix: Portals stay connected to the React Fiber tree, so Context works seamlessly."
+        },
+        {
+          "id": "react-s4-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Custom Hooks, Routing, Error Boundaries & Portals",
+          "prompt": "Which React Router hook reads `:slug` from `/courses/:slug`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "const { slug } = useParams();"
+          },
+          "options": [
+            "useParams()",
+            "useLocation()",
+            "useNavigate()",
+            "useHref()"
+          ],
+          "correctIndex": 0,
+          "explanation": "useParams returns dynamic URL segment parameters."
+        },
+        {
+          "id": "react-s4-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Custom Hooks, Routing, Error Boundaries & Portals",
+          "prompt": "What happens when a button inside `createPortal(<button>Ok</button>, document.body)` is clicked inside `<div onClick={log}>`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "<div onClick={() => console.log('hit')}>{createPortal(<button>Ok</button>, document.body)}</div>"
+          },
+          "options": [
+            "\"hit\" is logged because React events bubble through the React tree",
+            "Nothing logs",
+            "Throws PortalError",
+            "Logs twice"
+          ],
+          "correctIndex": 0,
+          "explanation": "Synthetic events bubble up the React Fiber tree even across DOM portals."
+        }
+      ]
+    },
+    {
+      "sectionId": "react-s5",
+      "sectionTitle": "Context API, useReducer & Scalable State",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "react-s5-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Context API, useReducer & Scalable State",
+          "prompt": "What happens to consumers of `AppContext` when `<AppContext.Provider value={{ user, theme }}>` gets a new object reference?",
+          "options": [
+            "All consumers re-render even if they only read `user` and only `theme` changed",
+            "Only consumers reading `theme` re-render",
+            "No consumers re-render",
+            "React deeply compares all fields"
+          ],
+          "correctIndex": 0,
+          "explanation": "Context notifies every subscriber whenever `Object.is(prevValue, nextValue)` is false."
+        },
+        {
+          "id": "react-s5-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Context API, useReducer & Scalable State",
+          "prompt": "When working with Context API & Memoized Providers in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Creates a fresh object every parent render, re-rendering every consumer.",
+            "Always rely on \"Passing `<Ctx.Provider value={{ a, b }}>` inline without `useMemo`\" as the default pattern",
+            "Ignore Context API & Memoized Providers constraints during runtime execution",
+            "Replace Context API & Memoized Providers with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Passing `<Ctx.Provider value={{ a, b }}>` inline without `useMemo`. Recommended fix: Creates a fresh object every parent render, re-rendering every consumer."
+        },
+        {
+          "id": "react-s5-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Context API, useReducer & Scalable State",
+          "prompt": "What stability guarantee does React provide for `dispatch` from `useReducer`?",
+          "options": [
+            "Its function reference stays permanently identical across every render",
+            "It changes on every action",
+            "It persists to localStorage",
+            "It runs in a Web Worker"
+          ],
+          "correctIndex": 0,
+          "explanation": "Stable `dispatch` identity avoids invalidating `React.memo` and effect dependency arrays."
+        },
+        {
+          "id": "react-s5-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Context API, useReducer & Scalable State",
+          "prompt": "When working with useReducer for Pure Testable State Machines in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Always return new shallow-copied objects immutably.",
+            "Always rely on \"Mutating `state.answers[id] = idx` inside a reducer\" as the default pattern",
+            "Ignore useReducer for Pure Testable State Machines constraints during runtime execution",
+            "Replace useReducer for Pure Testable State Machines with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Mutating `state.answers[id] = idx` inside a reducer. Recommended fix: Always return new shallow-copied objects immutably."
+        },
+        {
+          "id": "react-s5-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Context API, useReducer & Scalable State",
+          "prompt": "Why does a button consuming only `DispatchContext` skip re-rendering when `StateContext` updates?",
+          "options": [
+            "Because `dispatch` keeps a stable reference, so `DispatchContext`’s value never changes",
+            "Buttons never re-render in React",
+            "useReducer disables Context updates",
+            "Context ignores click handlers"
+          ],
+          "correctIndex": 0,
+          "explanation": "Separating stable `dispatch` from changing `state` isolates write-only consumers from state updates."
+        },
+        {
+          "id": "react-s5-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Context API, useReducer & Scalable State",
+          "prompt": "When working with State Colocation & Splitting State vs Dispatch Contexts in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Keep ephemeral toggle state inside the dropdown component itself.",
+            "Always rely on \"Hoisting local dropdown open state into global Context\" as the default pattern",
+            "Ignore State Colocation & Splitting State vs Dispatch Contexts constraints during runtime execution",
+            "Replace State Colocation & Splitting State vs Dispatch Contexts with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Hoisting local dropdown open state into global Context. Recommended fix: Keep ephemeral toggle state inside the dropdown component itself."
+        },
+        {
+          "id": "react-s5-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Context API, useReducer & Scalable State",
+          "prompt": "Why is private Context preferred over `React.cloneElement` for `<Tabs>` compound components?",
+          "options": [
+            "Sub-components keep working even when wrapped inside extra layout `<div>`s or grids",
+            "cloneElement cannot pass props",
+            "Context removes all DOM elements",
+            "cloneElement only works in Node"
+          ],
+          "correctIndex": 0,
+          "explanation": "Context traverses arbitrary component/DOM nesting cleanly."
+        },
+        {
+          "id": "react-s5-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Context API, useReducer & Scalable State",
+          "prompt": "When working with Compound Components & Headless Patterns in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Breaks the moment a caller adds a wrapper `<div>`; use private Context instead.",
+            "Always rely on \"Using `React.Children.map` + `cloneElement` for compound APIs\" as the default pattern",
+            "Ignore Compound Components & Headless Patterns constraints during runtime execution",
+            "Replace Compound Components & Headless Patterns with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using `React.Children.map` + `cloneElement` for compound APIs. Recommended fix: Breaks the moment a caller adds a wrapper `<div>`; use private Context instead."
+        },
+        {
+          "id": "react-s5-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Context API, useReducer & Scalable State",
+          "prompt": "Why does `<Ctx.Provider value={{ theme, toggle }}>` re-render consumers when its parent re-renders even if `theme` didn’t change?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "<Ctx.Provider value={{ theme, toggle }}>{children}</Ctx.Provider>"
+          },
+          "options": [
+            "Inline object literal creates a brand-new reference every render",
+            "React re-renders Context every 16ms",
+            "toggle mutates theme",
+            "StrictMode forces it"
+          ],
+          "correctIndex": 0,
+          "explanation": "Wrap `{ theme, toggle }` in `useMemo(..., [theme])` so reference identity stays stable."
+        },
+        {
+          "id": "react-s5-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Context API, useReducer & Scalable State",
+          "prompt": "In `const [state, dispatch] = useReducer(fn, init)`, how often does `dispatch` change reference?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "const [state, dispatch] = useReducer(fn, init);"
+          },
+          "options": [
+            "Never—its reference is permanently stable",
+            "Every time `state` updates",
+            "Every parent re-render",
+            "Only on mount and unmount"
+          ],
+          "correctIndex": 0,
+          "explanation": "React guarantees `dispatch` reference stability across the component’s lifecycle."
+        }
+      ]
+    },
+    {
+      "sectionId": "react-s6",
+      "sectionTitle": "Reconciliation, Memoization & Code Splitting",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "react-s6-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Reconciliation, Memoization & Code Splitting",
+          "prompt": "What happens if you declare `function Inner() { ... }` inside `function Outer() { ... }`?",
+          "options": [
+            "Inner gets a new identity every Outer render, causing React to unmount and remount it each time",
+            "React hoists Inner automatically",
+            "Inner is memoized automatically",
+            "TypeScript forbids it"
+          ],
+          "correctIndex": 0,
+          "explanation": "Reconciliation compares component references (`Prev !== Next`), unmounting and remounting on mismatch."
+        },
+        {
+          "id": "react-s6-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Reconciliation, Memoization & Code Splitting",
+          "prompt": "When working with Render vs Commit Phases & Reconciliation in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Causes full unmount/remount on every parent render, wiping input focus and hook state.",
+            "Always rely on \"Declaring `function Row() { ... }` inside `function Table()`\" as the default pattern",
+            "Ignore Render vs Commit Phases & Reconciliation constraints during runtime execution",
+            "Replace Render vs Commit Phases & Reconciliation with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Declaring `function Row() { ... }` inside `function Table()`. Recommended fix: Causes full unmount/remount on every parent render, wiping input focus and hook state."
+        },
+        {
+          "id": "react-s6-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Reconciliation, Memoization & Code Splitting",
+          "prompt": "When does `useCallback(fn, [])` actually stop a child component from re-rendering?",
+          "options": [
+            "When the child is wrapped in `React.memo` (and all other props are referentially stable)",
+            "Always on every child",
+            "Only inside StrictMode",
+            "Never"
+          ],
+          "correctIndex": 0,
+          "explanation": "Without `React.memo`, children re-render when parents re-render regardless of prop stability."
+        },
+        {
+          "id": "react-s6-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Reconciliation, Memoization & Code Splitting",
+          "prompt": "When working with React.memo, useMemo & useCallback Discipline in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Fresh style object defeats `React.memo` on every render; hoist static objects outside render.",
+            "Always rely on \"Wrapping `Child` in `React.memo` while passing `style={{ padding: 8 }}` inline\" as the default pattern",
+            "Ignore React.memo, useMemo & useCallback Discipline constraints during runtime execution",
+            "Replace React.memo, useMemo & useCallback Discipline with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Wrapping `Child` in `React.memo` while passing `style={{ padding: 8 }}` inline. Recommended fix: Fresh style object defeats `React.memo` on every render; hoist static objects outside render."
+        },
+        {
+          "id": "react-s6-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Reconciliation, Memoization & Code Splitting",
+          "prompt": "What happens if you call `const Page = React.lazy(() => import(\"./Page\"))` inside a component’s render function?",
+          "options": [
+            "A new lazy wrapper is created every render, causing repeated remounts and fallback flashes",
+            "React caches it by string path",
+            "Vite inlines it eagerly",
+            "It loads faster"
+          ],
+          "correctIndex": 0,
+          "explanation": "Always define `React.lazy()` at module scope for stable component identity."
+        },
+        {
+          "id": "react-s6-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Reconciliation, Memoization & Code Splitting",
+          "prompt": "When working with Code Splitting with React.lazy & Suspense in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Recreates the lazy wrapper every render, flashing the fallback endlessly.",
+            "Always rely on \"Calling `const P = lazy(() => import(...))` inside a component body\" as the default pattern",
+            "Ignore Code Splitting with React.lazy & Suspense constraints during runtime execution",
+            "Replace Code Splitting with React.lazy & Suspense with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Calling `const P = lazy(() => import(...))` inside a component body. Recommended fix: Recreates the lazy wrapper every render, flashing the fallback endlessly."
+        },
+        {
+          "id": "react-s6-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Reconciliation, Memoization & Code Splitting",
+          "prompt": "Approximately how many DOM rows are mounted in a virtualized 50,000-row list with 50px rows in a 600px viewport?",
+          "options": [
+            "~16–22 rows (visible slice plus small overscan buffer)",
+            "All 50,000 with `display: none`",
+            "5,000 rows",
+            "1 row"
+          ],
+          "correctIndex": 0,
+          "explanation": "Virtualization mounts only the rows overlapping the scrollport plus a small overscan margin."
+        },
+        {
+          "id": "react-s6-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Reconciliation, Memoization & Code Splitting",
+          "prompt": "When working with List Virtualization (Windowing) for Massive Datasets in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Virtualize or paginate so layout/paint stays well under 16ms.",
+            "Always rely on \"Mounting 10,000 complex table rows directly into the DOM\" as the default pattern",
+            "Ignore List Virtualization (Windowing) for Massive Datasets constraints during runtime execution",
+            "Replace List Virtualization (Windowing) for Massive Datasets with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Mounting 10,000 complex table rows directly into the DOM. Recommended fix: Virtualize or paginate so layout/paint stays well under 16ms."
+        },
+        {
+          "id": "react-s6-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Reconciliation, Memoization & Code Splitting",
+          "prompt": "Why does `<Child opts={{ a: 1 }} />` still re-render when `Child` is wrapped in `React.memo`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "const Child = memo(({ opts }: { opts: { a: number } }) => <div>{opts.a}</div>);\nfunction Parent() { const [n, setN] = useState(0); return <Child opts={{ a: 1 }} />; }"
+          },
+          "options": [
+            "`{ a: 1 }` creates a new object reference on every Parent render",
+            "React.memo ignores objects",
+            "`n` is passed implicitly",
+            "Missing key prop"
+          ],
+          "correctIndex": 0,
+          "explanation": "Shallow equality sees a fresh object reference each render; hoist or `useMemo` `opts`."
+        },
+        {
+          "id": "react-s6-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Reconciliation, Memoization & Code Splitting",
+          "prompt": "What happens when `<div className=\"a\"><Timer /></div>` changes to `<section className=\"a\"><Timer /></section>`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "// Render 1: <div><Timer /></div> -> Render 2: <section><Timer /></section>"
+          },
+          "options": [
+            "Timer unmounts and remounts with reset state",
+            "Timer preserves state cleanly",
+            "Throws an error",
+            "Nothing changes"
+          ],
+          "correctIndex": 0,
+          "explanation": "Swapping root element type (`div` -> `section`) destroys and rebuilds the entire child tree."
+        }
+      ]
+    },
+    {
+      "sectionId": "react-s7",
+      "sectionTitle": "Concurrent UI & React 19 Modern Features",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "react-s7-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Concurrent UI & React 19 Modern Features",
+          "prompt": "Why should you NOT wrap a controlled `<input>`’s `setValue(e.target.value)` inside `startTransition`?",
+          "options": [
+            "Typing updates must remain urgent/synchronous so input feedback and cursor position never lag",
+            "startTransition rejects strings",
+            "Inputs cannot use hooks",
+            "It disables keyboard events"
+          ],
+          "correctIndex": 0,
+          "explanation": "Keep input text urgent and defer expensive downstream list rendering."
+        },
+        {
+          "id": "react-s7-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Concurrent UI & React 19 Modern Features",
+          "prompt": "When working with useTransition & useDeferredValue in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Controlled typing must stay urgent or cursor jumps; defer the filtered view instead.",
+            "Always rely on \"Wrapping `setInputValue(e.target.value)` inside `startTransition`\" as the default pattern",
+            "Ignore useTransition & useDeferredValue constraints during runtime execution",
+            "Replace useTransition & useDeferredValue with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Wrapping `setInputValue(e.target.value)` inside `startTransition`. Recommended fix: Controlled typing must stay urgent or cursor jumps; defer the filtered view instead."
+        },
+        {
+          "id": "react-s7-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Concurrent UI & React 19 Modern Features",
+          "prompt": "Where must `useFormStatus()` be called to read `pending`?",
+          "options": [
+            "Inside a child component rendered within the `<form>`",
+            "In the same component rendering `<form>`",
+            "Inside `useEffect` only",
+            "Outside `BrowserRouter`"
+          ],
+          "correctIndex": 0,
+          "explanation": "`useFormStatus` subscribes to its nearest ancestor `<form>`."
+        },
+        {
+          "id": "react-s7-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Concurrent UI & React 19 Modern Features",
+          "prompt": "When working with React 19 Actions, useActionState & Ref-as-Prop in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Move `<SubmitButton />` into a child component inside `<form>`.",
+            "Always rely on \"Calling `useFormStatus()` inside the same component that renders `<form>`\" as the default pattern",
+            "Ignore React 19 Actions, useActionState & Ref-as-Prop constraints during runtime execution",
+            "Replace React 19 Actions, useActionState & Ref-as-Prop with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Calling `useFormStatus()` inside the same component that renders `<form>`. Recommended fix: Move `<SubmitButton />` into a child component inside `<form>`."
+        },
+        {
+          "id": "react-s7-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Concurrent UI & React 19 Modern Features",
+          "prompt": "What happens to `useOptimistic` state if the backing async server save throws and canonical state never updates?",
+          "options": [
+            "React automatically reverts the UI to the canonical source state",
+            "The optimistic value stays stuck forever",
+            "The page reloads",
+            "It writes to localStorage"
+          ],
+          "correctIndex": 0,
+          "explanation": "Optimistic overlays automatically resolve back to authoritative state when the action settles."
+        },
+        {
+          "id": "react-s7-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Concurrent UI & React 19 Modern Features",
+          "prompt": "When working with Optimistic UI with useOptimistic in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Display a clear toast explaining that the change failed to save.",
+            "Always rely on \"Silently rolling back a failed optimistic save with zero user feedback\" as the default pattern",
+            "Ignore Optimistic UI with useOptimistic constraints during runtime execution",
+            "Replace Optimistic UI with useOptimistic with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Silently rolling back a failed optimistic save with zero user feedback. Recommended fix: Display a clear toast explaining that the change failed to save."
+        },
+        {
+          "id": "react-s7-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Concurrent UI & React 19 Modern Features",
+          "prompt": "Which query best verifies both UI behavior and accessibility simultaneously?",
+          "options": [
+            "getByRole(\"button\", { name: \"Start Exam\" })",
+            "container.querySelector(\".primary-btn\")",
+            "getByTestId(\"b1\")",
+            "document.querySelectorAll(\"button\")[0]"
+          ],
+          "correctIndex": 0,
+          "explanation": "Role + accessible name queries mirror how both sighted users and screen readers interact with controls."
+        },
+        {
+          "id": "react-s7-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Concurrent UI & React 19 Modern Features",
+          "prompt": "When working with Testing Trophy & Clean React Architecture in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Assert observable text, states, and ARIA roles so styling refactors never break tests.",
+            "Always rely on \"Testing internal hook state or `.btn-indigo` CSS classes\" as the default pattern",
+            "Ignore Testing Trophy & Clean React Architecture constraints during runtime execution",
+            "Replace Testing Trophy & Clean React Architecture with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Testing internal hook state or `.btn-indigo` CSS classes. Recommended fix: Assert observable text, states, and ARIA roles so styling refactors never break tests."
+        },
+        {
+          "id": "react-s7-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Concurrent UI & React 19 Modern Features",
+          "prompt": "In React 19, how does a custom `<Field />` component accept a `ref`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "function Field({ ref, ...props }: React.ComponentProps<'input'>) { return <input ref={ref} {...props} />; }"
+          },
+          "options": [
+            "Directly as a normal prop (`ref`) without `forwardRef`",
+            "Only via `React.forwardRef`",
+            "Only via class components",
+            "Via `createPortal`"
+          ],
+          "correctIndex": 0,
+          "explanation": "React 19 passes `ref` directly as a standard component prop."
+        },
+        {
+          "id": "react-s7-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Concurrent UI & React 19 Modern Features",
+          "prompt": "When `query !== deferredQuery` using `useDeferredValue`, what does that indicate?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "const deferredQuery = useDeferredValue(query);\nconst updating = query !== deferredQuery;"
+          },
+          "options": [
+            "React is rendering the updated deferred tree in the background",
+            "deferredQuery is permanently broken",
+            "An infinite loop occurred",
+            "updating is always false"
+          ],
+          "correctIndex": 0,
+          "explanation": "Comparing urgent vs deferred values lets you show subtle pending feedback."
+        }
+      ]
+    },
+    {
+      "sectionId": "react-s8",
+      "sectionTitle": "Advanced Hook Internals & Escape Hatches",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "react-s8-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Advanced Hook Internals & Escape Hatches",
+          "prompt": "What happens if `getSnapshot` returns a new object `{ online: navigator.onLine }` on every invocation?",
+          "options": [
+            "React enters an infinite re-render loop because `Object.is(prev, next)` is always false",
+            "React deep-compares objects automatically",
+            "The store pauses",
+            "Nothing unusual"
+          ],
+          "correctIndex": 0,
+          "explanation": "Return primitives or memoized snapshots from `getSnapshot`."
+        },
+        {
+          "id": "react-s8-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Advanced Hook Internals & Escape Hatches",
+          "prompt": "When working with useSyncExternalStore for External Subscriptions in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Fails `Object.is` every check and loops infinitely; return primitives or cached objects.",
+            "Always rely on \"Returning `() => ({ online: navigator.onLine })` fresh object from `getSnapshot`\" as the default pattern",
+            "Ignore useSyncExternalStore for External Subscriptions constraints during runtime execution",
+            "Replace useSyncExternalStore for External Subscriptions with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Returning `() => ({ online: navigator.onLine })` fresh object from `getSnapshot`. Recommended fix: Fails `Object.is` every check and loops infinitely; return primitives or cached objects."
+        },
+        {
+          "id": "react-s8-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Advanced Hook Internals & Escape Hatches",
+          "prompt": "When does `useLayoutEffect` execute relative to browser paint?",
+          "options": [
+            "Synchronously after DOM commit and BEFORE the browser paints",
+            "After browser paint",
+            "Before component render",
+            "Only in background tabs"
+          ],
+          "correctIndex": 0,
+          "explanation": "`useLayoutEffect` blocks paint briefly so synchronous layout adjustments never flicker."
+        },
+        {
+          "id": "react-s8-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Advanced Hook Internals & Escape Hatches",
+          "prompt": "When working with useLayoutEffect vs useEffect in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Delays initial paint; move async work to `useEffect`.",
+            "Always rely on \"Running heavy API calls inside `useLayoutEffect`\" as the default pattern",
+            "Ignore useLayoutEffect vs useEffect constraints during runtime execution",
+            "Replace useLayoutEffect vs useEffect with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Running heavy API calls inside `useLayoutEffect`. Recommended fix: Delays initial paint; move async work to `useEffect`."
+        },
+        {
+          "id": "react-s8-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Advanced Hook Internals & Escape Hatches",
+          "prompt": "What is React’s `useId()` hook designed for?",
+          "options": [
+            "Generating unique SSR-safe IDs for accessibility attributes (`htmlFor`, `aria-describedby`)",
+            "Database primary keys",
+            "List `.map()` keys",
+            "Session tokens"
+          ],
+          "correctIndex": 0,
+          "explanation": "`useId()` ensures deterministic, collision-free DOM/ARIA linkage."
+        },
+        {
+          "id": "react-s8-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Advanced Hook Internals & Escape Hatches",
+          "prompt": "When working with useId for Accessible Collision-Free IDs in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Breaks SSR hydration and regenerates on every render; use `useId()`.",
+            "Always rely on \"Using `id={Math.random()}` in form inputs\" as the default pattern",
+            "Ignore useId for Accessible Collision-Free IDs constraints during runtime execution",
+            "Replace useId for Accessible Collision-Free IDs with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using `id={Math.random()}` in form inputs. Recommended fix: Breaks SSR hydration and regenerates on every render; use `useId()`."
+        },
+        {
+          "id": "react-s8-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Advanced Hook Internals & Escape Hatches",
+          "prompt": "Starting from `n = 0`, what value does `n` display after 5 ticks of `useEffect(() => { const id = setInterval(() => setN(n + 1), 1000); return () => clearInterval(id); }, [])`?",
+          "options": [
+            "1 (frozen due to stale closure)",
+            "5",
+            "0",
+            "6"
+          ],
+          "correctIndex": 0,
+          "explanation": "Every tick reads the initial closure snapshot `n = 0` and sets `1`."
+        },
+        {
+          "id": "react-s8-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Advanced Hook Internals & Escape Hatches",
+          "prompt": "When working with Eliminating Stale Closures in Timers & Listeners in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Captures `n = 0` forever so UI freezes at `1`; use `setN((prev) => prev + 1)`.",
+            "Always rely on \"Writing `setInterval(() => setN(n + 1), 1000)` inside `useEffect(..., [])`\" as the default pattern",
+            "Ignore Eliminating Stale Closures in Timers & Listeners constraints during runtime execution",
+            "Replace Eliminating Stale Closures in Timers & Listeners with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing `setInterval(() => setN(n + 1), 1000)` inside `useEffect(..., [])`. Recommended fix: Captures `n = 0` forever so UI freezes at `1`; use `setN((prev) => prev + 1)`."
+        },
+        {
+          "id": "react-s8-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Advanced Hook Internals & Escape Hatches",
+          "prompt": "In what order do these log on mount?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "useEffect(() => console.log('E'), []);\nuseLayoutEffect(() => console.log('L'), []);\nconsole.log('R');"
+          },
+          "options": [
+            "R -> L -> E",
+            "R -> E -> L",
+            "L -> R -> E",
+            "E -> L -> R"
+          ],
+          "correctIndex": 0,
+          "explanation": "Render runs first (R), then useLayoutEffect before paint (L), then useEffect after paint (E)."
+        },
+        {
+          "id": "react-s8-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Advanced Hook Internals & Escape Hatches",
+          "prompt": "What happens after 3 ticks starting from `n = 0`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "useEffect(() => {\n  const id = setInterval(() => setN((prev) => prev + 1), 100);\n  return () => clearInterval(id);\n}, []);"
+          },
+          "options": [
+            "n reaches 3 cleanly",
+            "n stays stuck at 1",
+            "n stays 0",
+            "Throws TypeError"
+          ],
+          "correctIndex": 0,
+          "explanation": "Functional updaters always receive the latest pending state without stale closures."
+        }
+      ]
+    },
+    {
+      "sectionId": "react-s9",
+      "sectionTitle": "Server Rendering, RSC, Accessibility & Security",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "react-s9-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Server Rendering, RSC, Accessibility & Security",
+          "prompt": "What happens during React hydration?",
+          "options": [
+            "React attaches event listeners and Fiber state onto pre-rendered server HTML",
+            "React deletes all CSS",
+            "React compiles JSX on the server",
+            "React disables localStorage"
+          ],
+          "correctIndex": 0,
+          "explanation": "Hydration turns static SSR HTML into a live interactive React tree."
+        },
+        {
+          "id": "react-s9-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Server Rendering, RSC, Accessibility & Security",
+          "prompt": "When working with CSR vs SSR, Streaming & Hydration Mismatches in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Crashes on server or mismatches hydration; read inside `useEffect` or `useSyncExternalStore`.",
+            "Always rely on \"Rendering `window.innerWidth` directly in initial SSR JSX\" as the default pattern",
+            "Ignore CSR vs SSR, Streaming & Hydration Mismatches constraints during runtime execution",
+            "Replace CSR vs SSR, Streaming & Hydration Mismatches with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Rendering `window.innerWidth` directly in initial SSR JSX. Recommended fix: Crashes on server or mismatches hydration; read inside `useEffect` or `useSyncExternalStore`."
+        },
+        {
+          "id": "react-s9-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Server Rendering, RSC, Accessibility & Security",
+          "prompt": "How can a `\"use client\"` wrapper render a React Server Component inside it?",
+          "options": [
+            "By accepting the Server Component through `children` (or slot props) from a parent Server Component",
+            "By importing the Server Component directly",
+            "Via `useEffect`",
+            "It is impossible"
+          ],
+          "correctIndex": 0,
+          "explanation": "Server-rendered JSX passed via `children` slots cleanly into Client wrappers."
+        },
+        {
+          "id": "react-s9-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Server Rendering, RSC, Accessibility & Security",
+          "prompt": "When working with React Server Components (RSC) & Boundaries in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Pulls imported subtrees into the client bundle unless passed via `children`.",
+            "Always rely on \"Adding `\"use client\"` at the top of the root Layout unnecessarily\" as the default pattern",
+            "Ignore React Server Components (RSC) & Boundaries constraints during runtime execution",
+            "Replace React Server Components (RSC) & Boundaries with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Adding `\"use client\"` at the top of the root Layout unnecessarily. Recommended fix: Pulls imported subtrees into the client bundle unless passed via `children`."
+        },
+        {
+          "id": "react-s9-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Server Rendering, RSC, Accessibility & Security",
+          "prompt": "Why should an `aria-live=\"polite\"` toast wrapper stay mounted even when no toast is visible?",
+          "options": [
+            "Assistive technologies register live regions on mount and reliably announce subsequent inner text changes",
+            "React forbids unmounting `role=\"status\"`",
+            "It saves CSS bytes",
+            "It prevents scrolling"
+          ],
+          "correctIndex": 0,
+          "explanation": "Keeping the live region mounted guarantees screen readers detect newly injected notifications."
+        },
+        {
+          "id": "react-s9-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Server Rendering, RSC, Accessibility & Security",
+          "prompt": "When working with Accessibility Engineering & Live Regions in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Screen readers often miss newly mounted live regions; keep the wrapper mounted and toggle inner text.",
+            "Always rely on \"Conditionally mounting `<div aria-live=\"polite\">` only when a toast opens\" as the default pattern",
+            "Ignore Accessibility Engineering & Live Regions constraints during runtime execution",
+            "Replace Accessibility Engineering & Live Regions with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Conditionally mounting `<div aria-live=\"polite\">` only when a toast opens. Recommended fix: Screen readers often miss newly mounted live regions; keep the wrapper mounted and toggle inner text."
+        },
+        {
+          "id": "react-s9-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Server Rendering, RSC, Accessibility & Security",
+          "prompt": "Which React JSX snippet can still execute XSS if `input` is attacker-controlled?",
+          "options": [
+            "`<a href={input}>Profile</a>` when `input` starts with `\"javascript:\"`",
+            "`<p>{input}</p>`",
+            "`<span>{input.toUpperCase()}</span>`",
+            "`<input value={input} readOnly />`"
+          ],
+          "correctIndex": 0,
+          "explanation": "JSX escapes text content automatically, but unvalidated `javascript:` URLs in `href` execute on click."
+        },
+        {
+          "id": "react-s9-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Server Rendering, RSC, Accessibility & Security",
+          "prompt": "When working with XSS Defense, Safe URLs & Client Env Hygiene in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Everything prefixed `VITE_` ships openly to browser DevTools; proxy private API calls on a backend server.",
+            "Always rely on \"Storing `VITE_PRIVATE_KEY` in `.env` expecting Vite to hide it\" as the default pattern",
+            "Ignore XSS Defense, Safe URLs & Client Env Hygiene constraints during runtime execution",
+            "Replace XSS Defense, Safe URLs & Client Env Hygiene with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Storing `VITE_PRIVATE_KEY` in `.env` expecting Vite to hide it. Recommended fix: Everything prefixed `VITE_` ships openly to browser DevTools; proxy private API calls on a backend server."
+        },
+        {
+          "id": "react-s9-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Server Rendering, RSC, Accessibility & Security",
+          "prompt": "What renders for `<p>{msg}</p>` when `msg` is `\"<img src=x onerror=alert(1)>\"`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "<p>{'<img src=x onerror=alert(1)>'}</p>"
+          },
+          "options": [
+            "Escaped literal text — zero script execution",
+            "Executes alert(1)",
+            "Throws ReactSecurityError",
+            "Renders a broken image"
+          ],
+          "correctIndex": 0,
+          "explanation": "React escapes text interpolations automatically."
+        },
+        {
+          "id": "react-s9-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Server Rendering, RSC, Accessibility & Security",
+          "prompt": "Why should private database credentials NEVER be stored in `VITE_DB_SECRET`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "const key = import.meta.env.VITE_DB_SECRET;"
+          },
+          "options": [
+            "Vite statically embeds `VITE_*` variables into the public browser JS bundle",
+            "Vite ignores variables starting with `VITE_`",
+            "Browsers crash on `import.meta.env`",
+            "It slows down React Router"
+          ],
+          "correctIndex": 0,
+          "explanation": "Client-prefixed environment variables are publicly visible in built frontend code."
+        }
+      ]
+    },
+    {
+      "sectionId": "react-s10",
+      "sectionTitle": "Architecture, Performance Profiling & Production Polish",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "react-s10-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Architecture, Performance Profiling & Production Polish",
+          "prompt": "Why should you profile React rendering bottlenecks in a production build rather than dev mode?",
+          "options": [
+            "Dev mode adds StrictMode double-renders and runtime debug checks that skew timing dramatically",
+            "Production builds disable `useState`",
+            "DevTools only works in production",
+            "Dev mode skips JSX"
+          ],
+          "correctIndex": 0,
+          "explanation": "Production builds strip dev checks and double-renders, showing true user-facing frame costs."
+        },
+        {
+          "id": "react-s10-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Architecture, Performance Profiling & Production Polish",
+          "prompt": "When working with React DevTools Profiler & Identifying Real Bottlenecks in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Dev mode includes StrictMode double-renders; verify bottlenecks in production builds first.",
+            "Always rely on \"Profiling performance in dev mode and adding `useMemo` everywhere\" as the default pattern",
+            "Ignore React DevTools Profiler & Identifying Real Bottlenecks constraints during runtime execution",
+            "Replace React DevTools Profiler & Identifying Real Bottlenecks with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Profiling performance in dev mode and adding `useMemo` everywhere. Recommended fix: Dev mode includes StrictMode double-renders; verify bottlenecks in production builds first."
+        },
+        {
+          "id": "react-s10-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Architecture, Performance Profiling & Production Polish",
+          "prompt": "Four independent JSON files each take 100ms to load. How long do they take sequentially vs with `Promise.all`?",
+          "options": [
+            "~400ms sequentially vs ~100ms with `Promise.all`",
+            "~100ms sequentially vs ~400ms with `Promise.all`",
+            "Both take 400ms",
+            "Both take 100ms"
+          ],
+          "correctIndex": 0,
+          "explanation": "`Promise.all` fires all 4 independent requests concurrently so total latency matches the slowest single request."
+        },
+        {
+          "id": "react-s10-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Architecture, Performance Profiling & Production Polish",
+          "prompt": "When working with Eliminating Request Waterfalls & Parallel Data Loading in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Start independent requests simultaneously with `Promise.all`.",
+            "Always rely on \"Fetching `meta`, awaiting, then fetching `lessons`, awaiting, then fetching `quizzes` sequentially\" as the default pattern",
+            "Ignore Eliminating Request Waterfalls & Parallel Data Loading constraints during runtime execution",
+            "Replace Eliminating Request Waterfalls & Parallel Data Loading with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Fetching `meta`, awaiting, then fetching `lessons`, awaiting, then fetching `quizzes` sequentially. Recommended fix: Start independent requests simultaneously with `Promise.all`."
+        },
+        {
+          "id": "react-s10-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Architecture, Performance Profiling & Production Polish",
+          "prompt": "What happens when you click `<button onClick={toggleHint}>Hint</button>` inside a `<form>` if `type` is omitted?",
+          "options": [
+            "The browser treats it as `type=\"submit\"` and submits the form",
+            "Nothing—HTML defaults to `type=\"button\"`",
+            "React prevents submission automatically",
+            "It resets the form"
+          ],
+          "correctIndex": 0,
+          "explanation": "HTML `<button>` defaults to `type=\"submit\"` inside forms; always specify `type=\"button\"` for non-submit actions."
+        },
+        {
+          "id": "react-s10-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Architecture, Performance Profiling & Production Polish",
+          "prompt": "When working with Design-System Components, Variants & Focus Discipline in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "HTML defaults `<button>` inside forms to `type=\"submit\"`, triggering unexpected submits!",
+            "Always rely on \"Omitting `type=\"button\"` on custom icon buttons inside `<form>`\" as the default pattern",
+            "Ignore Design-System Components, Variants & Focus Discipline constraints during runtime execution",
+            "Replace Design-System Components, Variants & Focus Discipline with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Omitting `type=\"button\"` on custom icon buttons inside `<form>`. Recommended fix: HTML defaults `<button>` inside forms to `type=\"submit\"`, triggering unexpected submits!"
+        },
+        {
+          "id": "react-s10-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Architecture, Performance Profiling & Production Polish",
+          "prompt": "Why should you merge parsed `localStorage` data with a `defaults` object (`{ ...defaults, ...parsed }`)?",
+          "options": [
+            "So returning users with older saved state automatically get default values for newly added fields without crashing",
+            "To encrypt localStorage",
+            "To make JSON.parse synchronous",
+            "Because localStorage clears every hour"
+          ],
+          "correctIndex": 0,
+          "explanation": "Forward-compatible default merging prevents undefined-property crashes after app upgrades."
+        },
+        {
+          "id": "react-s10-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Architecture, Performance Profiling & Production Polish",
+          "prompt": "When working with Production Build Hygiene, Caching & State Persistence in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Corrupted or older-schema storage crashes the app on boot; always merge safely with defaults.",
+            "Always rely on \"Reading `JSON.parse(localStorage.getItem(KEY)!)` with zero `try/catch` or default merge\" as the default pattern",
+            "Ignore Production Build Hygiene, Caching & State Persistence constraints during runtime execution",
+            "Replace Production Build Hygiene, Caching & State Persistence with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Reading `JSON.parse(localStorage.getItem(KEY)!)` with zero `try/catch` or default merge. Recommended fix: Corrupted or older-schema storage crashes the app on boot; always merge safely with defaults."
+        },
+        {
+          "id": "react-s10-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Architecture, Performance Profiling & Production Polish",
+          "prompt": "What happens when a user clicks `<button onClick={onCancel}>Cancel</button>` inside `<form onSubmit={onSave}>`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "<form onSubmit={onSave}><button onClick={onCancel}>Cancel</button></form>"
+          },
+          "options": [
+            "Both `onCancel` AND `onSave` fire because `<button>` defaults to `type=\"submit\"`",
+            "Only `onCancel` fires",
+            "Only `onSave` fires",
+            "Throws a React warning"
+          ],
+          "correctIndex": 0,
+          "explanation": "Always add `type=\"button\"` to non-submit buttons inside forms."
+        },
+        {
+          "id": "react-s10-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Architecture, Performance Profiling & Production Polish",
+          "prompt": "How long do 3 independent 120ms fetches take when run via `await Promise.all([f1(), f2(), f3()])`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "await Promise.all([f1(), f2(), f3()]);"
+          },
+          "options": [
+            "~120ms (concurrent execution)",
+            "~360ms (sequential)",
+            "~40ms",
+            "~0ms"
+          ],
+          "correctIndex": 0,
+          "explanation": "Promise.all starts all promises immediately in parallel."
+        }
+      ]
+    },
+    {
+      "sectionId": "react-s11",
+      "sectionTitle": "React Fiber Internals, Batching & Custom Renderers",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "react-s11-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "React Fiber Internals, Batching & Custom Renderers",
+          "prompt": "Why did React replace its original Stack Reconciler with Fiber?",
+          "options": [
+            "To pause, prioritize, and resume rendering work without blocking urgent user interactions",
+            "To eliminate JSX",
+            "To run CSS in WebAssembly",
+            "To remove hooks"
+          ],
+          "correctIndex": 0,
+          "explanation": "Fiber splits rendering into interruptible units of work scheduled by priority lanes."
+        },
+        {
+          "id": "react-s11-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "React Fiber Internals, Batching & Custom Renderers",
+          "prompt": "When working with Fiber Architecture & Double Buffering in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Interrupted renders and StrictMode run render multiple times, producing bogus counts.",
+            "Always rely on \"Incrementing a module-level counter during render\" as the default pattern",
+            "Ignore Fiber Architecture & Double Buffering constraints during runtime execution",
+            "Replace Fiber Architecture & Double Buffering with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Incrementing a module-level counter during render. Recommended fix: Interrupted renders and StrictMode run render multiple times, producing bogus counts."
+        },
+        {
+          "id": "react-s11-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "React Fiber Internals, Batching & Custom Renderers",
+          "prompt": "Why does an uncleaned CodeMirror or Chart.js `useEffect` render TWO editors side by side in React dev mode?",
+          "options": [
+            "StrictMode runs mount -> cleanup -> remount to expose missing `.destroy()` teardown logic",
+            "React duplicates all refs in dev",
+            "CodeMirror requires two divs",
+            "Vite runs App twice"
+          ],
+          "correctIndex": 0,
+          "explanation": "Always return `() => instance.destroy()` from effects mounting imperative DOM libraries."
+        },
+        {
+          "id": "react-s11-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "React Fiber Internals, Batching & Custom Renderers",
+          "prompt": "When working with flushSync, Automatic Batching & Third-Party Imperative Widgets in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Throws a React warning/error; only call `flushSync` inside event handlers when strictly required.",
+            "Always rely on \"Calling `flushSync` inside a render function or `useEffect`\" as the default pattern",
+            "Ignore flushSync, Automatic Batching & Third-Party Imperative Widgets constraints during runtime execution",
+            "Replace flushSync, Automatic Batching & Third-Party Imperative Widgets with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Calling `flushSync` inside a render function or `useEffect`. Recommended fix: Throws a React warning/error; only call `flushSync` inside event handlers when strictly required."
+        },
+        {
+          "id": "react-s11-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "React Fiber Internals, Batching & Custom Renderers",
+          "prompt": "What is the main reason to use `useImperativeHandle` on a reusable component?",
+          "options": [
+            "To expose a small, curated set of imperative methods (like `focus()`) instead of leaking the raw internal DOM element",
+            "To bypass React state",
+            "To improve CSS specificity",
+            "To replace `useContext`"
+          ],
+          "correctIndex": 0,
+          "explanation": "`useImperativeHandle` encapsulates internal DOM nodes behind an explicit typed method handle."
+        },
+        {
+          "id": "react-s11-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "React Fiber Internals, Batching & Custom Renderers",
+          "prompt": "When working with useImperativeHandle & Controlled Component APIs in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Prefer declarative `value` + `onChange` props; use imperative handles only for actions like `.focus()` or `.scrollIntoView()`.",
+            "Always rely on \"Exposing imperative `.setValue()` methods for data that should simply be controlled via props\" as the default pattern",
+            "Ignore useImperativeHandle & Controlled Component APIs constraints during runtime execution",
+            "Replace useImperativeHandle & Controlled Component APIs with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Exposing imperative `.setValue()` methods for data that should simply be controlled via props. Recommended fix: Prefer declarative `value` + `onChange` props; use imperative handles only for actions like `.focus()` or `.scrollIntoView()`."
+        },
+        {
+          "id": "react-s11-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "React Fiber Internals, Batching & Custom Renderers",
+          "prompt": "What makes React 19’s `use()` API unique compared to `useState` and `useContext`?",
+          "options": [
+            "It can be called conditionally inside `if` statements and loops",
+            "It runs before JavaScript parses",
+            "It mutates props directly",
+            "It requires class components"
+          ],
+          "correctIndex": 0,
+          "explanation": "`use()` is intentionally designed to work inside conditionals and loops without violating Fiber hook order."
+        },
+        {
+          "id": "react-s11-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "React Fiber Internals, Batching & Custom Renderers",
+          "prompt": "When working with React 19 `use()` API & Reading Promises/Context Conditionally in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Every render creates a brand-new pending Promise, causing an infinite Suspense loop; hoist or cache the Promise!",
+            "Always rely on \"Writing `const data = use(fetch(\"/api/x\"))` directly inside a component body\" as the default pattern",
+            "Ignore React 19 `use()` API & Reading Promises/Context Conditionally constraints during runtime execution",
+            "Replace React 19 `use()` API & Reading Promises/Context Conditionally with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing `const data = use(fetch(\"/api/x\"))` directly inside a component body. Recommended fix: Every render creates a brand-new pending Promise, causing an infinite Suspense loop; hoist or cache the Promise!"
+        },
+        {
+          "id": "react-s11-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "React Fiber Internals, Batching & Custom Renderers",
+          "prompt": "Why does `const data = use(fetch(\"/api\"))` inside a component body loop infinitely?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "function Bad() { const d = use(fetch('/api').then((r) => r.json())); return <p>{d}</p>; }"
+          },
+          "options": [
+            "Every render creates a new pending Promise, suspending endlessly",
+            "`fetch` cannot return JSON",
+            "`use()` only accepts numbers",
+            "React forbids `then()`"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pass a cached Promise created outside render (e.g., from a loader or parent) into `use()`."
+        },
+        {
+          "id": "react-s11-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "React Fiber Internals, Batching & Custom Renderers",
+          "prompt": "What happens when two `setState` calls execute inside `setTimeout` in React 18/19?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "setTimeout(() => { setA(1); setB(2); }, 50);"
+          },
+          "options": [
+            "React automatically batches both updates into a SINGLE re-render",
+            "Two separate synchronous re-renders occur",
+            "Only `setB` applies",
+            "Throws an async error"
+          ],
+          "correctIndex": 0,
+          "explanation": "React 18+ applies Automatic Batching everywhere, including timeouts and Promises."
+        }
+      ]
+    },
+    {
+      "sectionId": "react-s12",
+      "sectionTitle": "Production React Engineering: State Libraries, Animations & i18n",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "react-s12-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Production React Engineering: State Libraries, Animations & i18n",
+          "prompt": "Which state category best fits search filters (`?area=Web&level=Advanced`) on a course catalog page?",
+          "options": [
+            "URL state via `useSearchParams` so views are bookmarkable, refresh-safe, and shareable",
+            "Global Redux store only",
+            "`useRef`",
+            "Session cookies"
+          ],
+          "correctIndex": 0,
+          "explanation": "URL search parameters preserve filter state across reloads, Back navigation, and shared links."
+        },
+        {
+          "id": "react-s12-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Production React Engineering: State Libraries, Animations & i18n",
+          "prompt": "When working with Choosing State Management: Context vs Zustand vs TanStack Query in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Server-cache libraries handle caching, deduplication, and background refresh automatically.",
+            "Always rely on \"Copying REST API responses manually into Redux/Context with hand-rolled loading flags everywhere\" as the default pattern",
+            "Ignore Choosing State Management: Context vs Zustand vs TanStack Query constraints during runtime execution",
+            "Replace Choosing State Management: Context vs Zustand vs TanStack Query with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Copying REST API responses manually into Redux/Context with hand-rolled loading flags everywhere. Recommended fix: Server-cache libraries handle caching, deduplication, and background refresh automatically."
+        },
+        {
+          "id": "react-s12-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Production React Engineering: State Libraries, Animations & i18n",
+          "prompt": "Which CSS property pair animates smoothly on the GPU compositor without triggering browser Layout reflow?",
+          "options": [
+            "`transform` and `opacity`",
+            "`width` and `height`",
+            "`top` and `left`",
+            "`margin` and `padding`"
+          ],
+          "correctIndex": 0,
+          "explanation": "Only compositor properties (`transform`, `opacity`) bypass main-thread layout and paint passes."
+        },
+        {
+          "id": "react-s12-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Production React Engineering: State Libraries, Animations & i18n",
+          "prompt": "When working with Smooth, Accessible Micro-Interactions & Motion in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Triggers layout recalculation every frame; animate `transform: scaleX()` instead.",
+            "Always rely on \"Animating `width: 0% -> 100%` continuously on 23 cards at once\" as the default pattern",
+            "Ignore Smooth, Accessible Micro-Interactions & Motion constraints during runtime execution",
+            "Replace Smooth, Accessible Micro-Interactions & Motion with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Animating `width: 0% -> 100%` continuously on 23 cards at once. Recommended fix: Triggers layout recalculation every frame; animate `transform: scaleX()` instead."
+        },
+        {
+          "id": "react-s12-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Production React Engineering: State Libraries, Animations & i18n",
+          "prompt": "Which CSS/Tailwind utility prevents an exam countdown timer (`44:59`) from jittering horizontally every second in a sans-serif font?",
+          "options": [
+            "`tabular-nums` (`font-variant-numeric: tabular-nums`)",
+            "`tracking-widest`",
+            "`truncate`",
+            "`whitespace-nowrap`"
+          ],
+          "correctIndex": 0,
+          "explanation": "`tabular-nums` gives numerals uniform equal width so updating counters stay visually rock-steady."
+        },
+        {
+          "id": "react-s12-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Production React Engineering: State Libraries, Animations & i18n",
+          "prompt": "When working with Internationalization (i18n), Formatting & RTL Readiness in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use `Intl.DateTimeFormat(undefined, { dateStyle: \"medium\" })` for clean locale-aware dates.",
+            "Always rely on \"Hardcoding `\"MM/DD/YYYY\"` with `getMonth() + 1` everywhere\" as the default pattern",
+            "Ignore Internationalization (i18n), Formatting & RTL Readiness constraints during runtime execution",
+            "Replace Internationalization (i18n), Formatting & RTL Readiness with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Hardcoding `\"MM/DD/YYYY\"` with `getMonth() + 1` everywhere. Recommended fix: Use `Intl.DateTimeFormat(undefined, { dateStyle: \"medium\" })` for clean locale-aware dates."
+        },
+        {
+          "id": "react-s12-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Production React Engineering: State Libraries, Animations & i18n",
+          "prompt": "Which check detects accidental horizontal scrollbar overflow on a 390px mobile screen in a browser test?",
+          "options": [
+            "`document.documentElement.scrollWidth <= window.innerWidth`",
+            "`window.location.href.length > 0`",
+            "`document.title !== \"\"`",
+            "`navigator.onLine === true`"
+          ],
+          "correctIndex": 0,
+          "explanation": "When `scrollWidth` exceeds `innerWidth`, an element is overflowing horizontally off the mobile viewport."
+        },
+        {
+          "id": "react-s12-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Production React Engineering: State Libraries, Animations & i18n",
+          "prompt": "When working with End-to-End Verification & Real-Browser Quality Gates in React, which practice correctly prevents a common production bug?",
+          "options": [
+            "Runtime errors, missing assets, broken z-index overlaps, and dark-mode contrast issues only show up at runtime.",
+            "Always rely on \"Shipping after `npm run build` without opening the running app in a browser\" as the default pattern",
+            "Ignore End-to-End Verification & Real-Browser Quality Gates constraints during runtime execution",
+            "Replace End-to-End Verification & Real-Browser Quality Gates with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Shipping after `npm run build` without opening the running app in a browser. Recommended fix: Runtime errors, missing assets, broken z-index overlaps, and dark-mode contrast issues only show up at runtime."
+        },
+        {
+          "id": "react-s12-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Production React Engineering: State Libraries, Animations & i18n",
+          "prompt": "Why does adding `tabular-nums` improve `<span className=\"tabular-nums\">{mm}:{ss}</span>`?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "<span className=\"tabular-nums\">44:59</span>"
+          },
+          "options": [
+            "Every numeral occupies equal width so the timer stays completely steady without horizontal jitter",
+            "It converts the timer to uppercase",
+            "It enables 24-hour time",
+            "It pauses the timer in dark mode"
+          ],
+          "correctIndex": 0,
+          "explanation": "`tabular-nums` aligns digits into uniform columns so live timers and tables never wobble."
+        },
+        {
+          "id": "react-s12-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Production React Engineering: State Libraries, Animations & i18n",
+          "prompt": "In Tailwind CSS, which class disables a transition for users who enabled Reduce Motion in their OS?",
+          "codeSnippet": {
+            "language": "tsx",
+            "code": "<div className=\"transition-transform duration-300 motion-reduce:transition-none\" />"
+          },
+          "options": [
+            "`motion-reduce:transition-none`",
+            "`dark:transition-none`",
+            "`sr-only`",
+            "`pointer-events-none`"
+          ],
+          "correctIndex": 0,
+          "explanation": "`motion-reduce:` compiles to `@media (prefers-reduced-motion: reduce)`."
+        }
+      ]
+    }
+  ]
+}

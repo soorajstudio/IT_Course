@@ -1,0 +1,1997 @@
+{
+  "courseSlug": "html",
+  "quizzes": [
+    {
+      "sectionId": "html-s1",
+      "sectionTitle": "Document Structure & Metadata",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "html-s1-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Document Structure & Metadata",
+          "prompt": "What is the primary purpose of <!DOCTYPE html> at the top of an HTML file?",
+          "options": [
+            "Instruct the browser to render the page in Standards Mode",
+            "Import the latest HTML5 standard library from W3C",
+            "Enable JavaScript strict mode globally",
+            "Automatically set the page encoding to UTF-8"
+          ],
+          "correctIndex": 0,
+          "explanation": "<!DOCTYPE html> switches browsers into Standards Mode so CSS layout and DOM APIs behave consistently."
+        },
+        {
+          "id": "html-s1-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Document Structure & Metadata",
+          "prompt": "When working with HTML5 Document Boilerplate & DOCTYPE in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Always place <!DOCTYPE html> on line 1 with zero preceding whitespace or comments.",
+            "Always rely on \"Omitting <!DOCTYPE html> in legacy templates\" as the default pattern",
+            "Ignore HTML5 Document Boilerplate & DOCTYPE constraints during runtime execution",
+            "Replace HTML5 Document Boilerplate & DOCTYPE with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Omitting <!DOCTYPE html> in legacy templates. Recommended fix: Always place <!DOCTYPE html> on line 1 with zero preceding whitespace or comments."
+        },
+        {
+          "id": "html-s1-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Document Structure & Metadata",
+          "prompt": "Which script attribute downloads in parallel and executes in document order after HTML parsing finishes?",
+          "options": [
+            "defer",
+            "async",
+            "nomodule",
+            "preload"
+          ],
+          "correctIndex": 0,
+          "explanation": "defer downloads asynchronously and guarantees ordered execution once the document is parsed."
+        },
+        {
+          "id": "html-s1-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Document Structure & Metadata",
+          "prompt": "When working with Head Metadata, Favicons & Resource Hints in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Add defer (or type=\"module\", which defers by default) so parsing continues uninterrupted.",
+            "Always rely on \"Putting blocking <script> tags in <head> without defer or async\" as the default pattern",
+            "Ignore Head Metadata, Favicons & Resource Hints constraints during runtime execution",
+            "Replace Head Metadata, Favicons & Resource Hints with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Putting blocking <script> tags in <head> without defer or async. Recommended fix: Add defer (or type=\"module\", which defers by default) so parsing continues uninterrupted."
+        },
+        {
+          "id": "html-s1-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Document Structure & Metadata",
+          "prompt": "Which nesting pattern is INVALID according to the HTML5 specification?",
+          "options": [
+            "<a href=\"/go\"><button>Click</button></a>",
+            "<a href=\"/go\"><div><h2>Card</h2></div></a>",
+            "<button type=\"button\"><span>Save</span></button>",
+            "<article><header><h2>Post</h2></header></article>"
+          ],
+          "correctIndex": 0,
+          "explanation": "Interactive content such as <button> cannot be nested inside another interactive element like <a>."
+        },
+        {
+          "id": "html-s1-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Document Structure & Metadata",
+          "prompt": "When working with Block vs Inline Flow & Content Models in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Choose one interactive element: use <a> for navigation and <button> for in-page actions.",
+            "Always rely on \"Nesting a <button> inside an <a> tag\" as the default pattern",
+            "Ignore Block vs Inline Flow & Content Models constraints during runtime execution",
+            "Replace Block vs Inline Flow & Content Models with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Nesting a <button> inside an <a> tag. Recommended fix: Choose one interactive element: use <a> for navigation and <button> for in-page actions."
+        },
+        {
+          "id": "html-s1-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Document Structure & Metadata",
+          "prompt": "How does a browser render the raw HTML text: <p>Hello     \n   World</p> by default?",
+          "options": [
+            "Hello World (collapsed to a single space)",
+            "Hello followed by five spaces and a newline before World",
+            "HelloWorld with all spaces stripped",
+            "A syntax error in strict HTML5 mode"
+          ],
+          "correctIndex": 0,
+          "explanation": "Standard HTML whitespace collapsing merges consecutive spaces, tabs, and line breaks into a single space."
+        },
+        {
+          "id": "html-s1-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Document Structure & Metadata",
+          "prompt": "When working with HTML Parsing, Entities & Whitespace Collapsing in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use CSS margin, padding, or gap utilities instead of non-breaking space characters.",
+            "Always rely on \"Using multiple &nbsp; entities for layout spacing\" as the default pattern",
+            "Ignore HTML Parsing, Entities & Whitespace Collapsing constraints during runtime execution",
+            "Replace HTML Parsing, Entities & Whitespace Collapsing with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using multiple &nbsp; entities for layout spacing. Recommended fix: Use CSS margin, padding, or gap utilities instead of non-breaking space characters."
+        },
+        {
+          "id": "html-s1-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Document Structure & Metadata",
+          "prompt": "What DOM structure does the browser construct for this HTML snippet?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<p>Intro text\n  <div>Inner block</div>\n</p>"
+          },
+          "options": [
+            "<p> is auto-closed before <div>, making them sibling elements",
+            "<div> is nested cleanly inside <p>",
+            "The browser ignores the <div> tag completely",
+            "The page throws a fatal XML parsing error"
+          ],
+          "correctIndex": 0,
+          "explanation": "<p> only accepts phrasing content, so encountering <div> implicitly closes <p> and inserts <div> as its sibling."
+        },
+        {
+          "id": "html-s1-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Document Structure & Metadata",
+          "prompt": "What visible text is rendered by this HTML line?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<p>Price: &lt; $50 &amp; free&nbsp;shipping</p>"
+          },
+          "options": [
+            "Price: < $50 & free shipping",
+            "Price: &lt; $50 &amp; free&nbsp;shipping",
+            "Price: $50 free shipping",
+            "Price: < $50"
+          ],
+          "correctIndex": 0,
+          "explanation": "&lt; decodes to <, &amp; decodes to &, and &nbsp; decodes to a non-breaking space."
+        }
+      ]
+    },
+    {
+      "sectionId": "html-s2",
+      "sectionTitle": "Semantic Landmarks & Headings",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "html-s2-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Semantic Landmarks & Headings",
+          "prompt": "Which element should appear only once as the dominant content landmark per HTML document?",
+          "options": [
+            "<main>",
+            "<section>",
+            "<article>",
+            "<header>"
+          ],
+          "correctIndex": 0,
+          "explanation": "A document must not have more than one visible <main> element."
+        },
+        {
+          "id": "html-s2-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Semantic Landmarks & Headings",
+          "prompt": "When working with Page Landmarks: header, nav, main, aside, footer in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use native <header>, <nav>, <main>, and <footer> landmarks for built-in accessibility roles.",
+            "Always rely on \"Using <div class=\"header\"> and <div class=\"main\"> everywhere\" as the default pattern",
+            "Ignore Page Landmarks: header, nav, main, aside, footer constraints during runtime execution",
+            "Replace Page Landmarks: header, nav, main, aside, footer with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using <div class=\"header\"> and <div class=\"main\"> everywhere. Recommended fix: Use native <header>, <nav>, <main>, and <footer> landmarks for built-in accessibility roles."
+        },
+        {
+          "id": "html-s2-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Semantic Landmarks & Headings",
+          "prompt": "Why should you avoid jumping directly from <h1> to <h4> in a page outline?",
+          "options": [
+            "It breaks logical hierarchy for screen readers and assistive navigation",
+            "Browsers refuse to render <h4> without an <h3> above it",
+            "CSS font-weight stops working on skipped headings",
+            "Search engines de-index any page containing an <h4> tag"
+          ],
+          "correctIndex": 0,
+          "explanation": "Assistive technologies announce heading depth; skipping levels disorients users navigating by headings."
+        },
+        {
+          "id": "html-s2-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Semantic Landmarks & Headings",
+          "prompt": "When working with Heading Hierarchy (h1–h6) & Document Outline in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use <a> or <span> for the navbar brand and reserve <h1> for the unique main heading of the page.",
+            "Always rely on \"Using <h1> for the small navbar logo on every page\" as the default pattern",
+            "Ignore Heading Hierarchy (h1–h6) & Document Outline constraints during runtime execution",
+            "Replace Heading Hierarchy (h1–h6) & Document Outline with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using <h1> for the small navbar logo on every page. Recommended fix: Use <a> or <span> for the navbar brand and reserve <h1> for the unique main heading of the page."
+        },
+        {
+          "id": "html-s2-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Semantic Landmarks & Headings",
+          "prompt": "Which element provides both human-readable text and a machine-parseable ISO timestamp?",
+          "options": [
+            "<time datetime=\"2026-11-18\">",
+            "<date value=\"2026-11-18\">",
+            "<span data-iso=\"2026-11-18\">",
+            "<meta time=\"2026-11-18\">"
+          ],
+          "correctIndex": 0,
+          "explanation": "<time> with an ISO datetime attribute exposes structured temporal data to browsers and search engines."
+        },
+        {
+          "id": "html-s2-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Semantic Landmarks & Headings",
+          "prompt": "When working with Inline Text Semantics: strong, em, time, abbr, mark in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use <strong> for critical warnings and <em> for emphasis; reserve <b>/<i> for stylistic offset only.",
+            "Always rely on \"Using <b> and <i> for warnings or key terms\" as the default pattern",
+            "Ignore Inline Text Semantics: strong, em, time, abbr, mark constraints during runtime execution",
+            "Replace Inline Text Semantics: strong, em, time, abbr, mark with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using <b> and <i> for warnings or key terms. Recommended fix: Use <strong> for critical warnings and <em> for emphasis; reserve <b>/<i> for stylistic offset only."
+        },
+        {
+          "id": "html-s2-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Semantic Landmarks & Headings",
+          "prompt": "Where must a <figcaption> element be placed to be valid HTML5?",
+          "options": [
+            "As the first or last direct child of a <figure> element",
+            "Immediately after any <img> element anywhere in the DOM",
+            "Inside the <head> alongside image metadata",
+            "Wrapped inside a <p> element below a <figure>"
+          ],
+          "correctIndex": 0,
+          "explanation": "The HTML spec requires <figcaption> to be either the first or last child of its parent <figure>."
+        },
+        {
+          "id": "html-s2-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Semantic Landmarks & Headings",
+          "prompt": "When working with Figures, Quotations & Code Annotations in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Always place <figcaption> directly inside <figure> as its first or last child.",
+            "Always rely on \"Putting <figcaption> outside <figure>\" as the default pattern",
+            "Ignore Figures, Quotations & Code Annotations constraints during runtime execution",
+            "Replace Figures, Quotations & Code Annotations with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Putting <figcaption> outside <figure>. Recommended fix: Always place <figcaption> directly inside <figure> as its first or last child."
+        },
+        {
+          "id": "html-s2-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Semantic Landmarks & Headings",
+          "prompt": "How many distinct navigation landmarks with accessible names are exposed by this markup?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<header>\n  <nav aria-label=\"Main Menu\"><a href=\"/\">Home</a></nav>\n</header>\n<footer>\n  <nav aria-label=\"Footer Links\"><a href=\"/about\">About</a></nav>\n</footer>"
+          },
+          "options": [
+            "2 named navigation landmarks",
+            "1 navigation landmark (footer nav is ignored)",
+            "0 landmarks because role=\"navigation\" is missing",
+            "4 landmarks (one per anchor)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each <nav> natively maps to role=\"navigation\", and both provide distinct aria-label names."
+        },
+        {
+          "id": "html-s2-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Semantic Landmarks & Headings",
+          "prompt": "Which element in this snippet represents keyboard input by the user?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<p>Press <kbd>Enter</kbd> to run <code>npm test</code> and see <samp>PASS</samp>.</p>"
+          },
+          "options": [
+            "<kbd>Enter</kbd>",
+            "<code>npm test</code>",
+            "<samp>PASS</samp>",
+            "<p>"
+          ],
+          "correctIndex": 0,
+          "explanation": "<kbd> represents user keyboard input, <code> marks code text, and <samp> marks sample program output."
+        }
+      ]
+    },
+    {
+      "sectionId": "html-s3",
+      "sectionTitle": "Links, Navigation & Lists",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "html-s3-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Links, Navigation & Lists",
+          "prompt": "Which rel value prevents a newly opened tab from manipulating window.opener?",
+          "options": [
+            "noopener",
+            "nofollow",
+            "canonical",
+            "alternate"
+          ],
+          "correctIndex": 0,
+          "explanation": "rel=\"noopener\" sets window.opener to null in the new browsing context, blocking reverse tabnabbing."
+        },
+        {
+          "id": "html-s3-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Links, Navigation & Lists",
+          "prompt": "When working with Hyperlinks, Target Security & Fragment Navigation in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Always use <a href=\"...\"> so right-click, open-in-new-tab, and keyboard Enter work natively.",
+            "Always rely on \"Using <span onclick=\"...\"> for page navigation\" as the default pattern",
+            "Ignore Hyperlinks, Target Security & Fragment Navigation constraints during runtime execution",
+            "Replace Hyperlinks, Target Security & Fragment Navigation with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using <span onclick=\"...\"> for page navigation. Recommended fix: Always use <a href=\"...\"> so right-click, open-in-new-tab, and keyboard Enter work natively."
+        },
+        {
+          "id": "html-s3-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Links, Navigation & Lists",
+          "prompt": "Which HTML element group is specifically designed for key-value metadata or glossary terms?",
+          "options": [
+            "<dl>, <dt>, and <dd>",
+            "<ul> and <li>",
+            "<menu> and <item>",
+            "<list> and <def>"
+          ],
+          "correctIndex": 0,
+          "explanation": "<dl> (description list) pairs <dt> (term) with <dd> (description)."
+        },
+        {
+          "id": "html-s3-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Links, Navigation & Lists",
+          "prompt": "When working with Ordered, Unordered & Description Lists in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Close nested lists inside the parent <li> before starting the next <li>.",
+            "Always rely on \"Placing a <ul> directly inside another <ul> instead of inside an <li>\" as the default pattern",
+            "Ignore Ordered, Unordered & Description Lists constraints during runtime execution",
+            "Replace Ordered, Unordered & Description Lists with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Placing a <ul> directly inside another <ul> instead of inside an <li>. Recommended fix: Close nested lists inside the parent <li> before starting the next <li>."
+        },
+        {
+          "id": "html-s3-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Links, Navigation & Lists",
+          "prompt": "Which attribute marks the active item inside a navigation menu or breadcrumb?",
+          "options": [
+            "aria-current=\"page\"",
+            "data-active=\"true\"",
+            "aria-selected=\"page\"",
+            "role=\"current\""
+          ],
+          "correctIndex": 0,
+          "explanation": "aria-current=\"page\" is the standard WAI-ARIA attribute for indicating the current page in navigation."
+        },
+        {
+          "id": "html-s3-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Links, Navigation & Lists",
+          "prompt": "When working with Breadcrumb & Skip Navigation Patterns in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use visually-hidden (sr-only) CSS that reveals on :focus; display: none removes the link from Tab order completely.",
+            "Always rely on \"Using display: none on skip links\" as the default pattern",
+            "Ignore Breadcrumb & Skip Navigation Patterns constraints during runtime execution",
+            "Replace Breadcrumb & Skip Navigation Patterns with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using display: none on skip links. Recommended fix: Use visually-hidden (sr-only) CSS that reveals on :focus; display: none removes the link from Tab order completely."
+        },
+        {
+          "id": "html-s3-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Links, Navigation & Lists",
+          "prompt": "On the URL https://itcourses.dev/courses/html, where does <a href=\"/practice\"> navigate?",
+          "options": [
+            "https://itcourses.dev/practice",
+            "https://itcourses.dev/courses/practice",
+            "https://itcourses.dev/courses/html/practice",
+            "https://practice.itcourses.dev/"
+          ],
+          "correctIndex": 0,
+          "explanation": "A leading slash makes the URL root-relative, resolving directly from the origin."
+        },
+        {
+          "id": "html-s3-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Links, Navigation & Lists",
+          "prompt": "When working with Relative Paths, Base URLs & Fragment IDs in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Prefix public static paths with / so they resolve consistently regardless of route depth.",
+            "Always rely on \"Using relative asset paths (assets/img.png) inside nested SPA routes\" as the default pattern",
+            "Ignore Relative Paths, Base URLs & Fragment IDs constraints during runtime execution",
+            "Replace Relative Paths, Base URLs & Fragment IDs with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using relative asset paths (assets/img.png) inside nested SPA routes. Recommended fix: Prefix public static paths with / so they resolve consistently regardless of route depth."
+        },
+        {
+          "id": "html-s3-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Links, Navigation & Lists",
+          "prompt": "What numbering sequence does the browser render for this ordered list?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<ol start=\"5\" reversed>\n  <li>Alpha</li>\n  <li>Beta</li>\n  <li>Gamma</li>\n</ol>"
+          },
+          "options": [
+            "5. Alpha, 4. Beta, 3. Gamma",
+            "5. Alpha, 6. Beta, 7. Gamma",
+            "3. Alpha, 2. Beta, 1. Gamma",
+            "1. Alpha, 2. Beta, 3. Gamma"
+          ],
+          "correctIndex": 0,
+          "explanation": "start=\"5\" begins the counter at 5, and reversed decrements by 1 for each item: 5, 4, 3."
+        },
+        {
+          "id": "html-s3-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Links, Navigation & Lists",
+          "prompt": "If a user is on https://site.com/docs/html/forms.html and clicks <a href=\"../css/grid.html\">, what URL opens?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<a href=\"../css/grid.html\">CSS Grid</a>"
+          },
+          "options": [
+            "https://site.com/docs/css/grid.html",
+            "https://site.com/css/grid.html",
+            "https://site.com/docs/html/css/grid.html",
+            "https://site.com/docs/html/../grid.html"
+          ],
+          "correctIndex": 0,
+          "explanation": "../ moves up one directory from /docs/html/ to /docs/, then enters css/grid.html."
+        }
+      ]
+    },
+    {
+      "sectionId": "html-s4",
+      "sectionTitle": "Images, Tables & Embedded Content",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "html-s4-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Images, Tables & Embedded Content",
+          "prompt": "How should alt be written on a purely decorative background flourish image?",
+          "options": [
+            "alt=\"\"",
+            "Omit the alt attribute entirely",
+            "alt=\"decorative image\"",
+            "alt=\"none\""
+          ],
+          "correctIndex": 0,
+          "explanation": "An empty alt=\"\" signals to assistive technology that the image is purely decorative and should be skipped."
+        },
+        {
+          "id": "html-s4-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Images, Tables & Embedded Content",
+          "prompt": "When working with Accessible Images: alt, width/height & Lazy Loading in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use alt=\"\" (empty string) for decorative images; omitting alt causes screen readers to read the raw file URL.",
+            "Always rely on \"Omitting the alt attribute completely on decorative icons\" as the default pattern",
+            "Ignore Accessible Images: alt, width/height & Lazy Loading constraints during runtime execution",
+            "Replace Accessible Images: alt, width/height & Lazy Loading with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Omitting the alt attribute completely on decorative icons. Recommended fix: Use alt=\"\" (empty string) for decorative images; omitting alt causes screen readers to read the raw file URL."
+        },
+        {
+          "id": "html-s4-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Images, Tables & Embedded Content",
+          "prompt": "Which element provides an accessible title directly associated with an HTML <table>?",
+          "options": [
+            "<caption>",
+            "<title>",
+            "<legend>",
+            "<thead>"
+          ],
+          "correctIndex": 0,
+          "explanation": "<caption> must be the first child of <table> and names the dataset for all users."
+        },
+        {
+          "id": "html-s4-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Images, Tables & Embedded Content",
+          "prompt": "When working with Data Tables: thead, tbody, scope & caption in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Always use <th> with scope attributes so screen readers announce column context per cell.",
+            "Always rely on \"Using <td> with bold CSS instead of <th> for header rows\" as the default pattern",
+            "Ignore Data Tables: thead, tbody, scope & caption constraints during runtime execution",
+            "Replace Data Tables: thead, tbody, scope & caption with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using <td> with bold CSS instead of <th> for header rows. Recommended fix: Always use <th> with scope attributes so screen readers announce column context per cell."
+        },
+        {
+          "id": "html-s4-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Images, Tables & Embedded Content",
+          "prompt": "Which element attaches closed captions or subtitles to an HTML5 <video>?",
+          "options": [
+            "<track kind=\"captions\">",
+            "<subtitle>",
+            "<caption src=\"...\">",
+            "<meta kind=\"captions\">"
+          ],
+          "correctIndex": 0,
+          "explanation": "<track> binds timed WebVTT text tracks (captions, subtitles, chapters) to media elements."
+        },
+        {
+          "id": "html-s4-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Images, Tables & Embedded Content",
+          "prompt": "When working with Native Audio & Video Elements in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Include muted (or avoid autoplay altogether) so browser autoplay policies do not silently fail playback.",
+            "Always rely on \"Setting autoplay without muted\" as the default pattern",
+            "Ignore Native Audio & Video Elements constraints during runtime execution",
+            "Replace Native Audio & Video Elements with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Setting autoplay without muted. Recommended fix: Include muted (or avoid autoplay altogether) so browser autoplay policies do not silently fail playback."
+        },
+        {
+          "id": "html-s4-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Images, Tables & Embedded Content",
+          "prompt": "Which attribute restricts an <iframe> from running scripts, submitting forms, or navigating the top window?",
+          "options": [
+            "sandbox",
+            "isolated",
+            "readonly",
+            "csp-lock"
+          ],
+          "correctIndex": 0,
+          "explanation": "The sandbox attribute applies strict security restrictions that can be selectively relaxed with allow-* tokens."
+        },
+        {
+          "id": "html-s4-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Images, Tables & Embedded Content",
+          "prompt": "When working with Iframes, Sandboxing & Security Headers in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Apply sandbox with least-privilege permissions and strict referrerPolicy.",
+            "Always rely on \"Embedding untrusted iframes without the sandbox attribute\" as the default pattern",
+            "Ignore Iframes, Sandboxing & Security Headers constraints during runtime execution",
+            "Replace Iframes, Sandboxing & Security Headers with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Embedding untrusted iframes without the sandbox attribute. Recommended fix: Apply sandbox with least-privilege permissions and strict referrerPolicy."
+        },
+        {
+          "id": "html-s4-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Images, Tables & Embedded Content",
+          "prompt": "How many data cells are merged horizontally in the second row of this table?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<table>\n  <tr><th>Name</th><th>Q1</th><th>Q2</th></tr>\n  <tr><td>Total</td><td colspan=\"2\">94%</td></tr>\n</table>"
+          },
+          "options": [
+            "2 columns merged into one cell",
+            "2 rows merged vertically",
+            "3 columns merged",
+            "Invalid attribute—must be span=\"2\""
+          ],
+          "correctIndex": 0,
+          "explanation": "colspan=\"2\" stretches the single <td> across both the Q1 and Q2 columns."
+        },
+        {
+          "id": "html-s4-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Images, Tables & Embedded Content",
+          "prompt": "What happens when a browser encounters an <iframe sandbox=\"\" src=\"...\"> containing JavaScript?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<iframe src=\"/widget.html\" title=\"Widget\" sandbox></iframe>"
+          },
+          "options": [
+            "JavaScript execution inside the iframe is blocked",
+            "JavaScript runs normally with full parent DOM access",
+            "The iframe fails to render any HTML at all",
+            "Only inline scripts run while external scripts are blocked"
+          ],
+          "correctIndex": 0,
+          "explanation": "An empty sandbox attribute applies all restrictions, including disabling script execution until allow-scripts is added."
+        }
+      ]
+    },
+    {
+      "sectionId": "html-s5",
+      "sectionTitle": "Forms & Input Controls",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "html-s5-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Forms & Input Controls",
+          "prompt": "What is the default behavior of a <button> inside a <form> when no type attribute is specified?",
+          "options": [
+            "It acts as type=\"submit\"",
+            "It acts as type=\"button\"",
+            "It acts as type=\"reset\"",
+            "It is disabled until JavaScript attaches a listener"
+          ],
+          "correctIndex": 0,
+          "explanation": "Per the HTML specification, the missing-value default for <button> type is submit."
+        },
+        {
+          "id": "html-s5-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Forms & Input Controls",
+          "prompt": "When working with Form Architecture: action, method, label & name in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Placeholders vanish as soon as typing begins and fail WCAG contrast/accessibility; always include a visible <label>.",
+            "Always rely on \"Using placeholder instead of <label>\" as the default pattern",
+            "Ignore Form Architecture: action, method, label & name constraints during runtime execution",
+            "Replace Form Architecture: action, method, label & name with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using placeholder instead of <label>. Recommended fix: Placeholders vanish as soon as typing begins and fail WCAG contrast/accessibility; always include a visible <label>."
+        },
+        {
+          "id": "html-s5-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Forms & Input Controls",
+          "prompt": "Which input configuration best captures a 6-digit OTP code while preserving leading zeros and showing a mobile number pad?",
+          "options": [
+            "<input type=\"text\" inputmode=\"numeric\" autocomplete=\"one-time-code\" />",
+            "<input type=\"number\" maxlength=\"6\" />",
+            "<input type=\"tel\" min=\"0\" max=\"999999\" />",
+            "<input type=\"password\" inputmode=\"text\" />"
+          ],
+          "correctIndex": 0,
+          "explanation": "type=\"text\" preserves leading zeros and honors maxlength, while inputmode=\"numeric\" triggers the numeric keypad."
+        },
+        {
+          "id": "html-s5-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Forms & Input Controls",
+          "prompt": "When working with Semantic Input Types, inputmode & autocomplete in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use type=\"text\" with inputmode=\"numeric\" and pattern so leading zeros are preserved and scroll-wheel changes don’t corrupt values.",
+            "Always rely on \"Using type=\"number\" for credit cards, ZIP codes, or OTPs\" as the default pattern",
+            "Ignore Semantic Input Types, inputmode & autocomplete constraints during runtime execution",
+            "Replace Semantic Input Types, inputmode & autocomplete with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using type=\"number\" for credit cards, ZIP codes, or OTPs. Recommended fix: Use type=\"text\" with inputmode=\"numeric\" and pattern so leading zeros are preserved and scroll-wheel changes don’t corrupt values."
+        },
+        {
+          "id": "html-s5-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Forms & Input Controls",
+          "prompt": "What links multiple <input type=\"radio\"> elements into one mutually exclusive choice group?",
+          "options": [
+            "Sharing the same name attribute",
+            "Sharing the same id attribute",
+            "Sharing the same value attribute",
+            "Placing them in the same <div>"
+          ],
+          "correctIndex": 0,
+          "explanation": "Browsers group radio buttons solely by matching name attributes within the same form."
+        },
+        {
+          "id": "html-s5-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Forms & Input Controls",
+          "prompt": "When working with Fieldset, Legend, Radios, Checkboxes & Datalist in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use one shared name for the radio group and distinct value attributes per option.",
+            "Always rely on \"Giving each radio button a different name attribute\" as the default pattern",
+            "Ignore Fieldset, Legend, Radios, Checkboxes & Datalist constraints during runtime execution",
+            "Replace Fieldset, Legend, Radios, Checkboxes & Datalist with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Giving each radio button a different name attribute. Recommended fix: Use one shared name for the radio group and distinct value attributes per option."
+        },
+        {
+          "id": "html-s5-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Forms & Input Controls",
+          "prompt": "Which attribute links an invalid form input to its visible validation error message for screen readers?",
+          "options": [
+            "aria-describedby",
+            "aria-controls",
+            "data-error-for",
+            "for"
+          ],
+          "correctIndex": 0,
+          "explanation": "aria-describedby=\"error-id\" tells assistive technologies to announce the referenced error message when the input is focused."
+        },
+        {
+          "id": "html-s5-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Forms & Input Controls",
+          "prompt": "When working with Native Constraint Validation & Error Messaging in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Pair color with explicit error text linked via aria-describedby so color-blind and screen-reader users know what to fix.",
+            "Always rely on \"Showing red border color alone on invalid inputs\" as the default pattern",
+            "Ignore Native Constraint Validation & Error Messaging constraints during runtime execution",
+            "Replace Native Constraint Validation & Error Messaging with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Showing red border color alone on invalid inputs. Recommended fix: Pair color with explicit error text linked via aria-describedby so color-blind and screen-reader users know what to fix."
+        },
+        {
+          "id": "html-s5-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Forms & Input Controls",
+          "prompt": "Which field values will be included when this form is submitted?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<form>\n  <input name=\"plan\" value=\"pro\" readonly />\n  <input name=\"coupon\" value=\"SAVE10\" disabled />\n  <input value=\"anonymous\" />\n</form>"
+          },
+          "options": [
+            "Only plan=\"pro\"",
+            "plan=\"pro\" and coupon=\"SAVE10\"",
+            "All three fields",
+            "Only coupon=\"SAVE10\""
+          ],
+          "correctIndex": 0,
+          "explanation": "readonly fields ARE submitted, disabled fields are excluded, and inputs without a name attribute are ignored."
+        },
+        {
+          "id": "html-s5-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Forms & Input Controls",
+          "prompt": "What happens when a user clicks the \"Clear\" button inside this form?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<form action=\"/search\">\n  <input name=\"q\" value=\"html\" />\n  <button>Clear</button>\n</form>"
+          },
+          "options": [
+            "The form submits to /search?q=html",
+            "The input clears to empty string",
+            "Nothing happens because there is no onclick handler",
+            "A browser validation error occurs"
+          ],
+          "correctIndex": 0,
+          "explanation": "A <button> without a type attribute inside a <form> defaults to type=\"submit\" and submits via GET."
+        }
+      ]
+    },
+    {
+      "sectionId": "html-s6",
+      "sectionTitle": "Responsive Media & Graphics",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "html-s6-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Media & Graphics",
+          "prompt": "If an image renders at 400px wide on a 2x pixel-density display, which srcset candidate is the closest optimal match?",
+          "options": [
+            "800w",
+            "400w",
+            "1600w",
+            "200w"
+          ],
+          "correctIndex": 0,
+          "explanation": "400 CSS px × 2x DPR = 800 device pixels, matching the 800w source cleanly."
+        },
+        {
+          "id": "html-s6-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Media & Graphics",
+          "prompt": "When working with Responsive Images with srcset & sizes in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Without sizes, browsers assume 100vw, causing oversized downloads on multi-column grids.",
+            "Always rely on \"Omitting sizes when using w descriptors in srcset\" as the default pattern",
+            "Ignore Responsive Images with srcset & sizes constraints during runtime execution",
+            "Replace Responsive Images with srcset & sizes with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Omitting sizes when using w descriptors in srcset. Recommended fix: Without sizes, browsers assume 100vw, causing oversized downloads on multi-column grids."
+        },
+        {
+          "id": "html-s6-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Media & Graphics",
+          "prompt": "In a <picture> element with AVIF, WebP, and JPEG options, where must the alt text be placed?",
+          "options": [
+            "On the inner <img> element",
+            "On the <picture> element",
+            "On every <source> element",
+            "Inside a <figcaption> only"
+          ],
+          "correctIndex": 0,
+          "explanation": "<picture> delegates rendering and accessibility attributes to its required fallback <img> child."
+        },
+        {
+          "id": "html-s6-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Media & Graphics",
+          "prompt": "When working with Art Direction & Modern Formats with <picture> in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Always place alt, width, height, and styling on the inner <img> element.",
+            "Always rely on \"Putting alt or class styles on <picture> instead of the nested <img>\" as the default pattern",
+            "Ignore Art Direction & Modern Formats with <picture> constraints during runtime execution",
+            "Replace Art Direction & Modern Formats with <picture> with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Putting alt or class styles on <picture> instead of the nested <img>. Recommended fix: Always place alt, width, height, and styling on the inner <img> element."
+        },
+        {
+          "id": "html-s6-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Media & Graphics",
+          "prompt": "Which attribute should be added to an inline <svg> icon placed inside a button that already has visible text?",
+          "options": [
+            "aria-hidden=\"true\"",
+            "role=\"button\"",
+            "tabindex=\"0\"",
+            "alt=\"\""
+          ],
+          "correctIndex": 0,
+          "explanation": "aria-hidden=\"true\" prevents screen readers from announcing redundant or unlabelled graphics inside a labeled button."
+        },
+        {
+          "id": "html-s6-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Media & Graphics",
+          "prompt": "When working with Inline SVG, viewBox & Accessible Vector Icons in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Hide decorative icons from assistive tech and rely on the button’s visible text or aria-label.",
+            "Always rely on \"Leaving out aria-hidden=\"true\" on decorative button icons\" as the default pattern",
+            "Ignore Inline SVG, viewBox & Accessible Vector Icons constraints during runtime execution",
+            "Replace Inline SVG, viewBox & Accessible Vector Icons with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Leaving out aria-hidden=\"true\" on decorative button icons. Recommended fix: Hide decorative icons from assistive tech and rely on the button’s visible text or aria-label."
+        },
+        {
+          "id": "html-s6-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Media & Graphics",
+          "prompt": "Which rendering model describes HTML5 <canvas>?",
+          "options": [
+            "Immediate-mode pixel bitmap drawn via JavaScript",
+            "Retained-mode XML vector DOM tree",
+            "Declarative CSS layout grid",
+            "Server-side raster template"
+          ],
+          "correctIndex": 0,
+          "explanation": "Canvas paints pixels imperatively without keeping individual shape objects in the DOM."
+        },
+        {
+          "id": "html-s6-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Media & Graphics",
+          "prompt": "When working with HTML5 Canvas vs SVG Decision Guide in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Set canvas.width = cssWidth * dpr and scale the 2D context so drawings never look blurry or stretched.",
+            "Always rely on \"Resizing a <canvas> with CSS width/height without matching the backing buffer\" as the default pattern",
+            "Ignore HTML5 Canvas vs SVG Decision Guide constraints during runtime execution",
+            "Replace HTML5 Canvas vs SVG Decision Guide with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Resizing a <canvas> with CSS width/height without matching the backing buffer. Recommended fix: Set canvas.width = cssWidth * dpr and scale the 2D context so drawings never look blurry or stretched."
+        },
+        {
+          "id": "html-s6-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Responsive Media & Graphics",
+          "prompt": "Which image file does a modern browser supporting WebP (but not AVIF) download here?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<picture>\n  <source type=\"image/avif\" srcset=\"/hero.avif\" />\n  <source type=\"image/webp\" srcset=\"/hero.webp\" />\n  <img src=\"/hero.jpg\" alt=\"Hero\" />\n</picture>"
+          },
+          "options": [
+            "/hero.webp",
+            "/hero.avif",
+            "/hero.jpg",
+            "Both /hero.webp and /hero.jpg"
+          ],
+          "correctIndex": 0,
+          "explanation": "The browser skips unsupported image/avif, matches image/webp, and downloads only /hero.webp."
+        },
+        {
+          "id": "html-s6-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Responsive Media & Graphics",
+          "prompt": "What happens if you scale an SVG with viewBox=\"0 0 24 24\" to width=\"96\" height=\"96\"?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<svg viewBox=\"0 0 24 24\" width=\"96\" height=\"96\"><circle cx=\"12\" cy=\"12\" r=\"10\" /></svg>"
+          },
+          "options": [
+            "The circle scales cleanly 4x larger with crisp vector edges",
+            "The circle stays 24px wide in the top-left corner",
+            "The circle becomes pixelated 4x",
+            "The SVG clips the circle at 24px"
+          ],
+          "correctIndex": 0,
+          "explanation": "viewBox maps the 24×24 coordinate space proportionally across the 96×96 viewport with mathematically smooth edges."
+        }
+      ]
+    },
+    {
+      "sectionId": "html-s7",
+      "sectionTitle": "Native Interactive Elements",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "html-s7-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Native Interactive Elements",
+          "prompt": "Which boolean attribute makes a <details> element expanded on initial page load?",
+          "options": [
+            "open",
+            "expanded",
+            "active",
+            "visible"
+          ],
+          "correctIndex": 0,
+          "explanation": "The open boolean attribute controls whether a <details> element displays its content."
+        },
+        {
+          "id": "html-s7-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Native Interactive Elements",
+          "prompt": "When working with Disclosures & Accordions with <details> and <summary> in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use native <details>/<summary> for free keyboard Enter/Space support and accessible semantics.",
+            "Always rely on \"Building custom <div onclick> accordions without aria-expanded or keyboard handlers\" as the default pattern",
+            "Ignore Disclosures & Accordions with <details> and <summary> constraints during runtime execution",
+            "Replace Disclosures & Accordions with <details> and <summary> with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Building custom <div onclick> accordions without aria-expanded or keyboard handlers. Recommended fix: Use native <details>/<summary> for free keyboard Enter/Space support and accessible semantics."
+        },
+        {
+          "id": "html-s7-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Native Interactive Elements",
+          "prompt": "Which JavaScript method opens a <dialog> in the browser top layer with a ::backdrop and Escape-to-close?",
+          "options": [
+            "dialog.showModal()",
+            "dialog.open()",
+            "dialog.show()",
+            "dialog.activateModal()"
+          ],
+          "correctIndex": 0,
+          "explanation": "showModal() promotes the dialog to the top layer and makes background content inert."
+        },
+        {
+          "id": "html-s7-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Native Interactive Elements",
+          "prompt": "When working with Native Modals with <dialog> in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Setting the open attribute creates a non-modal dialog with NO backdrop and NO focus trap; use showModal() for true modals.",
+            "Always rely on \"Toggling <dialog open> via attribute instead of calling showModal()\" as the default pattern",
+            "Ignore Native Modals with <dialog> constraints during runtime execution",
+            "Replace Native Modals with <dialog> with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Toggling <dialog open> via attribute instead of calling showModal(). Recommended fix: Setting the open attribute creates a non-modal dialog with NO backdrop and NO focus trap; use showModal() for true modals."
+        },
+        {
+          "id": "html-s7-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Native Interactive Elements",
+          "prompt": "What behavior does popover=\"auto\" provide by default?",
+          "options": [
+            "Light-dismiss on outside click or Escape and closing other open auto popovers",
+            "Makes the entire background page inert like showModal()",
+            "Persists across page reloads automatically",
+            "Requires JavaScript click listeners to close"
+          ],
+          "correctIndex": 0,
+          "explanation": "popover=\"auto\" handles light-dismiss and mutual exclusion declaratively."
+        },
+        {
+          "id": "html-s7-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Native Interactive Elements",
+          "prompt": "When working with The Native Popover API in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use showModal() when the background must become inert; use popover for non-blocking dropdowns, menus, and tooltips.",
+            "Always rely on \"Confusing <dialog> showModal() with popover\" as the default pattern",
+            "Ignore The Native Popover API constraints during runtime execution",
+            "Replace The Native Popover API with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Confusing <dialog> showModal() with popover. Recommended fix: Use showModal() when the background must become inert; use popover for non-blocking dropdowns, menus, and tooltips."
+        },
+        {
+          "id": "html-s7-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Native Interactive Elements",
+          "prompt": "What happens to keyboard focus and screen reader access on elements inside a container with the inert attribute?",
+          "options": [
+            "All descendants are skipped by keyboard focus, clicks, and assistive technology",
+            "Only mouse clicks are blocked while Tab focus still enters",
+            "The container is visually hidden with display: none",
+            "Only <input> elements become readonly"
+          ],
+          "correctIndex": 0,
+          "explanation": "inert cleanly disables pointer interaction, keyboard focusability, and accessibility tree exposure across the subtree."
+        },
+        {
+          "id": "html-s7-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Native Interactive Elements",
+          "prompt": "When working with HTML <template>, <slot> & inert Attribute in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Always query tpl.content.querySelector(...) because template children live on its DocumentFragment .content property.",
+            "Always rely on \"Querying elements directly inside <template> via tpl.querySelector()\" as the default pattern",
+            "Ignore HTML <template>, <slot> & inert Attribute constraints during runtime execution",
+            "Replace HTML <template>, <slot> & inert Attribute with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Querying elements directly inside <template> via tpl.querySelector(). Recommended fix: Always query tpl.content.querySelector(...) because template children live on its DocumentFragment .content property."
+        },
+        {
+          "id": "html-s7-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Native Interactive Elements",
+          "prompt": "When the user clicks \"Confirm\" inside this modal dialog, what is dialog.returnValue?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<dialog id=\"d\">\n  <form method=\"dialog\">\n    <button value=\"cancel\">Cancel</button>\n    <button value=\"confirm\">Confirm</button>\n  </form>\n</dialog>"
+          },
+          "options": [
+            "\"confirm\"",
+            "\"Confirm\"",
+            "true",
+            "undefined"
+          ],
+          "correctIndex": 0,
+          "explanation": "Submitting a <form method=\"dialog\"> sets dialog.returnValue to the clicked submit button’s value attribute (\"confirm\")."
+        },
+        {
+          "id": "html-s7-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Native Interactive Elements",
+          "prompt": "If a page contains this markup, how many HTTP requests are sent for preview.png on initial page load?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<template id=\"card\">\n  <img src=\"/preview.png\" alt=\"Preview\" />\n</template>"
+          },
+          "options": [
+            "0 requests until cloned into the live document",
+            "1 immediate request during HTML parsing",
+            "2 requests (preload + render)",
+            "Throws a DOM exception"
+          ],
+          "correctIndex": 0,
+          "explanation": "Markup inside <template> is inert; images are not fetched and scripts do not run until stamped into the live DOM."
+        }
+      ]
+    },
+    {
+      "sectionId": "html-s8",
+      "sectionTitle": "Metadata, Open Graph & Structured Data",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "html-s8-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Metadata, Open Graph & Structured Data",
+          "prompt": "What problem does <link rel=\"canonical\" href=\"https://example.com/courses/sql\" /> solve?",
+          "options": [
+            "Consolidates duplicate URL variants under one authoritative URL for search engines",
+            "Redirects users via HTTP 301 immediately",
+            "Blocks bots from crawling query parameters",
+            "Caches the page permanently in Service Workers"
+          ],
+          "correctIndex": 0,
+          "explanation": "Canonical link elements tell search engines which URL is the primary version among duplicates."
+        },
+        {
+          "id": "html-s8-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Metadata, Open Graph & Structured Data",
+          "prompt": "When working with SEO Fundamentals: Canonical, Robots & Meta Descriptions in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Always provide a full absolute URL including https:// and domain in canonical links.",
+            "Always rely on \"Using relative URLs inside <link rel=\"canonical\">\" as the default pattern",
+            "Ignore SEO Fundamentals: Canonical, Robots & Meta Descriptions constraints during runtime execution",
+            "Replace SEO Fundamentals: Canonical, Robots & Meta Descriptions with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using relative URLs inside <link rel=\"canonical\">. Recommended fix: Always provide a full absolute URL including https:// and domain in canonical links."
+        },
+        {
+          "id": "html-s8-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Metadata, Open Graph & Structured Data",
+          "prompt": "Which attribute name is used by Open Graph meta tags such as og:title?",
+          "options": [
+            "property=\"og:title\"",
+            "name=\"og:title\"",
+            "rel=\"og:title\"",
+            "itemprop=\"og:title\""
+          ],
+          "correctIndex": 0,
+          "explanation": "Open Graph tags follow RDFa syntax using the property attribute."
+        },
+        {
+          "id": "html-s8-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Metadata, Open Graph & Structured Data",
+          "prompt": "When working with Open Graph & Twitter/X Social Share Cards in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Social link scrapers require full absolute https:// URLs to fetch preview images reliably.",
+            "Always rely on \"Using a relative path like content=\"/og.png\" in og:image\" as the default pattern",
+            "Ignore Open Graph & Twitter/X Social Share Cards constraints during runtime execution",
+            "Replace Open Graph & Twitter/X Social Share Cards with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using a relative path like content=\"/og.png\" in og:image. Recommended fix: Social link scrapers require full absolute https:// URLs to fetch preview images reliably."
+        },
+        {
+          "id": "html-s8-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Metadata, Open Graph & Structured Data",
+          "prompt": "How does the browser treat a <script type=\"application/ld+json\"> element?",
+          "options": [
+            "Stores it as an inert structured data block without executing it as JavaScript",
+            "Executes it immediately as an ES module",
+            "Throws a syntax error unless JSON.parse() is called",
+            "Strips it from the DOM before rendering"
+          ],
+          "correctIndex": 0,
+          "explanation": "Non-JS MIME types on <script> act as embedded data blocks read by crawlers or app scripts."
+        },
+        {
+          "id": "html-s8-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Metadata, Open Graph & Structured Data",
+          "prompt": "When working with JSON-LD Structured Data (Schema.org) in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "JSON-LD must be strictly valid JSON—no comments and no trailing commas.",
+            "Always rely on \"Leaving trailing commas inside JSON-LD blocks\" as the default pattern",
+            "Ignore JSON-LD Structured Data (Schema.org) constraints during runtime execution",
+            "Replace JSON-LD Structured Data (Schema.org) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Leaving trailing commas inside JSON-LD blocks. Recommended fix: JSON-LD must be strictly valid JSON—no comments and no trailing commas."
+        },
+        {
+          "id": "html-s8-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Metadata, Open Graph & Structured Data",
+          "prompt": "Which HTML element isolates user-generated text of unknown reading direction (LTR/RTL) from surrounding text?",
+          "options": [
+            "<bdi>",
+            "<bdo>",
+            "<dir>",
+            "<rtl>"
+          ],
+          "correctIndex": 0,
+          "explanation": "<bdi> (Bidirectional Isolate) prevents RTL/LTR text inside it from reordering surrounding characters."
+        },
+        {
+          "id": "html-s8-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Metadata, Open Graph & Structured Data",
+          "prompt": "When working with Internationalization: lang, dir & hreflang in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Wrap user-supplied strings in <bdi> to prevent Unicode bidirectional algorithm scrambling.",
+            "Always rely on \"Interpolating arbitrary user names next to numbers without <bdi>\" as the default pattern",
+            "Ignore Internationalization: lang, dir & hreflang constraints during runtime execution",
+            "Replace Internationalization: lang, dir & hreflang with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Interpolating arbitrary user names next to numbers without <bdi>. Recommended fix: Wrap user-supplied strings in <bdi> to prevent Unicode bidirectional algorithm scrambling."
+        },
+        {
+          "id": "html-s8-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Metadata, Open Graph & Structured Data",
+          "prompt": "Will the browser execute JavaScript code placed inside this tag?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<script type=\"application/ld+json\">\n  alert(\"hello\");\n</script>"
+          },
+          "options": [
+            "No—it is ignored by the JS engine as a data block",
+            "Yes—it shows an alert popup",
+            "It throws a ReferenceError",
+            "It runs only in quirks mode"
+          ],
+          "correctIndex": 0,
+          "explanation": "Browsers only execute JavaScript MIME types (or module/importmap); application/ld+json is treated strictly as inert data."
+        },
+        {
+          "id": "html-s8-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Metadata, Open Graph & Structured Data",
+          "prompt": "Which element forces an explicit reading direction override rather than mere isolation?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<bdo dir=\"rtl\">HTML5</bdo>"
+          },
+          "options": [
+            "<bdo> reverses character rendering to 5LMTH",
+            "<bdo> isolates text without reversing",
+            "<bdo> aligns the paragraph right",
+            "<bdo> is deprecated and ignored"
+          ],
+          "correctIndex": 0,
+          "explanation": "<bdo> (Bidirectional Override) overrides the Unicode BiDi algorithm and renders characters strictly right-to-left."
+        }
+      ]
+    },
+    {
+      "sectionId": "html-s9",
+      "sectionTitle": "WAI-ARIA & Accessibility Engineering",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "html-s9-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "WAI-ARIA & Accessibility Engineering",
+          "prompt": "What does adding role=\"button\" to a <div> NOT automatically provide?",
+          "options": [
+            "Keyboard focusability and Enter/Space activation",
+            "Announcement as a button in the accessibility tree",
+            "A valid WAI-ARIA role attribute",
+            "Compatibility with screen reader role queries"
+          ],
+          "correctIndex": 0,
+          "explanation": "ARIA only changes accessibility metadata; it never adds tabindex focusability or keyboard event handling."
+        },
+        {
+          "id": "html-s9-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "WAI-ARIA & Accessibility Engineering",
+          "prompt": "When working with The First Rule of ARIA & Accessibility Tree in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use a real <button type=\"button\"> instead.",
+            "Always rely on \"Adding role=\"button\" to a <div> without tabindex=\"0\" and Enter/Space keydown handlers\" as the default pattern",
+            "Ignore The First Rule of ARIA & Accessibility Tree constraints during runtime execution",
+            "Replace The First Rule of ARIA & Accessibility Tree with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Adding role=\"button\" to a <div> without tabindex=\"0\" and Enter/Space keydown handlers. Recommended fix: Use a real <button type=\"button\"> instead."
+        },
+        {
+          "id": "html-s9-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "WAI-ARIA & Accessibility Engineering",
+          "prompt": "Which live-region setting should be used for a non-urgent \"Copied to clipboard\" toast notification?",
+          "options": [
+            "role=\"status\" (aria-live=\"polite\")",
+            "role=\"alert\" (aria-live=\"assertive\")",
+            "aria-live=\"off\"",
+            "role=\"dialog\""
+          ],
+          "correctIndex": 0,
+          "explanation": "Polite live regions wait for the screen reader to finish speaking before announcing routine status feedback."
+        },
+        {
+          "id": "html-s9-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "WAI-ARIA & Accessibility Engineering",
+          "prompt": "When working with ARIA Live Regions & Dynamic Status Announcements in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Reserve assertive/alert for urgent errors; use polite/status for normal updates so you do not interrupt ongoing speech.",
+            "Always rely on \"Using aria-live=\"assertive\" for routine notifications or counters\" as the default pattern",
+            "Ignore ARIA Live Regions & Dynamic Status Announcements constraints during runtime execution",
+            "Replace ARIA Live Regions & Dynamic Status Announcements with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using aria-live=\"assertive\" for routine notifications or counters. Recommended fix: Reserve assertive/alert for urgent errors; use polite/status for normal updates so you do not interrupt ongoing speech."
+        },
+        {
+          "id": "html-s9-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "WAI-ARIA & Accessibility Engineering",
+          "prompt": "What does tabindex=\"-1\" allow on a non-interactive element such as a heading or modal container?",
+          "options": [
+            "Programmatic focus via element.focus() without adding it to the Tab sequence",
+            "Places it first in the keyboard Tab sequence",
+            "Prevents all click and scroll events",
+            "Hides the element from screen readers"
+          ],
+          "correctIndex": 0,
+          "explanation": "tabindex=\"-1\" enables script-driven focus management (e.g., focusing a newly opened panel heading) without cluttering Tab order."
+        },
+        {
+          "id": "html-s9-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "WAI-ARIA & Accessibility Engineering",
+          "prompt": "When working with Focus Management, tabindex & Roving Tabindex in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Keep DOM order matching visual order and avoid positive tabindex values completely.",
+            "Always rely on \"Using tabindex=\"1\", tabindex=\"2\" to patch visual CSS reordering\" as the default pattern",
+            "Ignore Focus Management, tabindex & Roving Tabindex constraints during runtime execution",
+            "Replace Focus Management, tabindex & Roving Tabindex with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using tabindex=\"1\", tabindex=\"2\" to patch visual CSS reordering. Recommended fix: Keep DOM order matching visual order and avoid positive tabindex values completely."
+        },
+        {
+          "id": "html-s9-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "WAI-ARIA & Accessibility Engineering",
+          "prompt": "Which attribute has the HIGHEST precedence in the W3C Accessible Name Computation algorithm?",
+          "options": [
+            "aria-labelledby",
+            "aria-label",
+            "title",
+            "placeholder"
+          ],
+          "correctIndex": 0,
+          "explanation": "aria-labelledby overrides aria-label, native labels, inner text, and title."
+        },
+        {
+          "id": "html-s9-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "WAI-ARIA & Accessibility Engineering",
+          "prompt": "When working with Accessible Name Computation: aria-label vs aria-labelledby in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "aria-label overrides visible text for screen readers and breaks voice-control commands (\"Click Save Changes\"); ensure accessible names start with visible label text.",
+            "Always rely on \"Putting aria-label=\"Edit\" on a button whose visible text is \"Save Changes\"\" as the default pattern",
+            "Ignore Accessible Name Computation: aria-label vs aria-labelledby constraints during runtime execution",
+            "Replace Accessible Name Computation: aria-label vs aria-labelledby with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Putting aria-label=\"Edit\" on a button whose visible text is \"Save Changes\". Recommended fix: aria-label overrides visible text for screen readers and breaks voice-control commands (\"Click Save Changes\"); ensure accessible names start with visible label text."
+        },
+        {
+          "id": "html-s9-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "WAI-ARIA & Accessibility Engineering",
+          "prompt": "What accessible name will a screen reader announce for this button?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<span id=\"title\">Python Course</span>\n<button aria-labelledby=\"title\" aria-label=\"Ignore Me\">Open</button>"
+          },
+          "options": [
+            "\"Python Course\"",
+            "\"Ignore Me\"",
+            "\"Open\"",
+            "\"Python Course Open\""
+          ],
+          "correctIndex": 0,
+          "explanation": "aria-labelledby takes precedence over both aria-label and visible text content."
+        },
+        {
+          "id": "html-s9-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "WAI-ARIA & Accessibility Engineering",
+          "prompt": "In what order does pressing Tab visit these elements?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<button>First</button>\n<button tabindex=\"2\">Second</button>\n<button tabindex=\"1\">Third</button>"
+          },
+          "options": [
+            "Third -> Second -> First",
+            "First -> Second -> Third",
+            "First -> Third -> Second",
+            "Second -> Third -> First"
+          ],
+          "correctIndex": 0,
+          "explanation": "Positive tabindex values are visited first in ascending numeric order (1, then 2), followed by elements in natural order (0). This is why positive tabindex is an anti-pattern."
+        }
+      ]
+    },
+    {
+      "sectionId": "html-s10",
+      "sectionTitle": "Web Components & Shadow DOM",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "html-s10-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Web Components & Shadow DOM",
+          "prompt": "Which of the following is a VALID Custom Element tag name?",
+          "options": [
+            "<code-viewer>",
+            "<codeviewer>",
+            "<Code-Viewer>",
+            "<1-code>"
+          ],
+          "correctIndex": 0,
+          "explanation": "Custom element names must start with a lowercase ASCII letter and contain at least one hyphen."
+        },
+        {
+          "id": "html-s10-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Web Components & Shadow DOM",
+          "prompt": "When working with Custom Elements Lifecycle & Naming Rules in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Always include a hyphen such as <it-badge> or customElements.define() throws a SyntaxError.",
+            "Always rely on \"Naming a custom element <badge> without a hyphen\" as the default pattern",
+            "Ignore Custom Elements Lifecycle & Naming Rules constraints during runtime execution",
+            "Replace Custom Elements Lifecycle & Naming Rules with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Naming a custom element <badge> without a hyphen. Recommended fix: Always include a hyphen such as <it-badge> or customElements.define() throws a SyntaxError."
+        },
+        {
+          "id": "html-s10-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Web Components & Shadow DOM",
+          "prompt": "Which attribute on <template> creates a Declarative Shadow Root during HTML parsing without JavaScript?",
+          "options": [
+            "shadowrootmode=\"open\"",
+            "shadow=\"true\"",
+            "scoped-dom=\"open\"",
+            "encapsulate=\"shadow\""
+          ],
+          "correctIndex": 0,
+          "explanation": "<template shadowrootmode=\"open\"> instructs the HTML parser to attach a Shadow Root automatically."
+        },
+        {
+          "id": "html-s10-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Web Components & Shadow DOM",
+          "prompt": "When working with Shadow DOM Encapsulation & Declarative Shadow DOM in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Inherited properties (color, font-family) and CSS custom properties DO cross Shadow boundaries; regular selectors do not.",
+            "Always rely on \"Assuming CSS variables cannot cross Shadow DOM\" as the default pattern",
+            "Ignore Shadow DOM Encapsulation & Declarative Shadow DOM constraints during runtime execution",
+            "Replace Shadow DOM Encapsulation & Declarative Shadow DOM with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Assuming CSS variables cannot cross Shadow DOM. Recommended fix: Inherited properties (color, font-family) and CSS custom properties DO cross Shadow boundaries; regular selectors do not."
+        },
+        {
+          "id": "html-s10-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Web Components & Shadow DOM",
+          "prompt": "Where must the slot=\"header\" attribute be placed to project into <slot name=\"header\"> inside a custom element?",
+          "options": [
+            "On a direct child element of the custom element host",
+            "On the custom element host itself",
+            "Inside the Shadow Root stylesheet",
+            "On the <template> tag"
+          ],
+          "correctIndex": 0,
+          "explanation": "Only direct children of a Shadow host can be assigned to named slots via the slot attribute."
+        },
+        {
+          "id": "html-s10-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Web Components & Shadow DOM",
+          "prompt": "When working with Content Projection with Named & Default <slot>s in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Shadow CSS cannot descend into slotted trees; use ::slotted(h3) for top-level slotted elements.",
+            "Always rely on \"Trying to select slotted descendants with .card h3 inside Shadow CSS\" as the default pattern",
+            "Ignore Content Projection with Named & Default <slot>s constraints during runtime execution",
+            "Replace Content Projection with Named & Default <slot>s with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Trying to select slotted descendants with .card h3 inside Shadow CSS. Recommended fix: Shadow CSS cannot descend into slotted trees; use ::slotted(h3) for top-level slotted elements."
+        },
+        {
+          "id": "html-s10-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Web Components & Shadow DOM",
+          "prompt": "Which static class property allows a Custom Element to participate in native HTML <form> submission?",
+          "options": [
+            "static formAssociated = true",
+            "static isFormControl = true",
+            "static submitEnabled = true",
+            "static nativeForm = true"
+          ],
+          "correctIndex": 0,
+          "explanation": "Setting static formAssociated = true notifies the browser that the custom element interacts with ancestor <form> elements."
+        },
+        {
+          "id": "html-s10-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Web Components & Shadow DOM",
+          "prompt": "When working with Form-Associated Custom Elements (ElementInternals) in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Unless static formAssociated = true and setFormValue() are implemented, forms ignore custom elements.",
+            "Always rely on \"Expecting <my-input name=\"x\"> to appear in FormData automatically\" as the default pattern",
+            "Ignore Form-Associated Custom Elements (ElementInternals) constraints during runtime execution",
+            "Replace Form-Associated Custom Elements (ElementInternals) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Expecting <my-input name=\"x\"> to appear in FormData automatically. Recommended fix: Unless static formAssociated = true and setFormValue() are implemented, forms ignore custom elements."
+        },
+        {
+          "id": "html-s10-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Web Components & Shadow DOM",
+          "prompt": "What text renders inside <info-pill></info-pill> given this Declarative Shadow DOM template?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<info-pill>\n  <template shadowrootmode=\"open\">\n    <slot>Unassigned</slot>\n  </template>\n</info-pill>"
+          },
+          "options": [
+            "Unassigned",
+            "Empty string",
+            "<slot>Unassigned</slot>",
+            "Throws a ShadowRoot error"
+          ],
+          "correctIndex": 0,
+          "explanation": "Because no light-DOM child was supplied, the default <slot> renders its fallback content \"Unassigned\"."
+        },
+        {
+          "id": "html-s10-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Web Components & Shadow DOM",
+          "prompt": "What does customElements.define(\"widget\", MyWidget) do at runtime?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "customElements.define(\"widget\", class extends HTMLElement {});"
+          },
+          "options": [
+            "Throws a SyntaxError (DOMException) because the tag name has no hyphen",
+            "Registers <widget> successfully",
+            "Automatically renames it to <x-widget>",
+            "Silently ignores the call"
+          ],
+          "correctIndex": 0,
+          "explanation": "All custom element names must contain at least one hyphen; otherwise define() throws a SyntaxError."
+        }
+      ]
+    },
+    {
+      "sectionId": "html-s11",
+      "sectionTitle": "Performance, Security & Browser Pipeline",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "html-s11-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Performance, Security & Browser Pipeline",
+          "prompt": "Why is the crossorigin attribute mandatory on <link rel=\"preload\" as=\"font\">?",
+          "options": [
+            "Without it, the preload cache key mismatches CSS font requests and downloads the font twice",
+            "Browsers refuse to parse WOFF2 files without crossorigin",
+            "It automatically compresses the font with Brotli",
+            "It prevents third-party sites from hotlinking the font"
+          ],
+          "correctIndex": 0,
+          "explanation": "Font fetches always use anonymous CORS mode, so matching crossorigin prevents duplicate downloads."
+        },
+        {
+          "id": "html-s11-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Performance, Security & Browser Pipeline",
+          "prompt": "When working with Critical Rendering Path, Preload & fetchpriority in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Fonts are always fetched in CORS mode; omitting crossorigin causes a double download.",
+            "Always rely on \"Forgetting crossorigin on <link rel=\"preload\" as=\"font\">\" as the default pattern",
+            "Ignore Critical Rendering Path, Preload & fetchpriority constraints during runtime execution",
+            "Replace Critical Rendering Path, Preload & fetchpriority with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Forgetting crossorigin on <link rel=\"preload\" as=\"font\">. Recommended fix: Fonts are always fetched in CORS mode; omitting crossorigin causes a double download."
+        },
+        {
+          "id": "html-s11-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Performance, Security & Browser Pipeline",
+          "prompt": "What does the browser do if a third-party stylesheet fails its integrity=\"sha384-...\" verification?",
+          "options": [
+            "Blocks the stylesheet from being applied",
+            "Applies the stylesheet anyway with a console warning",
+            "Falls back to HTTP without TLS",
+            "Prompts the user with a confirmation dialog"
+          ],
+          "correctIndex": 0,
+          "explanation": "SRI enforces fail-closed security: tampered resources are rejected completely."
+        },
+        {
+          "id": "html-s11-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Performance, Security & Browser Pipeline",
+          "prompt": "When working with Subresource Integrity (SRI) & Cross-Origin Policies in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "When the CDN updates @latest, the hash mismatches and breaks your production site; always pin immutable version URLs.",
+            "Always rely on \"Adding integrity to a mutable CDN URL like /library@latest.js\" as the default pattern",
+            "Ignore Subresource Integrity (SRI) & Cross-Origin Policies constraints during runtime execution",
+            "Replace Subresource Integrity (SRI) & Cross-Origin Policies with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Adding integrity to a mutable CDN URL like /library@latest.js. Recommended fix: When the CDN updates @latest, the hash mismatches and breaks your production site; always pin immutable version URLs."
+        },
+        {
+          "id": "html-s11-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Performance, Security & Browser Pipeline",
+          "prompt": "Why is inserting user-supplied text via element.textContent safer than element.innerHTML?",
+          "options": [
+            "textContent inserts raw literal text without invoking the HTML parser",
+            "textContent automatically strips only <script> tags while keeping <b> tags",
+            "textContent encodes URLs with encodeURIComponent",
+            "innerHTML is deprecated in HTML5"
+          ],
+          "correctIndex": 0,
+          "explanation": "textContent never parses markup, making HTML/script injection impossible."
+        },
+        {
+          "id": "html-s11-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Performance, Security & Browser Pipeline",
+          "prompt": "When working with HTML Security: XSS Prevention & Content Security Policy in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Check new URL(userUrl).protocol is http: or https: so javascript:alert(1) cannot execute on click.",
+            "Always rely on \"Allowing arbitrary user URLs directly into <a href={userUrl}>\" as the default pattern",
+            "Ignore HTML Security: XSS Prevention & Content Security Policy constraints during runtime execution",
+            "Replace HTML Security: XSS Prevention & Content Security Policy with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Allowing arbitrary user URLs directly into <a href={userUrl}>. Recommended fix: Check new URL(userUrl).protocol is http: or https: so javascript:alert(1) cannot execute on click."
+        },
+        {
+          "id": "html-s11-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Performance, Security & Browser Pipeline",
+          "prompt": "Which eagerness level in Speculation Rules triggers prerendering when a user hovers over a link?",
+          "options": [
+            "moderate",
+            "immediate",
+            "lazy",
+            "hover-only"
+          ],
+          "correctIndex": 0,
+          "explanation": "moderate eagerness triggers on pointer hover (~200ms) or pointerdown, saving bandwidth compared to immediate."
+        },
+        {
+          "id": "html-s11-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Performance, Security & Browser Pipeline",
+          "prompt": "When working with Speculation Rules & View Transitions Meta in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use moderate or conservative eagerness to avoid wasting mobile data and server load.",
+            "Always rely on \"Prerendering every link on a page with eagerness: \"immediate\"\" as the default pattern",
+            "Ignore Speculation Rules & View Transitions Meta constraints during runtime execution",
+            "Replace Speculation Rules & View Transitions Meta with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Prerendering every link on a page with eagerness: \"immediate\". Recommended fix: Use moderate or conservative eagerness to avoid wasting mobile data and server load."
+        },
+        {
+          "id": "html-s11-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Performance, Security & Browser Pipeline",
+          "prompt": "Which protocol inside <a href=\"...\"> poses an XSS risk even if quotes and angle brackets are escaped?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<a href=\"javascript:document.title='hacked'\">Profile</a>"
+          },
+          "options": [
+            "javascript:",
+            "mailto:",
+            "https:",
+            "tel:"
+          ],
+          "correctIndex": 0,
+          "explanation": "javascript: URLs execute arbitrary script when clicked unless filtered to an allowlist of safe schemes (http:, https:, mailto:)."
+        },
+        {
+          "id": "html-s11-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Performance, Security & Browser Pipeline",
+          "prompt": "What happens if a browser that does not support Speculation Rules parses this tag?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<script type=\"speculationrules\">{\"prefetch\":[{\"source\":\"document\"}]}</script>"
+          },
+          "options": [
+            "It safely ignores the block with no runtime error",
+            "It throws an Uncaught SyntaxError",
+            "It executes the JSON as JavaScript",
+            "It blocks rendering of the rest of the page"
+          ],
+          "correctIndex": 0,
+          "explanation": "HTML parsers ignore <script> elements with unrecognized MIME types, making speculationrules safe progressive enhancement."
+        }
+      ]
+    },
+    {
+      "sectionId": "html-s12",
+      "sectionTitle": "HTML5 Browser APIs & Declarative Streaming",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "html-s12-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "HTML5 Browser APIs & Declarative Streaming",
+          "prompt": "How do you access the HTML attribute data-section-id=\"s12\" via the DOM dataset API?",
+          "options": [
+            "element.dataset.sectionId",
+            "element.dataset[\"section-id\"]",
+            "element.data.sectionId",
+            "element.dataset.dataSectionId"
+          ],
+          "correctIndex": 0,
+          "explanation": "The dataset API removes the data- prefix and converts kebab-case to camelCase (sectionId)."
+        },
+        {
+          "id": "html-s12-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "HTML5 Browser APIs & Declarative Streaming",
+          "prompt": "When working with Custom data-* Attributes & Dataset Contracts in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "HTML attribute names are lowercased by the parser; write data-user-id so dataset.userId maps predictably.",
+            "Always rely on \"Using uppercase letters in data-userId attributes in HTML\" as the default pattern",
+            "Ignore Custom data-* Attributes & Dataset Contracts constraints during runtime execution",
+            "Replace Custom data-* Attributes & Dataset Contracts with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using uppercase letters in data-userId attributes in HTML. Recommended fix: HTML attribute names are lowercased by the parser; write data-user-id so dataset.userId maps predictably."
+        },
+        {
+          "id": "html-s12-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "HTML5 Browser APIs & Declarative Streaming",
+          "prompt": "Does setting accept=\".png\" on <input type=\"file\"> guarantee the server only receives valid PNG files?",
+          "options": [
+            "No—it is a client-side picker hint and must always be verified server-side",
+            "Yes—browsers cryptographically verify file headers before submission",
+            "Yes—HTML forms reject non-matching MIME types automatically",
+            "Only when paired with the required attribute"
+          ],
+          "correctIndex": 0,
+          "explanation": "The accept attribute only filters the OS picker UI; attackers or users switching to \"All Files\" can upload anything."
+        },
+        {
+          "id": "html-s12-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "HTML5 Browser APIs & Declarative Streaming",
+          "prompt": "When working with Native File Inputs, Accept Filters & Drag-and-Drop in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Users can select \"All Files\" or spoof requests; always inspect MIME/bytes server-side.",
+            "Always rely on \"Relying solely on accept=\"image/png\" for upload security\" as the default pattern",
+            "Ignore Native File Inputs, Accept Filters & Drag-and-Drop constraints during runtime execution",
+            "Replace Native File Inputs, Accept Filters & Drag-and-Drop with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Relying solely on accept=\"image/png\" for upload security. Recommended fix: Users can select \"All Files\" or spoof requests; always inspect MIME/bytes server-side."
+        },
+        {
+          "id": "html-s12-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "HTML5 Browser APIs & Declarative Streaming",
+          "prompt": "Which attribute on <template> instructs the HTML parser to attach a Declarative Shadow DOM immediately?",
+          "options": [
+            "shadowrootmode=\"open\"",
+            "shadow=\"true\"",
+            "encapsulate=\"open\"",
+            "attach-shadow=\"auto\""
+          ],
+          "correctIndex": 0,
+          "explanation": "<template shadowrootmode=\"open\"> (or \"closed\") creates the shadow root directly during HTML parsing."
+        },
+        {
+          "id": "html-s12-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "HTML5 Browser APIs & Declarative Streaming",
+          "prompt": "When working with Declarative Shadow DOM & Server-Side Rendering in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Check if (!this.shadowRoot) before calling attachShadow() so SSR hydration does not throw.",
+            "Always rely on \"Calling this.attachShadow() blindly in a custom element constructor when DSD already attached one\" as the default pattern",
+            "Ignore Declarative Shadow DOM & Server-Side Rendering constraints during runtime execution",
+            "Replace Declarative Shadow DOM & Server-Side Rendering with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Calling this.attachShadow() blindly in a custom element constructor when DSD already attached one. Recommended fix: Check if (!this.shadowRoot) before calling attachShadow() so SSR hydration does not throw."
+        },
+        {
+          "id": "html-s12-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "HTML5 Browser APIs & Declarative Streaming",
+          "prompt": "Which HTML element isolates a short piece of text whose directionality (LTR/RTL) is unknown from surrounding punctuation?",
+          "options": [
+            "<bdi>",
+            "<bdo>",
+            "<rtl>",
+            "<isolate>"
+          ],
+          "correctIndex": 0,
+          "explanation": "<bdi> (Bidirectional Isolate) prevents opposite-direction text from corrupting surrounding punctuation and numbers."
+        },
+        {
+          "id": "html-s12-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "HTML5 Browser APIs & Declarative Streaming",
+          "prompt": "When working with Internationalization (i18n), RTL & Bidirectional Text in HTML, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use dir=\"rtl\" on <html> paired with CSS logical properties (inline-start/end) so layouts mirror effortlessly.",
+            "Always rely on \"Hardcoding physical left/right layout assumptions instead of dir + logical CSS\" as the default pattern",
+            "Ignore Internationalization (i18n), RTL & Bidirectional Text constraints during runtime execution",
+            "Replace Internationalization (i18n), RTL & Bidirectional Text with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Hardcoding physical left/right layout assumptions instead of dir + logical CSS. Recommended fix: Use dir=\"rtl\" on <html> paired with CSS logical properties (inline-start/end) so layouts mirror effortlessly."
+        },
+        {
+          "id": "html-s12-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "HTML5 Browser APIs & Declarative Streaming",
+          "prompt": "What does el.dataset.courseLevel return for this element?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<div id=\"card\" data-course-level=\"Advanced\"></div>"
+          },
+          "options": [
+            "\"Advanced\"",
+            "undefined",
+            "\"course-level\"",
+            "Throws TypeError"
+          ],
+          "correctIndex": 0,
+          "explanation": "HTML data-course-level maps automatically to element.dataset.courseLevel."
+        },
+        {
+          "id": "html-s12-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "HTML5 Browser APIs & Declarative Streaming",
+          "prompt": "When does the browser attach the shadow root for this markup?",
+          "codeSnippet": {
+            "language": "html",
+            "code": "<my-badge><template shadowrootmode=\"open\"><span>Pro</span></template></my-badge>"
+          },
+          "options": [
+            "Immediately during HTML parsing—before JavaScript executes",
+            "Only after customElements.define() runs",
+            "Only after window.onload fires",
+            "Never—template tags are always inert"
+          ],
+          "correctIndex": 0,
+          "explanation": "Declarative Shadow DOM (<template shadowrootmode=\"open\">) is instantiated directly by the HTML parser."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,506 @@
+{
+  "courseSlug": "javascript",
+  "title": "JavaScript (Vanilla) Final Certification Exam",
+  "durationMinutes": 45,
+  "passMark": 70,
+  "questions": [
+    {
+      "id": "javascript-exam-beginner-1",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Variables, Types & Coercion",
+      "prompt": "What does this code print to the console?",
+      "codeSnippet": {
+        "language": "javascript",
+        "code": "console.log(Boolean([]), Boolean({}), Boolean('0'), Boolean(''));"
+      },
+      "options": [
+        "true true true false",
+        "false false false false",
+        "false false true false",
+        "true true false false"
+      ],
+      "correctIndex": 0,
+      "explanation": "Empty arrays, empty objects, and non-empty strings like \"0\" are all truthy; only \"\" is falsy."
+    },
+    {
+      "id": "javascript-exam-beginner-2",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Variables, Types & Coercion",
+      "prompt": "What happens when you read a let variable before its declaration line inside the same block?",
+      "options": [
+        "Throws a ReferenceError due to the Temporal Dead Zone",
+        "Returns undefined",
+        "Returns null",
+        "Creates a global variable"
+      ],
+      "correctIndex": 0,
+      "explanation": "let and const bindings exist in the TDZ until initialized, throwing ReferenceError on earlier access."
+    },
+    {
+      "id": "javascript-exam-beginner-3",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Variables, Types & Coercion",
+      "prompt": "What does typeof null evaluate to in JavaScript?",
+      "options": [
+        "\"object\"",
+        "\"null\"",
+        "\"undefined\"",
+        "\"primitive\""
+      ],
+      "correctIndex": 0,
+      "explanation": "Due to a legacy engine representation preserved for web compatibility, typeof null === \"object\"."
+    },
+    {
+      "id": "javascript-exam-beginner-4",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Functions, Parameters & Scope",
+      "prompt": "What does this snippet output?",
+      "codeSnippet": {
+        "language": "javascript",
+        "code": "function test(a = 10, b = a + 5) {\n  console.log(a, b);\n}\ntest(undefined, 2);"
+      },
+      "options": [
+        "10 2",
+        "undefined 2",
+        "10 15",
+        "NaN 2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Passing undefined activates the default a = 10, while explicit argument 2 overrides b."
+    },
+    {
+      "id": "javascript-exam-beginner-5",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Functions, Parameters & Scope",
+      "prompt": "What happens if you call greet() on line 1 when line 3 is const greet = () => \"hi\";?",
+      "options": [
+        "Throws a ReferenceError",
+        "Returns \"hi\"",
+        "Returns undefined",
+        "Throws a TypeError: greet is not a function"
+      ],
+      "correctIndex": 0,
+      "explanation": "const bindings are in the Temporal Dead Zone before line 3 executes, throwing ReferenceError."
+    },
+    {
+      "id": "javascript-exam-beginner-6",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Functions, Parameters & Scope",
+      "prompt": "What does const getObj = () => { value: 42 }; console.log(getObj()); print?",
+      "options": [
+        "undefined",
+        "{ value: 42 }",
+        "42",
+        "Throws a SyntaxError"
+      ],
+      "correctIndex": 0,
+      "explanation": "Without parentheses around the braces, value: is parsed as a statement label inside a function body that returns undefined."
+    },
+    {
+      "id": "javascript-exam-beginner-7",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Arrays, Objects & Modern Collections",
+      "prompt": "What does this snippet print?",
+      "codeSnippet": {
+        "language": "javascript",
+        "code": "const s = new Set([1, 2, 2, NaN, NaN]);\nconsole.log(s.size);"
+      },
+      "options": [
+        "3",
+        "4",
+        "5",
+        "2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Set uses SameValueZero equality, so duplicate 2 and duplicate NaN are both deduplicated, leaving {1, 2, NaN} (size 3)."
+    },
+    {
+      "id": "javascript-exam-beginner-8",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Arrays, Objects & Modern Collections",
+      "prompt": "What does [10, 2, 1].sort() return in JavaScript?",
+      "options": [
+        "[1, 10, 2]",
+        "[1, 2, 10]",
+        "[10, 2, 1]",
+        "Throws a TypeError"
+      ],
+      "correctIndex": 0,
+      "explanation": "Without a comparator callback, Array.prototype.sort converts numbers to strings and compares lexicographically."
+    },
+    {
+      "id": "javascript-exam-beginner-9",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Arrays, Objects & Modern Collections",
+      "prompt": "Which modern static method safely checks whether an object owns a property even if created via Object.create(null)?",
+      "options": [
+        "Object.hasOwn(obj, key)",
+        "obj.hasOwnProperty(key)",
+        "key in obj",
+        "Object.owns(obj, key)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Object.hasOwn(obj, key) checks own properties directly without relying on Object.prototype."
+    },
+    {
+      "id": "javascript-exam-beginner-10",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "DOM Manipulation & Events",
+      "prompt": "If a user clicks #btn inside #parent, in what order do the console logs appear?",
+      "codeSnippet": {
+        "language": "javascript",
+        "code": "parent.addEventListener('click', () => console.log('P-cap'), { capture: true });\nparent.addEventListener('click', () => console.log('P-bub'));\nbtn.addEventListener('click', () => console.log('Btn'));"
+      },
+      "options": [
+        "P-cap -> Btn -> P-bub",
+        "Btn -> P-bub -> P-cap",
+        "P-bub -> Btn -> P-cap",
+        "P-cap -> P-bub -> Btn"
+      ],
+      "correctIndex": 0,
+      "explanation": "Events flow top-down in capture phase (P-cap), fire at target (Btn), then bubble bottom-up (P-bub)."
+    },
+    {
+      "id": "javascript-exam-intermediate-1",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Closures, Execution Context & this",
+      "prompt": "What does this loop print after 10ms?",
+      "codeSnippet": {
+        "language": "javascript",
+        "code": "for (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 10);\n}"
+      },
+      "options": [
+        "3, 3, 3",
+        "0, 1, 2",
+        "0, 0, 0",
+        "undefined, undefined, undefined"
+      ],
+      "correctIndex": 0,
+      "explanation": "var shares a single function-scoped i across all 3 closures; by the time timers run, the loop has incremented i to 3."
+    },
+    {
+      "id": "javascript-exam-intermediate-2",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Closures, Execution Context & this",
+      "prompt": "What does a closure capture from its outer scope?",
+      "options": [
+        "Live references to outer variable bindings",
+        "Immutable deep copies of outer values",
+        "Only primitive constants, never objects",
+        "Only global window variables"
+      ],
+      "correctIndex": 0,
+      "explanation": "Closures maintain live references to their enclosing lexical environment bindings."
+    },
+    {
+      "id": "javascript-exam-intermediate-3",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Closures, Execution Context & this",
+      "prompt": "Which binding rule has the HIGHEST precedence for a regular JavaScript function?",
+      "options": [
+        "new constructor invocation",
+        "Explicit call/apply/bind",
+        "Implicit obj.method() call",
+        "Global default binding"
+      ],
+      "correctIndex": 0,
+      "explanation": "new overrides even .bind()—precedence is new > explicit > implicit > default."
+    },
+    {
+      "id": "javascript-exam-intermediate-4",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Asynchronous JS: Promises & Async/Await",
+      "prompt": "What does this Promise chain print?",
+      "codeSnippet": {
+        "language": "javascript",
+        "code": "Promise.reject('E1')\n  .then(() => console.log('A'))\n  .catch((e) => { console.log(e); return 'OK'; })\n  .then((v) => console.log(v));"
+      },
+      "options": [
+        "E1 then OK",
+        "A then E1",
+        "E1 only",
+        "Unhandled rejection"
+      ],
+      "correctIndex": 0,
+      "explanation": "The first .then is skipped; .catch logs \"E1\" and returns \"OK\", recovering the chain for the final .then."
+    },
+    {
+      "id": "javascript-exam-intermediate-5",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Asynchronous JS: Promises & Async/Await",
+      "prompt": "If a .catch() handler returns the string \"fallback\" without throwing, what state is the returned Promise in?",
+      "options": [
+        "Fulfilled with \"fallback\"",
+        "Still rejected with the original error",
+        "Pending forever",
+        "Fulfilled with undefined"
+      ],
+      "correctIndex": 0,
+      "explanation": "Returning normally from .catch() recovers the error and fulfills the downstream Promise with that return value."
+    },
+    {
+      "id": "javascript-exam-intermediate-6",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Asynchronous JS: Promises & Async/Await",
+      "prompt": "What happens if you write try { return fetchBadUrl(); } catch (e) { handle(e); } WITHOUT await?",
+      "options": [
+        "The catch block is bypassed and the rejection escapes to the caller",
+        "The catch block catches the network error normally",
+        "JavaScript throws a SyntaxError",
+        "fetchBadUrl runs synchronously"
+      ],
+      "correctIndex": 0,
+      "explanation": "Without await inside try, the function returns the Promise immediately before it rejects."
+    },
+    {
+      "id": "javascript-exam-intermediate-7",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Prototypes, Classes & Object Internals",
+      "prompt": "What does this prototype shadowing snippet print?",
+      "codeSnippet": {
+        "language": "javascript",
+        "code": "function User(name) { this.name = name; }\nUser.prototype.role = 'student';\nconst u = new User('Sam');\nu.role = 'admin';\ndelete u.role;\nconsole.log(u.role);"
+      },
+      "options": [
+        "\"student\"",
+        "undefined",
+        "\"admin\"",
+        "Throws ReferenceError"
+      ],
+      "correctIndex": 0,
+      "explanation": "delete u.role removes only the own shadowing property, revealing the inherited prototype property \"student\" again."
+    },
+    {
+      "id": "javascript-exam-intermediate-8",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Prototypes, Classes & Object Internals",
+      "prompt": "What does Object.hasOwn(dev, \"toString\") return for a normal object literal const dev = { name: \"Ada\" }?",
+      "options": [
+        "false (toString is inherited from Object.prototype)",
+        "true",
+        "undefined",
+        "Throws a TypeError"
+      ],
+      "correctIndex": 0,
+      "explanation": "Object.hasOwn checks only direct own properties, ignoring inherited prototype methods like toString."
+    },
+    {
+      "id": "javascript-exam-intermediate-9",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Prototypes, Classes & Object Internals",
+      "prompt": "What happens if a subclass constructor references this.name = \"A\" before calling super()?",
+      "options": [
+        "Throws a ReferenceError",
+        "Sets name on the parent prototype",
+        "Silently ignores the assignment",
+        "Creates a global variable name"
+      ],
+      "correctIndex": 0,
+      "explanation": "In derived classes, this is uninitialized until super() executes and returns the instance."
+    },
+    {
+      "id": "javascript-exam-intermediate-10",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Browser Storage, Fetch & Modern Web APIs",
+      "prompt": "What does this URLSearchParams snippet print?",
+      "codeSnippet": {
+        "language": "javascript",
+        "code": "const p = new URLSearchParams('a=1&a=2');\nconsole.log(p.get('a'), p.getAll('a').length);"
+      },
+      "options": [
+        "1 2",
+        "2 2",
+        "[1,2] 1",
+        "1 1"
+      ],
+      "correctIndex": 0,
+      "explanation": "get(\"a\") returns the first matching value (\"1\"), while getAll(\"a\") returns [\"1\", \"2\"] of length 2."
+    },
+    {
+      "id": "javascript-exam-advanced-1",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "The Event Loop & Concurrency Internals",
+      "prompt": "What exact sequence does this code print?",
+      "codeSnippet": {
+        "language": "javascript",
+        "code": "console.log('A');\nnew Promise((res) => {\n  console.log('B');\n  res('C');\n}).then((v) => console.log(v));\nsetTimeout(() => console.log('D'), 0);\nconsole.log('E');"
+      },
+      "options": [
+        "A, B, E, C, D",
+        "A, E, B, C, D",
+        "A, B, C, E, D",
+        "A, E, D, B, C"
+      ],
+      "correctIndex": 0,
+      "explanation": "Promise executor runs synchronously (B), then sync E, then microtask C, finally macrotask D."
+    },
+    {
+      "id": "javascript-exam-advanced-2",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "The Event Loop & Concurrency Internals",
+      "prompt": "In what order do console logs run: sync code, Promise.then(), and setTimeout(..., 0)?",
+      "options": [
+        "Sync code -> Promise.then() (microtask) -> setTimeout (macrotask)",
+        "Sync code -> setTimeout -> Promise.then()",
+        "Promise.then() -> sync code -> setTimeout",
+        "Order is nondeterministic across browsers"
+      ],
+      "correctIndex": 0,
+      "explanation": "Synchronous stack finishes first, then the entire microtask queue drains before the next macrotask runs."
+    },
+    {
+      "id": "javascript-exam-advanced-3",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "The Event Loop & Concurrency Internals",
+      "prompt": "Why is requestAnimationFrame preferred over setInterval(fn, 16) for smooth DOM or canvas animations?",
+      "options": [
+        "It syncs with monitor VSync and pauses automatically when the tab is hidden",
+        "It runs code on a separate CPU thread automatically",
+        "It bypasses the microtask queue",
+        "It guarantees exact 16.00ms intervals even under heavy CPU load"
+      ],
+      "correctIndex": 0,
+      "explanation": "requestAnimationFrame aligns frames to display refresh cycles and throttles/pauses in background tabs."
+    },
+    {
+      "id": "javascript-exam-advanced-4",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Metaprogramming, Generators & Memory",
+      "prompt": "What does this generator code print?",
+      "codeSnippet": {
+        "language": "javascript",
+        "code": "function* nums() {\n  yield 10;\n  yield 20;\n  return 30;\n}\nconsole.log([...nums()]);"
+      },
+      "options": [
+        "[10, 20]",
+        "[10, 20, 30]",
+        "[30]",
+        "[]"
+      ],
+      "correctIndex": 0,
+      "explanation": "Spread (...) and for..of collect yielded values and stop when done: true, ignoring the final return value (30)."
+    },
+    {
+      "id": "javascript-exam-advanced-5",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Metaprogramming, Generators & Memory",
+      "prompt": "What does Symbol(\"a\") === Symbol(\"a\") evaluate to?",
+      "options": [
+        "false",
+        "true",
+        "undefined",
+        "Throws a TypeError"
+      ],
+      "correctIndex": 0,
+      "explanation": "Every invocation of Symbol() creates a unique primitive; the string argument is strictly a debug description."
+    },
+    {
+      "id": "javascript-exam-advanced-6",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Metaprogramming, Generators & Memory",
+      "prompt": "When you invoke const g = myGenerator(); (before calling g.next()), how much of myGenerator’s body has executed?",
+      "options": [
+        "None of it—execution starts suspended until the first g.next()",
+        "Up to the first yield statement",
+        "The entire function body",
+        "Only variable declarations"
+      ],
+      "correctIndex": 0,
+      "explanation": "Calling a generator constructs and returns the iterator in a suspended state before line 1 executes."
+    },
+    {
+      "id": "javascript-exam-advanced-7",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Functional Programming, Patterns & Immutability",
+      "prompt": "What does this ES2023 immutable array snippet print?",
+      "codeSnippet": {
+        "language": "javascript",
+        "code": "const a = [3, 1, 2];\nconst b = a.toSorted((x, y) => x - y);\nconsole.log(a[0], b[0]);"
+      },
+      "options": [
+        "3 1",
+        "1 1",
+        "3 3",
+        "1 3"
+      ],
+      "correctIndex": 0,
+      "explanation": "toSorted() leaves original array a untouched (a[0] is 3) and returns a new sorted array b (b[0] is 1)."
+    },
+    {
+      "id": "javascript-exam-advanced-8",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Functional Programming, Patterns & Immutability",
+      "prompt": "Which ES2023 method returns a new array with element at index 1 replaced, without mutating the original array?",
+      "options": [
+        "arr.with(1, newValue)",
+        "arr.splice(1, 1, newValue)",
+        "arr.set(1, newValue)",
+        "arr.replace(1, newValue)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Array.prototype.with(index, value) returns a shallow copy with the specified index updated immutably."
+    },
+    {
+      "id": "javascript-exam-advanced-9",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Functional Programming, Patterns & Immutability",
+      "prompt": "Which utility ensures a search API call runs ONLY after the user stops typing for 300ms?",
+      "options": [
+        "Debounce",
+        "Throttle",
+        "Memoize",
+        "Curry"
+      ],
+      "correctIndex": 0,
+      "explanation": "Debounce resets the 300ms timer on every keystroke and invokes the function once typing pauses."
+    },
+    {
+      "id": "javascript-exam-advanced-10",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Security, Testing & V8 Engine Performance",
+      "prompt": "Which object key allows an unsafe recursive merge to pollute Object.prototype?",
+      "codeSnippet": {
+        "language": "javascript",
+        "code": "const payload = JSON.parse('{\"__proto__\": {\"polluted\": true}}');"
+      },
+      "options": [
+        "\"__proto__\"",
+        "\"polluted\"",
+        "\"JSON\"",
+        "\"parse\""
+      ],
+      "correctIndex": 0,
+      "explanation": "Copying the \"__proto__\" key into a plain object without filtering mutates Object.prototype unless explicitly blocked."
+    }
+  ]
+}

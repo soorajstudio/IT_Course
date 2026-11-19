@@ -1,0 +1,1997 @@
+{
+  "courseSlug": "typescript",
+  "quizzes": [
+    {
+      "sectionId": "typescript-s1",
+      "sectionTitle": "Type System Foundations & Strict Mode",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "typescript-s1-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Type System Foundations & Strict Mode",
+          "prompt": "Why does passing { x: 3, y: 4, z: 10 } stored in a variable satisfy a Point2D ({ x: number; y: number }) parameter?",
+          "options": [
+            "TypeScript uses structural typing and the variable contains all required Point2D properties",
+            "TypeScript strips the z property at runtime",
+            "TypeScript ignores object properties on variables",
+            "number automatically converts to Point2D"
+          ],
+          "correctIndex": 0,
+          "explanation": "Structural typing allows any value whose shape contains at least the required members."
+        },
+        {
+          "id": "typescript-s1-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Type System Foundations & Strict Mode",
+          "prompt": "When working with Structural Typing & Type Inference in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Rely on inference for locals and explicitly type function signatures and public exports.",
+            "Always rely on \"Annotating every trivial variable manually\" as the default pattern",
+            "Ignore Structural Typing & Type Inference constraints during runtime execution",
+            "Replace Structural Typing & Type Inference with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Annotating every trivial variable manually. Recommended fix: Rely on inference for locals and explicitly type function signatures and public exports."
+        },
+        {
+          "id": "typescript-s1-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Type System Foundations & Strict Mode",
+          "prompt": "Which TypeScript type accepts any value on assignment but forbids accessing properties until narrowed?",
+          "options": [
+            "unknown",
+            "any",
+            "object",
+            "never"
+          ],
+          "correctIndex": 0,
+          "explanation": "unknown is TypeScript’s type-safe top type: safe to assign to, unsafe to use until narrowed."
+        },
+        {
+          "id": "typescript-s1-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Type System Foundations & Strict Mode",
+          "prompt": "When working with unknown vs any vs never in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Type external data as unknown and validate its shape before returning typed domain objects.",
+            "Always rely on \"Using any for JSON.parse() results\" as the default pattern",
+            "Ignore unknown vs any vs never constraints during runtime execution",
+            "Replace unknown vs any vs never with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using any for JSON.parse() results. Recommended fix: Type external data as unknown and validate its shape before returning typed domain objects."
+        },
+        {
+          "id": "typescript-s1-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Type System Foundations & Strict Mode",
+          "prompt": "What compiler option ensures null and undefined cannot be silently assigned to a string variable?",
+          "options": [
+            "strictNullChecks",
+            "noImplicitThis",
+            "isolatedModules",
+            "skipLibCheck"
+          ],
+          "correctIndex": 0,
+          "explanation": "strictNullChecks treats null and undefined as separate types that must be explicitly included in unions."
+        },
+        {
+          "id": "typescript-s1-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Type System Foundations & Strict Mode",
+          "prompt": "When working with strictNullChecks & Optional Chaining Safety in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Each ! disables null safety; write an explicit if (!user) guard instead.",
+            "Always rely on \"Overusing user!.email! to silence compiler errors\" as the default pattern",
+            "Ignore strictNullChecks & Optional Chaining Safety constraints during runtime execution",
+            "Replace strictNullChecks & Optional Chaining Safety with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Overusing user!.email! to silence compiler errors. Recommended fix: Each ! disables null safety; write an explicit if (!user) guard instead."
+        },
+        {
+          "id": "typescript-s1-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Type System Foundations & Strict Mode",
+          "prompt": "What type does (typeof LEVELS)[number] evaluate to when const LEVELS = [\"A\", \"B\"] as const?",
+          "options": [
+            "\"A\" | \"B\"",
+            "string",
+            "string[]",
+            "readonly [\"A\", \"B\"]"
+          ],
+          "correctIndex": 0,
+          "explanation": "Indexing a readonly tuple by [number] produces the union of all its literal element types."
+        },
+        {
+          "id": "typescript-s1-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Type System Foundations & Strict Mode",
+          "prompt": "When working with Literal Types, as const & Enums vs Union Constants in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use string literal unions or string enums for strict membership checking.",
+            "Always rely on \"Using numeric enums where any arbitrary number silently satisfies the enum type in older TS\" as the default pattern",
+            "Ignore Literal Types, as const & Enums vs Union Constants constraints during runtime execution",
+            "Replace Literal Types, as const & Enums vs Union Constants with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using numeric enums where any arbitrary number silently satisfies the enum type in older TS. Recommended fix: Use string literal unions or string enums for strict membership checking."
+        },
+        {
+          "id": "typescript-s1-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Type System Foundations & Strict Mode",
+          "prompt": "What happens when you compile this TypeScript snippet with strict: true?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "const val: unknown = 'hello';\nconsole.log(val.toUpperCase());"
+          },
+          "options": [
+            "Compile-time error: val is of type unknown",
+            "Prints HELLO cleanly",
+            "Prints undefined",
+            "Runtime error only"
+          ],
+          "correctIndex": 0,
+          "explanation": "TypeScript refuses property access on unknown until narrowed with typeof val === \"string\"."
+        },
+        {
+          "id": "typescript-s1-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Type System Foundations & Strict Mode",
+          "prompt": "What type is inferred for cfg.retries?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "const cfg = { retries: 3, mode: 'fast' } as const;"
+          },
+          "options": [
+            "3 (readonly literal type 3)",
+            "number",
+            "number | undefined",
+            "any"
+          ],
+          "correctIndex": 0,
+          "explanation": "as const narrows primitive properties to readonly literal types."
+        }
+      ]
+    },
+    {
+      "sectionId": "typescript-s2",
+      "sectionTitle": "Objects, Interfaces, Type Aliases & Tuples",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "typescript-s2-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Objects, Interfaces, Type Aliases & Tuples",
+          "prompt": "Which feature is supported by interface declarations but NOT by type aliases?",
+          "options": [
+            "Declaration merging across multiple declarations with the same name",
+            "Defining union types",
+            "Generic type parameters",
+            "Optional properties"
+          ],
+          "correctIndex": 0,
+          "explanation": "Duplicate interface names merge automatically, whereas duplicate type aliases produce a compile error."
+        },
+        {
+          "id": "typescript-s2-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Objects, Interfaces, Type Aliases & Tuples",
+          "prompt": "When working with Interfaces vs Type Aliases in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Interfaces only describe object/callable shapes; use type Level = \"A\" | \"B\".",
+            "Always rely on \"Trying to write interface Level = \"A\" | \"B\"\" as the default pattern",
+            "Ignore Interfaces vs Type Aliases constraints during runtime execution",
+            "Replace Interfaces vs Type Aliases with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Trying to write interface Level = \"A\" | \"B\". Recommended fix: Interfaces only describe object/callable shapes; use type Level = \"A\" | \"B\"."
+        },
+        {
+          "id": "typescript-s2-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Objects, Interfaces, Type Aliases & Tuples",
+          "prompt": "What happens if a function parameter is typed as items: readonly string[] and you call items.push(\"x\")?",
+          "options": [
+            "TypeScript raises a compile-time error because push does not exist on readonly string[]",
+            "It silently returns a new array",
+            "It throws a TypeError only at runtime",
+            "It succeeds normally"
+          ],
+          "correctIndex": 0,
+          "explanation": "readonly string[] omits mutating methods like push, pop, and splice at compile time."
+        },
+        {
+          "id": "typescript-s2-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Objects, Interfaces, Type Aliases & Tuples",
+          "prompt": "When working with Readonly Properties, ReadonlyArray & Immutability Contracts in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "TypeScript readonly is compile-time only; use Object.freeze() if runtime enforcement is needed.",
+            "Always rely on \"Thinking readonly prevents mutation at runtime\" as the default pattern",
+            "Ignore Readonly Properties, ReadonlyArray & Immutability Contracts constraints during runtime execution",
+            "Replace Readonly Properties, ReadonlyArray & Immutability Contracts with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Thinking readonly prevents mutation at runtime. Recommended fix: TypeScript readonly is compile-time only; use Object.freeze() if runtime enforcement is needed."
+        },
+        {
+          "id": "typescript-s2-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Objects, Interfaces, Type Aliases & Tuples",
+          "prompt": "Which TypeScript type represents an array guaranteed to contain at least one number?",
+          "options": [
+            "[number, ...number[]]",
+            "number[]",
+            "Array<number | never>",
+            "[...number[]]"
+          ],
+          "correctIndex": 0,
+          "explanation": "A leading required element followed by a rest spread enforces length >= 1 statically."
+        },
+        {
+          "id": "typescript-s2-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Objects, Interfaces, Type Aliases & Tuples",
+          "prompt": "When working with Labeled Tuples, Optional Elements & Rest Tuples in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use readonly tuples (readonly [number, number]) when tuple length must never change.",
+            "Always rely on \"Forgetting that .push() on a non-readonly tuple bypasses length checks\" as the default pattern",
+            "Ignore Labeled Tuples, Optional Elements & Rest Tuples constraints during runtime execution",
+            "Replace Labeled Tuples, Optional Elements & Rest Tuples with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Forgetting that .push() on a non-readonly tuple bypasses length checks. Recommended fix: Use readonly tuples (readonly [number, number]) when tuple length must never change."
+        },
+        {
+          "id": "typescript-s2-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Objects, Interfaces, Type Aliases & Tuples",
+          "prompt": "What is the main advantage of `const routes = { home: \"/\" } satisfies Record<string, string>` over `: Record<string, string>`?",
+          "options": [
+            "It validates all values are strings while preserving exact key autocomplete (\"home\")",
+            "It allows assigning numbers to routes.home",
+            "It skips compile-time type checking",
+            "It converts routes into a Map at runtime"
+          ],
+          "correctIndex": 0,
+          "explanation": "satisfies verifies conformance to Record<string, string> without widening away the exact literal key \"home\"."
+        },
+        {
+          "id": "typescript-s2-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Objects, Interfaces, Type Aliases & Tuples",
+          "prompt": "When working with The satisfies Operator (TS 4.9+) in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "as performs an unsafe type assertion that can hide missing fields; satisfies strictly validates every required property.",
+            "Always rely on \"Using `as Config` instead of `satisfies Config`\" as the default pattern",
+            "Ignore The satisfies Operator (TS 4.9+) constraints during runtime execution",
+            "Replace The satisfies Operator (TS 4.9+) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using `as Config` instead of `satisfies Config`. Recommended fix: as performs an unsafe type assertion that can hide missing fields; satisfies strictly validates every required property."
+        },
+        {
+          "id": "typescript-s2-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Objects, Interfaces, Type Aliases & Tuples",
+          "prompt": "What happens when compiling this satisfies snippet?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "const colors = { ok: '#10b981' } satisfies Record<string, string>;\nconst hex = colors.missing;"
+          },
+          "options": [
+            "Compile-time error: Property \"missing\" does not exist",
+            "hex is inferred as string",
+            "hex is inferred as undefined",
+            "Runtime error only"
+          ],
+          "correctIndex": 0,
+          "explanation": "satisfies retains the exact keys of colors ({ ok: string }), so accessing colors.missing fails at compile time."
+        },
+        {
+          "id": "typescript-s2-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Objects, Interfaces, Type Aliases & Tuples",
+          "prompt": "What is the type of x after destructuring const [x, y]: [string, number] = [\"TS\", 5]?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "const [x, y]: [string, number] = ['TS', 5];"
+          },
+          "options": [
+            "string",
+            "string | number",
+            "any",
+            "[\"TS\", 5]"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tuple destructuring preserves the exact positional type at each index."
+        }
+      ]
+    },
+    {
+      "sectionId": "typescript-s3",
+      "sectionTitle": "Functions, Overloads & Call Signatures",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "typescript-s3-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Overloads & Call Signatures",
+          "prompt": "Why does TypeScript allow passing `(x) => results.push(x)` (which returns a number) where a `(x: string) => void` callback is expected?",
+          "options": [
+            "Contextual void indicates the caller ignores any returned value",
+            "Array.prototype.push returns void",
+            "TypeScript disables return checks on arrow functions",
+            "number is assignable to void everywhere"
+          ],
+          "correctIndex": 0,
+          "explanation": "void in a callback type means the caller ignores the return value, not that returning a value is illegal."
+        },
+        {
+          "id": "typescript-s3-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Overloads & Call Signatures",
+          "prompt": "When working with Function Signatures, Optional & Default Parameters in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Optional parameters must follow required parameters unless explicitly typed as string | undefined.",
+            "Always rely on \"Writing optional parameter before a required one: fn(a?: string, b: number)\" as the default pattern",
+            "Ignore Function Signatures, Optional & Default Parameters constraints during runtime execution",
+            "Replace Function Signatures, Optional & Default Parameters with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing optional parameter before a required one: fn(a?: string, b: number). Recommended fix: Optional parameters must follow required parameters unless explicitly typed as string | undefined."
+        },
+        {
+          "id": "typescript-s3-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Overloads & Call Signatures",
+          "prompt": "Which signature does TypeScript use when checking a call to an overloaded function?",
+          "options": [
+            "The first matching overload signature from top to bottom (never the implementation signature)",
+            "The implementation signature only",
+            "The last overload signature always",
+            "A random matching signature"
+          ],
+          "correctIndex": 0,
+          "explanation": "TypeScript resolves overload calls top-down against public overload signatures only."
+        },
+        {
+          "id": "typescript-s3-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Overloads & Call Signatures",
+          "prompt": "When working with Function Overloads vs Union Return Types in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "TypeScript picks the FIRST matching overload, so broad signatures mask narrower ones below them.",
+            "Always rely on \"Putting the most general overload signature first\" as the default pattern",
+            "Ignore Function Overloads vs Union Return Types constraints during runtime execution",
+            "Replace Function Overloads vs Union Return Types with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Putting the most general overload signature first. Recommended fix: TypeScript picks the FIRST matching overload, so broad signatures mask narrower ones below them."
+        },
+        {
+          "id": "typescript-s3-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Overloads & Call Signatures",
+          "prompt": "What happens to the fake `this: HTMLElement` first parameter when TypeScript compiles to JavaScript?",
+          "options": [
+            "It is completely erased from the emitted JavaScript parameter list",
+            "It becomes a required first argument at runtime",
+            "It binds the function using Function.prototype.bind",
+            "It throws a syntax error"
+          ],
+          "correctIndex": 0,
+          "explanation": "The explicit `this` parameter is purely a compile-time context check and disappears in emitted JS."
+        },
+        {
+          "id": "typescript-s3-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Overloads & Call Signatures",
+          "prompt": "When working with Explicit this Parameters & Higher-Order Function Typing in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use generic rest tuples `(...args: Args) => R` so callers keep strict argument checking.",
+            "Always rely on \"Typing wrapper functions with `fn: Function` or `(...args: any[]) => any`\" as the default pattern",
+            "Ignore Explicit this Parameters & Higher-Order Function Typing constraints during runtime execution",
+            "Replace Explicit this Parameters & Higher-Order Function Typing with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Typing wrapper functions with `fn: Function` or `(...args: any[]) => any`. Recommended fix: Use generic rest tuples `(...args: Args) => R` so callers keep strict argument checking."
+        },
+        {
+          "id": "typescript-s3-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Overloads & Call Signatures",
+          "prompt": "What type does `Awaited<Promise<Promise<number>>>` evaluate to in TypeScript?",
+          "options": [
+            "number",
+            "Promise<number>",
+            "unknown",
+            "never"
+          ],
+          "correctIndex": 0,
+          "explanation": "Awaited<T> recursively unwraps thenables down to the resolved value type (number)."
+        },
+        {
+          "id": "typescript-s3-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Overloads & Call Signatures",
+          "prompt": "When working with Async Functions, Promise<T> & Awaited<T> in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "A Promise object is ALWAYS truthy; enable ESLint no-floating-promises / no-misused-promises to catch this instantly.",
+            "Always rely on \"Forgetting to await a Promise and testing `if (fetchUser())`\" as the default pattern",
+            "Ignore Async Functions, Promise<T> & Awaited<T> constraints during runtime execution",
+            "Replace Async Functions, Promise<T> & Awaited<T> with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Forgetting to await a Promise and testing `if (fetchUser())`. Recommended fix: A Promise object is ALWAYS truthy; enable ESLint no-floating-promises / no-misused-promises to catch this instantly."
+        },
+        {
+          "id": "typescript-s3-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Functions, Overloads & Call Signatures",
+          "prompt": "What is the inferred type of result here?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "function id(x: string): string;\nfunction id(x: number): number;\nfunction id(x: string | number) { return x; }\nconst result = id(100);"
+          },
+          "options": [
+            "number",
+            "string | number",
+            "any",
+            "string"
+          ],
+          "correctIndex": 0,
+          "explanation": "Overload resolution matches the second overload (x: number): number."
+        },
+        {
+          "id": "typescript-s3-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Functions, Overloads & Call Signatures",
+          "prompt": "What type does `type X = Awaited<ReturnType<() => Promise<boolean>>>` resolve to?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "type X = Awaited<ReturnType<() => Promise<boolean>>>;"
+          },
+          "options": [
+            "boolean",
+            "Promise<boolean>",
+            "() => boolean",
+            "void"
+          ],
+          "correctIndex": 0,
+          "explanation": "ReturnType yields Promise<boolean>, and Awaited unwraps it to boolean."
+        }
+      ]
+    },
+    {
+      "sectionId": "typescript-s4",
+      "sectionTitle": "Modules, tsconfig.json & Interop Essentials",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "typescript-s4-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Modules, tsconfig.json & Interop Essentials",
+          "prompt": "What happens to `import type { Quiz } from \"./types\"` in the compiled JavaScript bundle?",
+          "options": [
+            "It is completely stripped and produces zero runtime code",
+            "It loads ./types asynchronously",
+            "It freezes the Quiz object",
+            "It converts Quiz into a JS class"
+          ],
+          "correctIndex": 0,
+          "explanation": "Type-only imports exist solely for compile-time checking and are erased completely."
+        },
+        {
+          "id": "typescript-s4-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Modules, tsconfig.json & Interop Essentials",
+          "prompt": "When working with import type & verbatimModuleSyntax in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use `export type { MyType } from \"./a\"` so single-file bundlers know to erase it.",
+            "Always rely on \"Re-exporting a type via `export { MyType } from \"./a\"` under isolatedModules\" as the default pattern",
+            "Ignore import type & verbatimModuleSyntax constraints during runtime execution",
+            "Replace import type & verbatimModuleSyntax with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Re-exporting a type via `export { MyType } from \"./a\"` under isolatedModules. Recommended fix: Use `export type { MyType } from \"./a\"` so single-file bundlers know to erase it."
+        },
+        {
+          "id": "typescript-s4-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Modules, tsconfig.json & Interop Essentials",
+          "prompt": "Why do Vite + TypeScript applications usually set `\"noEmit\": true` in tsconfig.json?",
+          "options": [
+            "Vite handles JS transpilation/bundling while tsc is used strictly for type checking",
+            "It prevents TypeScript from checking types",
+            "It disables sourcemaps",
+            "It deletes output files"
+          ],
+          "correctIndex": 0,
+          "explanation": "With noEmit: true, tsc validates types without writing duplicate .js files alongside .ts sources."
+        },
+        {
+          "id": "typescript-s4-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Modules, tsconfig.json & Interop Essentials",
+          "prompt": "When working with Key tsconfig.json Compiler Options Explained in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Switch to \"bundler\" for bundled apps or \"nodenext\" for Node.js ESM services.",
+            "Always rely on \"Using moduleResolution: \"node\" (legacy Node 10) in modern ESM package.json exports projects\" as the default pattern",
+            "Ignore Key tsconfig.json Compiler Options Explained constraints during runtime execution",
+            "Replace Key tsconfig.json Compiler Options Explained with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using moduleResolution: \"node\" (legacy Node 10) in modern ESM package.json exports projects. Recommended fix: Switch to \"bundler\" for bundled apps or \"nodenext\" for Node.js ESM services."
+        },
+        {
+          "id": "typescript-s4-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Modules, tsconfig.json & Interop Essentials",
+          "prompt": "What is the key advantage of `// @ts-expect-error` over `// @ts-ignore`?",
+          "options": [
+            "TypeScript errors if the suppressed line stops having an error, preventing stale suppressions",
+            "It runs faster at runtime",
+            "It suppresses errors across the entire file",
+            "It automatically fixes the type error"
+          ],
+          "correctIndex": 0,
+          "explanation": "@ts-expect-error stays honest by alerting you if the next line no longer triggers a type error."
+        },
+        {
+          "id": "typescript-s4-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Modules, tsconfig.json & Interop Essentials",
+          "prompt": "When working with Typing External Libraries, @types/* & Ambient Declarations in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Prefer @ts-expect-error (only when genuinely required, e.g., testing invalid calls) so stale suppressions auto-alert you.",
+            "Always rely on \"Using @ts-ignore to hide a bug permanently\" as the default pattern",
+            "Ignore Typing External Libraries, @types/* & Ambient Declarations constraints during runtime execution",
+            "Replace Typing External Libraries, @types/* & Ambient Declarations with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using @ts-ignore to hide a bug permanently. Recommended fix: Prefer @ts-expect-error (only when genuinely required, e.g., testing invalid calls) so stale suppressions auto-alert you."
+        },
+        {
+          "id": "typescript-s4-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Modules, tsconfig.json & Interop Essentials",
+          "prompt": "What runtime code does TypeScript emit for `const input = el as HTMLInputElement`?",
+          "options": [
+            "`const input = el;` (the assertion is completely erased)",
+            "An `instanceof HTMLInputElement` check that throws on mismatch",
+            "A type coercion call `HTMLInputElement(el)`",
+            "A Proxy wrapper"
+          ],
+          "correctIndex": 0,
+          "explanation": "Type assertions have zero runtime representation—they are purely compile-time overrides."
+        },
+        {
+          "id": "typescript-s4-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Modules, tsconfig.json & Interop Essentials",
+          "prompt": "When working with Type Assertions (`as`), Double Assertions & Const Safety in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Assertions do nothing at runtime; validate untrusted API JSON with a type predicate or schema validator.",
+            "Always rely on \"Writing `const data = await res.json() as User` assuming TypeScript validates the API payload\" as the default pattern",
+            "Ignore Type Assertions (`as`), Double Assertions & Const Safety constraints during runtime execution",
+            "Replace Type Assertions (`as`), Double Assertions & Const Safety with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing `const data = await res.json() as User` assuming TypeScript validates the API payload. Recommended fix: Assertions do nothing at runtime; validate untrusted API JSON with a type predicate or schema validator."
+        },
+        {
+          "id": "typescript-s4-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Modules, tsconfig.json & Interop Essentials",
+          "prompt": "Which directive reports a compile error if the next line actually compiles cleanly?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "// @ts-expect-error\nconst n: number = 42;"
+          },
+          "options": [
+            "@ts-expect-error fails because no error occurred on the next line",
+            "Compiles cleanly with zero warnings",
+            "Converts 42 to string",
+            "Throws a runtime exception"
+          ],
+          "correctIndex": 0,
+          "explanation": "@ts-expect-error requires an error on the following line and flags unused suppressions."
+        },
+        {
+          "id": "typescript-s4-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Modules, tsconfig.json & Interop Essentials",
+          "prompt": "What is emitted to JavaScript from `import type { Lesson } from \"./course\";`?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "import type { Lesson } from './course';\nexport const count = 48;"
+          },
+          "options": [
+            "Only `export const count = 48;` (import type is erased)",
+            "`import { Lesson } from \"./course\"; export const count = 48;`",
+            "Throws a runtime SyntaxError",
+            "Creates an empty Lesson class"
+          ],
+          "correctIndex": 0,
+          "explanation": "Type-only imports are completely removed during compilation."
+        }
+      ]
+    },
+    {
+      "sectionId": "typescript-s5",
+      "sectionTitle": "Type Narrowing & Discriminated Unions",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "typescript-s5-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Type Narrowing & Discriminated Unions",
+          "prompt": "After checking `if (typeof x === \"string\") return;`, what type does x have if it started as `string | number | boolean`?",
+          "options": [
+            "number | boolean",
+            "string",
+            "unknown",
+            "never"
+          ],
+          "correctIndex": 0,
+          "explanation": "Control-flow analysis eliminates string from the union after the early return."
+        },
+        {
+          "id": "typescript-s5-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Type Narrowing & Discriminated Unions",
+          "prompt": "When working with Control-Flow Narrowing: typeof, in, instanceof & Truthiness in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "In JavaScript, `typeof null === \"object\"`, so always pair it with `x !== null`.",
+            "Always rely on \"Using `typeof x === \"object\"` without checking `x !== null`\" as the default pattern",
+            "Ignore Control-Flow Narrowing: typeof, in, instanceof & Truthiness constraints during runtime execution",
+            "Replace Control-Flow Narrowing: typeof, in, instanceof & Truthiness with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using `typeof x === \"object\"` without checking `x !== null`. Recommended fix: In JavaScript, `typeof null === \"object\"`, so always pair it with `x !== null`."
+        },
+        {
+          "id": "typescript-s5-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Type Narrowing & Discriminated Unions",
+          "prompt": "What property enables TypeScript to narrow `{ ok: true; data: number } | { ok: false; error: string }` in a single `if (res.ok)` check?",
+          "options": [
+            "The shared literal discriminant property `ok`",
+            "The `data` property type",
+            "A runtime class constructor",
+            "An explicit type assertion"
+          ],
+          "correctIndex": 0,
+          "explanation": "Literal tags like `ok: true` vs `ok: false` act as discriminants for automatic union narrowing."
+        },
+        {
+          "id": "typescript-s5-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Type Narrowing & Discriminated Unions",
+          "prompt": "When working with Discriminated Unions & State Machines in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Boolean bags require repeated optional checks and permit contradictory states; discriminated unions enforce exact invariants.",
+            "Always rely on \"Using boolean flags `{ loading: boolean; error?: string; data?: T }` instead of a discriminated union\" as the default pattern",
+            "Ignore Discriminated Unions & State Machines constraints during runtime execution",
+            "Replace Discriminated Unions & State Machines with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using boolean flags `{ loading: boolean; error?: string; data?: T }` instead of a discriminated union. Recommended fix: Boolean bags require repeated optional checks and permit contradictory states; discriminated unions enforce exact invariants."
+        },
+        {
+          "id": "typescript-s5-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Type Narrowing & Discriminated Unions",
+          "prompt": "What happens in `default: return assertNever(shape)` if you add `{ kind: \"rect\"; w: number; h: number }` to `Shape` without adding a `case \"rect\"`?",
+          "options": [
+            "TypeScript emits a compile-time error because `{ kind: \"rect\"; ... }` is not assignable to `never`",
+            "It compiles cleanly and returns undefined",
+            "It automatically calculates w * h",
+            "It ignores the new variant"
+          ],
+          "correctIndex": 0,
+          "explanation": "Unhandled variants remain non-never in the default branch, immediately failing type checking."
+        },
+        {
+          "id": "typescript-s5-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Type Narrowing & Discriminated Unions",
+          "prompt": "When working with Exhaustiveness Checking with `never` in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Call `assertNever(val)` in `default` so missing cases fail compilation immediately.",
+            "Always rely on \"Writing `default: return 0` silently swallowing newly added union members\" as the default pattern",
+            "Ignore Exhaustiveness Checking with `never` constraints during runtime execution",
+            "Replace Exhaustiveness Checking with `never` with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing `default: return 0` silently swallowing newly added union members. Recommended fix: Call `assertNever(val)` in `default` so missing cases fail compilation immediately."
+        },
+        {
+          "id": "typescript-s5-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Type Narrowing & Discriminated Unions",
+          "prompt": "What return type annotation tells TypeScript that returning `true` narrows parameter `val` to `string`?",
+          "options": [
+            "val is string",
+            "boolean<string>",
+            "asserts string",
+            "narrow<val, string>"
+          ],
+          "correctIndex": 0,
+          "explanation": "A type predicate `paramName is Type` connects the boolean runtime check to static narrowing."
+        },
+        {
+          "id": "typescript-s5-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Type Narrowing & Discriminated Unions",
+          "prompt": "When working with User-Defined Type Predicates (`x is T`) & Assertion Functions in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "A dishonest predicate creates unsound types that pass compile time and crash at runtime.",
+            "Always rely on \"Writing a sloppy predicate `x is User` that only checks `Boolean(x)`\" as the default pattern",
+            "Ignore User-Defined Type Predicates (`x is T`) & Assertion Functions constraints during runtime execution",
+            "Replace User-Defined Type Predicates (`x is T`) & Assertion Functions with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing a sloppy predicate `x is User` that only checks `Boolean(x)`. Recommended fix: A dishonest predicate creates unsound types that pass compile time and crash at runtime."
+        },
+        {
+          "id": "typescript-s5-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Type Narrowing & Discriminated Unions",
+          "prompt": "What type does `x` have inside the `if` block?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "function isStr(v: unknown): v is string { return typeof v === 'string'; }\nfunction run(x: number | string) { if (isStr(x)) { /* here */ } }"
+          },
+          "options": [
+            "string",
+            "number | string",
+            "unknown",
+            "never"
+          ],
+          "correctIndex": 0,
+          "explanation": "The user-defined type predicate narrows x to string inside the true branch."
+        },
+        {
+          "id": "typescript-s5-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Type Narrowing & Discriminated Unions",
+          "prompt": "What happens when compiling a switch over `\"A\" | \"B\"` that only handles `\"A\"` and calls `assertNever(v)` in default?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "type Mode = 'A' | 'B';\nfunction f(m: Mode) { switch (m) { case 'A': return 1; default: return assertNever(m); } }"
+          },
+          "options": [
+            "Compile-time error: Argument of type \"B\" is not assignable to parameter of type never",
+            "Compiles cleanly",
+            "Returns undefined for \"B\"",
+            "Automatically adds case \"B\""
+          ],
+          "correctIndex": 0,
+          "explanation": "Because \"B\" is unhandled, m has type \"B\" in default, which fails assignment to never."
+        }
+      ]
+    },
+    {
+      "sectionId": "typescript-s6",
+      "sectionTitle": "Generics, Constraints & Default Type Parameters",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "typescript-s6-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Generics, Constraints & Default Type Parameters",
+          "prompt": "What type is inferred for `res` when calling `function wrap<T>(v: T) { return { value: v }; } const res = wrap(\"TS\");`?",
+          "options": [
+            "{ value: string }",
+            "{ value: unknown }",
+            "{ value: any }",
+            "string"
+          ],
+          "correctIndex": 0,
+          "explanation": "TypeScript infers T = string from the argument and substitutes it into the return shape."
+        },
+        {
+          "id": "typescript-s6-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Generics, Constraints & Default Type Parameters",
+          "prompt": "When working with Generic Functions & Type Argument Inference in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Rule of thumb: a type parameter should appear at least twice; otherwise use a concrete type or `unknown`.",
+            "Always rely on \"Writing `<T>(x: T): void` when T is never returned or reused\" as the default pattern",
+            "Ignore Generic Functions & Type Argument Inference constraints during runtime execution",
+            "Replace Generic Functions & Type Argument Inference with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing `<T>(x: T): void` when T is never returned or reused. Recommended fix: Rule of thumb: a type parameter should appear at least twice; otherwise use a concrete type or `unknown`."
+        },
+        {
+          "id": "typescript-s6-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Generics, Constraints & Default Type Parameters",
+          "prompt": "Given `interface Book { title: string; pages: number }`, what is the type `Book[\"pages\"]`?",
+          "options": [
+            "number",
+            "string | number",
+            "\"pages\"",
+            "Book"
+          ],
+          "correctIndex": 0,
+          "explanation": "Indexed access `Book[\"pages\"]` looks up the exact property type (`number`)."
+        },
+        {
+          "id": "typescript-s6-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Generics, Constraints & Default Type Parameters",
+          "prompt": "When working with Generic Constraints (`extends`) & `keyof` in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Constrain keys with `K extends keyof T & string` if you need string-only keys.",
+            "Always rely on \"Forgetting that `keyof T` can include `number | symbol` when T has index signatures\" as the default pattern",
+            "Ignore Generic Constraints (`extends`) & `keyof` constraints during runtime execution",
+            "Replace Generic Constraints (`extends`) & `keyof` with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Forgetting that `keyof T` can include `number | symbol` when T has index signatures. Recommended fix: Constrain keys with `K extends keyof T & string` if you need string-only keys."
+        },
+        {
+          "id": "typescript-s6-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Generics, Constraints & Default Type Parameters",
+          "prompt": "Why does TypeScript reject `class Box<T> { static defaultVal: T; }`?",
+          "options": [
+            "Static members belong to the class itself and cannot reference instance-level type parameters",
+            "Static properties cannot have type annotations",
+            "Generics are forbidden on classes",
+            "T must extend string"
+          ],
+          "correctIndex": 0,
+          "explanation": "Instance type parameters vary per object instance, whereas static members are shared across all instances."
+        },
+        {
+          "id": "typescript-s6-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Generics, Constraints & Default Type Parameters",
+          "prompt": "When working with Generic Classes, Interfaces & Collections in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Static members belong to the constructor, not an instance; declare a separate generic on the static method itself.",
+            "Always rely on \"Referencing class `<T>` inside a `static` method\" as the default pattern",
+            "Ignore Generic Classes, Interfaces & Collections constraints during runtime execution",
+            "Replace Generic Classes, Interfaces & Collections with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Referencing class `<T>` inside a `static` method. Recommended fix: Static members belong to the constructor, not an instance; declare a separate generic on the static method itself."
+        },
+        {
+          "id": "typescript-s6-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Generics, Constraints & Default Type Parameters",
+          "prompt": "What does adding `const` in `function makeRoutes<const T>(routes: T)` do?",
+          "options": [
+            "Infers deeply readonly literal types from inline arguments without callers writing `as const`",
+            "Freezes the object at runtime with Object.freeze",
+            "Prevents calling the function twice",
+            "Converts all values to strings"
+          ],
+          "correctIndex": 0,
+          "explanation": "const type parameters guide inference toward exact literal and readonly types at compile time."
+        },
+        {
+          "id": "typescript-s6-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Generics, Constraints & Default Type Parameters",
+          "prompt": "When working with const Type Parameters (TS 5.0+) in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "If a caller passes an already-widened `string[]` variable, `<const T>` cannot recover lost literals.",
+            "Always rely on \"Forgetting that `<const T>` only affects inline literal expressions, not pre-widened variables\" as the default pattern",
+            "Ignore const Type Parameters (TS 5.0+) constraints during runtime execution",
+            "Replace const Type Parameters (TS 5.0+) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Forgetting that `<const T>` only affects inline literal expressions, not pre-widened variables. Recommended fix: If a caller passes an already-widened `string[]` variable, `<const T>` cannot recover lost literals."
+        },
+        {
+          "id": "typescript-s6-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Generics, Constraints & Default Type Parameters",
+          "prompt": "What is the return type of `getProp({ id: 1, title: \"TS\" }, \"title\")`?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "function getProp<T, K extends keyof T>(obj: T, key: K): T[K] { return obj[key]; }\nconst v = getProp({ id: 1, title: 'TS' }, 'title');"
+          },
+          "options": [
+            "string",
+            "string | number",
+            "unknown",
+            "keyof T"
+          ],
+          "correctIndex": 0,
+          "explanation": "K is inferred as \"title\", so T[K] resolves directly to string."
+        },
+        {
+          "id": "typescript-s6-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Generics, Constraints & Default Type Parameters",
+          "prompt": "What happens when calling `getProp({ id: 1 }, \"name\")`?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "function getProp<T, K extends keyof T>(obj: T, key: K): T[K] { return obj[key]; }\ngetProp({ id: 1 }, 'name');"
+          },
+          "options": [
+            "Compile-time error: \"name\" is not assignable to \"id\"",
+            "Returns undefined cleanly",
+            "Infers K as string",
+            "Adds \"name\" to the object"
+          ],
+          "correctIndex": 0,
+          "explanation": "K extends keyof T restricts key strictly to \"id\"."
+        }
+      ]
+    },
+    {
+      "sectionId": "typescript-s7",
+      "sectionTitle": "Built-In Utility Types & Practical Transformations",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "typescript-s7-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Built-In Utility Types & Practical Transformations",
+          "prompt": "Which utility type produces a version of `User` where `id` cannot be supplied and all remaining fields are optional?",
+          "options": [
+            "Partial<Omit<User, \"id\">>",
+            "Pick<User, \"id\">",
+            "Required<User>",
+            "Readonly<User>"
+          ],
+          "correctIndex": 0,
+          "explanation": "Omit removes `id`, and Partial makes all remaining properties optional."
+        },
+        {
+          "id": "typescript-s7-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Built-In Utility Types & Practical Transformations",
+          "prompt": "When working with Partial, Required, Readonly & Record in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Compose `Partial<Omit<User, \"id\">>` to strip immutable identifiers from patch types.",
+            "Always rely on \"Using `Partial<User>` for an update endpoint that must NEVER let callers overwrite `id`\" as the default pattern",
+            "Ignore Partial, Required, Readonly & Record constraints during runtime execution",
+            "Replace Partial, Required, Readonly & Record with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using `Partial<User>` for an update endpoint that must NEVER let callers overwrite `id`. Recommended fix: Compose `Partial<Omit<User, \"id\">>` to strip immutable identifiers from patch types."
+        },
+        {
+          "id": "typescript-s7-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Built-In Utility Types & Practical Transformations",
+          "prompt": "Why can `Pick<User, \"id\" | \"name\">` be safer than `Omit<User, \"passwordHash\">` for a public API response type?",
+          "options": [
+            "If a new sensitive field is later added to User, Pick won’t accidentally expose it",
+            "Pick runs faster at runtime",
+            "Omit cannot remove string properties",
+            "Pick makes properties immutable"
+          ],
+          "correctIndex": 0,
+          "explanation": "Allowlist selection (Pick) prevents newly added internal properties from leaking automatically."
+        },
+        {
+          "id": "typescript-s7-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Built-In Utility Types & Practical Transformations",
+          "prompt": "When working with Pick vs Omit & Single Source of Truth in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Because Omit allows arbitrary `PropertyKey`, the typo compiles silently and leaves `passwordHash` exposed! Define a `StrictOmit<T, K extends keyof T>` helper if desired.",
+            "Always rely on \"Passing a misspelled key to `Omit<User, \"paswordHash\">`\" as the default pattern",
+            "Ignore Pick vs Omit & Single Source of Truth constraints during runtime execution",
+            "Replace Pick vs Omit & Single Source of Truth with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Passing a misspelled key to `Omit<User, \"paswordHash\">`. Recommended fix: Because Omit allows arbitrary `PropertyKey`, the typo compiles silently and leaves `passwordHash` exposed! Define a `StrictOmit<T, K extends keyof T>` helper if desired."
+        },
+        {
+          "id": "typescript-s7-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Built-In Utility Types & Practical Transformations",
+          "prompt": "Which utility type produces `\"Intermediate\" | \"Advanced\"` from `type Level = \"Beginner\" | \"Intermediate\" | \"Advanced\"`?",
+          "options": [
+            "Exclude<Level, \"Beginner\">",
+            "Omit<Level, \"Beginner\">",
+            "Pick<Level, \"Intermediate\">",
+            "Partial<Level>"
+          ],
+          "correctIndex": 0,
+          "explanation": "Exclude removes matching members from a union type, whereas Omit operates on object properties."
+        },
+        {
+          "id": "typescript-s7-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Built-In Utility Types & Practical Transformations",
+          "prompt": "When working with Exclude, Extract, NonNullable & Union Algebra in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Omit<(\"a\" | \"b\"), \"a\"> does NOT remove \"a\" from the union—use Exclude<\"a\" | \"b\", \"a\">!",
+            "Always rely on \"Confusing Omit with Exclude when working on string literal unions\" as the default pattern",
+            "Ignore Exclude, Extract, NonNullable & Union Algebra constraints during runtime execution",
+            "Replace Exclude, Extract, NonNullable & Union Algebra with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Confusing Omit with Exclude when working on string literal unions. Recommended fix: Omit<(\"a\" | \"b\"), \"a\"> does NOT remove \"a\" from the union—use Exclude<\"a\" | \"b\", \"a\">!"
+        },
+        {
+          "id": "typescript-s7-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Built-In Utility Types & Practical Transformations",
+          "prompt": "What happens in `pickDefault([\"light\", \"dark\"], \"blue\")` when `fallback` is typed as `NoInfer<T>`?",
+          "options": [
+            "Compile-time error because \"blue\" is not assignable to \"light\" | \"dark\"",
+            "T widens to \"light\" | \"dark\" | \"blue\"",
+            "Returns undefined",
+            "Throws a runtime SyntaxError"
+          ],
+          "correctIndex": 0,
+          "explanation": "NoInfer<T> prevents \"blue\" from widening T, enforcing that fallback must be one of the options."
+        },
+        {
+          "id": "typescript-s7-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Built-In Utility Types & Practical Transformations",
+          "prompt": "When working with ReturnType, Parameters, ConstructorParameters & NoInfer in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Utilities operate on types, not runtime values—always pass `typeof myFunc`.",
+            "Always rely on \"Writing `ReturnType<myFunc>` instead of `ReturnType<typeof myFunc>`\" as the default pattern",
+            "Ignore ReturnType, Parameters, ConstructorParameters & NoInfer constraints during runtime execution",
+            "Replace ReturnType, Parameters, ConstructorParameters & NoInfer with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing `ReturnType<myFunc>` instead of `ReturnType<typeof myFunc>`. Recommended fix: Utilities operate on types, not runtime values—always pass `typeof myFunc`."
+        },
+        {
+          "id": "typescript-s7-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Built-In Utility Types & Practical Transformations",
+          "prompt": "What type does `Exclude<\"a\" | \"b\" | \"c\", \"a\" | \"c\">` evaluate to?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "type OnlyB = Exclude<'a' | 'b' | 'c', 'a' | 'c'>;"
+          },
+          "options": [
+            "\"b\"",
+            "\"a\" | \"c\"",
+            "never",
+            "string"
+          ],
+          "correctIndex": 0,
+          "explanation": "Exclude removes \"a\" and \"c\" from the union, leaving only \"b\"."
+        },
+        {
+          "id": "typescript-s7-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Built-In Utility Types & Practical Transformations",
+          "prompt": "What is the type of `P` in `type P = Parameters<(a: string, b: number) => boolean>`?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "type P = Parameters<(a: string, b: number) => boolean>;"
+          },
+          "options": [
+            "[a: string, b: number]",
+            "string | number",
+            "boolean",
+            "{ a: string; b: number }"
+          ],
+          "correctIndex": 0,
+          "explanation": "Parameters<F> extracts the function’s parameter list as a tuple type."
+        }
+      ]
+    },
+    {
+      "sectionId": "typescript-s8",
+      "sectionTitle": "Classes, Decorators & React/DOM TypeScript Patterns",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "typescript-s8-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Classes, Decorators & React/DOM TypeScript Patterns",
+          "prompt": "Which keyword forces TypeScript to verify that a subclass method actually overrides a method from its parent class?",
+          "options": [
+            "override",
+            "virtual",
+            "implements",
+            "super"
+          ],
+          "correctIndex": 0,
+          "explanation": "override ensures parent-method renames never silently turn an override into an orphaned method."
+        },
+        {
+          "id": "typescript-s8-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Classes, Decorators & React/DOM TypeScript Patterns",
+          "prompt": "When working with Access Modifiers, Parameter Properties & Abstract Classes in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use ES `#private` fields if runtime hiding is required.",
+            "Always rely on \"Assuming TypeScript `private` hides fields from `JSON.stringify` or bracket access at runtime\" as the default pattern",
+            "Ignore Access Modifiers, Parameter Properties & Abstract Classes constraints during runtime execution",
+            "Replace Access Modifiers, Parameter Properties & Abstract Classes with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Assuming TypeScript `private` hides fields from `JSON.stringify` or bracket access at runtime. Recommended fix: Use ES `#private` fields if runtime hiding is required."
+        },
+        {
+          "id": "typescript-s8-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Classes, Decorators & React/DOM TypeScript Patterns",
+          "prompt": "Which React type allows strings, numbers, JSX elements, fragments, arrays, and null for a `children` prop?",
+          "options": [
+            "React.ReactNode",
+            "React.ReactElement",
+            "JSX.IntrinsicElements",
+            "HTMLElement"
+          ],
+          "correctIndex": 0,
+          "explanation": "ReactNode is the union of all renderable child types in React."
+        },
+        {
+          "id": "typescript-s8-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Classes, Decorators & React/DOM TypeScript Patterns",
+          "prompt": "When working with Typing React Components, Props & Polymorphic Children in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "JSX.Element rejects strings, numbers, arrays, and null; use ReactNode for general children.",
+            "Always rely on \"Typing children as `JSX.Element` instead of `ReactNode`\" as the default pattern",
+            "Ignore Typing React Components, Props & Polymorphic Children constraints during runtime execution",
+            "Replace Typing React Components, Props & Polymorphic Children with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Typing children as `JSX.Element` instead of `ReactNode`. Recommended fix: JSX.Element rejects strings, numbers, arrays, and null; use ReactNode for general children."
+        },
+        {
+          "id": "typescript-s8-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Classes, Decorators & React/DOM TypeScript Patterns",
+          "prompt": "What type does `useState([])` infer under TypeScript strict mode?",
+          "options": [
+            "never[]",
+            "any[]",
+            "unknown[]",
+            "object[]"
+          ],
+          "correctIndex": 0,
+          "explanation": "An empty array literal with no context infers never[], so always supply an explicit generic like `useState<string[]>([])`."
+        },
+        {
+          "id": "typescript-s8-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Classes, Decorators & React/DOM TypeScript Patterns",
+          "prompt": "When working with Typing React Hooks: useState, useRef & useReducer in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "TypeScript infers `null` forever; always write `useState<Data | null>(null)`.",
+            "Always rely on \"Writing `useState(null)` without a generic type parameter\" as the default pattern",
+            "Ignore Typing React Hooks: useState, useRef & useReducer constraints during runtime execution",
+            "Replace Typing React Hooks: useState, useRef & useReducer with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing `useState(null)` without a generic type parameter. Recommended fix: TypeScript infers `null` forever; always write `useState<Data | null>(null)`."
+        },
+        {
+          "id": "typescript-s8-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Classes, Decorators & React/DOM TypeScript Patterns",
+          "prompt": "Why is `e.currentTarget` more tightly typed than `e.target` inside a button click event handler?",
+          "options": [
+            "e.currentTarget is always the element hosting the listener, whereas e.target can be any nested descendant",
+            "e.target is deprecated in TypeScript 5",
+            "e.currentTarget is always window",
+            "e.target is always null"
+          ],
+          "correctIndex": 0,
+          "explanation": "Event bubbling means any child element can be e.target, while e.currentTarget is guaranteed to be the bound element."
+        },
+        {
+          "id": "typescript-s8-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Classes, Decorators & React/DOM TypeScript Patterns",
+          "prompt": "When working with Typing DOM Events & Custom Event Contracts in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use `e.currentTarget.value` on direct input handlers or narrow `e.target` safely.",
+            "Always rely on \"Reading `e.target.value` directly in a bubbling listener without narrowing\" as the default pattern",
+            "Ignore Typing DOM Events & Custom Event Contracts constraints during runtime execution",
+            "Replace Typing DOM Events & Custom Event Contracts with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Reading `e.target.value` directly in a bubbling listener without narrowing. Recommended fix: Use `e.currentTarget.value` on direct input handlers or narrow `e.target` safely."
+        },
+        {
+          "id": "typescript-s8-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Classes, Decorators & React/DOM TypeScript Patterns",
+          "prompt": "What type does `const [items, setItems] = useState([])` infer for `items` with strict: true?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "const [items, setItems] = useState([]);"
+          },
+          "options": [
+            "never[]",
+            "any[]",
+            "unknown[]",
+            "string[]"
+          ],
+          "correctIndex": 0,
+          "explanation": "Without a generic argument, an empty array literal infers never[] in strict mode."
+        },
+        {
+          "id": "typescript-s8-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Classes, Decorators & React/DOM TypeScript Patterns",
+          "prompt": "Which property on a button click event is guaranteed to be the `<button>` even if the user clicked an icon inside it?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "button.addEventListener('click', (e) => { /* ... */ });"
+          },
+          "options": [
+            "e.currentTarget",
+            "e.target",
+            "e.srcElement",
+            "e.relatedTarget"
+          ],
+          "correctIndex": 0,
+          "explanation": "e.currentTarget always points to the element to which the listener is attached."
+        }
+      ]
+    },
+    {
+      "sectionId": "typescript-s9",
+      "sectionTitle": "Conditional Types, Distribution & `infer`",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "typescript-s9-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Conditional Types, Distribution & `infer`",
+          "prompt": "What does `type IsString<T> = T extends string ? \"yes\" : \"no\"; type R = IsString<42>;` evaluate to?",
+          "options": [
+            "\"no\"",
+            "\"yes\"",
+            "boolean",
+            "never"
+          ],
+          "correctIndex": 0,
+          "explanation": "42 does not extend string, so the false branch (\"no\") is chosen."
+        },
+        {
+          "id": "typescript-s9-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Conditional Types, Distribution & `infer`",
+          "prompt": "When working with Conditional Types (`T extends U ? X : Y`) in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Often a single narrow assertion or overload signature is needed inside the implementation while callers get full precision.",
+            "Always rely on \"Forgetting that TypeScript cannot easily resolve a conditional return type inside the function body itself\" as the default pattern",
+            "Ignore Conditional Types (`T extends U ? X : Y`) constraints during runtime execution",
+            "Replace Conditional Types (`T extends U ? X : Y`) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Forgetting that TypeScript cannot easily resolve a conditional return type inside the function body itself. Recommended fix: Often a single narrow assertion or overload signature is needed inside the implementation while callers get full precision."
+        },
+        {
+          "id": "typescript-s9-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Conditional Types, Distribution & `infer`",
+          "prompt": "What does `type Box<T> = T extends any ? { v: T } : never; type R = Box<string | number>;` resolve to?",
+          "options": [
+            "{ v: string } | { v: number }",
+            "{ v: string | number }",
+            "{ v: any }",
+            "never"
+          ],
+          "correctIndex": 0,
+          "explanation": "Because T is a naked type parameter, Box distributes over the union into `{ v: string } | { v: number }`."
+        },
+        {
+          "id": "typescript-s9-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Conditional Types, Distribution & `infer`",
+          "prompt": "When working with Distributive Conditional Types & Opting Out with Tuples in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Wrap both sides in `[T] extends [Target]` to prevent union distribution.",
+            "Always rely on \"Accidentally triggering distribution when trying to test if a whole union matches a type\" as the default pattern",
+            "Ignore Distributive Conditional Types & Opting Out with Tuples constraints during runtime execution",
+            "Replace Distributive Conditional Types & Opting Out with Tuples with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Accidentally triggering distribution when trying to test if a whole union matches a type. Recommended fix: Wrap both sides in `[T] extends [Target]` to prevent union distribution."
+        },
+        {
+          "id": "typescript-s9-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Conditional Types, Distribution & `infer`",
+          "prompt": "Where is the `infer` keyword legally allowed in TypeScript?",
+          "options": [
+            "Inside the `extends` clause of a conditional type",
+            "Inside any function parameter list",
+            "Inside a runtime `if` statement",
+            "Inside an interface body directly"
+          ],
+          "correctIndex": 0,
+          "explanation": "`infer` introduces a pattern-matched type variable exclusively within the `extends` clause of a conditional type."
+        },
+        {
+          "id": "typescript-s9-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Conditional Types, Distribution & `infer`",
+          "prompt": "When working with Pattern Matching with `infer` & Recursive Types in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Functions satisfy `extends object` and get mangled into `{}` unless checked first.",
+            "Always rely on \"Recursing into `T extends object` without sparing functions first\" as the default pattern",
+            "Ignore Pattern Matching with `infer` & Recursive Types constraints during runtime execution",
+            "Replace Pattern Matching with `infer` & Recursive Types with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Recursing into `T extends object` without sparing functions first. Recommended fix: Functions satisfy `extends object` and get mangled into `{}` unless checked first."
+        },
+        {
+          "id": "typescript-s9-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Conditional Types, Distribution & `infer`",
+          "prompt": "If `Dog extends Animal`, which function is safely assignable to `type HandleDog = (d: Dog) => void` under `strictFunctionTypes`?",
+          "options": [
+            "(a: Animal) => void (contravariant parameter)",
+            "(p: Poodle) => void",
+            "(s: string) => void",
+            "None of the above"
+          ],
+          "correctIndex": 0,
+          "explanation": "A handler accepting any Animal safely handles any Dog passed to it (contravariance)."
+        },
+        {
+          "id": "typescript-s9-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Conditional Types, Distribution & `infer`",
+          "prompt": "When working with Variance Annotations (`in` / `out`) & Function Parameter Contravariance in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Method syntax is bivariant in TS for legacy Array compatibility; use arrow property syntax `handle: (x: T) => void` for strict contravariance.",
+            "Always rely on \"Using method shorthand `handle(x: T): void` in an interface expecting strict parameter checking\" as the default pattern",
+            "Ignore Variance Annotations (`in` / `out`) & Function Parameter Contravariance constraints during runtime execution",
+            "Replace Variance Annotations (`in` / `out`) & Function Parameter Contravariance with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using method shorthand `handle(x: T): void` in an interface expecting strict parameter checking. Recommended fix: Method syntax is bivariant in TS for legacy Array compatibility; use arrow property syntax `handle: (x: T) => void` for strict contravariance."
+        },
+        {
+          "id": "typescript-s9-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Conditional Types, Distribution & `infer`",
+          "prompt": "What does `type Out = (string | number) extends string ? 1 : 0` evaluate to?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "type Out = (string | number) extends string ? 1 : 0;"
+          },
+          "options": [
+            "0 (no distribution without a naked type parameter)",
+            "1 | 0",
+            "1",
+            "never"
+          ],
+          "correctIndex": 0,
+          "explanation": "Distribution only happens on naked generic type parameters, not concrete unions."
+        },
+        {
+          "id": "typescript-s9-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Conditional Types, Distribution & `infer`",
+          "prompt": "What type does `type Inner = Promise<number> extends Promise<infer U> ? U : never` evaluate to?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "type Inner = Promise<number> extends Promise<infer U> ? U : never;"
+          },
+          "options": [
+            "number",
+            "Promise<number>",
+            "never",
+            "unknown"
+          ],
+          "correctIndex": 0,
+          "explanation": "`infer U` extracts the inner type argument `number` from `Promise<number>`."
+        }
+      ]
+    },
+    {
+      "sectionId": "typescript-s10",
+      "sectionTitle": "Mapped Types, Key Remapping & Template Literal Types",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "typescript-s10-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Mapped Types, Key Remapping & Template Literal Types",
+          "prompt": "What does `{ [K in keyof T]-?: T[K] }` implement?",
+          "options": [
+            "Required<T>",
+            "Partial<T>",
+            "Readonly<T>",
+            "Omit<T, K>"
+          ],
+          "correctIndex": 0,
+          "explanation": "Removing the optional modifier (`-?`) from every property of T is the exact definition of Required<T>."
+        },
+        {
+          "id": "typescript-s10-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Mapped Types, Key Remapping & Template Literal Types",
+          "prompt": "When working with Mapped Types & Mapping Modifiers (+readonly, -?) in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Generate `FormErrors<CourseForm>` via a mapped type so field renames stay automatically in sync.",
+            "Always rely on \"Manually maintaining a duplicate `CourseFormErrors` interface alongside `CourseForm`\" as the default pattern",
+            "Ignore Mapped Types & Mapping Modifiers (+readonly, -?) constraints during runtime execution",
+            "Replace Mapped Types & Mapping Modifiers (+readonly, -?) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Manually maintaining a duplicate `CourseFormErrors` interface alongside `CourseForm`. Recommended fix: Generate `FormErrors<CourseForm>` via a mapped type so field renames stay automatically in sync."
+        },
+        {
+          "id": "typescript-s10-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Mapped Types, Key Remapping & Template Literal Types",
+          "prompt": "In `{ [K in keyof T as T[K] extends string ? K : never]: T[K] }`, what happens to properties whose value type is `number`?",
+          "options": [
+            "They are excluded completely from the resulting type",
+            "Their value becomes never",
+            "Their key becomes \"never\"",
+            "A compile error occurs"
+          ],
+          "correctIndex": 0,
+          "explanation": "Remapping a key to `never` inside an `as` clause omits that property from the mapped type."
+        },
+        {
+          "id": "typescript-s10-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Mapped Types, Key Remapping & Template Literal Types",
+          "prompt": "When working with Key Remapping (`as`) & Filtering Properties by Value Type in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "`keyof T` can include `symbol`, which cannot appear in template literal types; intersect with `string & K`.",
+            "Always rely on \"Forgetting `string & K` when passing `K` into template literals\" as the default pattern",
+            "Ignore Key Remapping (`as`) & Filtering Properties by Value Type constraints during runtime execution",
+            "Replace Key Remapping (`as`) & Filtering Properties by Value Type with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Forgetting `string & K` when passing `K` into template literals. Recommended fix: `keyof T` can include `symbol`, which cannot appear in template literal types; intersect with `string & K`."
+        },
+        {
+          "id": "typescript-s10-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Mapped Types, Key Remapping & Template Literal Types",
+          "prompt": "What union does `` type Side = `${\"margin\" | \"padding\"}-${\"top\" | \"bottom\"}` `` evaluate to?",
+          "options": [
+            "\"margin-top\" | \"margin-bottom\" | \"padding-top\" | \"padding-bottom\"",
+            "string",
+            "\"margin-padding\" | \"top-bottom\"",
+            "Syntax error"
+          ],
+          "correctIndex": 0,
+          "explanation": "Template literal types compute the Cartesian product of interpolated string literal unions."
+        },
+        {
+          "id": "typescript-s10-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Mapped Types, Key Remapping & Template Literal Types",
+          "prompt": "When working with Template Literal Types & String Manipulation Intrinsics in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Huge union expansions slow down IDE autocomplete and tsc; keep literal combinations bounded.",
+            "Always rely on \"Creating giant Cartesian template literal unions (e.g., 500 x 500 = 250,000 strings)\" as the default pattern",
+            "Ignore Template Literal Types & String Manipulation Intrinsics constraints during runtime execution",
+            "Replace Template Literal Types & String Manipulation Intrinsics with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Creating giant Cartesian template literal unions (e.g., 500 x 500 = 250,000 strings). Recommended fix: Huge union expansions slow down IDE autocomplete and tsc; keep literal combinations bounded."
+        },
+        {
+          "id": "typescript-s10-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Mapped Types, Key Remapping & Template Literal Types",
+          "prompt": "What runtime type does a branded value `const id = \"u1\" as UserId` have in JavaScript?",
+          "options": [
+            "Plain primitive string (\"string\") with zero wrapper object",
+            "An object `{ value: \"u1\", __brand: true }`",
+            "A Symbol",
+            "A class instance"
+          ],
+          "correctIndex": 0,
+          "explanation": "Branded types exist purely at compile time; the runtime value is an untouched primitive string."
+        },
+        {
+          "id": "typescript-s10-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Mapped Types, Key Remapping & Template Literal Types",
+          "prompt": "When working with Branded (Nominal) Types for Domain Safety in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "The brand exists ONLY in the type system; it is undefined at runtime.",
+            "Always rely on \"Trying to read the phantom brand property at runtime (`cid.__brand`)\" as the default pattern",
+            "Ignore Branded (Nominal) Types for Domain Safety constraints during runtime execution",
+            "Replace Branded (Nominal) Types for Domain Safety with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Trying to read the phantom brand property at runtime (`cid.__brand`). Recommended fix: The brand exists ONLY in the type system; it is undefined at runtime."
+        },
+        {
+          "id": "typescript-s10-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Mapped Types, Key Remapping & Template Literal Types",
+          "prompt": "What type does `` type EventName = `on${Capitalize<\"load\" | \"save\">}` `` resolve to?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "type EventName = `on${Capitalize<'load' | 'save'>}`;"
+          },
+          "options": [
+            "\"onLoad\" | \"onSave\"",
+            "\"onload\" | \"onsave\"",
+            "\"ONLOAD\" | \"ONSAVE\"",
+            "string"
+          ],
+          "correctIndex": 0,
+          "explanation": "Capitalize uppercases the first character of each union member cleanly."
+        },
+        {
+          "id": "typescript-s10-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Mapped Types, Key Remapping & Template Literal Types",
+          "prompt": "In `type PickNums<T> = { [K in keyof T as T[K] extends number ? K : never]: T[K] }`, what is `PickNums<{ a: string; b: number }>`?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "type R = PickNums<{ a: string; b: number }>;"
+          },
+          "options": [
+            "{ b: number }",
+            "{ a: never; b: number }",
+            "{ a: string }",
+            "never"
+          ],
+          "correctIndex": 0,
+          "explanation": "Key `a` remaps to `never` and is omitted, leaving `{ b: number }`."
+        }
+      ]
+    },
+    {
+      "sectionId": "typescript-s11",
+      "sectionTitle": "Runtime Boundary Validation & End-to-End Type Safety",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "typescript-s11-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Runtime Boundary Validation & End-to-End Type Safety",
+          "prompt": "Why does TypeScript NOT prevent a runtime crash if an external REST API unexpectedly returns `price: \"free\"` instead of a number?",
+          "options": [
+            "TypeScript types are erased at compile time and do not inspect live network payloads",
+            "fetch() disables TypeScript checking",
+            "TypeScript only checks numbers above 0",
+            "JSON cannot hold numbers"
+          ],
+          "correctIndex": 0,
+          "explanation": "Static types verify source code at build time; runtime boundary parsers are required for external data."
+        },
+        {
+          "id": "typescript-s11-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Runtime Boundary Validation & End-to-End Type Safety",
+          "prompt": "When working with Runtime Validation at Trust Boundaries (Schema-First Typing) in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "If a user has an older localStorage schema, missing fields cause silent runtime crashes; validate and merge defaults safely.",
+            "Always rely on \"Casting `JSON.parse(str) as AppState` without checking keys\" as the default pattern",
+            "Ignore Runtime Validation at Trust Boundaries (Schema-First Typing) constraints during runtime execution",
+            "Replace Runtime Validation at Trust Boundaries (Schema-First Typing) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Casting `JSON.parse(str) as AppState` without checking keys. Recommended fix: If a user has an older localStorage schema, missing fields cause silent runtime crashes; validate and merge defaults safely."
+        },
+        {
+          "id": "typescript-s11-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Runtime Boundary Validation & End-to-End Type Safety",
+          "prompt": "What advantage does returning `Result<User, \"NOT_FOUND\" | \"UNAUTHORIZED\">` have over throwing an Error?",
+          "options": [
+            "The exact failure cases appear in the function’s static signature and callers must narrow `ok` before reading `value`",
+            "It executes without allocating any memory",
+            "It disables try/catch globally",
+            "It automatically retries failed calls"
+          ],
+          "correctIndex": 0,
+          "explanation": "Result<T, E> encodes expected failure modes directly into the type system so callers cannot ignore them."
+        },
+        {
+          "id": "typescript-s11-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Runtime Boundary Validation & End-to-End Type Safety",
+          "prompt": "When working with Typed Result<T, E> Pattern vs Exceptions in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Reserve Result for expected, recoverable domain errors; throw Errors for programmer invariant violations.",
+            "Always rely on \"Wrapping every single one-liner in Result when a crash is genuinely unrecoverable\" as the default pattern",
+            "Ignore Typed Result<T, E> Pattern vs Exceptions constraints during runtime execution",
+            "Replace Typed Result<T, E> Pattern vs Exceptions with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Wrapping every single one-liner in Result when a crash is genuinely unrecoverable. Recommended fix: Reserve Result for expected, recoverable domain errors; throw Errors for programmer invariant violations."
+        },
+        {
+          "id": "typescript-s11-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Runtime Boundary Validation & End-to-End Type Safety",
+          "prompt": "What runtime type does `res.json()` produce for an ISO timestamp `\"2026-05-01T12:00:00Z\"` even if your TS interface says `createdAt: Date`?",
+          "options": [
+            "string (calling .getFullYear() will throw TypeError at runtime)",
+            "Date instance",
+            "number (Unix ms)",
+            "undefined"
+          ],
+          "correctIndex": 0,
+          "explanation": "JSON.parse always yields strings for ISO timestamps; interfaces never convert values at runtime."
+        },
+        {
+          "id": "typescript-s11-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Runtime Boundary Validation & End-to-End Type Safety",
+          "prompt": "When working with Shared Full-Stack Contracts (API Routes, DTOs & Monorepos) in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "JSON.parse produces strings, not Date instances; type JSON DTO timestamps as `string` (ISO-8601).",
+            "Always rely on \"Typing a JSON API response field as `createdAt: Date` without deserializing it\" as the default pattern",
+            "Ignore Shared Full-Stack Contracts (API Routes, DTOs & Monorepos) constraints during runtime execution",
+            "Replace Shared Full-Stack Contracts (API Routes, DTOs & Monorepos) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Typing a JSON API response field as `createdAt: Date` without deserializing it. Recommended fix: JSON.parse produces strings, not Date instances; type JSON DTO timestamps as `string` (ISO-8601)."
+        },
+        {
+          "id": "typescript-s11-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Runtime Boundary Validation & End-to-End Type Safety",
+          "prompt": "Why does checking `const test: string = result;` fail to catch a regression where `result` accidentally becomes `any`?",
+          "options": [
+            "Because `any` is assignable to `string`, so assignment succeeds silently",
+            "Because `const` disables type checking",
+            "Because `string` widens to `any`",
+            "It does catch `any` automatically"
+          ],
+          "correctIndex": 0,
+          "explanation": "Simple assignability checks pass when a value degrades to `any`; strict `Equal<A, B>` type assertions catch `any` regressions."
+        },
+        {
+          "id": "typescript-s11-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Runtime Boundary Validation & End-to-End Type Safety",
+          "prompt": "When working with Type-Level Testing & Compiler Performance Hygiene in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Assignability misses `any` regressions (`any` is assignable to everything!); use strict `Equal<A, B>`.",
+            "Always rely on \"Testing types by only checking assignability (`const x: Target = actual`)\" as the default pattern",
+            "Ignore Type-Level Testing & Compiler Performance Hygiene constraints during runtime execution",
+            "Replace Type-Level Testing & Compiler Performance Hygiene with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Testing types by only checking assignability (`const x: Target = actual`). Recommended fix: Assignability misses `any` regressions (`any` is assignable to everything!); use strict `Equal<A, B>`."
+        },
+        {
+          "id": "typescript-s11-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Runtime Boundary Validation & End-to-End Type Safety",
+          "prompt": "What happens when you compile this strict type test?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "type Expect<T extends true> = T;\ntype Check = Expect<false>;"
+          },
+          "options": [
+            "Compile-time error: Type \"false\" does not satisfy constraint \"true\"",
+            "Compiles cleanly",
+            "Evaluates Check to true",
+            "Throws at runtime"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expect<T extends true> turns a failing type-level test into an immediate compile error."
+        },
+        {
+          "id": "typescript-s11-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Runtime Boundary Validation & End-to-End Type Safety",
+          "prompt": "In `Result<number, string>`, what is the type of `r` in the `else` branch of `if (r.ok)`?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "type Result<T, E> = { ok: true; value: T } | { ok: false; error: E };\nfunction show(r: Result<number, string>) { if (r.ok) return r.value; else return r.error; }"
+          },
+          "options": [
+            "{ ok: false; error: string }",
+            "{ ok: true; value: number }",
+            "Result<number, string>",
+            "unknown"
+          ],
+          "correctIndex": 0,
+          "explanation": "Discriminated narrowing on `r.ok` guarantees the `else` branch holds `{ ok: false; error: string }`."
+        }
+      ]
+    },
+    {
+      "sectionId": "typescript-s12",
+      "sectionTitle": "TypeScript 5+ Modern Patterns & Real-World Architecture",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "typescript-s12-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "TypeScript 5+ Modern Patterns & Real-World Architecture",
+          "prompt": "When does `[Symbol.dispose]()` run for a resource declared with `using res = acquire()` inside a function?",
+          "options": [
+            "Automatically when execution exits the enclosing block—even on return or throw",
+            "Only when garbage collection runs later",
+            "Only when the user calls `res.close()` manually",
+            "At program startup"
+          ],
+          "correctIndex": 0,
+          "explanation": "`using` compiles to a try/finally block that deterministically invokes `[Symbol.dispose]()` on scope exit."
+        },
+        {
+          "id": "typescript-s12-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "TypeScript 5+ Modern Patterns & Real-World Architecture",
+          "prompt": "When working with Explicit Resource Management (`using` & `Symbol.dispose`) in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Ensure your runtime (Node 22+ or polyfill) supports `Symbol.dispose` or check target compatibility.",
+            "Always rely on \"Using `using` without targeting ESNext / polyfilling `Symbol.dispose` in older browsers\" as the default pattern",
+            "Ignore Explicit Resource Management (`using` & `Symbol.dispose`) constraints during runtime execution",
+            "Replace Explicit Resource Management (`using` & `Symbol.dispose`) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using `using` without targeting ESNext / polyfilling `Symbol.dispose` in older browsers. Recommended fix: Ensure your runtime (Node 22+ or polyfill) supports `Symbol.dispose` or check target compatibility."
+        },
+        {
+          "id": "typescript-s12-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "TypeScript 5+ Modern Patterns & Real-World Architecture",
+          "prompt": "What are the two parameters received by a TypeScript 5 standard TC39 method decorator?",
+          "options": [
+            "(targetMethod, context: ClassMethodDecoratorContext)",
+            "(prototype, propertyKey, descriptor)",
+            "(className, methodName)",
+            "(args, returnValue)"
+          ],
+          "correctIndex": 0,
+          "explanation": "TC39 decorators pass the decorated value first and a typed context object second."
+        },
+        {
+          "id": "typescript-s12-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "TypeScript 5+ Modern Patterns & Real-World Architecture",
+          "prompt": "When working with Standard TC39 Decorators in TypeScript 5 in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Legacy and standard decorators have different parameter lists; pick one consistently per tsconfig.",
+            "Always rely on \"Mixing `experimentalDecorators: true` with standard TS 5 decorator signatures\" as the default pattern",
+            "Ignore Standard TC39 Decorators in TypeScript 5 constraints during runtime execution",
+            "Replace Standard TC39 Decorators in TypeScript 5 with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Mixing `experimentalDecorators: true` with standard TS 5 decorator signatures. Recommended fix: Legacy and standard decorators have different parameter lists; pick one consistently per tsconfig."
+        },
+        {
+          "id": "typescript-s12-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "TypeScript 5+ Modern Patterns & Real-World Architecture",
+          "prompt": "Why do TypeScript engineers place `export {};` at the top of a file containing `declare global { interface Window { ... } }`?",
+          "options": [
+            "It marks the file as an ES module so `declare global` augments globals instead of erroring",
+            "It exports all globals to npm",
+            "It disables strict mode for the file",
+            "It makes Window mutable at runtime"
+          ],
+          "correctIndex": 0,
+          "explanation": "`declare global` is only permitted inside module files, and `export {};` marks a file as a module without exporting runtime values."
+        },
+        {
+          "id": "typescript-s12-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "TypeScript 5+ Modern Patterns & Real-World Architecture",
+          "prompt": "When working with Module Augmentation & Global Declarations in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Without an import/export, TypeScript treats the file as a script and WIPES OUT the package’s real types!",
+            "Always rely on \"Writing `declare module \"pkg\"` in a file with NO import/export\" as the default pattern",
+            "Ignore Module Augmentation & Global Declarations constraints during runtime execution",
+            "Replace Module Augmentation & Global Declarations with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing `declare module \"pkg\"` in a file with NO import/export. Recommended fix: Without an import/export, TypeScript treats the file as a script and WIPES OUT the package’s real types!"
+        },
+        {
+          "id": "typescript-s12-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "TypeScript 5+ Modern Patterns & Real-World Architecture",
+          "prompt": "Which migration order minimizes cascading type errors when converting a JavaScript app to TypeScript?",
+          "options": [
+            "Bottom-up: shared types & leaf utilities first, then services, then UI pages",
+            "Top-down: main App entry point first",
+            "Alphabetical order by filename",
+            "Random files with `any` everywhere"
+          ],
+          "correctIndex": 0,
+          "explanation": "Typing leaf utilities and core domain models first gives every upstream consumer accurate types immediately."
+        },
+        {
+          "id": "typescript-s12-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "TypeScript 5+ Modern Patterns & Real-World Architecture",
+          "prompt": "When working with Migrating JavaScript Codebases to Strict TypeScript in TypeScript, which practice correctly prevents a common production bug?",
+          "options": [
+            "Strict-off TypeScript hides null bugs and implicit `any`; aim for `strict: true` cleanly.",
+            "Always rely on \"Enabling `\"strict\": false` permanently after a \"big bang\" rename to `.ts`\" as the default pattern",
+            "Ignore Migrating JavaScript Codebases to Strict TypeScript constraints during runtime execution",
+            "Replace Migrating JavaScript Codebases to Strict TypeScript with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Enabling `\"strict\": false` permanently after a \"big bang\" rename to `.ts`. Recommended fix: Strict-off TypeScript hides null bugs and implicit `any`; aim for `strict: true` cleanly."
+        },
+        {
+          "id": "typescript-s12-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "TypeScript 5+ Modern Patterns & Real-World Architecture",
+          "prompt": "In what order do `using a = res(\"A\"); using b = res(\"B\");` dispose when the block exits?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "{\n  using a = makeRes('A');\n  using b = makeRes('B');\n}"
+          },
+          "options": [
+            "B disposes first, then A (LIFO)",
+            "A disposes first, then B (FIFO)",
+            "Both dispose concurrently in random order",
+            "Neither disposes without an error"
+          ],
+          "correctIndex": 0,
+          "explanation": "Explicit Resource Management disposes resources in reverse declaration order (LIFO)."
+        },
+        {
+          "id": "typescript-s12-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "TypeScript 5+ Modern Patterns & Real-World Architecture",
+          "prompt": "What happens if you write `declare global { interface Window { appId: string } }` in a file with NO `import` or `export`?",
+          "codeSnippet": {
+            "language": "typescript",
+            "code": "declare global { interface Window { appId: string; } }"
+          },
+          "options": [
+            "Compile-time error: Augmentations for the global scope can only be directly nested in external modules",
+            "Compiles cleanly",
+            "Deletes all other Window properties",
+            "Throws a runtime ReferenceError"
+          ],
+          "correctIndex": 0,
+          "explanation": "Add `export {};` so TypeScript recognizes the file as an external module."
+        }
+      ]
+    }
+  ]
+}

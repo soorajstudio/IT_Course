@@ -1,0 +1,31 @@
+{
+  "slug": "css",
+  "order": 2,
+  "title": "CSS",
+  "shortTitle": "CSS3",
+  "area": "Web",
+  "tagline": "Cascade mastery, Flexbox & Grid layout systems, responsive architecture, animations, and modern CSS.",
+  "description": "Master modern CSS from the box model, specificity, and cascade layers through Flexbox, CSS Grid, subgrid, container queries, fluid typography, custom properties, compositor-only animations, and maintainable design systems.",
+  "codeLanguage": "css",
+  "estimatedHours": 20,
+  "prerequisites": [
+    "HTML document structure and semantic tags"
+  ],
+  "whatYoullLearn": [
+    "Predict and control Cascade, Specificity, Inheritance, and @layer ordering",
+    "Build responsive layouts using Flexbox, CSS Grid, auto-fit, and Subgrid",
+    "Architect scalable Light/Dark themes with CSS Custom Properties and color-mix()",
+    "Use Container Queries (@container), :has(), and clamp() fluid typography",
+    "Create jank-free 60fps compositor animations honoring prefers-reduced-motion",
+    "Debug stacking contexts, z-index isolation, and overflow clipping bugs"
+  ],
+  "levelSummaries": {
+    "Beginner": "Selectors, specificity, box model, units, typography, colors, and normal document flow.",
+    "Intermediate": "Flexbox, CSS Grid, positioning, stacking contexts, responsive queries, and transitions.",
+    "Advanced": "Cascade @layer, Container Queries, :has(), custom properties, subgrid, and render performance."
+  },
+  "sectionCount": 12,
+  "lessonCount": 48,
+  "examQuestionCount": 30,
+  "projectTitle": "Dual-Theme SaaS Pricing & Dashboard System in Pure Modern CSS"
+}

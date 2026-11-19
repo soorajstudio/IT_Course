@@ -1,0 +1,77 @@
+{
+  "courseSlug": "html",
+  "title": "Accessible Developer Conference Landing & Registration Page",
+  "estimatedHours": 4,
+  "difficulty": "Beginner to Advanced",
+  "brief": "Build a single-page semantic HTML5 conference site featuring a skip link, landmark layout, accessible schedule data table, responsive speaker gallery using <picture>, native <details> FAQ accordion, native <dialog> ticket confirmation, and a validated registration form with JSON-LD Event metadata.",
+  "requirements": [
+    {
+      "id": "req-1",
+      "text": "Include a valid HTML5 boilerplate with lang, UTF-8 charset, viewport, Open Graph tags, and JSON-LD Event structured data."
+    },
+    {
+      "id": "req-2",
+      "text": "Implement full landmark structure (header, labeled nav, single main, footer) plus a keyboard-visible skip-to-content link."
+    },
+    {
+      "id": "req-3",
+      "text": "Build the conference schedule using a semantic <table> with <caption>, <thead>, <tbody>, and <th scope=\"col|row\">."
+    },
+    {
+      "id": "req-4",
+      "text": "Display speaker portraits with <picture> (WebP + JPEG fallback), explicit width/height, lazy loading, and descriptive alt text."
+    },
+    {
+      "id": "req-5",
+      "text": "Create an exclusive FAQ accordion using native <details name=\"faq\"> and <summary> elements with zero JavaScript."
+    },
+    {
+      "id": "req-6",
+      "text": "Build a registration <form> with explicit <label for>, <fieldset>/<legend>, inputmode=\"numeric\", native validation attributes, and a <dialog> confirmation modal."
+    }
+  ],
+  "steps": [
+    {
+      "stepNumber": 1,
+      "title": "Configure Document Head & SEO",
+      "details": "Create index.html with <!DOCTYPE html>, metadata, canonical URL, Open Graph tags, and a Schema.org Event JSON-LD block."
+    },
+    {
+      "stepNumber": 2,
+      "title": "Build Landmarks & Skip Navigation",
+      "details": "Add the skip link as the first child of <body>, followed by <header>, labeled <nav>, <main id=\"main-content\">, and <footer>."
+    },
+    {
+      "stepNumber": 3,
+      "title": "Author the Schedule Table",
+      "details": "Structure talks into a <table> with <caption>, time slots using <time datetime=\"...\">, and proper scope attributes."
+    },
+    {
+      "stepNumber": 4,
+      "title": "Add Responsive Media & Native FAQ",
+      "details": "Implement <picture> speaker cards and an exclusive <details name=\"conf-faq\"> accordion."
+    },
+    {
+      "stepNumber": 5,
+      "title": "Engineer the Accessible Registration Form",
+      "details": "Wire <label>, <fieldset>/<legend>, autocomplete tokens, required/pattern constraints, and aria-describedby error text."
+    },
+    {
+      "stepNumber": 6,
+      "title": "Add Native <dialog> Confirmation",
+      "details": "Use <dialog> with showModal() and <form method=\"dialog\"> to confirm registration cleanly on the top layer."
+    }
+  ],
+  "referenceSolution": [
+    {
+      "filename": "index.html",
+      "language": "html",
+      "code": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>DevSummit 2026 — Systems &amp; Web Engineering</title>\n    <meta name=\"description\" content=\"Two-day engineering conference covering web standards, databases, and distributed systems.\" />\n    <link rel=\"canonical\" href=\"https://devsummit.example.dev/\" />\n    <meta property=\"og:title\" content=\"DevSummit 2026\" />\n    <meta property=\"og:type\" content=\"website\" />\n    <script type=\"application/ld+json\">\n      {\n        \"@context\": \"https://schema.org\",\n        \"@type\": \"Event\",\n        \"name\": \"DevSummit 2026\",\n        \"startDate\": \"2026-11-20T09:00:00Z\"\n      }\n    </script>\n  </head>\n  <body>\n    <a href=\"#main-content\" class=\"skip-link\">Skip to main content</a>\n    <header>\n      <a href=\"/\">DevSummit</a>\n      <nav aria-label=\"Primary\">\n        <a href=\"#schedule\">Schedule</a>\n        <a href=\"#faq\">FAQ</a>\n        <a href=\"#register\">Register</a>\n      </nav>\n    </header>\n\n    <main id=\"main-content\">\n      <h1>DevSummit 2026</h1>\n      <p>Join engineers on <time datetime=\"2026-11-20\">November 20, 2026</time>.</p>\n\n      <section id=\"schedule\" aria-labelledby=\"schedule-heading\">\n        <h2 id=\"schedule-heading\">Conference Schedule</h2>\n        <table>\n          <caption>Day 1 Technical Sessions</caption>\n          <thead>\n            <tr>\n              <th scope=\"col\">Time</th>\n              <th scope=\"col\">Session</th>\n              <th scope=\"col\">Track</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <th scope=\"row\"><time datetime=\"09:30\">09:30</time></th>\n              <td>Accessibility Tree Internals</td>\n              <td>Web Standards</td>\n            </tr>\n            <tr>\n              <th scope=\"row\"><time datetime=\"11:00\">11:00</time></th>\n              <td>PostgreSQL Query Planning</td>\n              <td>Databases</td>\n            </tr>\n          </tbody>\n        </table>\n      </section>\n\n      <section id=\"faq\" aria-labelledby=\"faq-heading\">\n        <h2 id=\"faq-heading\">Frequently Asked Questions</h2>\n        <details name=\"conf-faq\" open>\n          <summary>Are sessions captioned live?</summary>\n          <p>Yes, every track includes live human captioning and WebVTT transcripts.</p>\n        </details>\n        <details name=\"conf-faq\">\n          <summary>Can I transfer my ticket?</summary>\n          <p>Tickets may be reassigned up to 48 hours before opening keynote.</p>\n        </details>\n      </section>\n\n      <section id=\"register\" aria-labelledby=\"reg-heading\">\n        <h2 id=\"reg-heading\">Register Your Seat</h2>\n        <form id=\"reg-form\">\n          <label for=\"full-name\">Full Name</label>\n          <input id=\"full-name\" name=\"fullName\" type=\"text\" autocomplete=\"name\" required minlength=\"2\" />\n\n          <label for=\"email\">Work Email</label>\n          <input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"email\" required />\n\n          <fieldset>\n            <legend>Pass Type</legend>\n            <label><input type=\"radio\" name=\"pass\" value=\"in-person\" checked /> In-Person</label>\n            <label><input type=\"radio\" name=\"pass\" value=\"remote\" /> Remote Stream</label>\n          </fieldset>\n\n          <button type=\"submit\">Reserve Ticket</button>\n        </form>\n      </section>\n    </main>\n\n    <dialog id=\"confirm-dialog\" aria-labelledby=\"dialog-title\">\n      <form method=\"dialog\">\n        <h2 id=\"dialog-title\">Registration Confirmed</h2>\n        <p id=\"dialog-summary\">Your seat is reserved.</p>\n        <button value=\"ok\">Done</button>\n      </form>\n    </dialog>\n\n    <footer>\n      <p>© 2026 DevSummit Engineering Conference</p>\n    </footer>\n    <script src=\"./register.js\" defer></script>\n  </body>\n</html>"
+    },
+    {
+      "filename": "register.js",
+      "language": "javascript",
+      "code": "const form = document.getElementById('reg-form');\nconst dialog = document.getElementById('confirm-dialog');\nconst summary = document.getElementById('dialog-summary');\n\nform.addEventListener('submit', (event) => {\n  event.preventDefault();\n  if (!form.checkValidity()) {\n    form.reportValidity();\n    return;\n  }\n  const data = new FormData(form);\n  summary.textContent = `Confirmed ${data.get('pass')} pass for ${data.get('fullName')} (${data.get('email')}).`;\n  dialog.showModal();\n  form.reset();\n});"
+    }
+  ]
+}

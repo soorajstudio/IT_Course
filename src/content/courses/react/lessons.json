@@ -1,0 +1,2225 @@
+{
+  "courseSlug": "react",
+  "sections": [
+    {
+      "id": "react-s1",
+      "index": 0,
+      "level": "Beginner",
+      "title": "Components, JSX & Composition",
+      "description": "Build declarative UI trees with pure components, props, children, and fragments.",
+      "lessons": [
+        {
+          "id": "react-s1-l1",
+          "sectionId": "react-s1",
+          "level": "Beginner",
+          "order": 1,
+          "title": "JSX Compilation & Pure Rendering",
+          "durationMin": 12,
+          "summary": "JSX compiles into lightweight plain JS element objects (`jsx(type, props)`), not live DOM nodes.",
+          "explanation": [
+            "JSX compiles into lightweight plain JS element objects (`jsx(type, props)`), not live DOM nodes.",
+            "Components must stay pure during render so identical props and state always produce identical UI, even under StrictMode double-invocation.",
+            "Never mutate props or trigger network requests directly in the component body."
+          ],
+          "codeExample": {
+            "title": "Pure Functional Component",
+            "language": "tsx",
+            "code": "export function CourseBadge({ title, lessons }: { title: string; lessons: number }) {\n  return (\n    <article className=\"rounded-xl border p-4\">\n      <h3>{title}</h3>\n      <p>{lessons} lessons</p>\n    </article>\n  );\n}"
+          },
+          "keyPoints": [
+            "JSX produces plain descriptor objects, not DOM mutations.",
+            "PascalCase distinguishes custom components from HTML tags.",
+            "Use Fragments (`<>...</>`) to avoid unnecessary wrapper divs."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Mutating a prop array during render (`props.items.sort()`)",
+              "fix": "Clone before sorting (`[...props.items].sort()`) to keep renders pure."
+            },
+            {
+              "mistake": "Naming a component in lowercase (`function card()`)",
+              "fix": "JSX treats lowercase names as native HTML tags; always PascalCase components."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why does React StrictMode double-invoke components in dev?",
+              "answer": "To expose impure render logic and side effects early before concurrent features cause bugs."
+            },
+            {
+              "question": "Difference between a React Component and a React Element?",
+              "answer": "A Component is a function/class; an Element is the immutable plain object returned by JSX."
+            }
+          ]
+        },
+        {
+          "id": "react-s1-l2",
+          "sectionId": "react-s1",
+          "level": "Beginner",
+          "order": 2,
+          "title": "Props, Children & Composition",
+          "durationMin": 12,
+          "summary": "Data flows strictly top-down via read-only props; compose flexible shells using `children` and named slot props.",
+          "explanation": [
+            "Data flows strictly top-down via read-only props; compose flexible shells using `children` and named slot props.",
+            "Composition also prevents unnecessary re-renders because `children` JSX created by a parent keeps the same element reference when wrapper state updates.",
+            "Prefer composable primitives accepting `children` over bloated 20-prop monolith components."
+          ],
+          "codeExample": {
+            "title": "Slot-Based Card Composition",
+            "language": "tsx",
+            "code": "export function Card({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {\n  return (\n    <section className=\"rounded-2xl border p-5\">\n      <header className=\"flex justify-between\"><h2>{title}</h2>{action}</header>\n      <div className=\"mt-3\">{children}</div>\n    </section>\n  );\n}"
+          },
+          "keyPoints": [
+            "Props are read-only inputs owned by the parent.",
+            "Children composition avoids deep prop drilling.",
+            "Request parent changes via callback props (`onSelect`, `onSave`)."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Mutating `props.title = \"X\"` directly",
+              "fix": "Treat props as immutable and notify the parent via callback props."
+            },
+            {
+              "mistake": "Adding 15 boolean flags to customize one card",
+              "fix": "Compose sub-elements via `children` and slot props cleanly."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why does React favor Composition over Inheritance?",
+              "answer": "Component composition via `children` and props handles layout and behavior variations without fragile class hierarchies."
+            },
+            {
+              "question": "How does passing `children` help performance?",
+              "answer": "The parent creates the `children` element, so wrapper-local state changes reuse the identical `children` reference."
+            }
+          ]
+        },
+        {
+          "id": "react-s1-l3",
+          "sectionId": "react-s1",
+          "level": "Beginner",
+          "order": 3,
+          "title": "Conditional Rendering & The Zero-Leak Pitfall",
+          "durationMin": 12,
+          "summary": "Use ternaries, early returns, and boolean `&&` expressions for conditional UI.",
+          "explanation": [
+            "Use ternaries, early returns, and boolean `&&` expressions for conditional UI.",
+            "In JSX, `false`, `null`, and `undefined` render nothing—but numeric `0` renders a visible `\"0\"` character!",
+            "Always write `items.length > 0 && <List />` instead of `items.length && <List />`."
+          ],
+          "codeExample": {
+            "title": "Safe Numeric Guard in JSX",
+            "language": "tsx",
+            "code": "export function UnreadBadge({ count }: { count: number }) {\n  if (count < 0) return null;\n  return <div>Inbox {count > 0 && <span>({count})</span>}</div>;\n}"
+          },
+          "keyPoints": [
+            "null, undefined, true, and false render nothing.",
+            "0 and NaN render as literal text nodes.",
+            "Early returns flatten loading, error, and empty states cleanly."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Writing `{items.length && <List />}`",
+              "fix": "When empty, `0 && ...` renders `\"0\"` on screen; compare `items.length > 0`."
+            },
+            {
+              "mistake": "Stacking 4 nested ternaries in JSX",
+              "fix": "Extract a helper component or early-return branches."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why does `{0 && <Badge />}` print `\"0\"` in React?",
+              "answer": "JS short-circuits `&&` to return `0`, and React renders numbers as text nodes."
+            },
+            {
+              "question": "When is an early return cleaner than inline ternaries?",
+              "answer": "For top-level loading, error, and empty page states."
+            }
+          ]
+        },
+        {
+          "id": "react-s1-l4",
+          "sectionId": "react-s1",
+          "level": "Beginner",
+          "order": 4,
+          "title": "Lists & Stable Key Reconciliation",
+          "durationMin": 12,
+          "summary": "Keys let React match list items across inserts, deletions, and reorders to preserve state and minimize DOM edits.",
+          "explanation": [
+            "Keys let React match list items across inserts, deletions, and reorders to preserve state and minimize DOM edits.",
+            "Using array index as a `key` on mutable lists corrupts input focus and checkbox states when items shift indices.",
+            "Always key items by a stable unique entity ID (`course.slug`, `lesson.id`), never `Math.random()`."
+          ],
+          "codeExample": {
+            "title": "Stable Entity Keys in Lists",
+            "language": "tsx",
+            "code": "export function LessonList({ lessons }: { lessons: { id: string; title: string }[] }) {\n  return <ul>{lessons.map((l) => <li key={l.id}>{l.title}</li>)}</ul>;\n}"
+          },
+          "keyPoints": [
+            "Keys must be unique among siblings, not globally.",
+            "Never use `Math.random()` as a key—it remounts on every render.",
+            "Intentionally changing a component’s `key` cleanly resets all its local state."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Using `key={index}` on a list with delete/sort/inputs",
+              "fix": "Use stable record IDs so state stays bound to the right item."
+            },
+            {
+              "mistake": "Using `key={Math.random()}`",
+              "fix": "Destroys DOM nodes and input focus on every single render."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why is `key={index}` harmful on reorderable lists with inputs?",
+              "answer": "Deleting item 0 shifts old item 1 into key 0, reusing the wrong DOM input state."
+            },
+            {
+              "question": "When is changing a `key` prop intentionally useful?",
+              "answer": "Resetting a form or quiz (`<Quiz key={sectionId} />`) cleanly when switching records."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "react-s2",
+      "index": 1,
+      "level": "Beginner",
+      "title": "State, Events & Immutable Updates",
+      "description": "Master useState snapshots, functional updaters, immutable updates, and derived state.",
+      "lessons": [
+        {
+          "id": "react-s2-l1",
+          "sectionId": "react-s2",
+          "level": "Beginner",
+          "order": 1,
+          "title": "useState Snapshots & Functional Updaters",
+          "durationMin": 12,
+          "summary": "State acts as a frozen snapshot per render; `setState` schedules the next render rather than mutating the current variable.",
+          "explanation": [
+            "State acts as a frozen snapshot per render; `setState` schedules the next render rather than mutating the current variable.",
+            "React 18+ batches state updates automatically even inside `setTimeout` and Promises; pass `(prev) => prev + 1` whenever updates depend on prior state.",
+            "Pass a lazy initializer `useState(() => readStorage())` so expensive reads run once on mount."
+          ],
+          "codeExample": {
+            "title": "Batched Functional Updaters",
+            "language": "tsx",
+            "code": "import { useState } from 'react';\nexport function Counter() {\n  const [n, setN] = useState(0);\n  return <button onClick={() => { setN((x) => x + 1); setN((x) => x + 1); }}>Count: {n}</button>;\n}"
+          },
+          "keyPoints": [
+            "State variables stay constant within a render’s closure.",
+            "Functional updaters `(prev) => next` chain cleanly inside batched updates.",
+            "Lazy initializers skip expensive computation on re-renders."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Calling `setN(n + 1); setN(n + 1);` expecting +2",
+              "fix": "Both read the same snapshot `n`; use functional updaters `setN((x) => x + 1)`."
+            },
+            {
+              "mistake": "Calling `useState(parseHugeJson())` directly",
+              "fix": "Wrap in an arrow `useState(() => parseHugeJson())` so it runs only once."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why does `console.log(n)` right after `setN(n + 1)` log the old value?",
+              "answer": "`n` is a const snapshot for the active render; the new value arrives on the next render."
+            },
+            {
+              "question": "What does React 18 Automatic Batching do?",
+              "answer": "Groups multiple `setState` calls—even inside async callbacks and timers—into a single re-render."
+            }
+          ]
+        },
+        {
+          "id": "react-s2-l2",
+          "sectionId": "react-s2",
+          "level": "Beginner",
+          "order": 2,
+          "title": "Immutable Object & Array Updates",
+          "durationMin": 12,
+          "summary": "React checks state equality via `Object.is`; mutating objects or arrays in place preserves the reference and skips re-rendering.",
+          "explanation": [
+            "React checks state equality via `Object.is`; mutating objects or arrays in place preserves the reference and skips re-rendering.",
+            "Use object spread (`{ ...prev, done: true }`) and non-mutating array operations (`map`, `filter`, `[...arr, item]`, `toSorted`).",
+            "Keep normalized flat maps (`Record<string, Progress>`) so immutable updates stay shallow and readable."
+          ],
+          "codeExample": {
+            "title": "Immutable Record Update",
+            "language": "tsx",
+            "code": "setScores((prev) => ({\n  ...prev,\n  [sectionId]: Math.max(prev[sectionId] ?? 0, score),\n}));"
+          },
+          "keyPoints": [
+            "Never call `.push()`, `.splice()`, or `.sort()` directly on React state.",
+            "`Object.is(prev, next)` must be false for React to commit updates.",
+            "Shallow-copy every object along the modified nested path."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Mutating `items.push(x); setItems(items);`",
+              "fix": "Reference didn’t change so React bails out; write `setItems((prev) => [...prev, x])`."
+            },
+            {
+              "mistake": "Copying only the top object while mutating a nested array",
+              "fix": "Copy both the outer object and the modified inner array cleanly."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why does mutating state in place fail to trigger a re-render?",
+              "answer": "React compares previous and next references using `Object.is`, which returns `true` for the mutated same reference."
+            },
+            {
+              "question": "Which array methods are safe for React state updates?",
+              "answer": "`map`, `filter`, `slice`, `concat`, spread, and ES2023 `toSorted`/`toReversed`/`with`."
+            }
+          ]
+        },
+        {
+          "id": "react-s2-l3",
+          "sectionId": "react-s2",
+          "level": "Beginner",
+          "order": 3,
+          "title": "Derived State & Lifting State Up",
+          "durationMin": 12,
+          "summary": "Never store values in `useState` that can be computed directly from existing props or state during render.",
+          "explanation": [
+            "Never store values in `useState` that can be computed directly from existing props or state during render.",
+            "When sibling components need shared state, lift it to their closest common ancestor and pass state + update callbacks down.",
+            "Store minimal canonical IDs (`selectedSlug`) instead of duplicating whole objects in state."
+          ],
+          "codeExample": {
+            "title": "Derived Filter During Render",
+            "language": "tsx",
+            "code": "export function FilterList({ items }: { items: string[] }) {\n  const [q, setQ] = useState('');\n  const matches = items.filter((i) => i.toLowerCase().includes(q.toLowerCase()));\n  return <><input value={q} onChange={(e) => setQ(e.target.value)} /><p>{matches.length} found</p></>;\n}"
+          },
+          "keyPoints": [
+            "Derived values stay 100% in sync with zero extra render passes.",
+            "Lifting state up establishes a single source of truth.",
+            "Avoid copying props into state via `useEffect`."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Syncing `filteredItems` in `useState` via `useEffect`",
+              "fix": "Triggers a redundant stale render; derive directly during render."
+            },
+            {
+              "mistake": "Duplicating an entire `activeCourse` object in state",
+              "fix": "Store `activeSlug` and derive the course from your catalog list."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why is mirroring derived state via `useEffect` an anti-pattern?",
+              "answer": "It renders stale UI first, then runs an extra effect and second render, while risking synchronization bugs."
+            },
+            {
+              "question": "What is Lifting State Up?",
+              "answer": "Moving shared state to the lowest common parent of sibling components that need synchronized data."
+            }
+          ]
+        },
+        {
+          "id": "react-s2-l4",
+          "sectionId": "react-s2",
+          "level": "Beginner",
+          "order": 4,
+          "title": "Controlled vs Uncontrolled Forms",
+          "durationMin": 12,
+          "summary": "Controlled inputs bind `value` + `onChange` to state for live feedback; uncontrolled inputs read values on submit via `new FormData(e.currentTarget)`.",
+          "explanation": [
+            "Controlled inputs bind `value` + `onChange` to state for live feedback; uncontrolled inputs read values on submit via `new FormData(e.currentTarget)`.",
+            "Always initialize controlled text state to `\"\"` (never `undefined`) and handle submission on `<form onSubmit>` with `e.preventDefault()`.",
+            "Pair every input with `<label htmlFor=\"...\">` for accessible click targets and screen readers."
+          ],
+          "codeExample": {
+            "title": "Accessible Controlled Form",
+            "language": "tsx",
+            "code": "export function NameForm({ onSave }: { onSave: (n: string) => void }) {\n  const [name, setName] = useState('');\n  return (\n    <form onSubmit={(e) => { e.preventDefault(); if (name.trim()) onSave(name.trim()); }}>\n      <label htmlFor=\"u-name\">Name</label>\n      <input id=\"u-name\" value={name} onChange={(e) => setName(e.target.value)} required />\n      <button type=\"submit\">Save</button>\n    </form>\n  );\n}"
+          },
+          "keyPoints": [
+            "Initialize controlled inputs to `\"\"`, never `undefined`.",
+            "Use `<form onSubmit>` so Enter key submission works natively.",
+            "Use `FormData` for zero-rerender submit-only forms."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Passing `value={user.bio}` when `bio` starts `undefined`",
+              "fix": "Triggers the uncontrolled-to-controlled warning; write `value={user.bio ?? \"\"}`."
+            },
+            {
+              "mistake": "Using `onClick` on `<button>` instead of `<form onSubmit>`",
+              "fix": "Breaks native Enter-key form submission and HTML5 constraint validation."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "What triggers React’s uncontrolled-to-controlled input warning?",
+              "answer": "Rendering an input with `value={undefined}` initially and later changing `value` to a string."
+            },
+            {
+              "question": "When is `FormData` better than controlled `useState` inputs?",
+              "answer": "On large forms where you only validate/read fields upon submission, avoiding re-renders per keystroke."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "react-s3",
+      "index": 2,
+      "level": "Beginner",
+      "title": "Effects, Refs & Rules of Hooks",
+      "description": "Synchronize with external systems safely via useEffect, use refs cleanly, and avoid hook-order bugs.",
+      "lessons": [
+        {
+          "id": "react-s3-l1",
+          "sectionId": "react-s3",
+          "level": "Beginner",
+          "order": 1,
+          "title": "useEffect Synchronization & Cleanup",
+          "durationMin": 12,
+          "summary": "`useEffect` synchronizes React with external systems (DOM listeners, timers, CodeMirror, `document.title`)—not data transformations or click responses.",
+          "explanation": [
+            "`useEffect` synchronizes React with external systems (DOM listeners, timers, CodeMirror, `document.title`)—not data transformations or click responses.",
+            "Effects run after paint; return a cleanup function to detach listeners and clear timers before the next run or unmount.",
+            "Always keep dependency arrays honest instead of silencing `exhaustive-deps`."
+          ],
+          "codeExample": {
+            "title": "Window Listener with Cleanup",
+            "language": "tsx",
+            "code": "useEffect(() => {\n  const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };\n  window.addEventListener('keydown', onKey);\n  return () => window.removeEventListener('keydown', onKey);\n}, [onClose]);"
+          },
+          "keyPoints": [
+            "Effects run after DOM commit and browser paint.",
+            "Cleanup runs both before dependency re-runs and on unmount.",
+            "Handle user actions in event handlers, not effects."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Omitting changing variables from the dependency array",
+              "fix": "Creates stale closures reading outdated props/state."
+            },
+            {
+              "mistake": "Triggering POST mutations in `useEffect` when a flag changes",
+              "fix": "Run mutations directly in `onSubmit` / `onClick` handlers."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "When does a `useEffect` cleanup function run?",
+              "answer": "Right before the effect re-runs after a dependency change AND when the component unmounts."
+            },
+            {
+              "question": "Why does StrictMode run mount -> cleanup -> remount in dev?",
+              "answer": "To catch missing teardown logic and leaked subscriptions early."
+            }
+          ]
+        },
+        {
+          "id": "react-s3-l2",
+          "sectionId": "react-s3",
+          "level": "Beginner",
+          "order": 2,
+          "title": "Race-Free Async Fetching in Effects",
+          "durationMin": 12,
+          "summary": "Rapidly switching `courseSlug` can resolve earlier slow requests AFTER newer fast ones—overwriting fresh data with stale results!",
+          "explanation": [
+            "Rapidly switching `courseSlug` can resolve earlier slow requests AFTER newer fast ones—overwriting fresh data with stale results!",
+            "Guard every async effect with `let cancelled = false` or an `AbortController` aborted inside the cleanup callback.",
+            "Never write `useEffect(async () => ...)` directly because async functions return a Promise instead of a cleanup function."
+          ],
+          "codeExample": {
+            "title": "Cancellation-Safe Course Loader",
+            "language": "tsx",
+            "code": "useEffect(() => {\n  let cancelled = false;\n  loadCourse(slug).then((data) => { if (!cancelled) setCourse(data); });\n  return () => { cancelled = true; };\n}, [slug]);"
+          },
+          "keyPoints": [
+            "Never pass an `async` function directly to `useEffect`.",
+            "Use `AbortController` or a `cancelled` flag to discard stale responses.",
+            "Always handle loading, error, and empty states cleanly."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Writing `useEffect(async () => { ... }, [id])`",
+              "fix": "Define an inner async helper or `.then()` chain so the effect returns a synchronous cleanup function."
+            },
+            {
+              "mistake": "Ignoring out-of-order fetch completions when params change quickly",
+              "fix": "Abort or ignore stale responses in cleanup."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why is `useEffect(async () => ...)` invalid?",
+              "answer": "Async functions return a Promise, whereas `useEffect` only accepts `void` or a synchronous cleanup callback."
+            },
+            {
+              "question": "How do you prevent race conditions when fetching on `slug` changes?",
+              "answer": "Create an `AbortController` (or boolean `cancelled` flag) inside the effect and abort/set it inside cleanup."
+            }
+          ]
+        },
+        {
+          "id": "react-s3-l3",
+          "sectionId": "react-s3",
+          "level": "Beginner",
+          "order": 3,
+          "title": "useRef for DOM Nodes & Mutable Handles",
+          "durationMin": 12,
+          "summary": "`useRef(init)` creates a persistent `{ current }` container across renders whose mutation NEVER triggers a re-render.",
+          "explanation": [
+            "`useRef(init)` creates a persistent `{ current }` container across renders whose mutation NEVER triggers a re-render.",
+            "Use refs for imperative DOM calls (`.focus()`, `.scrollIntoView()`) and non-visual mutable handles (interval IDs, editor instances).",
+            "Never read or write `ref.current` during render; touch refs in effects and event handlers."
+          ],
+          "codeExample": {
+            "title": "Focusing an Input with useRef",
+            "language": "tsx",
+            "code": "const inputRef = useRef<HTMLInputElement>(null);\n<button onClick={() => inputRef.current?.focus()}>Search</button>"
+          },
+          "keyPoints": [
+            "Mutating `ref.current` never causes a re-render.",
+            "Use `useState` for rendered UI data; `useRef` for imperative handles.",
+            "DOM refs populate after commit."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Storing a displayed score inside `useRef` expecting UI updates",
+              "fix": "Use `useState` for anything shown in JSX."
+            },
+            {
+              "mistake": "Reading `ref.current.clientWidth` directly inside render body",
+              "fix": "Read DOM measurements in `useLayoutEffect` or event handlers."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Difference between `useState` and `useRef`?",
+              "answer": "Changing `useState` triggers a re-render with immutable snapshots; mutating `useRef.current` is synchronous and never re-renders."
+            },
+            {
+              "question": "How do you type a DOM input ref in TypeScript?",
+              "answer": "`useRef<HTMLInputElement>(null)`."
+            }
+          ]
+        },
+        {
+          "id": "react-s3-l4",
+          "sectionId": "react-s3",
+          "level": "Beginner",
+          "order": 4,
+          "title": "Rules of Hooks & Fiber Hook Lists",
+          "durationMin": 12,
+          "summary": "React identifies hooks strictly by call order inside a linked list on the component’s Fiber node.",
+          "explanation": [
+            "React identifies hooks strictly by call order inside a linked list on the component’s Fiber node.",
+            "Therefore hooks must ALWAYS run unconditionally at the top level—never inside `if`, `for`, callbacks, or after an early `return`.",
+            "Move conditions inside the hook body (`useEffect(() => { if (!active) return; ... })`)."
+          ],
+          "codeExample": {
+            "title": "Unconditional Top-Level Hooks",
+            "language": "tsx",
+            "code": "export function Timer({ active }: { active: boolean }) {\n  const [sec, setSec] = useState(0);\n  useEffect(() => {\n    if (!active) return;\n    const id = setInterval(() => setSec((s) => s + 1), 1000);\n    return () => clearInterval(id);\n  }, [active]);\n  return <span>{sec}s</span>;\n}"
+          },
+          "keyPoints": [
+            "Hook order must be identical across every render.",
+            "Never call hooks after an early `if (!data) return null;`.",
+            "Custom hooks must start with `use` for linter verification."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Placing `useState` after `if (loading) return <Spinner />;`",
+              "fix": "Call all hooks at the top before any conditional `return`."
+            },
+            {
+              "mistake": "Calling hooks inside `.map()`",
+              "fix": "Extract each item into a child component with its own top-level hooks."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why does React forbid conditional hook calls?",
+              "answer": "React stores hook states in a positional linked list on the Fiber; skipping a hook shifts every subsequent hook’s state slot."
+            },
+            {
+              "question": "How do you run an effect conditionally?",
+              "answer": "Call `useEffect` unconditionally and return early inside its callback when inactive."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "react-s4",
+      "index": 3,
+      "level": "Beginner",
+      "title": "Custom Hooks, Routing, Error Boundaries & Portals",
+      "description": "Share stateful logic via custom hooks and structure resilient multi-page SPAs.",
+      "lessons": [
+        {
+          "id": "react-s4-l1",
+          "sectionId": "react-s4",
+          "level": "Beginner",
+          "order": 1,
+          "title": "Authoring Reusable Custom Hooks",
+          "durationMin": 12,
+          "summary": "Custom hooks (`use*`) compose built-in hooks to share stateful behavior without wrapper-component nesting.",
+          "explanation": [
+            "Custom hooks (`use*`) compose built-in hooks to share stateful behavior without wrapper-component nesting.",
+            "Crucially, custom hooks share LOGIC, NOT state—every caller gets its own completely isolated state slots.",
+            "Only prefix a helper with `use` if it actually calls React hooks internally."
+          ],
+          "codeExample": {
+            "title": "useDebouncedValue Custom Hook",
+            "language": "tsx",
+            "code": "export function useDebouncedValue<T>(value: T, ms = 200): T {\n  const [debounced, setDebounced] = useState(value);\n  useEffect(() => {\n    const t = setTimeout(() => setDebounced(value), ms);\n    return () => clearTimeout(t);\n  }, [value, ms]);\n  return debounced;\n}"
+          },
+          "keyPoints": [
+            "Custom hooks isolate independent state per calling component.",
+            "Keep inputs minimal and return tuples (2 items) or objects (3+ items).",
+            "Plain utilities without hooks should NOT start with `use`."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Expecting two components calling `useTimer()` to share the same seconds value",
+              "fix": "Lift state up or use Context to share state; custom hooks share logic only."
+            },
+            {
+              "mistake": "Naming a pure formatter `useFormatDate`",
+              "fix": "Plain helpers have no hook restrictions and work anywhere."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Do two components calling the same custom hook share state?",
+              "answer": "No—each component gets its own independent hook state."
+            },
+            {
+              "question": "Why must custom hooks begin with `use`?",
+              "answer": "So React’s ESLint plugin enforces Rules of Hooks inside them automatically."
+            }
+          ]
+        },
+        {
+          "id": "react-s4-l2",
+          "sectionId": "react-s4",
+          "level": "Beginner",
+          "order": 2,
+          "title": "React Router: Nested Layouts, Params & Search Params",
+          "durationMin": 12,
+          "summary": "React Router maps URLs to nested `<Route>` trees using `<Outlet />`, `useParams()`, and `useSearchParams()`.",
+          "explanation": [
+            "React Router maps URLs to nested `<Route>` trees using `<Outlet />`, `useParams()`, and `useSearchParams()`.",
+            "Use `<Link>` / `<NavLink>` instead of `<a href>` for internal routes so navigation happens instantly without reloading the page.",
+            "Store catalog search and filter criteria in `useSearchParams` so URLs are shareable and bookmarkable."
+          ],
+          "codeExample": {
+            "title": "Nested Layout with Outlet & useParams",
+            "language": "tsx",
+            "code": "import { Routes, Route, Outlet, useParams, Link } from 'react-router-dom';\nfunction Shell() { return <div><nav><Link to=\"/courses\">Catalog</Link></nav><Outlet /></div>; }\nfunction Detail() { const { slug } = useParams(); return <h1>{slug}</h1>; }"
+          },
+          "keyPoints": [
+            "`<Outlet />` renders matched child routes inside persistent shells.",
+            "`<NavLink>` exposes `isActive` for active navigation styling.",
+            "Always define a `<Route path=\"*\" element={<NotFound />} />` fallback."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Using `<a href=\"/courses\">` for internal SPA navigation",
+              "fix": "Triggers full browser reloads; use `<Link to=\"/courses\">`."
+            },
+            {
+              "mistake": "Forgetting SPA `index.html` fallback on static hosts",
+              "fix": "Direct deep links return 404 on refresh unless routed to `index.html`."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "What is the difference between `<Link>` and `<NavLink>`?",
+              "answer": "`<NavLink>` knows whether its route is currently active and passes `{ isActive }` to className/style callbacks."
+            },
+            {
+              "question": "What does `<Outlet />` render?",
+              "answer": "The matched nested child `<Route>` element inside a parent layout route."
+            }
+          ]
+        },
+        {
+          "id": "react-s4-l3",
+          "sectionId": "react-s4",
+          "level": "Beginner",
+          "order": 3,
+          "title": "Error Boundaries & Graceful Recovery",
+          "durationMin": 12,
+          "summary": "An Error Boundary class component (`getDerivedStateFromError` + `componentDidCatch`) prevents a single render crash from blanking the whole application.",
+          "explanation": [
+            "An Error Boundary class component (`getDerivedStateFromError` + `componentDidCatch`) prevents a single render crash from blanking the whole application.",
+            "Error Boundaries catch render and lifecycle exceptions in child trees—NOT errors inside event handlers or async callbacks (use `try/catch` there).",
+            "Always provide a clear recovery button (Retry / Home) in the fallback UI."
+          ],
+          "codeExample": {
+            "title": "Minimal Production Error Boundary",
+            "language": "tsx",
+            "code": "export class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {\n  state = { hasError: false };\n  static getDerivedStateFromError() { return { hasError: true }; }\n  render() {\n    return this.state.hasError ? <button onClick={() => this.setState({ hasError: false })}>Retry</button> : this.props.children;\n  }\n}"
+          },
+          "keyPoints": [
+            "Catches render-phase errors in descendant trees cleanly.",
+            "Does NOT catch `onClick` or async `setTimeout` throws.",
+            "Pair with lazy routes to handle failed chunk downloads gracefully."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Expecting an Error Boundary to catch an error thrown inside `onClick`",
+              "fix": "Catch event handler errors explicitly with `try/catch`."
+            },
+            {
+              "mistake": "Shipping an app with zero Error Boundaries",
+              "fix": "Wrap your root router and complex widgets (like code editors) in Error Boundaries."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Which errors do React Error Boundaries NOT catch?",
+              "answer": "Event handler errors, async callbacks/Promises, SSR errors, and errors thrown by the boundary itself."
+            },
+            {
+              "question": "Why is `getDerivedStateFromError` static?",
+              "answer": "It runs purely during render to transition to fallback state without touching `this` or side effects."
+            }
+          ]
+        },
+        {
+          "id": "react-s4-l4",
+          "sectionId": "react-s4",
+          "level": "Beginner",
+          "order": 4,
+          "title": "Portals & Accessible Overlay Modals",
+          "durationMin": 12,
+          "summary": "`createPortal(node, document.body)` mounts modals/toasts at the top of the DOM—escaping `overflow: hidden` and `z-index` clipping—while preserving React Context and event bubbling!",
+          "explanation": [
+            "`createPortal(node, document.body)` mounts modals/toasts at the top of the DOM—escaping `overflow: hidden` and `z-index` clipping—while preserving React Context and event bubbling!",
+            "Accessible overlays support `Escape` dismissal, `role=\"dialog\"` + `aria-modal=\"true\"`, and focus restoration.",
+            "Remember that synthetic clicks inside a Portal still bubble up the REACT component hierarchy."
+          ],
+          "codeExample": {
+            "title": "Portal Modal Escape Hatch",
+            "language": "tsx",
+            "code": "import { createPortal } from 'react-dom';\nexport function Modal({ open, children }: { open: boolean; children: React.ReactNode }) {\n  return open ? createPortal(<div role=\"dialog\" aria-modal=\"true\">{children}</div>, document.body) : null;\n}"
+          },
+          "keyPoints": [
+            "Escapes ancestor `overflow: hidden` and `transform` stacking traps.",
+            "Preserves React Context and synthetic event bubbling intact.",
+            "Native `<dialog>` with `.showModal()` provides built-in top-layer behavior."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Assuming Portal children lose access to ancestor React Context",
+              "fix": "Portals stay connected to the React Fiber tree, so Context works seamlessly."
+            },
+            {
+              "mistake": "Mounting fixed modals inside transformed cards without a Portal",
+              "fix": "CSS `transform` traps `position: fixed`; mount via Portal or `<dialog>`."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Do React events from a Portal bubble to the React parent component?",
+              "answer": "Yes—React synthetic events follow the React component tree, not the physical DOM hierarchy."
+            },
+            {
+              "question": "Why do modals clip inside `overflow: hidden` cards without Portals?",
+              "answer": "DOM descendants inherit ancestor clipping unless mounted at `document.body` via `createPortal` or the browser top layer via `<dialog>.showModal()`."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "react-s5",
+      "index": 4,
+      "level": "Intermediate",
+      "title": "Context API, useReducer & Scalable State",
+      "description": "Eliminate prop drilling with Context, model state machines with useReducer, and build compound components.",
+      "lessons": [
+        {
+          "id": "react-s5-l1",
+          "sectionId": "react-s5",
+          "level": "Intermediate",
+          "order": 1,
+          "title": "Context API & Memoized Providers",
+          "durationMin": 16,
+          "summary": "Context shares cross-cutting state (theme, user, progress) across deep trees without prop drilling.",
+          "explanation": [
+            "Context shares cross-cutting state (theme, user, progress) across deep trees without prop drilling.",
+            "Every consumer calling `useContext(Ctx)` re-renders whenever the Provider `value` reference changes—so memoize Provider values with `useMemo`!",
+            "Wrap `useContext` in a custom `useApp()` hook that throws clearly outside the Provider."
+          ],
+          "codeExample": {
+            "title": "Non-Null Memoized Context Provider",
+            "language": "tsx",
+            "code": "const ThemeCtx = createContext<{ dark: boolean; toggle: () => void } | null>(null);\nexport function ThemeProvider({ children }: { children: React.ReactNode }) {\n  const [dark, setDark] = useState(false);\n  const val = useMemo(() => ({ dark, toggle: () => setDark((d) => !d) }), [dark]);\n  return <ThemeCtx.Provider value={val}>{children}</ThemeCtx.Provider>;\n}"
+          },
+          "keyPoints": [
+            "Memoize Provider `value` to avoid pointless consumer re-renders.",
+            "Every consumer re-renders on any Provider value identity change.",
+            "Wrap in a custom hook for clean non-null TypeScript ergonomics."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Passing `<Ctx.Provider value={{ a, b }}>` inline without `useMemo`",
+              "fix": "Creates a fresh object every parent render, re-rendering every consumer."
+            },
+            {
+              "mistake": "Putting high-frequency search input text into RootContext",
+              "fix": "Keep ephemeral UI state local or split Contexts cleanly."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why can one giant AppContext cause performance issues?",
+              "answer": "Changing any single property gives the Provider a new object reference, re-rendering EVERY consumer even if it only reads untouched fields."
+            },
+            {
+              "question": "How do you prevent over-rendering with Context?",
+              "answer": "Split fast vs slow contexts, separate State from Dispatch, memoize Provider values, or use a selector store."
+            }
+          ]
+        },
+        {
+          "id": "react-s5-l2",
+          "sectionId": "react-s5",
+          "level": "Intermediate",
+          "order": 2,
+          "title": "useReducer for Pure Testable State Machines",
+          "durationMin": 16,
+          "summary": "`useReducer` centralizes multi-field transitions (such as a timed exam or multi-step wizard) into one pure function `(state, action) => nextState`.",
+          "explanation": [
+            "`useReducer` centralizes multi-field transitions (such as a timed exam or multi-step wizard) into one pure function `(state, action) => nextState`.",
+            "React guarantees `dispatch` keeps a permanently stable function identity across renders—ideal for Context and memoized children.",
+            "Extract reducers to standalone `.ts` modules so they can be unit-tested with `node:test` in milliseconds."
+          ],
+          "codeExample": {
+            "title": "Pure Exam Reducer",
+            "language": "tsx",
+            "code": "type Action = { type: 'answer'; id: string; idx: number } | { type: 'submit' };\nexport function examReducer(s: { answers: Record<string, number>; done: boolean }, a: Action) {\n  if (a.type === 'answer') return { ...s, answers: { ...s.answers, [a.id]: a.idx } };\n  return { ...s, done: true };\n}"
+          },
+          "keyPoints": [
+            "Reducers are pure and 100% unit-testable outside React.",
+            "`dispatch` never changes reference identity across renders.",
+            "Discriminated action unions make invalid transitions impossible."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Mutating `state.answers[id] = idx` inside a reducer",
+              "fix": "Always return new shallow-copied objects immutably."
+            },
+            {
+              "mistake": "Calling `fetch()` inside a reducer",
+              "fix": "Keep reducers pure; trigger network I/O in event handlers or effects."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "When is `useReducer` better than several `useState` calls?",
+              "answer": "When one action updates multiple interdependent fields or when you want pure testable state transitions and stable `dispatch`."
+            },
+            {
+              "question": "Does `dispatch` ever change identity between renders?",
+              "answer": "No—React guarantees `dispatch` is stable for the component’s entire lifetime."
+            }
+          ]
+        },
+        {
+          "id": "react-s5-l3",
+          "sectionId": "react-s5",
+          "level": "Intermediate",
+          "order": 3,
+          "title": "State Colocation & Splitting State vs Dispatch Contexts",
+          "durationMin": 16,
+          "summary": "Colocate state as close to its consumers as possible, store filter/search state in URL searchParams, and separate StateContext from DispatchContext.",
+          "explanation": [
+            "Colocate state as close to its consumers as possible, store filter/search state in URL searchParams, and separate StateContext from DispatchContext.",
+            "When action-only buttons consume only `DispatchContext`, state updates never cause those buttons to re-render!",
+            "Categorize state intentionally: Local UI, URL state, Server Cache, and Global Client state."
+          ],
+          "codeExample": {
+            "title": "Split State & Dispatch Contexts",
+            "language": "tsx",
+            "code": "const CountCtx = createContext(0);\nconst DispatchCtx = createContext<React.Dispatch<{ type: 'inc' }> | null>(null);\nexport function IncBtn() {\n  const dispatch = useContext(DispatchCtx)!;\n  return <button onClick={() => dispatch({ type: 'inc' })}>+1</button>;\n}"
+          },
+          "keyPoints": [
+            "Colocating state minimizes the subtree affected by updates.",
+            "URL searchParams make filters bookmarkable and refresh-safe.",
+            "Splitting State and Dispatch eliminates re-renders on write-only buttons."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Hoisting local dropdown open state into global Context",
+              "fix": "Keep ephemeral toggle state inside the dropdown component itself."
+            },
+            {
+              "mistake": "Putting both changing state and stable actions in one Context when many action-only controls exist",
+              "fix": "Split into two Contexts so action-only controls stay static."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why does splitting StateContext and DispatchContext reduce re-renders?",
+              "answer": "Because `dispatch` never changes reference, consumers of `DispatchContext` never re-render when `StateContext` updates."
+            },
+            {
+              "question": "Why put catalog filters in `useSearchParams` instead of `useState`?",
+              "answer": "Filters survive page reloads, work with Back/Forward, and can be shared via link."
+            }
+          ]
+        },
+        {
+          "id": "react-s5-l4",
+          "sectionId": "react-s5",
+          "level": "Intermediate",
+          "order": 4,
+          "title": "Compound Components & Headless Patterns",
+          "durationMin": 16,
+          "summary": "Compound components (`<Tabs>`, `<Tabs.Trigger>`, `<Tabs.Panel>`) share state implicitly via private Context, allowing clean, flexible JSX layouts at any nesting depth.",
+          "explanation": [
+            "Compound components (`<Tabs>`, `<Tabs.Trigger>`, `<Tabs.Panel>`) share state implicitly via private Context, allowing clean, flexible JSX layouts at any nesting depth.",
+            "Headless patterns encapsulate ARIA roles, keyboard navigation, and state while letting callers control visual markup completely.",
+            "Prefer private Context over `React.cloneElement` so wrapping triggers in layout divs never breaks coordination."
+          ],
+          "codeExample": {
+            "title": "Compound Tabs with Private Context",
+            "language": "tsx",
+            "code": "const TabsCtx = createContext<{ active: string; set: (k: string) => void } | null>(null);\nexport function Tabs({ initial, children }: { initial: string; children: React.ReactNode }) {\n  const [active, set] = useState(initial);\n  return <TabsCtx.Provider value={{ active, set }}>{children}</TabsCtx.Provider>;\n}"
+          },
+          "keyPoints": [
+            "Private Context works through arbitrary intermediate wrapper elements.",
+            "Keeps ARIA linkage (`aria-selected`, `role=\"tabpanel\"`) centralized.",
+            "Avoids giant configuration-object props."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Using `React.Children.map` + `cloneElement` for compound APIs",
+              "fix": "Breaks the moment a caller adds a wrapper `<div>`; use private Context instead."
+            },
+            {
+              "mistake": "Forgetting keyboard arrow navigation in custom tab/menu compounds",
+              "fix": "Follow WAI-ARIA Authoring Practices for full keyboard support."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why is private Context superior to `React.cloneElement` for compound components?",
+              "answer": "Context passes through any depth of layout wrappers without requiring sub-components to be direct children."
+            },
+            {
+              "question": "What is a headless UI component?",
+              "answer": "A component/hook supplying all state, keyboard logic, and ARIA semantics while leaving styling 100% to the consumer."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "react-s6",
+      "index": 5,
+      "level": "Intermediate",
+      "title": "Reconciliation, Memoization & Code Splitting",
+      "description": "Profile real bottlenecks and optimize with Fiber rules, React.memo, useMemo/useCallback, lazy loading, and virtualization.",
+      "lessons": [
+        {
+          "id": "react-s6-l1",
+          "sectionId": "react-s6",
+          "level": "Intermediate",
+          "order": 1,
+          "title": "Render vs Commit Phases & Reconciliation",
+          "durationMin": 16,
+          "summary": "React renders purely in JS (Render phase, interruptible) and applies minimal real DOM diffs synchronously (Commit phase).",
+          "explanation": [
+            "React renders purely in JS (Render phase, interruptible) and applies minimal real DOM diffs synchronously (Commit phase).",
+            "Never define a component function inside another component—each render generates a new function identity, forcing React to unmount and remount the child every time!",
+            "Remember: a component re-rendering in JS does NOT mean the browser repaints unchanged DOM nodes."
+          ],
+          "codeExample": {
+            "title": "Stable Module-Level Sub-Component",
+            "language": "tsx",
+            "code": "function ScoreRow({ score }: { score: number }) { return <li>{score}%</li>; }\nexport function ScoreList({ scores }: { scores: number[] }) {\n  return <ul>{scores.map((s, i) => <ScoreRow key={i} score={s} />)}</ul>;\n}"
+          },
+          "keyPoints": [
+            "Different root tag types (`div` -> `section`) unmount and remount the subtree.",
+            "Define all components at module scope, never nested inside another component.",
+            "Parent re-renders re-render children by default unless memoized or passed as `children`."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Declaring `function Row() { ... }` inside `function Table()`",
+              "fix": "Causes full unmount/remount on every parent render, wiping input focus and hook state."
+            },
+            {
+              "mistake": "Assuming every JS render causes a full DOM rebuild",
+              "fix": "Commit phase only touches the specific attributes/text nodes that changed."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "What happens when you define a component inside another component’s body?",
+              "answer": "Its function reference changes on every parent render, so React unmounts the old instance and mounts a brand-new one, losing focus and local state."
+            },
+            {
+              "question": "Difference between Render phase and Commit phase?",
+              "answer": "Render computes the next Fiber tree purely; Commit updates the DOM and runs layout/passive effects."
+            }
+          ]
+        },
+        {
+          "id": "react-s6-l2",
+          "sectionId": "react-s6",
+          "level": "Intermediate",
+          "order": 2,
+          "title": "React.memo, useMemo & useCallback Discipline",
+          "durationMin": 16,
+          "summary": "`React.memo` skips child re-renders when props are shallowly equal; `useMemo` caches expensive derived values or object references; `useCallback` stabilizes callback references.",
+          "explanation": [
+            "`React.memo` skips child re-renders when props are shallowly equal; `useMemo` caches expensive derived values or object references; `useCallback` stabilizes callback references.",
+            "`React.memo` fails silently if the parent passes un-memoized inline objects (`options={{ a: 1 }}`) or inline callbacks (`onClick={() => ...}`).",
+            "Profile with React DevTools before memoizing—pushing state down often solves re-renders more cleanly than memoization."
+          ],
+          "codeExample": {
+            "title": "Coordinated memo + useMemo + useCallback",
+            "language": "tsx",
+            "code": "const HeavyList = memo(function HeavyList({ items, onPick }: { items: string[]; onPick: (s: string) => void }) {\n  return <ul>{items.map((x) => <li key={x} onClick={() => onPick(x)}>{x}</li>)}</ul>;\n});\nexport function Panel({ raw }: { raw: string[] }) {\n  const sorted = useMemo(() => [...raw].sort(), [raw]);\n  const onPick = useCallback((s: string) => console.log(s), []);\n  return <HeavyList items={sorted} onPick={onPick} />;\n}"
+          },
+          "keyPoints": [
+            "`React.memo` compares props via shallow `Object.is`.",
+            "`useCallback` only prevents child renders when paired with `React.memo` or effect deps.",
+            "Avoid premature memoization on cheap leaf components."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Wrapping `Child` in `React.memo` while passing `style={{ padding: 8 }}` inline",
+              "fix": "Fresh style object defeats `React.memo` on every render; hoist static objects outside render."
+            },
+            {
+              "mistake": "Wrapping trivial string math in `useMemo`",
+              "fix": "Adds dependency-comparison overhead with zero measurable benefit."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why can a `React.memo` component still re-render on every parent update?",
+              "answer": "Passing fresh inline objects, arrays, or arrow functions breaks shallow `Object.is` prop equality."
+            },
+            {
+              "question": "What structural refactor often beats `React.memo`?",
+              "answer": "Moving fast-changing state down into a small leaf component or passing heavy siblings as `children`."
+            }
+          ]
+        },
+        {
+          "id": "react-s6-l3",
+          "sectionId": "react-s6",
+          "level": "Intermediate",
+          "order": 3,
+          "title": "Code Splitting with React.lazy & Suspense",
+          "durationMin": 16,
+          "summary": "Route- and feature-level code splitting via `React.lazy(() => import(\"./Page\"))` shrinks initial JS bundles for fast First Contentful Paint.",
+          "explanation": [
+            "Route- and feature-level code splitting via `React.lazy(() => import(\"./Page\"))` shrinks initial JS bundles for fast First Contentful Paint.",
+            "Always declare `lazy()` at module top level—never inside render—and wrap `<Suspense fallback={<Skeleton />}>` inside an Error Boundary.",
+            "Code-split heavy optional tools (PDF export, CodeMirror editors, charts) cleanly."
+          ],
+          "codeExample": {
+            "title": "Module-Scope React.lazy & Suspense",
+            "language": "tsx",
+            "code": "import { lazy, Suspense } from 'react';\nconst EditorPage = lazy(() => import('./EditorPage'));\nexport function RouteShell() {\n  return <Suspense fallback={<p>Loading workspace...</p>}><EditorPage /></Suspense>;\n}"
+          },
+          "keyPoints": [
+            "`React.lazy` downloads chunks on demand when first rendered.",
+            "Declare `lazy()` outside components so identity never resets.",
+            "Pair with an Error Boundary to recover from offline chunk failures."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Calling `const P = lazy(() => import(...))` inside a component body",
+              "fix": "Recreates the lazy wrapper every render, flashing the fallback endlessly."
+            },
+            {
+              "mistake": "Leaving `fallback={null}` on slow routes",
+              "fix": "Provide a matching skeleton UI to prevent layout shift (CLS)."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why must `React.lazy()` be called at module top level?",
+              "answer": "Calling it inside render generates a fresh lazy wrapper every render, causing repeated remounts and fallback flashes."
+            },
+            {
+              "question": "What export shape does `React.lazy` expect?",
+              "answer": "A module Promise resolving to `{ default: Component }`."
+            }
+          ]
+        },
+        {
+          "id": "react-s6-l4",
+          "sectionId": "react-s6",
+          "level": "Intermediate",
+          "order": 4,
+          "title": "List Virtualization (Windowing) for Massive Datasets",
+          "durationMin": 16,
+          "summary": "Virtualization mounts ONLY the ~15–25 rows currently intersecting the scroll viewport plus overscan, keeping DOM size O(1) even for 100,000 rows.",
+          "explanation": [
+            "Virtualization mounts ONLY the ~15–25 rows currently intersecting the scroll viewport plus overscan, keeping DOM size O(1) even for 100,000 rows.",
+            "Position the rendered slice via GPU-composited `transform: translateY(offsetY)` inside a spacer sized to `total * rowHeight`.",
+            "Reserve virtualization for genuinely large lists (200+ complex rows) so small lists retain native browser Ctrl+F search."
+          ],
+          "codeExample": {
+            "title": "Windowing Slice Calculation",
+            "language": "tsx",
+            "code": "function sliceWindow(scrollTop: number, viewH: number, rowH: number, count: number, overscan = 4) {\n  const start = Math.max(0, Math.floor(scrollTop / rowH) - overscan);\n  const end = Math.min(count, Math.ceil((scrollTop + viewH) / rowH) + overscan);\n  return { start, end, offsetY: start * rowH };\n}"
+          },
+          "keyPoints": [
+            "Keeps active DOM nodes constant regardless of dataset size.",
+            "Overscan prevents white flashes during fast wheel scrolling.",
+            "Provide in-app search when virtualizing because off-screen nodes aren’t in DOM for Ctrl+F."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Mounting 10,000 complex table rows directly into the DOM",
+              "fix": "Virtualize or paginate so layout/paint stays well under 16ms."
+            },
+            {
+              "mistake": "Virtualizing a 23-card catalog unnecessarily",
+              "fix": "Small grids render natively in <2ms and preserve full native Ctrl+F & accessibility."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "How does windowing keep 50,000 rows scrolling at 60fps?",
+              "answer": "It renders an empty spacer for total scroll height while mounting only the ~20 rows visible in the viewport plus overscan."
+            },
+            {
+              "question": "What UX trade-off comes with list virtualization?",
+              "answer": "Native browser Ctrl+F cannot find unmounted off-screen rows, so pair virtualized views with an in-app search bar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "react-s7",
+      "index": 6,
+      "level": "Intermediate",
+      "title": "Concurrent UI & React 19 Modern Features",
+      "description": "Use useTransition, useDeferredValue, React 19 Form Actions, and useOptimistic for responsive UX.",
+      "lessons": [
+        {
+          "id": "react-s7-l1",
+          "sectionId": "react-s7",
+          "level": "Intermediate",
+          "order": 1,
+          "title": "useTransition & useDeferredValue",
+          "durationMin": 16,
+          "summary": "Concurrent React distinguishes urgent updates (typing, clicking) from interruptible transitions (filtering huge lists, switching heavy tabs).",
+          "explanation": [
+            "Concurrent React distinguishes urgent updates (typing, clicking) from interruptible transitions (filtering huge lists, switching heavy tabs).",
+            "Keep controlled input state urgent and wrap heavy downstream updates in `startTransition` or derive a deferred value with `useDeferredValue(query)`.",
+            "Compare `query !== deferredQuery` to show subtle dimming while background rendering completes."
+          ],
+          "codeExample": {
+            "title": "Lag-Free Filtering with useDeferredValue",
+            "language": "tsx",
+            "code": "const [query, setQuery] = useState('');\nconst deferred = useDeferredValue(query);\nconst matches = useMemo(() => rows.filter((r) => r.includes(deferred)), [rows, deferred]);"
+          },
+          "keyPoints": [
+            "Transitions pause automatically when urgent keystrokes arrive.",
+            "Never wrap a controlled input’s own `setText` in `startTransition`.",
+            "Pair `useDeferredValue` with `useMemo` or `React.memo` so urgent renders reuse prior results."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Wrapping `setInputValue(e.target.value)` inside `startTransition`",
+              "fix": "Controlled typing must stay urgent or cursor jumps; defer the filtered view instead."
+            },
+            {
+              "mistake": "Using `useDeferredValue` without memoizing the heavy computation",
+              "fix": "Without `useMemo`/`React.memo`, the heavy work still runs on the urgent keystroke pass."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "How does `useDeferredValue` differ from debouncing?",
+              "answer": "Debounce always enforces a fixed wait timer; `useDeferredValue` renders immediately when idle and interrupts mid-render if new input arrives."
+            },
+            {
+              "question": "When choose `useTransition` vs `useDeferredValue`?",
+              "answer": "Use `useTransition` when you own the `setState` call and want `isPending`; use `useDeferredValue` when deferring a prop or derived value."
+            }
+          ]
+        },
+        {
+          "id": "react-s7-l2",
+          "sectionId": "react-s7",
+          "level": "Intermediate",
+          "order": 2,
+          "title": "React 19 Actions, useActionState & Ref-as-Prop",
+          "durationMin": 16,
+          "summary": "React 19 lets async functions run directly via `<form action={fn}>`, tracks pending/error/result automatically with `useActionState`, and accepts `ref` as a regular prop with zero `forwardRef` boilerplate!",
+          "explanation": [
+            "React 19 lets async functions run directly via `<form action={fn}>`, tracks pending/error/result automatically with `useActionState`, and accepts `ref` as a regular prop with zero `forwardRef` boilerplate!",
+            "Child submit buttons call `useFormStatus()` to disable automatically while their ancestor `<form>` action is pending.",
+            "Remember: `useFormStatus()` must live inside a child component INSIDE `<form>`, not in the component rendering `<form>`."
+          ],
+          "codeExample": {
+            "title": "React 19 useActionState Form",
+            "language": "tsx",
+            "code": "import { useActionState } from 'react';\nasync function save(_prev: string | null, fd: FormData) {\n  return String(fd.get('name') ?? '').trim() ? null : 'Name required';\n}\nexport function Form() {\n  const [err, action, pending] = useActionState(save, null);\n  return <form action={action}><input name=\"name\" /><button disabled={pending}>Save</button>{err && <p>{err}</p>}</form>;\n}"
+          },
+          "keyPoints": [
+            "`useActionState` returns `[state, action, isPending]`.",
+            "React 19 functional components accept `ref` directly as a prop.",
+            "`useFormStatus()` reads pending status from the nearest parent `<form>`."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Calling `useFormStatus()` inside the same component that renders `<form>`",
+              "fix": "Move `<SubmitButton />` into a child component inside `<form>`."
+            },
+            {
+              "mistake": "Keeping unnecessary `forwardRef` wrappers in React 19",
+              "fix": "Pass `ref` directly via props cleanly."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "What boilerplate does React 19 remove for refs?",
+              "answer": "`React.forwardRef` is no longer needed—function components accept `ref` directly in `props`."
+            },
+            {
+              "question": "Why must `useFormStatus()` run in a child component of `<form>`?",
+              "answer": "It reads status from the nearest ancestor `<form>`, similar to Context."
+            }
+          ]
+        },
+        {
+          "id": "react-s7-l3",
+          "sectionId": "react-s7",
+          "level": "Intermediate",
+          "order": 3,
+          "title": "Optimistic UI with useOptimistic",
+          "durationMin": 16,
+          "summary": "`useOptimistic(realState, updateFn)` displays immediate 0ms UI updates while an async action runs, automatically reverting to canonical state if the request fails.",
+          "explanation": [
+            "`useOptimistic(realState, updateFn)` displays immediate 0ms UI updates while an async action runs, automatically reverting to canonical state if the request fails.",
+            "Ideal for high-probability toggles (bookmarks, likes, lesson completion checkboxes) paired with an error toast on failure.",
+            "Avoid optimistic deletion for irreversible destructive actions—confirm those explicitly."
+          ],
+          "codeExample": {
+            "title": "Zero-Latency Toggle with useOptimistic",
+            "language": "tsx",
+            "code": "import { useOptimistic } from 'react';\nexport function StarBtn({ starred, onToggle }: { starred: boolean; onToggle: () => Promise<void> }) {\n  const [opt, setOpt] = useOptimistic(starred);\n  return <form action={async () => { setOpt(!opt); await onToggle(); }}><button>{opt ? 'Starred' : 'Star'}</button></form>;\n}"
+          },
+          "keyPoints": [
+            "Delivers instant perceived responsiveness for network toggles.",
+            "Reverts cleanly to canonical state automatically when the action settles without updating source state.",
+            "Always surface a clear error toast if rollback occurs."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Silently rolling back a failed optimistic save with zero user feedback",
+              "fix": "Display a clear toast explaining that the change failed to save."
+            },
+            {
+              "mistake": "Calling `setOptimistic` outside an async transition or action",
+              "fix": "Optimistic state overlays belong inside a transition/action lifecycle."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "How does `useOptimistic` handle failure rollback?",
+              "answer": "Once the async action finishes without updating canonical props/state, React discards the temporary optimistic overlay automatically."
+            },
+            {
+              "question": "Which interactions fit optimistic UI best?",
+              "answer": "Frequent reversible toggles like bookmarks, likes, and completion ticks."
+            }
+          ]
+        },
+        {
+          "id": "react-s7-l4",
+          "sectionId": "react-s7",
+          "level": "Intermediate",
+          "order": 4,
+          "title": "Testing Trophy & Clean React Architecture",
+          "durationMin": 16,
+          "summary": "Test pure reducers and utilities with fast unit tests (`node:test`), test UI components by accessible roles/labels (`getByRole`, `getByLabelText`), and keep persistence behind a clean adapter layer.",
+          "explanation": [
+            "Test pure reducers and utilities with fast unit tests (`node:test`), test UI components by accessible roles/labels (`getByRole`, `getByLabelText`), and keep persistence behind a clean adapter layer.",
+            "Querying by accessible role verifies both user behavior and screen-reader accessibility simultaneously.",
+            "Isolate pure business rules (progress math, scoring, unlocking) outside React components so tests run in milliseconds."
+          ],
+          "codeExample": {
+            "title": "Clean Unidirectional Layering",
+            "language": "tsx",
+            "code": "// Pages -> Components -> Context -> Services (storage.ts) & Pure Utils (progress.ts)\n// Unit test pure logic directly with node:test (zero DOM required)\n// Component tests query by accessible role: getByRole('button', { name: 'Submit Quiz' })"
+          },
+          "keyPoints": [
+            "Pure domain utils run 100x faster in unit tests than mounted DOM suites.",
+            "Query UI by accessible role/label instead of brittle CSS classes.",
+            "Abstract storage behind an interface so localStorage -> Supabase swaps in one module."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Testing internal hook state or `.btn-indigo` CSS classes",
+              "fix": "Assert observable text, states, and ARIA roles so styling refactors never break tests."
+            },
+            {
+              "mistake": "Scattering raw `localStorage` calls inside 15 components",
+              "fix": "Centralize persistence in one storage service module."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why does React Testing Library prefer `getByRole` over `data-testid`?",
+              "answer": "It verifies that real users and assistive technologies can actually locate and understand the control."
+            },
+            {
+              "question": "Why decouple quiz scoring and certificate eligibility from React components?",
+              "answer": "Pure functions are deterministic, framework-agnostic, and testable in milliseconds with `node:test`."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "react-s8",
+      "index": 7,
+      "level": "Intermediate",
+      "title": "Advanced Hook Internals & Escape Hatches",
+      "description": "Master useSyncExternalStore, useLayoutEffect, useId, and eliminating stale closures cleanly.",
+      "lessons": [
+        {
+          "id": "react-s8-l1",
+          "sectionId": "react-s8",
+          "level": "Intermediate",
+          "order": 1,
+          "title": "useSyncExternalStore for External Subscriptions",
+          "durationMin": 16,
+          "summary": "`useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)` subscribes to browser APIs (`navigator.onLine`, `matchMedia`) or external stores without concurrent UI tearing.",
+          "explanation": [
+            "`useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)` subscribes to browser APIs (`navigator.onLine`, `matchMedia`) or external stores without concurrent UI tearing.",
+            "Remember: `getSnapshot` MUST return a cached/primitive reference when unchanged—returning a fresh `{}` literal every call triggers an infinite render loop!",
+            "Provide `getServerSnapshot` whenever supporting SSR to avoid hydration errors."
+          ],
+          "codeExample": {
+            "title": "Tear-Free Online Status Hook",
+            "language": "tsx",
+            "code": "const sub = (cb: () => void) => {\n  window.addEventListener('online', cb); window.addEventListener('offline', cb);\n  return () => { window.removeEventListener('online', cb); window.removeEventListener('offline', cb); };\n};\nexport const useOnline = () => useSyncExternalStore(sub, () => navigator.onLine, () => true);"
+          },
+          "keyPoints": [
+            "Prevents concurrent tearing on external mutable stores.",
+            "`getSnapshot` must return referentially stable snapshots when unchanged.",
+            "Third argument supplies SSR-safe initial snapshot."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Returning `() => ({ online: navigator.onLine })` fresh object from `getSnapshot`",
+              "fix": "Fails `Object.is` every check and loops infinitely; return primitives or cached objects."
+            },
+            {
+              "mistake": "Omitting `getServerSnapshot` in SSR apps",
+              "fix": "Causes server render crashes; always provide a deterministic server default."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "What is UI tearing and how does `useSyncExternalStore` solve it?",
+              "answer": "Tearing happens when an external store mutates mid-concurrent-render so two components show inconsistent values; `useSyncExternalStore` forces consistent snapshot reads."
+            },
+            {
+              "question": "Why must `getSnapshot` return the same reference when nothing changed?",
+              "answer": "React compares snapshots with `Object.is` and re-renders infinitely if every call returns a new object literal."
+            }
+          ]
+        },
+        {
+          "id": "react-s8-l2",
+          "sectionId": "react-s8",
+          "level": "Intermediate",
+          "order": 2,
+          "title": "useLayoutEffect vs useEffect",
+          "durationMin": 16,
+          "summary": "`useLayoutEffect` runs synchronously after DOM mutations and BEFORE browser paint—preventing 1-frame visual flicker for tooltip positioning or DOM measurements.",
+          "explanation": [
+            "`useLayoutEffect` runs synchronously after DOM mutations and BEFORE browser paint—preventing 1-frame visual flicker for tooltip positioning or DOM measurements.",
+            "Because it blocks browser painting, keep `useLayoutEffect` tiny and reserve `useEffect` for 99% of side effects (fetching, subscriptions, timers).",
+            "Execution order: Render -> DOM commit -> `useLayoutEffect` -> Paint -> `useEffect`."
+          ],
+          "codeExample": {
+            "title": "Zero-Flicker Tooltip Flip",
+            "language": "tsx",
+            "code": "useLayoutEffect(() => {\n  const rect = ref.current?.getBoundingClientRect();\n  if (rect && rect.bottom > window.innerHeight) setFlipUp(true);\n}, []);"
+          },
+          "keyPoints": [
+            "Runs synchronously before paint to eliminate visual jumps.",
+            "Blocks paint—never run slow loops or network calls inside it.",
+            "Prefer CSS positioning when possible before reaching for `useLayoutEffect`."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Running heavy API calls inside `useLayoutEffect`",
+              "fix": "Delays initial paint; move async work to `useEffect`."
+            },
+            {
+              "mistake": "Measuring & repositioning a tooltip in `useEffect` causing a visible jump",
+              "fix": "Move just the geometry measurement to `useLayoutEffect`."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Exact execution order of render, `useLayoutEffect`, paint, and `useEffect`?",
+              "answer": "Render -> DOM commit -> `useLayoutEffect` -> Browser Paint -> `useEffect`."
+            },
+            {
+              "question": "Why does SSR warn about `useLayoutEffect`?",
+              "answer": "Servers have no DOM layout geometry, so layout effects cannot run until client hydration."
+            }
+          ]
+        },
+        {
+          "id": "react-s8-l3",
+          "sectionId": "react-s8",
+          "level": "Intermediate",
+          "order": 3,
+          "title": "useId for Accessible Collision-Free IDs",
+          "durationMin": 16,
+          "summary": "`useId()` produces unique, deterministic, SSR-safe IDs for linking `<label htmlFor={id}>`, `<input id={id}>`, and `aria-describedby={`${id}-hint`}` across multiple component instances.",
+          "explanation": [
+            "`useId()` produces unique, deterministic, SSR-safe IDs for linking `<label htmlFor={id}>`, `<input id={id}>`, and `aria-describedby={`${id}-hint`}` across multiple component instances.",
+            "Never use `useId()` for React list `key` props—keys must always derive from stable data identifiers!",
+            "Derive multiple related ARIA IDs from one `useId()` base string."
+          ],
+          "codeExample": {
+            "title": "SSR-Safe Form Field Linkage",
+            "language": "tsx",
+            "code": "export function Field({ label, hint }: { label: string; hint: string }) {\n  const id = useId();\n  return <><label htmlFor={id}>{label}</label><input id={id} aria-describedby={`${id}-h`} /><small id={`${id}-h`}>{hint}</small></>;\n}"
+          },
+          "keyPoints": [
+            "Prevents duplicate HTML `id` collisions when a component renders twice.",
+            "Matches identically between SSR HTML and client hydration.",
+            "Never use `useId()` as a list `key`."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Using `id={Math.random()}` in form inputs",
+              "fix": "Breaks SSR hydration and regenerates on every render; use `useId()`."
+            },
+            {
+              "mistake": "Using `useId()` as a `.map()` `key`",
+              "fix": "Keys represent data identity, not tree position."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why shouldn’t `useId()` be used for list `key` props?",
+              "answer": "Keys must identify data items across moves/deletions; `useId()` tracks render position."
+            },
+            {
+              "question": "How do you derive multiple IDs for one input (hint + error)?",
+              "answer": "Call `useId()` once and append suffixes like `${id}-hint` and `${id}-error`."
+            }
+          ]
+        },
+        {
+          "id": "react-s8-l4",
+          "sectionId": "react-s8",
+          "level": "Intermediate",
+          "order": 4,
+          "title": "Eliminating Stale Closures in Timers & Listeners",
+          "durationMin": 16,
+          "summary": "A stale closure occurs when a callback registered once (`[]` deps) captures outdated state from render 1.",
+          "explanation": [
+            "A stale closure occurs when a callback registered once (`[]` deps) captures outdated state from render 1.",
+            "Fix stale closures cleanly with functional updaters (`setSeconds(s => s + 1)`), honest dependency arrays, or a latest-callback ref (`cbRef.current = cb`) for non-restarting intervals.",
+            "Always reach for functional updaters first—they solve most timer/counter stale closures in one line."
+          ],
+          "codeExample": {
+            "title": "Stale-Free Custom useInterval Hook",
+            "language": "tsx",
+            "code": "export function useInterval(cb: () => void, ms: number | null) {\n  const ref = useRef(cb);\n  useEffect(() => { ref.current = cb; }, [cb]);\n  useEffect(() => {\n    if (ms === null) return;\n    const id = setInterval(() => ref.current(), ms);\n    return () => clearInterval(id);\n  }, [ms]);\n}"
+          },
+          "keyPoints": [
+            "Functional updaters `(prev) => prev + 1` never depend on stale outer state.",
+            "Latest-ref pattern lets long-lived timers invoke fresh closures without resetting.",
+            "Never disable `react-hooks/exhaustive-deps` blindly."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Writing `setInterval(() => setN(n + 1), 1000)` inside `useEffect(..., [])`",
+              "fix": "Captures `n = 0` forever so UI freezes at `1`; use `setN((prev) => prev + 1)`."
+            },
+            {
+              "mistake": "Resetting a 60-second timer every render because an inline callback is in `deps`",
+              "fix": "Store the latest callback in a ref or stabilize with `useCallback`."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why does `setN(n + 1)` inside `useEffect(..., [])` get stuck at 1?",
+              "answer": "The closure captures `n = 0` from initial mount forever, setting `0 + 1` on every tick."
+            },
+            {
+              "question": "How does the latest-ref pattern avoid restarting a WebSocket or timer?",
+              "answer": "The subscription reads `cbRef.current()` which stays updated on every render without changing the subscription’s dependency array."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "react-s9",
+      "index": 8,
+      "level": "Advanced",
+      "title": "Server Rendering, RSC, Accessibility & Security",
+      "description": "Master SSR hydration, React Server Components, WCAG accessibility, and XSS/env security in production.",
+      "lessons": [
+        {
+          "id": "react-s9-l1",
+          "sectionId": "react-s9",
+          "level": "Advanced",
+          "order": 1,
+          "title": "CSR vs SSR, Streaming & Hydration Mismatches",
+          "durationMin": 20,
+          "summary": "CSR renders in the browser (ideal for rich Vite SPAs), while SSR sends pre-rendered HTML for fast FCP/SEO and hydrates event listeners on the client.",
+          "explanation": [
+            "CSR renders in the browser (ideal for rich Vite SPAs), while SSR sends pre-rendered HTML for fast FCP/SEO and hydrates event listeners on the client.",
+            "Hydration mismatches occur when server HTML differs from initial client render—typically caused by `Date.now()`, `Math.random()`, `localStorage`, or invalid HTML nesting like `<p><div></div></p>`.",
+            "Defer browser-only values to `useEffect` or `useSyncExternalStore` with a deterministic server snapshot."
+          ],
+          "codeExample": {
+            "title": "Hydration-Safe Client Mount Hook",
+            "language": "tsx",
+            "code": "export function useHydrated(): boolean {\n  return useSyncExternalStore(() => () => {}, () => true, () => false);\n}"
+          },
+          "keyPoints": [
+            "Hydration attaches Fiber state and listeners onto server HTML.",
+            "Streaming SSR + `<Suspense>` enables selective hydration of clicked regions first.",
+            "Keep initial server and client renders 100% deterministic."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Rendering `window.innerWidth` directly in initial SSR JSX",
+              "fix": "Crashes on server or mismatches hydration; read inside `useEffect` or `useSyncExternalStore`."
+            },
+            {
+              "mistake": "Nesting block `<div>` inside `<p>`",
+              "fix": "Browsers auto-close `<p>` during HTML parsing, causing immediate hydration mismatches."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "What causes a React hydration mismatch?",
+              "answer": "Any discrepancy between server-emitted HTML and first client render (random values, timestamps, `localStorage`, or invalid HTML nesting)."
+            },
+            {
+              "question": "What is Selective Hydration?",
+              "answer": "React prioritizes hydrating whichever `<Suspense>` boundary the user interacts with first instead of blocking the entire page."
+            }
+          ]
+        },
+        {
+          "id": "react-s9-l2",
+          "sectionId": "react-s9",
+          "level": "Advanced",
+          "order": 2,
+          "title": "React Server Components (RSC) & Boundaries",
+          "durationMin": 20,
+          "summary": "React Server Components run solely on the server—accessing databases and heavy parsers with 0 KB shipped to the browser!",
+          "explanation": [
+            "React Server Components run solely on the server—accessing databases and heavy parsers with 0 KB shipped to the browser!",
+            "Interactive leaf components declare `\"use client\"`; Server Components can pass serializable props or rendered Server JSX as `children` into Client Components.",
+            "Push `\"use client\"` boundaries down to interactive leaves to keep browser bundles tiny."
+          ],
+          "codeExample": {
+            "title": "Server-to-Client Children Composition",
+            "language": "tsx",
+            "code": "// Server Component renders heavy markdown/JSON on server and passes result as children\n// into a small \"use client\" interactive wrapper without shipping the parser to the browser.\nexport const RSC_PATTERN = 'Pass Server Components into Client Components via children props';"
+          },
+          "keyPoints": [
+            "Server Components add 0 KB to the browser JS bundle.",
+            "Client Components cannot directly `import` Server Components, but CAN render them via `children`.",
+            "Props across the Server -> Client boundary must be serializable."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Adding `\"use client\"` at the top of the root Layout unnecessarily",
+              "fix": "Pulls imported subtrees into the client bundle unless passed via `children`."
+            },
+            {
+              "mistake": "Passing raw non-serializable class instances across the Server -> Client boundary",
+              "fix": "Serialize plain DTOs or pass Server Actions (`\"use server\"`)."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Can a Client Component wrap a Server Component?",
+              "answer": "Yes—by receiving the Server Component via `children` or another prop from a parent Server Component."
+            },
+            {
+              "question": "Primary performance benefit of RSC?",
+              "answer": "Zero browser bundle cost for server-only logic and libraries (DB clients, markdown/syntax highlighters)."
+            }
+          ]
+        },
+        {
+          "id": "react-s9-l3",
+          "sectionId": "react-s9",
+          "level": "Advanced",
+          "order": 3,
+          "title": "Accessibility Engineering & Live Regions",
+          "durationMin": 20,
+          "summary": "Production React apps enforce semantic buttons/links, keyboard navigation, route focus/title updates, and permanently mounted `aria-live=\"polite\"` toast regions.",
+          "explanation": [
+            "Production React apps enforce semantic buttons/links, keyboard navigation, route focus/title updates, and permanently mounted `aria-live=\"polite\"` toast regions.",
+            "Never replace `<button>` or `<Link>` with `<div onClick>`—native elements deliver Tab focus, Enter/Space activation, and ARIA roles automatically.",
+            "Keep `aria-live=\"polite\"` mounted continuously so newly inserted toast messages are reliably announced by screen readers."
+          ],
+          "codeExample": {
+            "title": "Accessible Toast Live Region",
+            "language": "tsx",
+            "code": "export function LiveToast({ msg }: { msg: string | null }) {\n  return <div role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">{msg && <p>{msg}</p>}</div>;\n}"
+          },
+          "keyPoints": [
+            "Keep `aria-live` containers mounted before inserting text.",
+            "Update `document.title` and scroll to top on SPA route transitions.",
+            "Use native `<button>` and `<Link>` instead of clickable `<div>`s."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Conditionally mounting `<div aria-live=\"polite\">` only when a toast opens",
+              "fix": "Screen readers often miss newly mounted live regions; keep the wrapper mounted and toggle inner text."
+            },
+            {
+              "mistake": "Using `<div onClick={go}>` for clickable cards",
+              "fix": "Breaks keyboard navigation and screen reader semantics; use `<Link>` or `<button>`."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Difference between `aria-live=\"polite\"` and `aria-live=\"assertive\"`?",
+              "answer": "`polite` waits for current speech to finish (toasts/progress); `assertive` interrupts immediately (critical errors)."
+            },
+            {
+              "question": "Why avoid `<div onClick>`?",
+              "answer": "Lacks focusability, Enter/Space keyboard activation, and interactive ARIA role unless re-implemented manually."
+            }
+          ]
+        },
+        {
+          "id": "react-s9-l4",
+          "sectionId": "react-s9",
+          "level": "Advanced",
+          "order": 4,
+          "title": "XSS Defense, Safe URLs & Client Env Hygiene",
+          "durationMin": 20,
+          "summary": "JSX automatically escapes text interpolations (`{bio}`), protecting against most HTML injection—except `dangerouslySetInnerHTML` and unvalidated `<a href={url}>` links!",
+          "explanation": [
+            "JSX automatically escapes text interpolations (`{bio}`), protecting against most HTML injection—except `dangerouslySetInnerHTML` and unvalidated `<a href={url}>` links!",
+            "Always validate user-provided URLs against `http:` / `https:` to block `javascript:` XSS, and never store private secrets in `VITE_*` variables (they inline directly into public browser JS!).",
+            "Gate production deploys with `tsc --noEmit`, ESLint, unit tests, and `vite build`."
+          ],
+          "codeExample": {
+            "title": "Protocol-Safe URL Guard",
+            "language": "tsx",
+            "code": "export function safeUrl(raw: string): string | null {\n  try {\n    const u = new URL(raw);\n    return u.protocol === 'https:' || u.protocol === 'http:' ? u.toString() : null;\n  } catch { return null; }\n}"
+          },
+          "keyPoints": [
+            "React escapes `{text}`, NOT `javascript:` URLs in `href`.",
+            "`VITE_*` env vars are public in the client bundle—keep API secrets server-side.",
+            "Sanitize any HTML passed to `dangerouslySetInnerHTML` with DOMPurify."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Storing `VITE_PRIVATE_KEY` in `.env` expecting Vite to hide it",
+              "fix": "Everything prefixed `VITE_` ships openly to browser DevTools; proxy private API calls on a backend server."
+            },
+            {
+              "mistake": "Passing raw user URLs directly to `<a href={url}>`",
+              "fix": "Validate `https:` / `http:` protocol via `new URL()` first."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "How can XSS still occur in React despite JSX escaping?",
+              "answer": "Via unsanitized `dangerouslySetInnerHTML`, `javascript:` URLs in `href`, or writing raw `innerHTML` through DOM refs."
+            },
+            {
+              "question": "Why are `VITE_*` env vars unsafe for secret API keys?",
+              "answer": "Vite embeds their literal values into the browser JS bundle during build."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "react-s10",
+      "index": 9,
+      "level": "Advanced",
+      "title": "Architecture, Performance Profiling & Production Polish",
+      "description": "Profile Flamegraphs, avoid waterfalls, handle real-world accessibility, and structure scalable codebases.",
+      "lessons": [
+        {
+          "id": "react-s10-l1",
+          "sectionId": "react-s10",
+          "level": "Advanced",
+          "order": 1,
+          "title": "React DevTools Profiler & Identifying Real Bottlenecks",
+          "durationMin": 20,
+          "summary": "Use React DevTools Profiler (\"Highlight updates\" + Ranked Flamegraph) to see WHICH components rendered, HOW LONG each took, and WHY (props, state, hooks, or parent render).",
+          "explanation": [
+            "Use React DevTools Profiler (\"Highlight updates\" + Ranked Flamegraph) to see WHICH components rendered, HOW LONG each took, and WHY (props, state, hooks, or parent render).",
+            "Never optimize blindly—a 0.2ms re-render needs zero optimization, whereas an un-memoized 40ms chart or 2,000-row table re-rendering on every keystroke is a clear win.",
+            "Always measure performance in a PRODUCTION build (`vite build && vite preview`), because development mode adds heavy StrictMode double-renders and validation warnings."
+          ],
+          "codeExample": {
+            "title": "Measuring Commit Duration with React <Profiler>",
+            "language": "tsx",
+            "code": "import { Profiler } from 'react';\nexport function ProfiledCatalog({ children }: { children: React.ReactNode }) {\n  return (\n    <Profiler id=\"Catalog\" onRender={(id, phase, actualMs) => {\n      if (actualMs > 16) console.warn(id, phase, actualMs.toFixed(1));\n    }}>{children}</Profiler>\n  );\n}"
+          },
+          "keyPoints": [
+            "Measure production builds—dev mode is dramatically slower due to checks and double renders.",
+            "React `<Profiler>` records `actualDuration` vs `baseDuration` programmatically.",
+            "Fix O(n²) data logic and unnecessary top-level state before micro-memoizing."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Profiling performance in dev mode and adding `useMemo` everywhere",
+              "fix": "Dev mode includes StrictMode double-renders; verify bottlenecks in production builds first."
+            },
+            {
+              "mistake": "Optimizing a 0.1ms component while ignoring a 120ms synchronous filter loop",
+              "fix": "Sort the Flamegraph by Ranked duration and fix the top 1–2 hotspots first."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why are React performance measurements in development mode misleading?",
+              "answer": "Dev builds include extra runtime warnings, unminified code, and StrictMode double-invocations that disappear in production builds."
+            },
+            {
+              "question": "What does `actualDuration` in `<Profiler onRender>` measure?",
+              "answer": "The time in milliseconds spent rendering the Profiler subtree for the current update."
+            }
+          ]
+        },
+        {
+          "id": "react-s10-l2",
+          "sectionId": "react-s10",
+          "level": "Advanced",
+          "order": 2,
+          "title": "Eliminating Request Waterfalls & Parallel Data Loading",
+          "durationMin": 20,
+          "summary": "A request waterfall happens when Parent fetches A, finishes, mounts Child, and ONLY THEN Child fetches B—doubling total wait time!",
+          "explanation": [
+            "A request waterfall happens when Parent fetches A, finishes, mounts Child, and ONLY THEN Child fetches B—doubling total wait time!",
+            "Eliminate waterfalls by fetching independent resources in parallel (`Promise.all([loadMeta(slug), loadLessons(slug), loadQuizzes(slug)])`) at the route boundary or preloading on hover/intent.",
+            "Show instant skeleton structure while parallel chunks resolve so perceived latency feels crisp."
+          ],
+          "codeExample": {
+            "title": "Parallel Course Asset Preloading",
+            "language": "tsx",
+            "code": "export async function loadCourseBundle(slug: string) {\n  const [lessons, quizzes, exam, project] = await Promise.all([\n    loadLessons(slug), loadQuizzes(slug), loadExam(slug), loadProject(slug),\n  ]);\n  return { lessons, quizzes, exam, project };\n}"
+          },
+          "keyPoints": [
+            "Parallel `Promise.all` cuts 4 sequential 150ms fetches from 600ms down to ~150ms.",
+            "Avoid mount-triggered child fetches that wait for parent spinners to finish.",
+            "Preload dynamic chunks on link hover/focus for near-instant transitions."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Fetching `meta`, awaiting, then fetching `lessons`, awaiting, then fetching `quizzes` sequentially",
+              "fix": "Start independent requests simultaneously with `Promise.all`."
+            },
+            {
+              "mistake": "Blocking the entire course page on an optional PDF library import",
+              "fix": "Keep optional heavy modules lazy-loaded on click."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "What is a React component request waterfall?",
+              "answer": "When a parent fetches data before rendering a child that then initiates its own fetch, chaining network round trips sequentially instead of running them in parallel."
+            },
+            {
+              "question": "How do you eliminate waterfalls in a React SPA?",
+              "answer": "Hoist parallel `Promise.all` fetches to the route/loader level and preload chunks on user intent."
+            }
+          ]
+        },
+        {
+          "id": "react-s10-l3",
+          "sectionId": "react-s10",
+          "level": "Advanced",
+          "order": 3,
+          "title": "Design-System Components, Variants & Focus Discipline",
+          "durationMin": 20,
+          "summary": "Reusable UI primitives (`Button`, `Card`, `Badge`, `Modal`) separate semantic intent (`variant=\"primary\" | \"ghost\"`) from one-off layout spacing, ensuring visual consistency across 15+ pages.",
+          "explanation": [
+            "Reusable UI primitives (`Button`, `Card`, `Badge`, `Modal`) separate semantic intent (`variant=\"primary\" | \"ghost\"`) from one-off layout spacing, ensuring visual consistency across 15+ pages.",
+            "Forward native HTML attributes (`ComponentPropsWithoutRef<\"button\">`), default `<button type=\"button\">` so buttons inside forms never submit accidentally, and preserve crisp `:focus-visible` rings in both Light and Dark themes.",
+            "Never bake external margins (`mt-8`) into reusable primitives—let parent layouts control spacing with `gap`."
+          ],
+          "codeExample": {
+            "title": "Accessible Design-System Button Primitive",
+            "language": "tsx",
+            "code": "import type { ComponentPropsWithoutRef } from 'react';\ninterface BtnProps extends ComponentPropsWithoutRef<'button'> { variant?: 'primary' | 'secondary' }\nexport function Button({ variant = 'primary', type = 'button', className = '', ...rest }: BtnProps) {\n  const base = variant === 'primary' ? 'bg-indigo-600 text-white' : 'border border-slate-300';\n  return <button type={type} className={`rounded-lg px-4 py-2 ${base} ${className}`} {...rest} />;\n}"
+          },
+          "keyPoints": [
+            "Default `type=\"button\"` prevents accidental form submissions.",
+            "Parent grids/flexboxes own spacing (`gap`), not child margins.",
+            "Always pair light and dark tokens with WCAG AA contrast (>= 4.5:1)."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Omitting `type=\"button\"` on custom icon buttons inside `<form>`",
+              "fix": "HTML defaults `<button>` inside forms to `type=\"submit\"`, triggering unexpected submits!"
+            },
+            {
+              "mistake": "Hardcoding `mb-6` inside a reusable `<Card>` component",
+              "fix": "Removes layout flexibility; let parent containers apply `gap-6` instead."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why should reusable `<Button>` components default to `type=\"button\"`?",
+              "answer": "Because `<button>` inside a `<form>` defaults to `type=\"submit\"`, so secondary buttons like \"Cancel\" or \"Show Hint\" will accidentally submit the form unless `type=\"button\"` is set."
+            },
+            {
+              "question": "Why should reusable UI primitives avoid hardcoded outer margins?",
+              "answer": "Margins leak layout assumptions; letting parent Flex/Grid containers manage spacing via `gap` keeps components portable anywhere."
+            }
+          ]
+        },
+        {
+          "id": "react-s10-l4",
+          "sectionId": "react-s10",
+          "level": "Advanced",
+          "order": 4,
+          "title": "Production Build Hygiene, Caching & State Persistence",
+          "durationMin": 20,
+          "summary": "Production React SPAs rely on content-hashed Vite bundles, clean schema versioning for `localStorage`, and zero console/network errors.",
+          "explanation": [
+            "Production React SPAs rely on content-hashed Vite bundles, clean schema versioning for `localStorage`, and zero console/network errors.",
+            "Version your client persistence key (`it_courses_state_v1`) and merge loaded JSON safely with defaults so adding a new feature field later never crashes returning learners!",
+            "Always verify rendered flows in a real browser across Desktop (1440px) and Mobile (390px) viewports in both Light and Dark themes."
+          ],
+          "codeExample": {
+            "title": "Forward-Compatible Versioned Storage Loader",
+            "language": "tsx",
+            "code": "export function safeHydrate<T extends object>(raw: string | null, defaults: T): T {\n  if (!raw) return defaults;\n  try {\n    const parsed = JSON.parse(raw);\n    return typeof parsed === 'object' && parsed !== null ? { ...defaults, ...parsed } : defaults;\n  } catch { return defaults; }\n}"
+          },
+          "keyPoints": [
+            "Merge persisted JSON with default state to survive schema additions.",
+            "Content-hashed JS/CSS chunks enable immutable CDN caching.",
+            "Verify zero console errors, zero horizontal overflow, and full keyboard nav before shipping."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Reading `JSON.parse(localStorage.getItem(KEY)!)` with zero `try/catch` or default merge",
+              "fix": "Corrupted or older-schema storage crashes the app on boot; always merge safely with defaults."
+            },
+            {
+              "mistake": "Never testing mobile 390px layouts or Dark mode contrast",
+              "fix": "Responsive overflows and dark-on-dark contrast bugs surface immediately in multi-viewport checks."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why should client-side `localStorage` state be merged with default values on load?",
+              "answer": "When a returning learner loads a newer app version that added new fields, merging `{ ...defaults, ...saved }` guarantees new properties are never `undefined`."
+            },
+            {
+              "question": "Why does Vite append content hashes like `index-9a8f2c.js` in `dist/`?",
+              "answer": "So browsers and CDNs can cache assets aggressively forever while automatically fetching new hashes on every deploy."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "react-s11",
+      "index": 10,
+      "level": "Advanced",
+      "title": "React Fiber Internals, Batching & Custom Renderers",
+      "description": "Understand Fiber trees, priority lanes, Suspense boundaries, and imperative interop.",
+      "lessons": [
+        {
+          "id": "react-s11-l1",
+          "sectionId": "react-s11",
+          "level": "Advanced",
+          "order": 1,
+          "title": "Fiber Architecture & Double Buffering",
+          "durationMin": 20,
+          "summary": "React Fiber models each component instance as a linked-list Fiber node (`child`, `sibling`, `return`) so React can pause, prioritize, and resume render work across frames.",
+          "explanation": [
+            "React Fiber models each component instance as a linked-list Fiber node (`child`, `sibling`, `return`) so React can pause, prioritize, and resume render work across frames.",
+            "React keeps two Fiber trees (`current` on screen and `workInProgress` being built) and swaps a single pointer atomically during Commit—known as double buffering.",
+            "Understanding Fiber explains why render must stay pure (work-in-progress trees can be discarded and restarted on higher-priority clicks)."
+          ],
+          "codeExample": {
+            "title": "Interruptible Pure Render Contract",
+            "language": "tsx",
+            "code": "// Fiber may invoke render multiple times before committing once.\n// Keep side effects out of render and inside Commit-phase effects or event handlers.\nexport function Total({ items }: { items: number[] }) {\n  return <span>{items.reduce((a, b) => a + b, 0)}</span>;\n}"
+          },
+          "keyPoints": [
+            "Fiber replaces React’s old recursive call stack with interruptible linked-list units of work.",
+            "Double buffering swaps `workInProgress` into `current` atomically at Commit.",
+            "Priority lanes let urgent clicks preempt low-priority transitions."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Incrementing a module-level counter during render",
+              "fix": "Interrupted renders and StrictMode run render multiple times, producing bogus counts."
+            },
+            {
+              "mistake": "Assuming `setState` always runs synchronously before the next line",
+              "fix": "Updates schedule into priority lanes and commit asynchronously in batches."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "What problem did React Fiber solve compared to React 15’s Stack Reconciler?",
+              "answer": "Stack reconciliation was synchronous and uninterruptible, freezing the main thread on large updates; Fiber splits work into interruptible units with priority lanes."
+            },
+            {
+              "question": "What is Fiber double buffering?",
+              "answer": "Building the next tree off-screen in `workInProgress` and flipping one root pointer on commit so the DOM never shows half-rendered states."
+            }
+          ]
+        },
+        {
+          "id": "react-s11-l2",
+          "sectionId": "react-s11",
+          "level": "Advanced",
+          "order": 2,
+          "title": "flushSync, Automatic Batching & Third-Party Imperative Widgets",
+          "durationMin": 20,
+          "summary": "React 18/19 automatically batches multiple `setState` calls inside events, Promises, and timers into ONE render pass.",
+          "explanation": [
+            "React 18/19 automatically batches multiple `setState` calls inside events, Promises, and timers into ONE render pass.",
+            "In rare cases where you need DOM updates committed synchronously before reading scrollHeight or calling `window.print()`, `flushSync(() => setState(...))` forces an immediate commit.",
+            "For imperative libraries like CodeMirror, Leaflet, or D3, mount the instance inside `useEffect` on a `ref` container and destroy it cleanly in the cleanup callback."
+          ],
+          "codeExample": {
+            "title": "Mounting an Imperative Library Safely in React",
+            "language": "tsx",
+            "code": "useEffect(() => {\n  if (!hostRef.current) return;\n  const editor = createEditor(hostRef.current, initialDoc);\n  return () => editor.destroy();\n}, []);"
+          },
+          "keyPoints": [
+            "Automatic batching reduces unnecessary renders across async boundaries.",
+            "Use `flushSync` sparingly—it opts out of batching and concurrent optimizations.",
+            "Always destroy imperative third-party widget instances in effect cleanup."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Calling `flushSync` inside a render function or `useEffect`",
+              "fix": "Throws a React warning/error; only call `flushSync` inside event handlers when strictly required."
+            },
+            {
+              "mistake": "Mounting CodeMirror or Chart.js without calling `.destroy()` in cleanup",
+              "fix": "StrictMode double-mount immediately creates TWO stacked editors in the same div!"
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "What happens when integrating a third-party imperative library without cleanup under StrictMode?",
+              "answer": "StrictMode mounts twice in dev, producing duplicated DOM widgets unless cleanup destroys the previous instance."
+            },
+            {
+              "question": "When is `flushSync` justified?",
+              "answer": "Rare DOM-sync cases like scrolling immediately to a newly appended chat message or triggering `window.print()` right after revealing print content."
+            }
+          ]
+        },
+        {
+          "id": "react-s11-l3",
+          "sectionId": "react-s11",
+          "level": "Advanced",
+          "order": 3,
+          "title": "useImperativeHandle & Controlled Component APIs",
+          "durationMin": 20,
+          "summary": "When a parent genuinely needs to invoke an imperative method on a child (like `playerRef.current.pause()` or `editorRef.current.reset()`), expose a narrow curated handle via `useImperativeHandle` rather than leaking the raw DOM node.",
+          "explanation": [
+            "When a parent genuinely needs to invoke an imperative method on a child (like `playerRef.current.pause()` or `editorRef.current.reset()`), expose a narrow curated handle via `useImperativeHandle` rather than leaking the raw DOM node.",
+            "Keep declarative props as the primary API (95% of cases) and reserve imperative handles for media playback, focus, scroll-to-row, or form reset.",
+            "Always pass the dependency array to `useImperativeHandle(ref, () => ({ ... }), [deps])`."
+          ],
+          "codeExample": {
+            "title": "Exposing a Narrow Imperative Handle",
+            "language": "tsx",
+            "code": "import { useImperativeHandle, useRef } from 'react';\nexport interface SearchHandle { focus: () => void }\nexport function SearchBox({ ref }: { ref?: React.Ref<SearchHandle> }) {\n  const inputRef = useRef<HTMLInputElement>(null);\n  useImperativeHandle(ref, () => ({ focus: () => inputRef.current?.focus() }), []);\n  return <input ref={inputRef} aria-label=\"Search\" />;\n}"
+          },
+          "keyPoints": [
+            "`useImperativeHandle` restricts what parents can invoke on a child ref.",
+            "Prevents tight coupling to internal DOM structure.",
+            "In React 19, `ref` is received directly as a normal prop."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Exposing imperative `.setValue()` methods for data that should simply be controlled via props",
+              "fix": "Prefer declarative `value` + `onChange` props; use imperative handles only for actions like `.focus()` or `.scrollIntoView()`."
+            },
+            {
+              "mistake": "Leaking raw internal DOM nodes from complex design-system components",
+              "fix": "Expose a small typed handle interface instead."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "When is `useImperativeHandle` preferred over declarative props?",
+              "answer": "For non-declarative browser actions like `.focus()`, `.play()`, `.scrollToIndex()`, or `.selectText()`."
+            },
+            {
+              "question": "What does `useImperativeHandle` protect against?",
+              "answer": "Parents mutating internal DOM styles or attributes directly in ways that break component invariants."
+            }
+          ]
+        },
+        {
+          "id": "react-s11-l4",
+          "sectionId": "react-s11",
+          "level": "Advanced",
+          "order": 4,
+          "title": "React 19 `use()` API & Reading Promises/Context Conditionally",
+          "durationMin": 20,
+          "summary": "React 19’s `use(resource)` hook reads the resolved value of a Promise (suspending via nearest `<Suspense>`) or reads a Context—and UNLIKE every other hook, `use()` CAN be called inside `if` statements and loops!",
+          "explanation": [
+            "React 19’s `use(resource)` hook reads the resolved value of a Promise (suspending via nearest `<Suspense>`) or reads a Context—and UNLIKE every other hook, `use()` CAN be called inside `if` statements and loops!",
+            "Create/cache the Promise outside render (in a loader, cache, or Server Component) rather than calling `fetch()` fresh inside render, or every re-render suspends endlessly.",
+            "Combine `<ErrorBoundary>` + `<Suspense>` + `use(promise)` for crisp declarative async trees."
+          ],
+          "codeExample": {
+            "title": "Conditional Context Read with React 19 `use()`",
+            "language": "tsx",
+            "code": "import { use } from 'react';\nexport function OptionalThemeBadge({ show }: { show: boolean }) {\n  if (!show) return null;\n  // Legal in React 19! Unlike useContext, use() can run after an early return.\n  const theme = use(ThemeContext);\n  return <span>{theme}</span>;\n}"
+          },
+          "keyPoints": [
+            "`use(promise)` integrates with `<Suspense>` and `<ErrorBoundary>` seamlessly.",
+            "`use()` is the ONLY React API allowed inside `if` blocks and loops.",
+            "Never create an uncached Promise directly inside render passed to `use()`."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Writing `const data = use(fetch(\"/api/x\"))` directly inside a component body",
+              "fix": "Every render creates a brand-new pending Promise, causing an infinite Suspense loop; hoist or cache the Promise!"
+            },
+            {
+              "mistake": "Forgetting an Error Boundary around `use(promise)`",
+              "fix": "Rejected Promises bubble to the nearest Error Boundary cleanly."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "How does React 19’s `use(Context)` differ from `useContext(Context)`?",
+              "answer": "`use()` can be called conditionally inside `if` branches or loops after early returns, whereas `useContext()` must follow strict top-level hook ordering."
+            },
+            {
+              "question": "What happens when a Promise passed to `use(promise)` rejects?",
+              "answer": "React catches the rejection and displays the fallback of the nearest parent Error Boundary."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "react-s12",
+      "index": 11,
+      "level": "Advanced",
+      "title": "Production React Engineering: State Libraries, Animations & i18n",
+      "description": "Choose right-sized state tools, build accessible motion, handle internationalization, and ship zero-defect builds.",
+      "lessons": [
+        {
+          "id": "react-s12-l1",
+          "sectionId": "react-s12",
+          "level": "Advanced",
+          "order": 1,
+          "title": "Choosing State Management: Context vs Zustand vs TanStack Query",
+          "durationMin": 20,
+          "summary": "Not all state belongs in one tool: TanStack Query/SWR owns remote server cache (deduplication, retries, background refetch), URL searchParams own navigation filters, and Zustand or Context+useReducer own client UI state.",
+          "explanation": [
+            "Not all state belongs in one tool: TanStack Query/SWR owns remote server cache (deduplication, retries, background refetch), URL searchParams own navigation filters, and Zustand or Context+useReducer own client UI state.",
+            "Selector-based stores (like Zustand `useStore(s => s.streak)`) let components subscribe to ONE atomic slice without re-rendering when unrelated store keys change.",
+            "Start simple with local state + Context + adapter services; reach for external stores only when Context fan-out or server-cache complexity genuinely warrants them."
+          ],
+          "codeExample": {
+            "title": "Atomic Selector Pattern Concept",
+            "language": "tsx",
+            "code": "// Server cache -> TanStack Query (staleTime, cache invalidation, retries)\n// Navigation/filters -> React Router useSearchParams\n// Global theme/auth -> React Context\n// High-frequency shared client state -> Selector-based store\nexport type StateCategory = 'local' | 'url' | 'server-cache' | 'global-client';"
+          },
+          "keyPoints": [
+            "Separate server cache state from local/global UI state.",
+            "Selector subscriptions re-render ONLY when the selected slice changes.",
+            "Avoid reaching for heavy global stores before measuring real need."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Copying REST API responses manually into Redux/Context with hand-rolled loading flags everywhere",
+              "fix": "Server-cache libraries handle caching, deduplication, and background refresh automatically."
+            },
+            {
+              "mistake": "Storing transient form input keystrokes in a global store",
+              "fix": "Keep form drafts local to the form component."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why is Server Cache state fundamentally different from Client UI state?",
+              "answer": "Server data is asynchronous, shared, potentially stale, and owned remotely—needing caching, deduplication, and revalidation rather than plain local setters."
+            },
+            {
+              "question": "How do selector-based stores prevent unnecessary re-renders compared to plain Context?",
+              "answer": "Each subscriber compares only its selected slice (`s => s.count`) with `Object.is`, skipping renders when other store properties update."
+            }
+          ]
+        },
+        {
+          "id": "react-s12-l2",
+          "sectionId": "react-s12",
+          "level": "Advanced",
+          "order": 2,
+          "title": "Smooth, Accessible Micro-Interactions & Motion",
+          "durationMin": 20,
+          "summary": "Purposeful motion clarifies state transitions (drawer slide, quiz progress bar fill, card elevation) using compositor-only properties (`transform`, `opacity`) while respecting `prefers-reduced-motion`.",
+          "explanation": [
+            "Purposeful motion clarifies state transitions (drawer slide, quiz progress bar fill, card elevation) using compositor-only properties (`transform`, `opacity`) while respecting `prefers-reduced-motion`.",
+            "Never animate layout-triggering properties like `width`, `height`, or `top` on hot 60fps loops—animate `transform: scaleX()` or `translateY()` instead, and keep UI transitions brisk (150ms–250ms).",
+            "Provide reduced-motion alternatives so vestibular-sensitive learners experience crisp instant transitions with zero dizziness."
+          ],
+          "codeExample": {
+            "title": "GPU-Composited Progress Bar & Reduced-Motion Respect",
+            "language": "tsx",
+            "code": "export function ProgressBar({ percent }: { percent: number }) {\n  return (\n    <div className=\"h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800\">\n      <div\n        className=\"h-full origin-left bg-indigo-600 transition-transform duration-300 motion-reduce:transition-none\"\n        style={{ transform: `scaleX(${Math.min(100, Math.max(0, percent)) / 100})` }}\n      />\n    </div>\n  );\n}"
+          },
+          "keyPoints": [
+            "Animate `transform` and `opacity` for 60fps GPU-composited motion.",
+            "Use Tailwind `motion-reduce:transition-none` to respect OS reduced-motion preferences.",
+            "Keep UI micro-interactions crisp (150–250ms), never sluggish or distracting."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Animating `width: 0% -> 100%` continuously on 23 cards at once",
+              "fix": "Triggers layout recalculation every frame; animate `transform: scaleX()` instead."
+            },
+            {
+              "mistake": "Adding infinite pulsing/bouncing animations on static buttons or status dots",
+              "fix": "Distracts readers and violates accessibility comfort; reserve motion for meaningful state changes."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why is animating `transform: scaleX()` faster than animating `width`?",
+              "answer": "`transform` runs purely on the GPU compositor thread without triggering browser Layout or Paint passes."
+            },
+            {
+              "question": "How does Tailwind CSS support `prefers-reduced-motion`?",
+              "answer": "With the `motion-reduce:` and `motion-safe:` variants (e.g., `motion-reduce:transition-none`)."
+            }
+          ]
+        },
+        {
+          "id": "react-s12-l3",
+          "sectionId": "react-s12",
+          "level": "Advanced",
+          "order": 3,
+          "title": "Internationalization (i18n), Formatting & RTL Readiness",
+          "durationMin": 20,
+          "summary": "Build React apps ready for global learners by formatting dates/numbers with native `Intl`, isolating copy cleanly, and using Tailwind logical utilities (`ms-`, `me-`, `ps-`, `pe-`, `text-start`) so RTL locales mirror seamlessly.",
+          "explanation": [
+            "Build React apps ready for global learners by formatting dates/numbers with native `Intl`, isolating copy cleanly, and using Tailwind logical utilities (`ms-`, `me-`, `ps-`, `pe-`, `text-start`) so RTL locales mirror seamlessly.",
+            "Never concatenate translated fragments (`t(\"completed\") + \" \" + n + \" \" + t(\"lessons\")`) because word order and pluralization differ wildly across languages—use parameterized message templates (`\"{count} lessons completed\"`).",
+            "Keep numbers aligned vertically in dashboards using `tabular-nums` (`font-variant-numeric: tabular-nums`)."
+          ],
+          "codeExample": {
+            "title": "Locale-Safe Formatting with Native Intl",
+            "language": "tsx",
+            "code": "export function formatStudyTime(minutes: number, locale = 'en-US'): string {\n  const hours = Math.floor(minutes / 60);\n  const mins = minutes % 60;\n  const nf = new Intl.NumberFormat(locale);\n  return hours > 0 ? `${nf.format(hours)}h ${nf.format(mins)}m` : `${nf.format(mins)}m`;\n}"
+          },
+          "keyPoints": [
+            "Use `Intl.DateTimeFormat` and `Intl.NumberFormat` instead of hardcoded US date strings.",
+            "Use Tailwind logical spacing (`ps-4`, `text-start`) for automatic RTL readiness.",
+            "Apply `tabular-nums` on timers, quiz counters, and dashboard stats so digits never jitter."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Hardcoding `\"MM/DD/YYYY\"` with `getMonth() + 1` everywhere",
+              "fix": "Use `Intl.DateTimeFormat(undefined, { dateStyle: \"medium\" })` for clean locale-aware dates."
+            },
+            {
+              "mistake": "Omitting `tabular-nums` on countdown exam timers",
+              "fix": "Proportional fonts jump horizontally every second (`1` vs `8`); `tabular-nums` locks digit widths."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why is `tabular-nums` essential on countdown timers and dashboard metrics?",
+              "answer": "Proportional digits vary in width so ticking timers jitter left and right; `tabular-nums` gives every digit identical monospace width cleanly inside a sans-serif font."
+            },
+            {
+              "question": "Why should i18n strings use full parameterized templates instead of string concatenation?",
+              "answer": "Different languages place subjects, counts, and verbs in different orders and have complex plural forms."
+            }
+          ]
+        },
+        {
+          "id": "react-s12-l4",
+          "sectionId": "react-s12",
+          "level": "Advanced",
+          "order": 4,
+          "title": "End-to-End Verification & Real-Browser Quality Gates",
+          "durationMin": 20,
+          "summary": "Before shipping any React application, verify it end-to-end in a real headless browser across Desktop and Mobile viewports, Light and Dark modes, checking zero console/network errors and full interactive flows.",
+          "explanation": [
+            "Before shipping any React application, verify it end-to-end in a real headless browser across Desktop and Mobile viewports, Light and Dark modes, checking zero console/network errors and full interactive flows.",
+            "Combine static checks (`tsc --noEmit` + `eslint`), unit tests (`node:test`), production build (`vite build`), and real-browser Playwright checks so regressions never reach learners.",
+            "Inspect real rendered screenshots visually—layout overlaps, clipped text, broken dark-mode contrast, and dead buttons stand out immediately in screenshots."
+          ],
+          "codeExample": {
+            "title": "Complete Production Quality Gate Checklist",
+            "language": "tsx",
+            "code": "// 1. Pure domain unit tests:     tsx --test src/utils/*.test.ts\n// 2. Typecheck + Lint:           npm run lint && tsc --noEmit\n// 3. Production bundle build:    npm run build\n// 4. Real-browser verification:  Desktop (1440px) + Mobile (390px), Light + Dark, 0 console errors\nexport const RELEASE_GATES = ['unit-tests', 'typecheck-lint', 'prod-build', 'browser-e2e'] as const;"
+          },
+          "keyPoints": [
+            "Zero TypeScript errors does NOT guarantee zero runtime/layout bugs—always test in a real browser.",
+            "Verify both Light and Dark modes plus narrow 390px mobile screens for horizontal overflow.",
+            "Check console errors, failed image/asset requests, and interactive forms end-to-end."
+          ],
+          "commonMistakes": [
+            {
+              "mistake": "Shipping after `npm run build` without opening the running app in a browser",
+              "fix": "Runtime errors, missing assets, broken z-index overlaps, and dark-mode contrast issues only show up at runtime."
+            },
+            {
+              "mistake": "Only checking the landing page and skipping inner routes like quizzes, exams, and PDF exports",
+              "fix": "Walk every critical learner journey end-to-end before release."
+            }
+          ],
+          "interviewQA": [
+            {
+              "question": "Why is `npm run build` alone insufficient to guarantee a working React release?",
+              "answer": "Builds verify syntax and bundling, not runtime data loading, CSS layout overflow, dark-mode contrast, or broken event handlers."
+            },
+            {
+              "question": "What should an automated browser smoke test assert on every route?",
+              "answer": "Zero `console.error` / `pageerror`, HTTP 200 on assets, `scrollWidth <= innerWidth` (no horizontal overflow), and working primary interactive actions."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

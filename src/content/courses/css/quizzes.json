@@ -1,0 +1,1997 @@
+{
+  "courseSlug": "css",
+  "quizzes": [
+    {
+      "sectionId": "css-s1",
+      "sectionTitle": "Selectors, Cascade & Specificity",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "css-s1-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Selectors, Cascade & Specificity",
+          "prompt": "If .alpha and .beta both set color and .beta appears later in the CSS file, what color applies to <p class=\"beta alpha\">?",
+          "options": [
+            "The color declared in .beta",
+            "The color declared in .alpha",
+            "The browser averages both colors",
+            "Neither applies due to conflict"
+          ],
+          "correctIndex": 0,
+          "explanation": "Equal specificity ties are always resolved by later stylesheet source order, never HTML class order."
+        },
+        {
+          "id": "css-s1-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Selectors, Cascade & Specificity",
+          "prompt": "When working with How the Cascade Resolves Conflicts in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Cascade tie-breaking follows stylesheet order, not HTML attribute order.",
+            "Always rely on \"Expecting class=\"b a\" to make .a override .b regardless of CSS order\" as the default pattern",
+            "Ignore How the Cascade Resolves Conflicts constraints during runtime execution",
+            "Replace How the Cascade Resolves Conflicts with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Expecting class=\"b a\" to make .a override .b regardless of CSS order. Recommended fix: Cascade tie-breaking follows stylesheet order, not HTML attribute order."
+        },
+        {
+          "id": "css-s1-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Selectors, Cascade & Specificity",
+          "prompt": "What is the specificity of ul#menu > li.active a:hover?",
+          "options": [
+            "(1, 2, 3)",
+            "(1, 3, 2)",
+            "(2, 2, 2)",
+            "(0, 3, 3)"
+          ],
+          "correctIndex": 0,
+          "explanation": "1 ID (#menu), 2 class/pseudo-class (.active, :hover), and 3 element types (ul, li, a) = (1, 2, 3)."
+        },
+        {
+          "id": "css-s1-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Selectors, Cascade & Specificity",
+          "prompt": "When working with Specificity Math: (ID, Class, Type) in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use reusable .class selectors so components remain easy to override and compose.",
+            "Always rely on \"Styling components with #id selectors\" as the default pattern",
+            "Ignore Specificity Math: (ID, Class, Type) constraints during runtime execution",
+            "Replace Specificity Math: (ID, Class, Type) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Styling components with #id selectors. Recommended fix: Use reusable .class selectors so components remain easy to override and compose."
+        },
+        {
+          "id": "css-s1-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Selectors, Cascade & Specificity",
+          "prompt": "Which selector targets only <a href=\"...\"> links whose URL ends with \".pdf\"?",
+          "options": [
+            "a[href$=\".pdf\"]",
+            "a[href^=\".pdf\"]",
+            "a[href*=\".pdf\"]",
+            "a[href~=\".pdf\"]"
+          ],
+          "correctIndex": 0,
+          "explanation": "$= matches attribute values ending with the specified suffix."
+        },
+        {
+          "id": "css-s1-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Selectors, Cascade & Specificity",
+          "prompt": "When working with Combinators, Attribute Selectors & Pseudo-Classes in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Combine :invalid with :user-invalid or :not(:placeholder-shown) so empty fresh forms do not show red errors.",
+            "Always rely on \"Styling :invalid immediately on page load before the user types\" as the default pattern",
+            "Ignore Combinators, Attribute Selectors & Pseudo-Classes constraints during runtime execution",
+            "Replace Combinators, Attribute Selectors & Pseudo-Classes with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Styling :invalid immediately on page load before the user types. Recommended fix: Combine :invalid with :user-invalid or :not(:placeholder-shown) so empty fresh forms do not show red errors."
+        },
+        {
+          "id": "css-s1-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Selectors, Cascade & Specificity",
+          "prompt": "What does setting display: initial on a <div> compute to?",
+          "options": [
+            "inline",
+            "block",
+            "flex",
+            "none"
+          ],
+          "correctIndex": 0,
+          "explanation": "The CSS specification initial value for the display property is always inline regardless of the HTML tag."
+        },
+        {
+          "id": "css-s1-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Selectors, Cascade & Specificity",
+          "prompt": "When working with Inheritance & Explicit Keywords (inherit, initial, revert) in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "The CSS spec initial value of display is inline for all elements; use display: revert to restore block.",
+            "Always rely on \"Using display: initial on a <div> expecting display: block\" as the default pattern",
+            "Ignore Inheritance & Explicit Keywords (inherit, initial, revert) constraints during runtime execution",
+            "Replace Inheritance & Explicit Keywords (inherit, initial, revert) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using display: initial on a <div> expecting display: block. Recommended fix: The CSS spec initial value of display is inline for all elements; use display: revert to restore block."
+        },
+        {
+          "id": "css-s1-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Selectors, Cascade & Specificity",
+          "prompt": "Which color is applied to <p id=\"intro\" class=\"lead highlight\">Hello</p>?",
+          "codeSnippet": {
+            "language": "css",
+            "code": "#intro { color: navy; }\n.lead.highlight { color: crimson; }\np.lead.highlight { color: green; }"
+          },
+          "options": [
+            "navy",
+            "crimson",
+            "green",
+            "Browser default black"
+          ],
+          "correctIndex": 0,
+          "explanation": "#intro has specificity (1,0,0), which strictly beats (0,2,1) regardless of how many classes are chained."
+        },
+        {
+          "id": "css-s1-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Selectors, Cascade & Specificity",
+          "prompt": "Which text color applies to <span class=\"badge\">New</span>?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ":where(#app .badge) { color: red; }\n.badge { color: indigo; }"
+          },
+          "options": [
+            "indigo",
+            "red",
+            "black",
+            "transparent"
+          ],
+          "correctIndex": 0,
+          "explanation": ":where() always evaluates to (0,0,0) specificity even when containing an ID, so .badge (0,1,0) wins."
+        }
+      ]
+    },
+    {
+      "sectionId": "css-s2",
+      "sectionTitle": "Box Model, Sizing & Spacing",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "css-s2-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Box Model, Sizing & Spacing",
+          "prompt": "An element has box-sizing: content-box; width: 100px; padding: 10px; border: 2px solid black. What is its total rendered width?",
+          "options": [
+            "124px",
+            "100px",
+            "112px",
+            "120px"
+          ],
+          "correctIndex": 0,
+          "explanation": "Under content-box, rendered width = 100 + (10 * 2) + (2 * 2) = 124px."
+        },
+        {
+          "id": "css-s2-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Box Model, Sizing & Spacing",
+          "prompt": "When working with The Box Model & box-sizing: border-box in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Switch to box-sizing: border-box so width: 100% never triggers horizontal scrollbars.",
+            "Always rely on \"Setting width: 100% plus padding: 16px under content-box\" as the default pattern",
+            "Ignore The Box Model & box-sizing: border-box constraints during runtime execution",
+            "Replace The Box Model & box-sizing: border-box with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Setting width: 100% plus padding: 16px under content-box. Recommended fix: Switch to box-sizing: border-box so width: 100% never triggers horizontal scrollbars."
+        },
+        {
+          "id": "css-s2-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Box Model, Sizing & Spacing",
+          "prompt": "Two sibling <p> elements in normal block flow have margin-bottom: 24px and margin-top: 16px respectively. What is the vertical space between them?",
+          "options": [
+            "24px",
+            "40px",
+            "16px",
+            "8px"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adjacent vertical margins collapse to max(24px, 16px) = 24px."
+        },
+        {
+          "id": "css-s2-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Box Model, Sizing & Spacing",
+          "prompt": "When working with Margin Collapsing & Formatting Contexts in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Their vertical margins collapse to 20px in normal block flow.",
+            "Always rely on \"Expecting two stacked paragraphs with margin: 20px 0 to sit 40px apart\" as the default pattern",
+            "Ignore Margin Collapsing & Formatting Contexts constraints during runtime execution",
+            "Replace Margin Collapsing & Formatting Contexts with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Expecting two stacked paragraphs with margin: 20px 0 to sit 40px apart. Recommended fix: Their vertical margins collapse to 20px in normal block flow."
+        },
+        {
+          "id": "css-s2-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Box Model, Sizing & Spacing",
+          "prompt": "In horizontal left-to-right English layout, which properties are set by margin-block: 1rem 2rem?",
+          "options": [
+            "margin-top: 1rem and margin-bottom: 2rem",
+            "margin-left: 1rem and margin-right: 2rem",
+            "All four margins set to 1.5rem",
+            "padding-top and padding-bottom"
+          ],
+          "correctIndex": 0,
+          "explanation": "The block axis runs top-to-bottom in horizontal writing modes, so margin-block sets top and bottom margins."
+        },
+        {
+          "id": "css-s2-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Box Model, Sizing & Spacing",
+          "prompt": "When working with CSS Logical Properties for Global Layouts in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Standardize on logical properties throughout internationalized design systems.",
+            "Always rely on \"Mixing physical margin-left with logical margin-inline-end on the same component\" as the default pattern",
+            "Ignore CSS Logical Properties for Global Layouts constraints during runtime execution",
+            "Replace CSS Logical Properties for Global Layouts with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Mixing physical margin-left with logical margin-inline-end on the same component. Recommended fix: Standardize on logical properties throughout internationalized design systems."
+        },
+        {
+          "id": "css-s2-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Box Model, Sizing & Spacing",
+          "prompt": "Which CSS property maintains a 16:9 media container ratio across all widths without wrapper hacks?",
+          "options": [
+            "aspect-ratio: 16 / 9",
+            "ratio: 16:9",
+            "box-ratio: 16 / 9",
+            "object-ratio: 16 / 9"
+          ],
+          "correctIndex": 0,
+          "explanation": "aspect-ratio natively sets the preferred width-to-height ratio of a box."
+        },
+        {
+          "id": "css-s2-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Box Model, Sizing & Spacing",
+          "prompt": "When working with Intrinsic Sizing: min-content, max-content, fit-content & aspect-ratio in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Set one dimension (width) plus aspect-ratio so the browser calculates the other dimension smoothly.",
+            "Always rely on \"Setting both fixed height and aspect-ratio simultaneously on a flexible container\" as the default pattern",
+            "Ignore Intrinsic Sizing: min-content, max-content, fit-content & aspect-ratio constraints during runtime execution",
+            "Replace Intrinsic Sizing: min-content, max-content, fit-content & aspect-ratio with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Setting both fixed height and aspect-ratio simultaneously on a flexible container. Recommended fix: Set one dimension (width) plus aspect-ratio so the browser calculates the other dimension smoothly."
+        },
+        {
+          "id": "css-s2-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Box Model, Sizing & Spacing",
+          "prompt": "What is the total rendered width (border box) of .panel?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".panel {\n  box-sizing: border-box;\n  width: 240px;\n  padding: 20px;\n  border: 4px solid #cbd5e1;\n  margin: 16px;\n}"
+          },
+          "options": [
+            "240px",
+            "288px",
+            "320px",
+            "272px"
+          ],
+          "correctIndex": 0,
+          "explanation": "Under box-sizing: border-box, padding and border fit inside the declared 240px width (margin is external)."
+        },
+        {
+          "id": "css-s2-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Box Model, Sizing & Spacing",
+          "prompt": "What is the computed width of .box inside a 500px-wide viewport?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".box {\n  width: clamp(200px, 50vw, 400px);\n}"
+          },
+          "options": [
+            "250px",
+            "200px",
+            "400px",
+            "500px"
+          ],
+          "correctIndex": 0,
+          "explanation": "50vw of 500px is 250px, which lies between the 200px floor and 400px ceiling."
+        }
+      ]
+    },
+    {
+      "sectionId": "css-s3",
+      "sectionTitle": "Units, Typography & Color Systems",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "css-s3-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Units, Typography & Color Systems",
+          "prompt": "Which viewport unit dynamically adjusts height as mobile browser address bars collapse and expand?",
+          "options": [
+            "100dvh",
+            "100vh",
+            "100vmin",
+            "100vw"
+          ],
+          "correctIndex": 0,
+          "explanation": "dvh (dynamic viewport height) updates continuously as browser UI chrome shifts."
+        },
+        {
+          "id": "css-s3-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Units, Typography & Color Systems",
+          "prompt": "When working with Relative Units: rem, em, ch & Dynamic Viewport (dvh) in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Nested em font sizes compound multiplicatively (0.9 * 0.9 * 0.9); use rem for font-size and em only for component-local padding.",
+            "Always rely on \"Using em for font-size inside deeply nested <li> elements\" as the default pattern",
+            "Ignore Relative Units: rem, em, ch & Dynamic Viewport (dvh) constraints during runtime execution",
+            "Replace Relative Units: rem, em, ch & Dynamic Viewport (dvh) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using em for font-size inside deeply nested <li> elements. Recommended fix: Nested em font sizes compound multiplicatively (0.9 * 0.9 * 0.9); use rem for font-size and em only for component-local padding."
+        },
+        {
+          "id": "css-s3-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Units, Typography & Color Systems",
+          "prompt": "Why is line-height: 1.5 preferred over line-height: 150% on a parent container?",
+          "options": [
+            "Unitless 1.5 inherits the scaling factor to children of any font size rather than a fixed computed pixel value",
+            "Percentage line-height is invalid in CSS3",
+            "Unitless values render faster on the GPU",
+            "150% applies only to monospace fonts"
+          ],
+          "correctIndex": 0,
+          "explanation": "Percentage line-height inherits its computed pixel length from the parent, causing text overlap on larger descendants."
+        },
+        {
+          "id": "css-s3-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Units, Typography & Color Systems",
+          "prompt": "When working with Fluid Typography, line-height & tabular-nums in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Pure vw text ignores user zoom settings (WCAG failure) and becomes unreadable on tiny or ultrawide displays.",
+            "Always rely on \"Writing font-size: 5vw without a rem floor or clamp()\" as the default pattern",
+            "Ignore Fluid Typography, line-height & tabular-nums constraints during runtime execution",
+            "Replace Fluid Typography, line-height & tabular-nums with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing font-size: 5vw without a rem floor or clamp(). Recommended fix: Pure vw text ignores user zoom settings (WCAG failure) and becomes unreadable on tiny or ultrawide displays."
+        },
+        {
+          "id": "css-s3-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Units, Typography & Color Systems",
+          "prompt": "What is the minimum WCAG AA contrast ratio required for regular body text?",
+          "options": [
+            "4.5:1",
+            "2.0:1",
+            "3.0:1",
+            "10.0:1"
+          ],
+          "correctIndex": 0,
+          "explanation": "WCAG 2.1 Level AA specifies 4.5:1 minimum contrast for normal text and 3:1 for large text."
+        },
+        {
+          "id": "css-s3-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Units, Typography & Color Systems",
+          "prompt": "When working with Modern Color Spaces: oklch(), hsl() & color-mix() in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "HSL lightness is not perceptually uniform; test real contrast ratios (4.5:1+) or use OKLCH.",
+            "Always rely on \"Building dark mode by inverting lightness in HSL blindly\" as the default pattern",
+            "Ignore Modern Color Spaces: oklch(), hsl() & color-mix() constraints during runtime execution",
+            "Replace Modern Color Spaces: oklch(), hsl() & color-mix() with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Building dark mode by inverting lightness in HSL blindly. Recommended fix: HSL lightness is not perceptually uniform; test real contrast ratios (4.5:1+) or use OKLCH."
+        },
+        {
+          "id": "css-s3-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Units, Typography & Color Systems",
+          "prompt": "Which font-display value shows fallback text immediately and replaces it once the web font finishes downloading?",
+          "options": [
+            "swap",
+            "block",
+            "fallback-only",
+            "eager"
+          ],
+          "correctIndex": 0,
+          "explanation": "font-display: swap uses an almost zero block period and swaps as soon as the font loads."
+        },
+        {
+          "id": "css-s3-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Units, Typography & Color Systems",
+          "prompt": "When working with Web Fonts, font-display: swap & Fallback Metrics in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Load only the active weights (e.g., 400, 600, 700) or one variable WOFF2 file.",
+            "Always rely on \"Loading 8 separate static weight/italic font files when only 2 weights are used\" as the default pattern",
+            "Ignore Web Fonts, font-display: swap & Fallback Metrics constraints during runtime execution",
+            "Replace Web Fonts, font-display: swap & Fallback Metrics with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Loading 8 separate static weight/italic font files when only 2 weights are used. Recommended fix: Load only the active weights (e.g., 400, 600, 700) or one variable WOFF2 file."
+        },
+        {
+          "id": "css-s3-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Units, Typography & Color Systems",
+          "prompt": "What is the computed font-size of .inner given default root 16px?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".outer { font-size: 1.5em; }\n.inner { font-size: 1.5em; }\n/* <div class=\"outer\"><div class=\"inner\">Hi</div></div> */"
+          },
+          "options": [
+            "36px",
+            "24px",
+            "16px",
+            "48px"
+          ],
+          "correctIndex": 0,
+          "explanation": "em compounds relative to its parent: .outer is 16 * 1.5 = 24px, and .inner is 24 * 1.5 = 36px."
+        },
+        {
+          "id": "css-s3-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Units, Typography & Color Systems",
+          "prompt": "What is the computed line-height of <h1> inside <body>?",
+          "codeSnippet": {
+            "language": "css",
+            "code": "body { font-size: 16px; line-height: 1.5; }\nh1 { font-size: 32px; }"
+          },
+          "options": [
+            "48px",
+            "24px",
+            "32px",
+            "16px"
+          ],
+          "correctIndex": 0,
+          "explanation": "Unitless line-height 1.5 inherits as a multiplier, so 32px * 1.5 = 48px."
+        }
+      ]
+    },
+    {
+      "sectionId": "css-s4",
+      "sectionTitle": "Display, Positioning & Stacking Contexts",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "css-s4-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Display, Positioning & Stacking Contexts",
+          "prompt": "Which ancestor CSS property silently breaks position: sticky on a descendant?",
+          "options": [
+            "overflow: hidden",
+            "display: grid",
+            "background-color: white",
+            "border-radius: 12px"
+          ],
+          "correctIndex": 0,
+          "explanation": "overflow: hidden creates a scroll container that traps sticky positioning; use overflow: clip if clipping is needed."
+        },
+        {
+          "id": "css-s4-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Display, Positioning & Stacking Contexts",
+          "prompt": "When working with Positioning Modes: relative, absolute, fixed & sticky in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use overflow-x: clip instead so sticky positioning continues working.",
+            "Always rely on \"Putting overflow-x: hidden on a wrapper containing a position: sticky sidebar\" as the default pattern",
+            "Ignore Positioning Modes: relative, absolute, fixed & sticky constraints during runtime execution",
+            "Replace Positioning Modes: relative, absolute, fixed & sticky with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Putting overflow-x: hidden on a wrapper containing a position: sticky sidebar. Recommended fix: Use overflow-x: clip instead so sticky positioning continues working."
+        },
+        {
+          "id": "css-s4-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Display, Positioning & Stacking Contexts",
+          "prompt": "Which CSS property creates a new stacking context cleanly with NO visual side effects (unlike opacity or transform)?",
+          "options": [
+            "isolation: isolate",
+            "z-index: auto",
+            "display: block",
+            "pointer-events: auto"
+          ],
+          "correctIndex": 0,
+          "explanation": "isolation: isolate was designed specifically to create an explicit stacking context cleanly."
+        },
+        {
+          "id": "css-s4-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Display, Positioning & Stacking Contexts",
+          "prompt": "When working with Stacking Contexts & isolation: isolate in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Inspect which ancestor created a stacking context with lower z-index rather than inflating numbers.",
+            "Always rely on \"Escalating z-index to 999999 when a dropdown renders behind a sibling card\" as the default pattern",
+            "Ignore Stacking Contexts & isolation: isolate constraints during runtime execution",
+            "Replace Stacking Contexts & isolation: isolate with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Escalating z-index to 999999 when a dropdown renders behind a sibling card. Recommended fix: Inspect which ancestor created a stacking context with lower z-index rather than inflating numbers."
+        },
+        {
+          "id": "css-s4-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Display, Positioning & Stacking Contexts",
+          "prompt": "Which property prevents a scrollable sidebar from chaining scroll events to the main page once it hits the bottom?",
+          "options": [
+            "overscroll-behavior: contain",
+            "scroll-snap-type: none",
+            "overflow-anchor: none",
+            "touch-action: pan-x"
+          ],
+          "correctIndex": 0,
+          "explanation": "overscroll-behavior: contain isolates scroll chaining inside the scrollable container."
+        },
+        {
+          "id": "css-s4-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Display, Positioning & Stacking Contexts",
+          "prompt": "When working with Overflow, Scrollbar Gutter & Overscroll Behavior in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Apply overflow-x: auto directly on <pre> and table wrappers, keeping min-width: 0 on grid/flex parents.",
+            "Always rely on \"Allowing wide code blocks or tables to stretch the entire <body> horizontally on mobile\" as the default pattern",
+            "Ignore Overflow, Scrollbar Gutter & Overscroll Behavior constraints during runtime execution",
+            "Replace Overflow, Scrollbar Gutter & Overscroll Behavior with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Allowing wide code blocks or tables to stretch the entire <body> horizontally on mobile. Recommended fix: Apply overflow-x: auto directly on <pre> and table wrappers, keeping min-width: 0 on grid/flex parents."
+        },
+        {
+          "id": "css-s4-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Display, Positioning & Stacking Contexts",
+          "prompt": "Which hiding method leaves an element invisible yet still clickable and keyboard-focusable?",
+          "options": [
+            "opacity: 0",
+            "display: none",
+            "visibility: hidden",
+            "HTML hidden attribute"
+          ],
+          "correctIndex": 0,
+          "explanation": "opacity: 0 only changes visual alpha; pointer events and focus remain active unless explicitly disabled."
+        },
+        {
+          "id": "css-s4-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Display, Positioning & Stacking Contexts",
+          "prompt": "When working with Visibility, Opacity, display: none & Accessibility in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Invisible buttons with opacity: 0 still steal clicks and Tab stops; combine with visibility: hidden or inert/hidden.",
+            "Always rely on \"Hiding a closed dropdown with opacity: 0 alone\" as the default pattern",
+            "Ignore Visibility, Opacity, display: none & Accessibility constraints during runtime execution",
+            "Replace Visibility, Opacity, display: none & Accessibility with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Hiding a closed dropdown with opacity: 0 alone. Recommended fix: Invisible buttons with opacity: 0 still steal clicks and Tab stops; combine with visibility: hidden or inert/hidden."
+        },
+        {
+          "id": "css-s4-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Display, Positioning & Stacking Contexts",
+          "prompt": "Which box appears on top visually?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".parent-a { position: relative; z-index: 1; }\n.child-a  { position: absolute; z-index: 9999; }\n.parent-b { position: relative; z-index: 2; }"
+          },
+          "options": [
+            ".parent-b appears on top of .child-a",
+            ".child-a appears on top of .parent-b",
+            "They blend at 50% opacity",
+            "Browser throws a layout warning"
+          ],
+          "correctIndex": 0,
+          "explanation": ".child-a is trapped inside .parent-a’s stacking context (z-index: 1), which sits below sibling .parent-b (z-index: 2)."
+        },
+        {
+          "id": "css-s4-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Display, Positioning & Stacking Contexts",
+          "prompt": "Can a user click a <button style=\"opacity: 0\">Submit</button>?",
+          "codeSnippet": {
+            "language": "css",
+            "code": "<button style=\"opacity: 0\" onclick=\"alert('clicked')\">Submit</button>"
+          },
+          "options": [
+            "Yes—opacity: 0 keeps pointer events and focus active",
+            "No—opacity: 0 disables clicks automatically",
+            "Only via keyboard, never mouse",
+            "No—opacity: 0 removes the element from DOM"
+          ],
+          "correctIndex": 0,
+          "explanation": "opacity: 0 only alters rendered transparency without disabling pointer events or keyboard focus."
+        }
+      ]
+    },
+    {
+      "sectionId": "css-s5",
+      "sectionTitle": "Flexbox Layout Mastery",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "css-s5-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Flexbox Layout Mastery",
+          "prompt": "In a container with display: flex; flex-direction: column;, which property centers children horizontally?",
+          "options": [
+            "align-items: center",
+            "justify-content: center",
+            "justify-items: center",
+            "text-align: center"
+          ],
+          "correctIndex": 0,
+          "explanation": "In flex-direction: column, the cross axis is horizontal, controlled by align-items."
+        },
+        {
+          "id": "css-s5-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Flexbox Layout Mastery",
+          "prompt": "When working with Main Axis, Cross Axis & Alignment Properties in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use align-items for single-line cross-axis alignment; align-content applies only when flex-wrap creates multiple lines.",
+            "Always rely on \"Using align-content on a single-row flex container and wondering why nothing moves\" as the default pattern",
+            "Ignore Main Axis, Cross Axis & Alignment Properties constraints during runtime execution",
+            "Replace Main Axis, Cross Axis & Alignment Properties with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using align-content on a single-row flex container and wondering why nothing moves. Recommended fix: Use align-items for single-line cross-axis alignment; align-content applies only when flex-wrap creates multiple lines."
+        },
+        {
+          "id": "css-s5-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Flexbox Layout Mastery",
+          "prompt": "What longhand values does flex: 1 expand to in CSS?",
+          "options": [
+            "flex-grow: 1; flex-shrink: 1; flex-basis: 0%",
+            "flex-grow: 1; flex-shrink: 0; flex-basis: auto",
+            "flex-grow: 1; flex-shrink: 1; flex-basis: auto",
+            "flex-grow: 1; flex-shrink: 0; flex-basis: 100%"
+          ],
+          "correctIndex": 0,
+          "explanation": "flex: 1 sets grow: 1, shrink: 1, and basis: 0% so columns distribute space equally."
+        },
+        {
+          "id": "css-s5-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Flexbox Layout Mastery",
+          "prompt": "When working with Flex Sizing Math: flex-grow, flex-shrink & flex-basis in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Add shrink-0 (flex-shrink: 0) so circular avatars never squish into ovals.",
+            "Always rely on \"Forgetting flex-shrink: 0 on icons or avatars inside narrow flex rows\" as the default pattern",
+            "Ignore Flex Sizing Math: flex-grow, flex-shrink & flex-basis constraints during runtime execution",
+            "Replace Flex Sizing Math: flex-grow, flex-shrink & flex-basis with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Forgetting flex-shrink: 0 on icons or avatars inside narrow flex rows. Recommended fix: Add shrink-0 (flex-shrink: 0) so circular avatars never squish into ovals."
+        },
+        {
+          "id": "css-s5-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Flexbox Layout Mastery",
+          "prompt": "Why does a flex item containing a long <pre> code block overflow its parent container by default?",
+          "options": [
+            "Flex items default to min-width: auto, refusing to shrink below minimum content size unless min-width: 0 is set",
+            "Flexbox disables overflow-x: auto on descendants",
+            "flex-shrink defaults to 0",
+            "<pre> forces position: absolute inside flex"
+          ],
+          "correctIndex": 0,
+          "explanation": "Setting min-width: 0 unlocks shrinking below intrinsic content width inside Flexbox."
+        },
+        {
+          "id": "css-s5-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Flexbox Layout Mastery",
+          "prompt": "When working with The min-width: 0 Truncation Rule in Flexbox in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Add min-width: 0 to the flex child so the ellipsis triggers instead of overflowing the viewport.",
+            "Always rely on \"Putting overflow: hidden; text-overflow: ellipsis on a title inside flex without min-width: 0\" as the default pattern",
+            "Ignore The min-width: 0 Truncation Rule in Flexbox constraints during runtime execution",
+            "Replace The min-width: 0 Truncation Rule in Flexbox with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Putting overflow: hidden; text-overflow: ellipsis on a title inside flex without min-width: 0. Recommended fix: Add min-width: 0 to the flex child so the ellipsis triggers instead of overflowing the viewport."
+        },
+        {
+          "id": "css-s5-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Flexbox Layout Mastery",
+          "prompt": "When you change an element’s visual placement with CSS order: -1, what happens to keyboard Tab order?",
+          "options": [
+            "Tab order remains unchanged, following the original HTML DOM order",
+            "Tab order automatically updates to match the new visual position",
+            "The element is removed from Tab order",
+            "Tab order reverses for the whole page"
+          ],
+          "correctIndex": 0,
+          "explanation": "CSS order is strictly visual and does not update DOM or keyboard focus order."
+        },
+        {
+          "id": "css-s5-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Flexbox Layout Mastery",
+          "prompt": "When working with Flex Wrapping, Order & Accessibility Caveats in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Reorder the actual HTML element so visual reading order and Tab focus order stay synchronized.",
+            "Always rely on \"Using order: -1 to move a primary CTA button visually to the start while leaving it last in HTML\" as the default pattern",
+            "Ignore Flex Wrapping, Order & Accessibility Caveats constraints during runtime execution",
+            "Replace Flex Wrapping, Order & Accessibility Caveats with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using order: -1 to move a primary CTA button visually to the start while leaving it last in HTML. Recommended fix: Reorder the actual HTML element so visual reading order and Tab focus order stay synchronized."
+        },
+        {
+          "id": "css-s5-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Flexbox Layout Mastery",
+          "prompt": "Inside a 600px wide flex container with 0 gap, what are the widths of .a and .b?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".row { display: flex; width: 600px; }\n.a { flex: 1; }\n.b { flex: 2; }"
+          },
+          "options": [
+            ".a is 200px, .b is 400px",
+            ".a is 300px, .b is 300px",
+            ".a is 100px, .b is 200px",
+            "Depends strictly on their text length"
+          ],
+          "correctIndex": 0,
+          "explanation": "flex: 1 and flex: 2 both set flex-basis: 0%, dividing 600px in a 1:2 ratio (200px and 400px)."
+        },
+        {
+          "id": "css-s5-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Flexbox Layout Mastery",
+          "prompt": "Inside a 400px flex row, .icon has width: 40px; flex-shrink: 0; and .text has flex: 1; min-width: 0;. What width is .text?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".row { display: flex; width: 400px; gap: 16px; }\n.icon { width: 40px; flex-shrink: 0; }\n.text { flex: 1; min-width: 0; }"
+          },
+          "options": [
+            "344px",
+            "360px",
+            "400px",
+            "200px"
+          ],
+          "correctIndex": 0,
+          "explanation": "400px total minus 40px icon minus 16px gap leaves 344px for .text."
+        }
+      ]
+    },
+    {
+      "sectionId": "css-s6",
+      "sectionTitle": "CSS Grid & Subgrid Systems",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "css-s6-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "CSS Grid & Subgrid Systems",
+          "prompt": "Why is minmax(0, 1fr) safer than plain 1fr for columns holding code snippets or long URLs?",
+          "options": [
+            "It lowers the track minimum from auto to 0 so unbreakable content cannot blow out the column width",
+            "It doubles rendering performance in Safari",
+            "It automatically enables vertical scrolling",
+            "It converts the grid into Flexbox on mobile"
+          ],
+          "correctIndex": 0,
+          "explanation": "Plain 1fr behaves as minmax(auto, 1fr); lowering the minimum to 0 prevents track blowout."
+        },
+        {
+          "id": "css-s6-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "CSS Grid & Subgrid Systems",
+          "prompt": "When working with Explicit vs Implicit Tracks & minmax(0, 1fr) in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Switch to repeat(3, minmax(0, 1fr)) (or min-width: 0 on items) so tracks stay equal.",
+            "Always rely on \"Using repeat(3, 1fr) with wide <pre> elements inside cards\" as the default pattern",
+            "Ignore Explicit vs Implicit Tracks & minmax(0, 1fr) constraints during runtime execution",
+            "Replace Explicit vs Implicit Tracks & minmax(0, 1fr) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using repeat(3, 1fr) with wide <pre> elements inside cards. Recommended fix: Switch to repeat(3, minmax(0, 1fr)) (or min-width: 0 on items) so tracks stay equal."
+        },
+        {
+          "id": "css-s6-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "CSS Grid & Subgrid Systems",
+          "prompt": "On a 1200px wide row containing only 2 cards, how does auto-fit behave compared to auto-fill?",
+          "options": [
+            "auto-fit collapses empty tracks so the 2 cards stretch to fill 1200px; auto-fill preserves empty slots",
+            "auto-fill stretches the 2 cards to 1200px; auto-fit keeps them narrow",
+            "Both produce identical layouts in all cases",
+            "auto-fit stacks cards vertically while auto-fill keeps them horizontal"
+          ],
+          "correctIndex": 0,
+          "explanation": "auto-fit collapses empty trailing tracks so populated items expand; auto-fill preserves the empty track space."
+        },
+        {
+          "id": "css-s6-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "CSS Grid & Subgrid Systems",
+          "prompt": "When working with Zero-Media-Query Responsive Grids (auto-fit vs auto-fill) in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "On a 300px container, 320px overflows; wrap it as minmax(min(320px, 100%), 1fr).",
+            "Always rely on \"Writing minmax(320px, 1fr) without min(320px, 100%)\" as the default pattern",
+            "Ignore Zero-Media-Query Responsive Grids (auto-fit vs auto-fill) constraints during runtime execution",
+            "Replace Zero-Media-Query Responsive Grids (auto-fit vs auto-fill) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing minmax(320px, 1fr) without min(320px, 100%). Recommended fix: On a 300px container, 320px overflows; wrap it as minmax(min(320px, 100%), 1fr)."
+        },
+        {
+          "id": "css-s6-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "CSS Grid & Subgrid Systems",
+          "prompt": "In grid-template-areas, what character represents an intentionally empty grid cell?",
+          "options": [
+            "A period (.)",
+            "An underscore (_)",
+            "The word null",
+            "An empty string \"\""
+          ],
+          "correctIndex": 0,
+          "explanation": "One or more periods (e.g. . or ...) represent an empty unnamed cell in grid-template-areas."
+        },
+        {
+          "id": "css-s6-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "CSS Grid & Subgrid Systems",
+          "prompt": "When working with Named Grid Template Areas & Spanning in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Non-rectangular area maps invalidate the entire grid-template-areas declaration; keep every area rectangular.",
+            "Always rely on \"Defining an L-shaped named area in grid-template-areas\" as the default pattern",
+            "Ignore Named Grid Template Areas & Spanning constraints during runtime execution",
+            "Replace Named Grid Template Areas & Spanning with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Defining an L-shaped named area in grid-template-areas. Recommended fix: Non-rectangular area maps invalidate the entire grid-template-areas declaration; keep every area rectangular."
+        },
+        {
+          "id": "css-s6-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "CSS Grid & Subgrid Systems",
+          "prompt": "What must a child card declare to align its internal title, body, and footer rows with neighboring cards in a parent grid?",
+          "options": [
+            "display: grid; grid-row: span 3; grid-template-rows: subgrid;",
+            "display: subgrid; align-items: stretch;",
+            "grid-inherit: rows;",
+            "display: flex; flex-direction: column;"
+          ],
+          "correctIndex": 0,
+          "explanation": "A subgrid container uses display: grid, spans the matching number of parent rows, and sets grid-template-rows: subgrid."
+        },
+        {
+          "id": "css-s6-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "CSS Grid & Subgrid Systems",
+          "prompt": "When working with CSS Subgrid for Cross-Card Alignment in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "The child container itself must be display: grid to adopt subgrid tracks.",
+            "Always rely on \"Declaring grid-template-rows: subgrid without display: grid on the child\" as the default pattern",
+            "Ignore CSS Subgrid for Cross-Card Alignment constraints during runtime execution",
+            "Replace CSS Subgrid for Cross-Card Alignment with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Declaring grid-template-rows: subgrid without display: grid on the child. Recommended fix: The child container itself must be display: grid to adopt subgrid tracks."
+        },
+        {
+          "id": "css-s6-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "CSS Grid & Subgrid Systems",
+          "prompt": "How many columns does .grid create on a 1000px container?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".grid {\n  display: grid;\n  width: 1000px;\n  grid-template-columns: 200px 1fr 2fr;\n}"
+          },
+          "options": [
+            "3 columns: 200px, ~266.7px, ~533.3px",
+            "3 equal columns of 333.3px",
+            "2 columns: 200px and 800px",
+            "Invalid mixing of px and fr"
+          ],
+          "correctIndex": 0,
+          "explanation": "After subtracting the fixed 200px column, 800px remains and is split in a 1:2 ratio (266.67px and 533.33px)."
+        },
+        {
+          "id": "css-s6-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "CSS Grid & Subgrid Systems",
+          "prompt": "Which grid columns does .banner span in a 4-column explicit grid?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".grid { display: grid; grid-template-columns: repeat(4, 1fr); }\n.banner { grid-column: 1 / -1; }"
+          },
+          "options": [
+            "All 4 columns (full width)",
+            "Only column 1",
+            "Columns 1 to 3",
+            "Places banner outside the grid"
+          ],
+          "correctIndex": 0,
+          "explanation": "Line 1 is the start edge and line -1 is the final explicit column edge, spanning all 4 columns."
+        }
+      ]
+    },
+    {
+      "sectionId": "css-s7",
+      "sectionTitle": "Responsive Design & Modern Queries",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "css-s7-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Design & Modern Queries",
+          "prompt": "Which modern media query matches viewports strictly between 640px (inclusive) and 1024px (exclusive)?",
+          "options": [
+            "@media (640px <= width < 1024px)",
+            "@media (min-width: 640px) and (max-width: 1024px)",
+            "@media (width in 640px..1024px)",
+            "@media (640px < width <= 1024px)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Media Queries Level 4 range syntax cleanly expresses inclusive/exclusive bounds without 1px overlap."
+        },
+        {
+          "id": "css-s7-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Design & Modern Queries",
+          "prompt": "When working with Mobile-First Breakpoints & Media Query Range Syntax in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "At exactly 768px both apply; use (width < 768px) and (width >= 768px) to make ranges mutually exclusive.",
+            "Always rely on \"Writing overlapping max-width: 768px and min-width: 768px queries\" as the default pattern",
+            "Ignore Mobile-First Breakpoints & Media Query Range Syntax constraints during runtime execution",
+            "Replace Mobile-First Breakpoints & Media Query Range Syntax with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing overlapping max-width: 768px and min-width: 768px queries. Recommended fix: At exactly 768px both apply; use (width < 768px) and (width >= 768px) to make ranges mutually exclusive."
+        },
+        {
+          "id": "css-s7-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Design & Modern Queries",
+          "prompt": "Which container-type value enables width-based @container queries while keeping automatic content height?",
+          "options": [
+            "inline-size",
+            "size",
+            "block-size",
+            "normal"
+          ],
+          "correctIndex": 0,
+          "explanation": "inline-size applies inline-axis size containment without collapsing automatic block height."
+        },
+        {
+          "id": "css-s7-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Design & Modern Queries",
+          "prompt": "When working with Container Queries (@container) & cqi Units in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use container-type: inline-size so vertical block height still wraps content naturally.",
+            "Always rely on \"Using container-type: size and watching the container collapse to 0px height\" as the default pattern",
+            "Ignore Container Queries (@container) & cqi Units constraints during runtime execution",
+            "Replace Container Queries (@container) & cqi Units with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using container-type: size and watching the container collapse to 0px height. Recommended fix: Use container-type: inline-size so vertical block height still wraps content naturally."
+        },
+        {
+          "id": "css-s7-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Design & Modern Queries",
+          "prompt": "Which media query prevents hover-only lift animations from getting stuck on touchscreens?",
+          "options": [
+            "@media (hover: hover)",
+            "@media (pointer: coarse)",
+            "@media (prefers-hover: true)",
+            "@media (touch: none)"
+          ],
+          "correctIndex": 0,
+          "explanation": "(hover: hover) matches only when the primary input supports true hover states."
+        },
+        {
+          "id": "css-s7-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Design & Modern Queries",
+          "prompt": "When working with User Preference Media Queries (Dark Mode, Reduced Motion, Pointer) in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Guard pure hover flourish inside @media (hover: hover) so taps feel snappy.",
+            "Always rely on \"Triggering complex hover animations on touch-only mobile devices\" as the default pattern",
+            "Ignore User Preference Media Queries (Dark Mode, Reduced Motion, Pointer) constraints during runtime execution",
+            "Replace User Preference Media Queries (Dark Mode, Reduced Motion, Pointer) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Triggering complex hover animations on touch-only mobile devices. Recommended fix: Guard pure hover flourish inside @media (hover: hover) so taps feel snappy."
+        },
+        {
+          "id": "css-s7-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Design & Modern Queries",
+          "prompt": "Which CSS property prevents a code block or card from splitting awkwardly across two printed pages?",
+          "options": [
+            "break-inside: avoid",
+            "page-lock: true",
+            "overflow: clip",
+            "display: inline-block"
+          ],
+          "correctIndex": 0,
+          "explanation": "break-inside: avoid is the standard modern property replacing legacy page-break-inside."
+        },
+        {
+          "id": "css-s7-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Responsive Design & Modern Queries",
+          "prompt": "When working with Print Stylesheets & Responsive Data Tables in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Force high-contrast white background and dark text inside @media print to save ink and maintain legibility.",
+            "Always rely on \"Leaving dark-mode backgrounds active during print\" as the default pattern",
+            "Ignore Print Stylesheets & Responsive Data Tables constraints during runtime execution",
+            "Replace Print Stylesheets & Responsive Data Tables with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Leaving dark-mode backgrounds active during print. Recommended fix: Force high-contrast white background and dark text inside @media print to save ink and maintain legibility."
+        },
+        {
+          "id": "css-s7-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Responsive Design & Modern Queries",
+          "prompt": "When a .card-host is 320px wide inside a 1440px desktop window, which background color applies to .card?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".card-host { container-type: inline-size; }\n.card { background: white; }\n@container (width >= 500px) { .card { background: indigo; } }"
+          },
+          "options": [
+            "white",
+            "indigo",
+            "transparent",
+            "Both merge"
+          ],
+          "correctIndex": 0,
+          "explanation": "@container evaluates the container’s width (320px), NOT the 1440px viewport, so (width >= 500px) is false."
+        },
+        {
+          "id": "css-s7-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Responsive Design & Modern Queries",
+          "prompt": "At a viewport width of exactly 768px, which rule(s) apply?",
+          "codeSnippet": {
+            "language": "css",
+            "code": "@media (width < 768px)  { .box { color: red; } }\n@media (width >= 768px) { .box { color: blue; } }"
+          },
+          "options": [
+            "Only color: blue",
+            "Only color: red",
+            "Both red and blue match",
+            "Neither matches"
+          ],
+          "correctIndex": 0,
+          "explanation": "768 < 768 is false, while 768 >= 768 is true—mutually exclusive with zero ambiguity."
+        }
+      ]
+    },
+    {
+      "sectionId": "css-s8",
+      "sectionTitle": "Transitions, Transforms & Keyframes",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "css-s8-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Transitions, Transforms & Keyframes",
+          "prompt": "Which pair of CSS properties can be animated purely on the browser compositor thread without triggering Layout?",
+          "options": [
+            "transform and opacity",
+            "width and height",
+            "margin-top and padding",
+            "top and left"
+          ],
+          "correctIndex": 0,
+          "explanation": "transform and opacity bypass Layout and Paint, running directly on the compositor."
+        },
+        {
+          "id": "css-s8-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Transitions, Transforms & Keyframes",
+          "prompt": "When working with Compositor-Only Animations & Browser Rendering Pipeline in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "transition: all accidentally animates theme switches, focus rings, and unexpected layout changes; name exact properties.",
+            "Always rely on \"Writing transition: all 0.3s on interactive components\" as the default pattern",
+            "Ignore Compositor-Only Animations & Browser Rendering Pipeline constraints during runtime execution",
+            "Replace Compositor-Only Animations & Browser Rendering Pipeline with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing transition: all 0.3s on interactive components. Recommended fix: transition: all accidentally animates theme switches, focus rings, and unexpected layout changes; name exact properties."
+        },
+        {
+          "id": "css-s8-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Transitions, Transforms & Keyframes",
+          "prompt": "What advantage do standalone CSS translate, rotate, and scale properties offer over the classic transform shorthand?",
+          "options": [
+            "Each axis/operation can be changed or animated independently without overwriting the others",
+            "They bypass stacking context creation",
+            "They work only on 3D WebGL canvases",
+            "They trigger layout reflow so siblings move out of the way"
+          ],
+          "correctIndex": 0,
+          "explanation": "Independent transform properties prevent hover/state rules from accidentally wiping out base translations."
+        },
+        {
+          "id": "css-s8-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Transitions, Transforms & Keyframes",
+          "prompt": "When working with Individual Transform Properties & transform-origin in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use standalone translate: -50% 0; and hover scale: 1.05; so they never overwrite each other.",
+            "Always rely on \"Overwriting a base transform: translateX(-50%) when adding hover transform: scale(1.05)\" as the default pattern",
+            "Ignore Individual Transform Properties & transform-origin constraints during runtime execution",
+            "Replace Individual Transform Properties & transform-origin with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Overwriting a base transform: translateX(-50%) when adding hover transform: scale(1.05). Recommended fix: Use standalone translate: -50% 0; and hover scale: 1.05; so they never overwrite each other."
+        },
+        {
+          "id": "css-s8-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Transitions, Transforms & Keyframes",
+          "prompt": "Which animation-fill-mode value keeps the final 100% keyframe state applied after an animation finishes AND applies 0% during delay?",
+          "options": [
+            "both",
+            "forwards",
+            "backwards",
+            "persist"
+          ],
+          "correctIndex": 0,
+          "explanation": "both combines backwards (during delay) and forwards (after completion)."
+        },
+        {
+          "id": "css-s8-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Transitions, Transforms & Keyframes",
+          "prompt": "When working with Keyframe Animations, Fill Modes & Timing Functions in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Elements flash at full opacity during the delay before snapping to 0; use both to hold the initial keyframe immediately.",
+            "Always rely on \"Using animation-delay without fill-mode: backwards or both\" as the default pattern",
+            "Ignore Keyframe Animations, Fill Modes & Timing Functions constraints during runtime execution",
+            "Replace Keyframe Animations, Fill Modes & Timing Functions with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using animation-delay without fill-mode: backwards or both. Recommended fix: Elements flash at full opacity during the delay before snapping to 0; use both to hold the initial keyframe immediately."
+        },
+        {
+          "id": "css-s8-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Transitions, Transforms & Keyframes",
+          "prompt": "Which CSS at-rule lets you define the initial transition state when an element changes from display: none to visible?",
+          "options": [
+            "@starting-style",
+            "@initial-frame",
+            "@enter-transition",
+            "@keyframes-start"
+          ],
+          "correctIndex": 0,
+          "explanation": "@starting-style supplies the before-change style on first paint so CSS transitions fire smoothly."
+        },
+        {
+          "id": "css-s8-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Transitions, Transforms & Keyframes",
+          "prompt": "When working with Animating Entry from display: none with @starting-style in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Without @starting-style, browsers compute only the final style on the first frame, skipping the transition.",
+            "Always rely on \"Expecting a CSS transition to fire on display: none -> block without @starting-style\" as the default pattern",
+            "Ignore Animating Entry from display: none with @starting-style constraints during runtime execution",
+            "Replace Animating Entry from display: none with @starting-style with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Expecting a CSS transition to fire on display: none -> block without @starting-style. Recommended fix: Without @starting-style, browsers compute only the final style on the first frame, skipping the transition."
+        },
+        {
+          "id": "css-s8-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Transitions, Transforms & Keyframes",
+          "prompt": "After a 1s fade-in animation finishes with animation-fill-mode: none (default), what opacity does the element return to?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".box { opacity: 0; animation: show 1s; }\n@keyframes show { to { opacity: 1; } }"
+          },
+          "options": [
+            "0 (snaps back to its base CSS rule)",
+            "1 (stays visible)",
+            "0.5",
+            "Browser keeps the last frame automatically"
+          ],
+          "correctIndex": 0,
+          "explanation": "With default fill-mode: none, animated values are discarded as soon as the animation completes unless fill-mode: forwards/both is specified."
+        },
+        {
+          "id": "css-s8-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Transitions, Transforms & Keyframes",
+          "prompt": "Which step of the browser rendering pipeline is triggered when only opacity transitions from 0 to 1?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".fade { transition: opacity 200ms ease; }"
+          },
+          "options": [
+            "Composite only (skips Layout and Paint)",
+            "Layout, Paint, and Composite",
+            "Paint and Composite only",
+            "Full DOM re-parse"
+          ],
+          "correctIndex": 0,
+          "explanation": "opacity changes on promoted layers run strictly in the Composite stage on the GPU."
+        }
+      ]
+    },
+    {
+      "sectionId": "css-s9",
+      "sectionTitle": "Cascade Layers, Nesting & :has()",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "css-s9-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Cascade Layers, Nesting & :has()",
+          "prompt": "Given @layer base, utilities;, which declaration wins on <p class=\"lead text-indigo\" id=\"hero\">?",
+          "options": [
+            ".text-indigo inside @layer utilities",
+            "#hero.lead inside @layer base",
+            "Whichever has more classes",
+            "They throw a cascade error"
+          ],
+          "correctIndex": 0,
+          "explanation": "Cascade layer precedence outranks specificity; @layer utilities comes after @layer base, so it wins."
+        },
+        {
+          "id": "css-s9-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Cascade Layers, Nesting & :has()",
+          "prompt": "When working with Architecture with Cascade Layers (@layer) in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Unlayered styles outrank every layer; keep your architecture consistently layered.",
+            "Always rely on \"Writing unlayered overrides mixed randomly with @layer styles\" as the default pattern",
+            "Ignore Architecture with Cascade Layers (@layer) constraints during runtime execution",
+            "Replace Architecture with Cascade Layers (@layer) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing unlayered overrides mixed randomly with @layer styles. Recommended fix: Unlayered styles outrank every layer; keep your architecture consistently layered."
+        },
+        {
+          "id": "css-s9-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Cascade Layers, Nesting & :has()",
+          "prompt": "Which selector selects a <label> element that contains a checked checkbox?",
+          "options": [
+            "label:has(input:checked)",
+            "label:contains(input:checked)",
+            "input:checked < label",
+            "label:parent(input:checked)"
+          ],
+          "correctIndex": 0,
+          "explanation": ":has() matches any element whose relative selector matches at least one descendant or sibling."
+        },
+        {
+          "id": "css-s9-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Cascade Layers, Nesting & :has()",
+          "prompt": "When working with The Relational Selector :has() (\"Parent Selector\") in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Nested :has() is disallowed by the CSS specification and ignored as invalid.",
+            "Always rely on \"Nesting :has() inside another :has()\" as the default pattern",
+            "Ignore The Relational Selector :has() (\"Parent Selector\") constraints during runtime execution",
+            "Replace The Relational Selector :has() (\"Parent Selector\") with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Nesting :has() inside another :has(). Recommended fix: Nested :has() is disallowed by the CSS specification and ignored as invalid."
+        },
+        {
+          "id": "css-s9-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Cascade Layers, Nesting & :has()",
+          "prompt": "Why is .btn { &__icon { width: 16px; } } invalid in native browser CSS nesting?",
+          "options": [
+            "Native CSS & represents a selector, not a string prefix for concatenating class names",
+            "Native CSS nesting does not support double underscores in class names",
+            "The & symbol is forbidden in native CSS",
+            "Nested rules cannot contain width declarations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Native CSS nesting parses & as a selector token (:is(parent)), not a preprocessor text macro."
+        },
+        {
+          "id": "css-s9-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Cascade Layers, Nesting & :has()",
+          "prompt": "When working with Native CSS Nesting & & Selector Semantics in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Native CSS & cannot concatenate identifiers; write .card-title separately or nest descendant selectors.",
+            "Always rely on \"Writing BEM concatenation .card { &__title {} } in native CSS\" as the default pattern",
+            "Ignore Native CSS Nesting & & Selector Semantics constraints during runtime execution",
+            "Replace Native CSS Nesting & & Selector Semantics with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing BEM concatenation .card { &__title {} } in native CSS. Recommended fix: Native CSS & cannot concatenate identifiers; write .card-title separately or nest descendant selectors."
+        },
+        {
+          "id": "css-s9-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Cascade Layers, Nesting & :has()",
+          "prompt": "In @scope (.article) to (.demo-box) { p { color: blue; } }, which paragraphs turn blue?",
+          "options": [
+            "Paragraphs inside .article that are NOT inside .demo-box",
+            "Only paragraphs inside .demo-box",
+            "Every paragraph on the page",
+            "Only direct children of .demo-box"
+          ],
+          "correctIndex": 0,
+          "explanation": "The to (.demo-box) clause defines an exclusive lower boundary, excluding descendants of .demo-box."
+        },
+        {
+          "id": "css-s9-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Cascade Layers, Nesting & :has()",
+          "prompt": "When working with Scoped Styles (@scope) & Donut Scoping in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use @scope (.outer) to (.inner) when you need true donut scoping boundaries.",
+            "Always rely on \"Assuming descendant selectors stop automatically at nested widgets\" as the default pattern",
+            "Ignore Scoped Styles (@scope) & Donut Scoping constraints during runtime execution",
+            "Replace Scoped Styles (@scope) & Donut Scoping with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Assuming descendant selectors stop automatically at nested widgets. Recommended fix: Use @scope (.outer) to (.inner) when you need true donut scoping boundaries."
+        },
+        {
+          "id": "css-s9-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Cascade Layers, Nesting & :has()",
+          "prompt": "Which background color applies to <button class=\"btn primary\">Save</button>?",
+          "codeSnippet": {
+            "language": "css",
+            "code": "@layer components, overrides;\n@layer overrides { .primary { background: teal; } }\n@layer components { button.btn.primary { background: orange; } }"
+          },
+          "options": [
+            "teal",
+            "orange",
+            "transparent",
+            "Browser default gray"
+          ],
+          "correctIndex": 0,
+          "explanation": "@layer overrides is declared after @layer components, so .primary beats the higher-specificity rule in components."
+        },
+        {
+          "id": "css-s9-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Cascade Layers, Nesting & :has()",
+          "prompt": "Which element receives the red border from this rule?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".form-row:has(input:invalid) { border: 1px solid red; }"
+          },
+          "options": [
+            "The parent .form-row container whenever an invalid <input> exists inside it",
+            "Only the <input> element itself",
+            "Every .form-row on the page",
+            "The next sibling after .form-row"
+          ],
+          "correctIndex": 0,
+          "explanation": "The subject of .form-row:has(...) is .form-row; :has() checks the descendant condition."
+        }
+      ]
+    },
+    {
+      "sectionId": "css-s10",
+      "sectionTitle": "Design Systems, Custom Properties & Performance",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "css-s10-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Design Systems, Custom Properties & Performance",
+          "prompt": "In Tailwind CSS v4, why must you add @custom-variant dark (&:where(.dark, .dark *)); when using a manual Light/Dark class toggle?",
+          "options": [
+            "By default Tailwind v4 binds dark:* to prefers-color-scheme media query and ignores <html class=\"dark\">",
+            "Tailwind v4 removed dark mode completely without plugins",
+            "It improves CSS minification size by 50%",
+            "Browsers require @custom-variant to read localStorage"
+          ],
+          "correctIndex": 0,
+          "explanation": "Without @custom-variant dark, Tailwind v4 dark:* classes only follow OS prefers-color-scheme."
+        },
+        {
+          "id": "css-s10-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Design Systems, Custom Properties & Performance",
+          "prompt": "When working with CSS Custom Properties (--vars) & Dual-Theme Architecture in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Such overrides destroy contrast inside primary buttons and overlays; use semantic tokens or paired dark:* utilities.",
+            "Always rely on \"Using global .light-mode .bg-slate-900 { background: #fff !important; } hacks\" as the default pattern",
+            "Ignore CSS Custom Properties (--vars) & Dual-Theme Architecture constraints during runtime execution",
+            "Replace CSS Custom Properties (--vars) & Dual-Theme Architecture with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using global .light-mode .bg-slate-900 { background: #fff !important; } hacks. Recommended fix: Such overrides destroy contrast inside primary buttons and overlays; use semantic tokens or paired dark:* utilities."
+        },
+        {
+          "id": "css-s10-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Design Systems, Custom Properties & Performance",
+          "prompt": "What does registering a CSS custom property with @property { syntax: \"<color>\"; ... } enable?",
+          "options": [
+            "Smooth CSS transitions and keyframe interpolation of that variable inside gradients and color functions",
+            "Compile-time TypeScript checking",
+            "Automatic dark-mode inversion",
+            "Cross-origin stylesheet sharing"
+          ],
+          "correctIndex": 0,
+          "explanation": "@property teaches the browser the data type of a CSS variable so it can interpolate intermediate frames."
+        },
+        {
+          "id": "css-s10-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Design Systems, Custom Properties & Performance",
+          "prompt": "When working with Typed Custom Properties with @property (Houdini) in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Without @property syntax: \"<angle>\", the browser snaps abruptly instead of interpolating.",
+            "Always rely on \"Attempting to transition a regular --angle custom property inside conic-gradient()\" as the default pattern",
+            "Ignore Typed Custom Properties with @property (Houdini) constraints during runtime execution",
+            "Replace Typed Custom Properties with @property (Houdini) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Attempting to transition a regular --angle custom property inside conic-gradient(). Recommended fix: Without @property syntax: \"<angle>\", the browser snaps abruptly instead of interpolating."
+        },
+        {
+          "id": "css-s10-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Design Systems, Custom Properties & Performance",
+          "prompt": "Which CSS property skips off-screen Layout and Paint while keeping content searchable via Ctrl+F?",
+          "options": [
+            "content-visibility: auto",
+            "display: none",
+            "visibility: collapse",
+            "will-change: contents"
+          ],
+          "correctIndex": 0,
+          "explanation": "content-visibility: auto defers rendering of off-screen subtrees without hiding them from the DOM or Ctrl+F."
+        },
+        {
+          "id": "css-s10-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Design Systems, Custom Properties & Performance",
+          "prompt": "When working with CSS Containment & content-visibility: auto in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Without an intrinsic size hint, off-screen sections collapse to 0px height and cause jumpy scrollbars.",
+            "Always rely on \"Using content-visibility: auto without contain-intrinsic-size\" as the default pattern",
+            "Ignore CSS Containment & content-visibility: auto constraints during runtime execution",
+            "Replace CSS Containment & content-visibility: auto with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using content-visibility: auto without contain-intrinsic-size. Recommended fix: Without an intrinsic size hint, off-screen sections collapse to 0px height and cause jumpy scrollbars."
+        },
+        {
+          "id": "css-s10-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Design Systems, Custom Properties & Performance",
+          "prompt": "What does @supports (animation-timeline: scroll()) allow a stylesheet to do?",
+          "options": [
+            "Progressively apply CSS rules only in browsers that support scroll-driven animation timelines",
+            "Polyfill scroll timelines automatically in legacy browsers",
+            "Disable scrolling when animations run",
+            "Import an external JavaScript scroll library"
+          ],
+          "correctIndex": 0,
+          "explanation": "@supports feature queries let you gate progressive enhancements safely in pure CSS."
+        },
+        {
+          "id": "css-s10-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Design Systems, Custom Properties & Performance",
+          "prompt": "When working with Scroll-Driven Animations & View Transitions API in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use compositor-driven scaleX with animation-timeline: scroll() for zero main-thread jank.",
+            "Always rely on \"Attaching window.addEventListener(\"scroll\") to animate width: X% on every pixel\" as the default pattern",
+            "Ignore Scroll-Driven Animations & View Transitions API constraints during runtime execution",
+            "Replace Scroll-Driven Animations & View Transitions API with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Attaching window.addEventListener(\"scroll\") to animate width: X% on every pixel. Recommended fix: Use compositor-driven scaleX with animation-timeline: scroll() for zero main-thread jank."
+        },
+        {
+          "id": "css-s10-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Design Systems, Custom Properties & Performance",
+          "prompt": "What color renders on .btn when --brand is NOT defined anywhere?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".btn {\n  color: red;\n  color: var(--brand, indigo);\n}"
+          },
+          "options": [
+            "indigo",
+            "red",
+            "black",
+            "transparent"
+          ],
+          "correctIndex": 0,
+          "explanation": "Because --brand is unset, var() resolves to its fallback value indigo."
+        },
+        {
+          "id": "css-s10-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Design Systems, Custom Properties & Performance",
+          "prompt": "What color renders on .box when --not-a-color is set to 20px?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ":root { --not-a-color: 20px; }\n.box { color: green; color: var(--not-a-color); }"
+          },
+          "options": [
+            "Inherited text color (NOT green)",
+            "green",
+            "20px",
+            "transparent"
+          ],
+          "correctIndex": 0,
+          "explanation": "A valid var() substitution that yields an invalid value at computed-value time discards earlier declarations and falls back to the inherited/initial value."
+        }
+      ]
+    },
+    {
+      "sectionId": "css-s11",
+      "sectionTitle": "Modern Color Spaces, Blending & Visual Effects",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "css-s11-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Modern Color Spaces, Blending & Visual Effects",
+          "prompt": "Why do gradients and color scales built in OKLCH look more consistent than HSL?",
+          "options": [
+            "OKLCH models uniform human perceptual lightness across all hues",
+            "OKLCH only uses 256 web-safe colors",
+            "HSL does not support alpha transparency",
+            "OKLCH automatically disables dark mode"
+          ],
+          "correctIndex": 0,
+          "explanation": "OKLCH is perceptually uniform, meaning equal L values look equally bright regardless of hue."
+        },
+        {
+          "id": "css-s11-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Modern Color Spaces, Blending & Visual Effects",
+          "prompt": "When working with Perceptual Color Spaces: OKLCH, Relative Color Syntax & color-mix() in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Yellow HSL 50% has much higher relative luminance than blue; use OKLCH and verify contrast ratios explicitly.",
+            "Always rely on \"Assuming HSL lightness 50% gives identical WCAG contrast across yellow and indigo\" as the default pattern",
+            "Ignore Perceptual Color Spaces: OKLCH, Relative Color Syntax & color-mix() constraints during runtime execution",
+            "Replace Perceptual Color Spaces: OKLCH, Relative Color Syntax & color-mix() with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Assuming HSL lightness 50% gives identical WCAG contrast across yellow and indigo. Recommended fix: Yellow HSL 50% has much higher relative luminance than blue; use OKLCH and verify contrast ratios explicitly."
+        },
+        {
+          "id": "css-s11-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Modern Color Spaces, Blending & Visual Effects",
+          "prompt": "Why is mask-image preferred over a background-colored overlay div for fading the edge of a scrollable list?",
+          "options": [
+            "It fades the element’s own alpha channel so it works over any background or theme automatically",
+            "It improves database query speed",
+            "It forces the container to use CSS Grid",
+            "It automatically adds scrollbars in all browsers"
+          ],
+          "correctIndex": 0,
+          "explanation": "mask-image modulates element opacity directly, avoiding mismatched overlay colors in dark mode or over gradients."
+        },
+        {
+          "id": "css-s11-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Modern Color Spaces, Blending & Visual Effects",
+          "prompt": "When working with clip-path, mask-image & Non-Rectangular UI Shapes in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Hard-coded white overlays break in dark mode and block clicks; mask-image works on any background and keeps clicks intact.",
+            "Always rely on \"Faking a scroll fade with a white linear-gradient overlay div\" as the default pattern",
+            "Ignore clip-path, mask-image & Non-Rectangular UI Shapes constraints during runtime execution",
+            "Replace clip-path, mask-image & Non-Rectangular UI Shapes with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Faking a scroll fade with a white linear-gradient overlay div. Recommended fix: Hard-coded white overlays break in dark mode and block clicks; mask-image works on any background and keeps clicks intact."
+        },
+        {
+          "id": "css-s11-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Modern Color Spaces, Blending & Visual Effects",
+          "prompt": "Which CSS property applies a shadow that follows the non-rectangular alpha silhouette of an SVG icon?",
+          "options": [
+            "filter: drop-shadow(...)",
+            "box-shadow",
+            "outline-shadow",
+            "backdrop-filter: shadow(...)"
+          ],
+          "correctIndex": 0,
+          "explanation": "filter: drop-shadow() respects alpha transparency contours rather than the rectangular box model."
+        },
+        {
+          "id": "css-s11-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Modern Color Spaces, Blending & Visual Effects",
+          "prompt": "When working with backdrop-filter, Filters & Blend Modes in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "If the element background is 100% opaque, nothing behind it shows through; use alpha transparency.",
+            "Always rely on \"Applying backdrop-filter: blur(12px) on an element with an opaque background: #fff\" as the default pattern",
+            "Ignore backdrop-filter, Filters & Blend Modes constraints during runtime execution",
+            "Replace backdrop-filter, Filters & Blend Modes with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Applying backdrop-filter: blur(12px) on an element with an opaque background: #fff. Recommended fix: If the element background is 100% opaque, nothing behind it shows through; use alpha transparency."
+        },
+        {
+          "id": "css-s11-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Modern Color Spaces, Blending & Visual Effects",
+          "prompt": "Which CSS property stops scrolling inside a modal dialog from scrolling the background page once you hit the bottom?",
+          "options": [
+            "overscroll-behavior: contain",
+            "scroll-behavior: locked",
+            "overflow: clip-parent",
+            "touch-action: none"
+          ],
+          "correctIndex": 0,
+          "explanation": "overscroll-behavior: contain isolates scrolling inside the container and prevents scroll chaining to ancestors."
+        },
+        {
+          "id": "css-s11-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Modern Color Spaces, Blending & Visual Effects",
+          "prompt": "When working with Scroll Snap, Overscroll Behavior & Smooth Scroll Margins in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Mandatory vertical snapping can trap users mid-section; prefer proximity for long vertical text pages.",
+            "Always rely on \"Using scroll-snap-type: y mandatory on tall articles with varying heights\" as the default pattern",
+            "Ignore Scroll Snap, Overscroll Behavior & Smooth Scroll Margins constraints during runtime execution",
+            "Replace Scroll Snap, Overscroll Behavior & Smooth Scroll Margins with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using scroll-snap-type: y mandatory on tall articles with varying heights. Recommended fix: Mandatory vertical snapping can trap users mid-section; prefer proximity for long vertical text pages."
+        },
+        {
+          "id": "css-s11-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Modern Color Spaces, Blending & Visual Effects",
+          "prompt": "Which background lets backdrop-filter: blur(10px) actually show a frosted glass effect?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".panel-a { background: #ffffff; backdrop-filter: blur(10px); }\n.panel-b { background: rgb(255 255 255 / 0.75); backdrop-filter: blur(10px); }"
+          },
+          "options": [
+            ".panel-b only",
+            ".panel-a only",
+            "Both .panel-a and .panel-b",
+            "Neither—blur requires z-index: 999"
+          ],
+          "correctIndex": 0,
+          "explanation": "backdrop-filter blurs content visible behind the element; an opaque #ffffff background hides the backdrop completely."
+        },
+        {
+          "id": "css-s11-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Modern Color Spaces, Blending & Visual Effects",
+          "prompt": "What happens when a user clicks <a href=\"#faq\"> and #faq has scroll-margin-top: 80px?",
+          "codeSnippet": {
+            "language": "css",
+            "code": "#faq { scroll-margin-top: 80px; }"
+          },
+          "options": [
+            "The browser scrolls so #faq stops 80px below the top of the viewport",
+            "80px of visible blank margin is permanently added above #faq in layout",
+            "The page scrolls 80px past #faq",
+            "The link fails to scroll"
+          ],
+          "correctIndex": 0,
+          "explanation": "scroll-margin-top affects only scroll-into-view snap offset without altering visual layout spacing."
+        }
+      ]
+    },
+    {
+      "sectionId": "css-s12",
+      "sectionTitle": "CSS Architecture, Accessibility & Print Engineering",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "css-s12-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "CSS Architecture, Accessibility & Print Engineering",
+          "prompt": "Why should you include a transparent CSS outline even if you style focus states with a custom box-shadow?",
+          "options": [
+            "Windows High Contrast (forced-colors) strips box-shadows but renders outlines in the system highlight color",
+            "box-shadow cannot be animated",
+            "outline is required for :hover to work",
+            "Transparent outlines increase specificity"
+          ],
+          "correctIndex": 0,
+          "explanation": "Transparent outlines stay invisible in standard themes but automatically become visible in High Contrast / forced-colors mode."
+        },
+        {
+          "id": "css-s12-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "CSS Architecture, Accessibility & Print Engineering",
+          "prompt": "When working with Accessible Focus Rings (:focus-visible) & Contrast Engineering in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Removing focus outlines makes keyboard navigation impossible and violates WCAG 2.4.7.",
+            "Always rely on \"Writing * { outline: none; } globally to \"clean up\" focus styles\" as the default pattern",
+            "Ignore Accessible Focus Rings (:focus-visible) & Contrast Engineering constraints during runtime execution",
+            "Replace Accessible Focus Rings (:focus-visible) & Contrast Engineering with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing * { outline: none; } globally to \"clean up\" focus styles. Recommended fix: Removing focus outlines makes keyboard navigation impossible and violates WCAG 2.4.7."
+        },
+        {
+          "id": "css-s12-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "CSS Architecture, Accessibility & Print Engineering",
+          "prompt": "In standard horizontal-tb writing mode with dir=\"rtl\", which physical side does margin-inline-start apply to?",
+          "options": [
+            "The right side",
+            "The left side",
+            "The top side",
+            "The bottom side"
+          ],
+          "correctIndex": 0,
+          "explanation": "In RTL horizontal text, the inline-start edge is the right side."
+        },
+        {
+          "id": "css-s12-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "CSS Architecture, Accessibility & Print Engineering",
+          "prompt": "When working with Logical Properties for Global LTR/RTL & Writing Modes in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Use text-align: start so text alignment mirrors automatically in RTL locales.",
+            "Always rely on \"Mixing text-align: left with logical padding-inline-start\" as the default pattern",
+            "Ignore Logical Properties for Global LTR/RTL & Writing Modes constraints during runtime execution",
+            "Replace Logical Properties for Global LTR/RTL & Writing Modes with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Mixing text-align: left with logical padding-inline-start. Recommended fix: Use text-align: start so text alignment mirrors automatically in RTL locales."
+        },
+        {
+          "id": "css-s12-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "CSS Architecture, Accessibility & Print Engineering",
+          "prompt": "What is the main visual effect of adding color-scheme: dark to the root element in dark mode?",
+          "options": [
+            "Native browser UI such as scrollbars, date pickers, and form controls render in dark styling",
+            "It automatically inverts every JPEG photo on the page",
+            "It forces every CSS color to #000000",
+            "It disables @media queries"
+          ],
+          "correctIndex": 0,
+          "explanation": "color-scheme informs the browser’s user-agent stylesheet to render native controls and scrollbars in dark theme."
+        },
+        {
+          "id": "css-s12-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "CSS Architecture, Accessibility & Print Engineering",
+          "prompt": "When working with Media Preference Queries: Reduced Motion, Contrast & Color Scheme in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Set color-scheme: dark on html.dark so native scrollbars and form controls match seamlessly.",
+            "Always rely on \"Forgetting color-scheme: dark on dark-mode apps, leaving blinding white native scrollbars\" as the default pattern",
+            "Ignore Media Preference Queries: Reduced Motion, Contrast & Color Scheme constraints during runtime execution",
+            "Replace Media Preference Queries: Reduced Motion, Contrast & Color Scheme with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Forgetting color-scheme: dark on dark-mode apps, leaving blinding white native scrollbars. Recommended fix: Set color-scheme: dark on html.dark so native scrollbars and form controls match seamlessly."
+        },
+        {
+          "id": "css-s12-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "CSS Architecture, Accessibility & Print Engineering",
+          "prompt": "Why should you pair content-visibility: auto with contain-intrinsic-size?",
+          "options": [
+            "So the browser reserves an estimated height for skipped off-screen elements and prevents scrollbar jumping",
+            "Because content-visibility causes a syntax error without it",
+            "To force images to load eagerly",
+            "To enable CSS Grid subgrid automatically"
+          ],
+          "correctIndex": 0,
+          "explanation": "contain-intrinsic-size gives off-screen skipped blocks a stable estimated height so scrollbars stay accurate."
+        },
+        {
+          "id": "css-s12-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "CSS Architecture, Accessibility & Print Engineering",
+          "prompt": "When working with Print Stylesheets & Rendering Performance Auditing in CSS, which practice correctly prevents a common production bug?",
+          "options": [
+            "Without an intrinsic placeholder size, collapsed off-screen sections cause scrollbar jitter as you scroll.",
+            "Always rely on \"Using content-visibility: auto without contain-intrinsic-size\" as the default pattern",
+            "Ignore Print Stylesheets & Rendering Performance Auditing constraints during runtime execution",
+            "Replace Print Stylesheets & Rendering Performance Auditing with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using content-visibility: auto without contain-intrinsic-size. Recommended fix: Without an intrinsic placeholder size, collapsed off-screen sections cause scrollbar jitter as you scroll."
+        },
+        {
+          "id": "css-s12-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "CSS Architecture, Accessibility & Print Engineering",
+          "prompt": "When a page switches to <html dir=\"rtl\">, which edge gets the 4px indigo border?",
+          "codeSnippet": {
+            "language": "css",
+            "code": ".note { border-inline-start: 4px solid #4f46e5; }"
+          },
+          "options": [
+            "The right edge",
+            "The left edge",
+            "The top edge",
+            "Both left and right edges"
+          ],
+          "correctIndex": 0,
+          "explanation": "border-inline-start mirrors automatically to the right side in RTL reading direction."
+        },
+        {
+          "id": "css-s12-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "CSS Architecture, Accessibility & Print Engineering",
+          "prompt": "What does break-inside: avoid do inside @media print?",
+          "codeSnippet": {
+            "language": "css",
+            "code": "@media print {\n  .code-block { break-inside: avoid; }\n}"
+          },
+          "options": [
+            "Keeps the code block together on one printed page instead of splitting it mid-block",
+            "Prevents line wrapping inside the code block",
+            "Hides the code block when printing",
+            "Forces a page break after every line of code"
+          ],
+          "correctIndex": 0,
+          "explanation": "break-inside: avoid instructs the print paginator not to slice the box across page boundaries."
+        }
+      ]
+    }
+  ]
+}

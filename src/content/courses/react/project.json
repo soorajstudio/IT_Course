@@ -1,0 +1,77 @@
+{
+  "courseSlug": "react",
+  "title": "Interactive Kanban & Study Sprint Board in React 19",
+  "estimatedHours": 7,
+  "difficulty": "Beginner to Advanced",
+  "brief": "Build a responsive, accessible Kanban sprint board in React + TypeScript featuring a pure useReducer state machine, split State/Dispatch Context, keyboard-accessible cards, useDeferredValue search, versioned localStorage persistence, and an Error Boundary.",
+  "requirements": [
+    {
+      "id": "req-1",
+      "text": "Model board columns, cards, and actions using strict TypeScript discriminated unions inside a pure `boardReducer`."
+    },
+    {
+      "id": "req-2",
+      "text": "Provide board state and dispatch via split Contexts so action-only buttons never re-render needlessly."
+    },
+    {
+      "id": "req-3",
+      "text": "Implement add, edit, move-column, and delete card flows using 100% immutable updates and stable card ID keys."
+    },
+    {
+      "id": "req-4",
+      "text": "Add instant search filtering powered by `useDeferredValue` with a clear empty state when zero cards match."
+    },
+    {
+      "id": "req-5",
+      "text": "Persist board state cleanly through a versioned storage adapter with safe corrupted-JSON fallback."
+    },
+    {
+      "id": "req-6",
+      "text": "Wrap the board in an Error Boundary and ensure all modals/forms use semantic labels and `Escape` dismissal."
+    }
+  ],
+  "steps": [
+    {
+      "stepNumber": 1,
+      "title": "Write Pure Board Reducer",
+      "details": "Create `boardReducer.ts` supporting add, move, update, and delete actions with `node:test` unit tests."
+    },
+    {
+      "stepNumber": 2,
+      "title": "Build Split Board Context",
+      "details": "Expose `useBoardState()` and `useBoardDispatch()` backed by versioned localStorage hydration."
+    },
+    {
+      "stepNumber": 3,
+      "title": "Create Accessible Columns & Memoized Cards",
+      "details": "Use semantic lists, stable keys, `type=\"button\"` move controls, and `React.memo`."
+    },
+    {
+      "stepNumber": 4,
+      "title": "Add Deferred Search Filter",
+      "details": "Wire a controlled search input to `useDeferredValue` and `useMemo` for lag-free filtering."
+    },
+    {
+      "stepNumber": 5,
+      "title": "Build Portal Card Modal",
+      "details": "Use `createPortal`, `useId`, and an Escape-key effect for an accessible card editor modal."
+    },
+    {
+      "stepNumber": 6,
+      "title": "Add Error Boundary & Dark Mode Polish",
+      "details": "Wrap the board in an Error Boundary and verify desktop + mobile layouts in Light & Dark themes."
+    }
+  ],
+  "referenceSolution": [
+    {
+      "filename": "src/boardReducer.ts",
+      "language": "tsx",
+      "code": "export type ColumnId = 'todo' | 'doing' | 'done';\nexport interface CardItem { id: string; title: string; column: ColumnId }\nexport type BoardAction =\n  | { type: 'add'; title: string; column: ColumnId }\n  | { type: 'move'; id: string; column: ColumnId }\n  | { type: 'delete'; id: string };\n\nexport function boardReducer(cards: CardItem[], action: BoardAction): CardItem[] {\n  switch (action.type) {\n    case 'add': return [...cards, { id: crypto.randomUUID(), title: action.title, column: action.column }];\n    case 'move': return cards.map((c) => (c.id === action.id ? { ...c, column: action.column } : c));\n    case 'delete': return cards.filter((c) => c.id !== action.id);\n  }\n}"
+    },
+    {
+      "filename": "src/BoardView.tsx",
+      "language": "tsx",
+      "code": "import { useDeferredValue, useMemo, useReducer, useState } from 'react';\nimport { boardReducer, type ColumnId } from './boardReducer';\nconst COLS: ColumnId[] = ['todo', 'doing', 'done'];\nexport function BoardView() {\n  const [cards, dispatch] = useReducer(boardReducer, []);\n  const [q, setQ] = useState('');\n  const dq = useDeferredValue(q);\n  const filtered = useMemo(() => cards.filter((c) => c.title.toLowerCase().includes(dq.toLowerCase())), [cards, dq]);\n  return (\n    <section>\n      <input value={q} onChange={(e) => setQ(e.target.value)} placeholder=\"Filter tasks...\" />\n      <div className=\"grid gap-4 md:grid-cols-3\">\n        {COLS.map((col) => (\n          <div key={col}>\n            <h3>{col}</h3>\n            {filtered.filter((c) => c.column === col).map((c) => <article key={c.id}>{c.title}</article>)}\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}"
+    }
+  ]
+}

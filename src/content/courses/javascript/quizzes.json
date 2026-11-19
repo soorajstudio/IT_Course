@@ -1,0 +1,1997 @@
+{
+  "courseSlug": "javascript",
+  "quizzes": [
+    {
+      "sectionId": "javascript-s1",
+      "sectionTitle": "Variables, Types & Coercion",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "javascript-s1-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Variables, Types & Coercion",
+          "prompt": "What happens when you read a let variable before its declaration line inside the same block?",
+          "options": [
+            "Throws a ReferenceError due to the Temporal Dead Zone",
+            "Returns undefined",
+            "Returns null",
+            "Creates a global variable"
+          ],
+          "correctIndex": 0,
+          "explanation": "let and const bindings exist in the TDZ until initialized, throwing ReferenceError on earlier access."
+        },
+        {
+          "id": "javascript-s1-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Variables, Types & Coercion",
+          "prompt": "When working with var, let, const & Temporal Dead Zone in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Use let in loop headers so each iteration captures its own binding.",
+            "Always rely on \"Using var in a loop with async callbacks and seeing the final value repeated\" as the default pattern",
+            "Ignore var, let, const & Temporal Dead Zone constraints during runtime execution",
+            "Replace var, let, const & Temporal Dead Zone with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using var in a loop with async callbacks and seeing the final value repeated. Recommended fix: Use let in loop headers so each iteration captures its own binding."
+        },
+        {
+          "id": "javascript-s1-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Variables, Types & Coercion",
+          "prompt": "What does typeof null evaluate to in JavaScript?",
+          "options": [
+            "\"object\"",
+            "\"null\"",
+            "\"undefined\"",
+            "\"primitive\""
+          ],
+          "correctIndex": 0,
+          "explanation": "Due to a legacy engine representation preserved for web compatibility, typeof null === \"object\"."
+        },
+        {
+          "id": "javascript-s1-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Variables, Types & Coercion",
+          "prompt": "When working with Primitive Types, typeof Quirks & Reference Semantics in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Spread only clones top-level keys; nested references remain shared—use structuredClone() for deep copies.",
+            "Always rely on \"Assuming { ...obj } deeply clones nested arrays and objects\" as the default pattern",
+            "Ignore Primitive Types, typeof Quirks & Reference Semantics constraints during runtime execution",
+            "Replace Primitive Types, typeof Quirks & Reference Semantics with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Assuming { ...obj } deeply clones nested arrays and objects. Recommended fix: Spread only clones top-level keys; nested references remain shared—use structuredClone() for deep copies."
+        },
+        {
+          "id": "javascript-s1-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Variables, Types & Coercion",
+          "prompt": "What does Number.isNaN(\"hello\") return?",
+          "options": [
+            "false",
+            "true",
+            "NaN",
+            "Throws a TypeError"
+          ],
+          "correctIndex": 0,
+          "explanation": "Number.isNaN does not coerce strings; since \"hello\" is not a number, it immediately returns false."
+        },
+        {
+          "id": "javascript-s1-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Variables, Types & Coercion",
+          "prompt": "When working with Strict Equality (===), Object.is() & Type Coercion in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Global isNaN coerces its argument to a number first; use Number.isNaN() which never coerces.",
+            "Always rely on \"Using global isNaN(\"hello\") expecting false\" as the default pattern",
+            "Ignore Strict Equality (===), Object.is() & Type Coercion constraints during runtime execution",
+            "Replace Strict Equality (===), Object.is() & Type Coercion with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using global isNaN(\"hello\") expecting false. Recommended fix: Global isNaN coerces its argument to a number first; use Number.isNaN() which never coerces."
+        },
+        {
+          "id": "javascript-s1-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Variables, Types & Coercion",
+          "prompt": "What does (0 ?? 42) evaluate to?",
+          "options": [
+            "0",
+            "42",
+            "undefined",
+            "false"
+          ],
+          "correctIndex": 0,
+          "explanation": "Nullish coalescing (??) only falls back for null or undefined; 0 is non-nullish and is returned."
+        },
+        {
+          "id": "javascript-s1-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Variables, Types & Coercion",
+          "prompt": "When working with Truthiness, Short-Circuiting & Nullish Coalescing (??) in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Use input.count ?? 10 so 0 is preserved instead of silently replaced with 10.",
+            "Always rely on \"Writing const count = input.count || 10 when 0 is a valid count\" as the default pattern",
+            "Ignore Truthiness, Short-Circuiting & Nullish Coalescing (??) constraints during runtime execution",
+            "Replace Truthiness, Short-Circuiting & Nullish Coalescing (??) with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing const count = input.count || 10 when 0 is a valid count. Recommended fix: Use input.count ?? 10 so 0 is preserved instead of silently replaced with 10."
+        },
+        {
+          "id": "javascript-s1-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Variables, Types & Coercion",
+          "prompt": "What does this code print to the console?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "console.log(Boolean([]), Boolean({}), Boolean('0'), Boolean(''));"
+          },
+          "options": [
+            "true true true false",
+            "false false false false",
+            "false false true false",
+            "true true false false"
+          ],
+          "correctIndex": 0,
+          "explanation": "Empty arrays, empty objects, and non-empty strings like \"0\" are all truthy; only \"\" is falsy."
+        },
+        {
+          "id": "javascript-s1-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Variables, Types & Coercion",
+          "prompt": "What does this code print?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "console.log(1 + '2' + 3, 1 + 2 + '3');"
+          },
+          "options": [
+            "\"123\" \"33\"",
+            "\"123\" \"123\"",
+            "6 6",
+            "\"6\" \"33\""
+          ],
+          "correctIndex": 0,
+          "explanation": "+ evaluates left-to-right: 1 + \"2\" becomes \"12\", then + 3 becomes \"123\"; whereas 1 + 2 becomes 3, then + \"3\" becomes \"33\"."
+        }
+      ]
+    },
+    {
+      "sectionId": "javascript-s2",
+      "sectionTitle": "Functions, Parameters & Scope",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "javascript-s2-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Parameters & Scope",
+          "prompt": "What happens if you call greet() on line 1 when line 3 is const greet = () => \"hi\";?",
+          "options": [
+            "Throws a ReferenceError",
+            "Returns \"hi\"",
+            "Returns undefined",
+            "Throws a TypeError: greet is not a function"
+          ],
+          "correctIndex": 0,
+          "explanation": "const bindings are in the Temporal Dead Zone before line 3 executes, throwing ReferenceError."
+        },
+        {
+          "id": "javascript-s2-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Parameters & Scope",
+          "prompt": "When working with Declarations, Expressions & Function Hoisting in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Declare const arrow functions before invoking them, or use a function declaration.",
+            "Always rely on \"Calling a const arrow function before its definition line\" as the default pattern",
+            "Ignore Declarations, Expressions & Function Hoisting constraints during runtime execution",
+            "Replace Declarations, Expressions & Function Hoisting with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Calling a const arrow function before its definition line. Recommended fix: Declare const arrow functions before invoking them, or use a function declaration."
+        },
+        {
+          "id": "javascript-s2-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Parameters & Scope",
+          "prompt": "What does const getObj = () => { value: 42 }; console.log(getObj()); print?",
+          "options": [
+            "undefined",
+            "{ value: 42 }",
+            "42",
+            "Throws a SyntaxError"
+          ],
+          "correctIndex": 0,
+          "explanation": "Without parentheses around the braces, value: is parsed as a statement label inside a function body that returns undefined."
+        },
+        {
+          "id": "javascript-s2-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Parameters & Scope",
+          "prompt": "When working with Arrow Functions vs Regular Functions in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "JavaScript parses { a: 1 } as a labeled block returning undefined; wrap as ({ a: 1 }).",
+            "Always rely on \"Writing const fn = () => { a: 1 } expecting an object return\" as the default pattern",
+            "Ignore Arrow Functions vs Regular Functions constraints during runtime execution",
+            "Replace Arrow Functions vs Regular Functions with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing const fn = () => { a: 1 } expecting an object return. Recommended fix: JavaScript parses { a: 1 } as a labeled block returning undefined; wrap as ({ a: 1 })."
+        },
+        {
+          "id": "javascript-s2-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Parameters & Scope",
+          "prompt": "Given function greet(name = \"Guest\") { return name; }, what does greet(null) return?",
+          "options": [
+            "null",
+            "\"Guest\"",
+            "undefined",
+            "\"\""
+          ],
+          "correctIndex": 0,
+          "explanation": "Default parameters only activate when the passed argument is strictly undefined, not null."
+        },
+        {
+          "id": "javascript-s2-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Parameters & Scope",
+          "prompt": "When working with Default Parameters, Rest & Spread Operators in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Passing null sets x to null; only undefined (or omitted arguments) activates default parameters.",
+            "Always rely on \"Expecting default parameter (x = 5) to trigger when passing null\" as the default pattern",
+            "Ignore Default Parameters, Rest & Spread Operators constraints during runtime execution",
+            "Replace Default Parameters, Rest & Spread Operators with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Expecting default parameter (x = 5) to trigger when passing null. Recommended fix: Passing null sets x to null; only undefined (or omitted arguments) activates default parameters."
+        },
+        {
+          "id": "javascript-s2-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Parameters & Scope",
+          "prompt": "Which pattern delays executing a search API handler until the user stops typing for 300ms?",
+          "options": [
+            "Debouncing",
+            "Throttling",
+            "Hoisting",
+            "Currying"
+          ],
+          "correctIndex": 0,
+          "explanation": "Debouncing resets a timer on every keystroke and invokes the function only after the quiet delay elapses."
+        },
+        {
+          "id": "javascript-s2-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Functions, Parameters & Scope",
+          "prompt": "When working with Higher-Order Functions & Pure Function Design in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Return new arrays/objects so callers never suffer silent state aliasing bugs.",
+            "Always rely on \"Mutating input arrays inside helper functions passed to UI components\" as the default pattern",
+            "Ignore Higher-Order Functions & Pure Function Design constraints during runtime execution",
+            "Replace Higher-Order Functions & Pure Function Design with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Mutating input arrays inside helper functions passed to UI components. Recommended fix: Return new arrays/objects so callers never suffer silent state aliasing bugs."
+        },
+        {
+          "id": "javascript-s2-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Functions, Parameters & Scope",
+          "prompt": "What does this snippet output?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "function test(a = 10, b = a + 5) {\n  console.log(a, b);\n}\ntest(undefined, 2);"
+          },
+          "options": [
+            "10 2",
+            "undefined 2",
+            "10 15",
+            "NaN 2"
+          ],
+          "correctIndex": 0,
+          "explanation": "Passing undefined activates the default a = 10, while explicit argument 2 overrides b."
+        },
+        {
+          "id": "javascript-s2-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Functions, Parameters & Scope",
+          "prompt": "What does this code print?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "const make = (x) => ({ doubled: x * 2 });\nconsole.log(make(6).doubled);"
+          },
+          "options": [
+            "12",
+            "undefined",
+            "Throws TypeError",
+            "{ doubled: 12 }"
+          ],
+          "correctIndex": 0,
+          "explanation": "Parenthesizing ({ doubled: x * 2 }) returns the object literal cleanly, so .doubled is 12."
+        }
+      ]
+    },
+    {
+      "sectionId": "javascript-s3",
+      "sectionTitle": "Arrays, Objects & Modern Collections",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "javascript-s3-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Arrays, Objects & Modern Collections",
+          "prompt": "What does [10, 2, 1].sort() return in JavaScript?",
+          "options": [
+            "[1, 10, 2]",
+            "[1, 2, 10]",
+            "[10, 2, 1]",
+            "Throws a TypeError"
+          ],
+          "correctIndex": 0,
+          "explanation": "Without a comparator callback, Array.prototype.sort converts numbers to strings and compares lexicographically."
+        },
+        {
+          "id": "javascript-s3-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Arrays, Objects & Modern Collections",
+          "prompt": "When working with Declarative Array Pipelines: map, filter, reduce, flatMap in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Without a numeric comparator (a, b) => a - b, JS converts elements to strings and yields [1, 10, 2].",
+            "Always rely on \"Calling [10, 2, 1].sort() expecting [1, 2, 10]\" as the default pattern",
+            "Ignore Declarative Array Pipelines: map, filter, reduce, flatMap constraints during runtime execution",
+            "Replace Declarative Array Pipelines: map, filter, reduce, flatMap with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Calling [10, 2, 1].sort() expecting [1, 2, 10]. Recommended fix: Without a numeric comparator (a, b) => a - b, JS converts elements to strings and yields [1, 10, 2]."
+        },
+        {
+          "id": "javascript-s3-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Arrays, Objects & Modern Collections",
+          "prompt": "Which modern static method safely checks whether an object owns a property even if created via Object.create(null)?",
+          "options": [
+            "Object.hasOwn(obj, key)",
+            "obj.hasOwnProperty(key)",
+            "key in obj",
+            "Object.owns(obj, key)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Object.hasOwn(obj, key) checks own properties directly without relying on Object.prototype."
+        },
+        {
+          "id": "javascript-s3-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Arrays, Objects & Modern Collections",
+          "prompt": "When working with Destructuring, Computed Keys & Object Utilities in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Write const { id } = payload ?? {}; to avoid TypeError: Cannot destructure property of null.",
+            "Always rely on \"Destructuring from null or undefined without a fallback object\" as the default pattern",
+            "Ignore Destructuring, Computed Keys & Object Utilities constraints during runtime execution",
+            "Replace Destructuring, Computed Keys & Object Utilities with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Destructuring from null or undefined without a fallback object. Recommended fix: Write const { id } = payload ?? {}; to avoid TypeError: Cannot destructure property of null."
+        },
+        {
+          "id": "javascript-s3-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Arrays, Objects & Modern Collections",
+          "prompt": "Why is WeakMap ideal for attaching private metadata to DOM elements?",
+          "options": [
+            "Entries are automatically garbage-collected once the DOM element is removed and unreferenced",
+            "WeakMap serializes directly to JSON.stringify()",
+            "WeakMap supports primitive string keys faster than Map",
+            "WeakMap exposes a .size property for leak debugging"
+          ],
+          "correctIndex": 0,
+          "explanation": "Weak references allow the GC to reclaim DOM nodes and their associated WeakMap entries automatically."
+        },
+        {
+          "id": "javascript-s3-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Arrays, Objects & Modern Collections",
+          "prompt": "When working with Map, Set, WeakMap & WeakSet in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Convert the lookup list to a Set for O(1) .has() checks.",
+            "Always rely on \"Using array.includes() inside a loop over 10,000 items (O(n^2))\" as the default pattern",
+            "Ignore Map, Set, WeakMap & WeakSet constraints during runtime execution",
+            "Replace Map, Set, WeakMap & WeakSet with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using array.includes() inside a loop over 10,000 items (O(n^2)). Recommended fix: Convert the lookup list to a Set for O(1) .has() checks."
+        },
+        {
+          "id": "javascript-s3-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Arrays, Objects & Modern Collections",
+          "prompt": "What happens if you pass an async callback to items.forEach(async (x) => await save(x))?",
+          "options": [
+            "forEach does not await the promises—all calls fire without waiting for one another",
+            "Each item waits sequentially for the previous save() to finish",
+            "JavaScript throws a SyntaxError",
+            "forEach returns a single resolved Promise"
+          ],
+          "correctIndex": 0,
+          "explanation": "Array.prototype.forEach ignores Promise return values; use for..of for sequential awaits or Promise.all(items.map(...)) for parallel."
+        },
+        {
+          "id": "javascript-s3-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "Arrays, Objects & Modern Collections",
+          "prompt": "When working with Iteration Protocols: for..of vs for..in in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "forEach ignores returned promises and fires all iterations concurrently without waiting; use for..of or Promise.all(arr.map(...)).",
+            "Always rely on \"Using await inside arr.forEach(async (item) => ...)\" as the default pattern",
+            "Ignore Iteration Protocols: for..of vs for..in constraints during runtime execution",
+            "Replace Iteration Protocols: for..of vs for..in with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using await inside arr.forEach(async (item) => ...). Recommended fix: forEach ignores returned promises and fires all iterations concurrently without waiting; use for..of or Promise.all(arr.map(...))."
+        },
+        {
+          "id": "javascript-s3-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Arrays, Objects & Modern Collections",
+          "prompt": "What does this snippet print?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "const s = new Set([1, 2, 2, NaN, NaN]);\nconsole.log(s.size);"
+          },
+          "options": [
+            "3",
+            "4",
+            "5",
+            "2"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set uses SameValueZero equality, so duplicate 2 and duplicate NaN are both deduplicated, leaving {1, 2, NaN} (size 3)."
+        },
+        {
+          "id": "javascript-s3-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "Arrays, Objects & Modern Collections",
+          "prompt": "What does this code output?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "const arr = [3, 1, 2];\nconst sorted = arr.toSorted((a, b) => a - b);\nconsole.log(arr[0], sorted[0]);"
+          },
+          "options": [
+            "3 1",
+            "1 1",
+            "3 3",
+            "1 3"
+          ],
+          "correctIndex": 0,
+          "explanation": "ES2023 toSorted() leaves the original array untouched (arr[0] === 3) and returns a new sorted array (sorted[0] === 1)."
+        }
+      ]
+    },
+    {
+      "sectionId": "javascript-s4",
+      "sectionTitle": "DOM Manipulation & Events",
+      "level": "Beginner",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "javascript-s4-q1",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "DOM Manipulation & Events",
+          "prompt": "Which DOM API returns a STATIC snapshot that does not mutate as you modify the document?",
+          "options": [
+            "document.querySelectorAll(\".item\")",
+            "document.getElementsByClassName(\"item\")",
+            "document.getElementsByTagName(\"li\")",
+            "element.children"
+          ],
+          "correctIndex": 0,
+          "explanation": "querySelectorAll returns a static NodeList; getElementsBy* and .children return live HTMLCollections."
+        },
+        {
+          "id": "javascript-s4-q2",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "DOM Manipulation & Events",
+          "prompt": "When working with Querying, Creating & Batching DOM Updates in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Each += serializes, destroys, and re-parses the entire container DOM and drops existing event listeners; append nodes via DocumentFragment instead.",
+            "Always rely on \"Using innerHTML += \"<li>...</li>\" inside a loop\" as the default pattern",
+            "Ignore Querying, Creating & Batching DOM Updates constraints during runtime execution",
+            "Replace Querying, Creating & Batching DOM Updates with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using innerHTML += \"<li>...</li>\" inside a loop. Recommended fix: Each += serializes, destroys, and re-parses the entire container DOM and drops existing event listeners; append nodes via DocumentFragment instead."
+        },
+        {
+          "id": "javascript-s4-q3",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "DOM Manipulation & Events",
+          "prompt": "Inside a click listener on a <ul>, a user clicks an <i> icon inside a <button>. What is event.target vs event.currentTarget?",
+          "options": [
+            "event.target is <i>; event.currentTarget is <ul>",
+            "event.target is <ul>; event.currentTarget is <i>",
+            "Both refer to <button>",
+            "Both refer to <ul>"
+          ],
+          "correctIndex": 0,
+          "explanation": "event.target is always the deepest originating node; event.currentTarget is the element to which the listener is bound."
+        },
+        {
+          "id": "javascript-s4-q4",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "DOM Manipulation & Events",
+          "prompt": "When working with Event Propagation: Capturing, Target, Bubbling & Delegation in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Clicking the icon makes event.target the <span>; use event.target.closest(\"button\") instead.",
+            "Always rely on \"Checking event.target.tagName === \"BUTTON\" when the button contains an icon <span>\" as the default pattern",
+            "Ignore Event Propagation: Capturing, Target, Bubbling & Delegation constraints during runtime execution",
+            "Replace Event Propagation: Capturing, Target, Bubbling & Delegation with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Checking event.target.tagName === \"BUTTON\" when the button contains an icon <span>. Recommended fix: Clicking the icon makes event.target the <span>; use event.target.closest(\"button\") instead."
+        },
+        {
+          "id": "javascript-s4-q5",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "DOM Manipulation & Events",
+          "prompt": "What happens when controller.abort() is called after registering 3 event listeners with { signal: controller.signal }?",
+          "options": [
+            "All 3 event listeners are automatically removed immediately",
+            "Only the first listener is removed",
+            "An unhandled exception crashes the script",
+            "The listeners pause temporarily until resume() is called"
+          ],
+          "correctIndex": 0,
+          "explanation": "Aborting a signal automatically unregisters every event listener attached to it."
+        },
+        {
+          "id": "javascript-s4-q6",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "DOM Manipulation & Events",
+          "prompt": "When working with AbortController for Clean Listener & Fetch Cleanup in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Two arrow functions are distinct references so removeEventListener silently fails; use a named function or AbortController signal.",
+            "Always rely on \"Calling removeEventListener with a newly created anonymous arrow function\" as the default pattern",
+            "Ignore AbortController for Clean Listener & Fetch Cleanup constraints during runtime execution",
+            "Replace AbortController for Clean Listener & Fetch Cleanup with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Calling removeEventListener with a newly created anonymous arrow function. Recommended fix: Two arrow functions are distinct references so removeEventListener silently fails; use a named function or AbortController signal."
+        },
+        {
+          "id": "javascript-s4-q7",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "DOM Manipulation & Events",
+          "prompt": "Which browser API efficiently detects when an element scrolls into view without attaching a scroll event listener?",
+          "options": [
+            "IntersectionObserver",
+            "MutationObserver",
+            "PerformanceObserver",
+            "ScrollWatcher"
+          ],
+          "correctIndex": 0,
+          "explanation": "IntersectionObserver asynchronously notifies you when targets intersect the viewport or an ancestor scroll root."
+        },
+        {
+          "id": "javascript-s4-q8",
+          "type": "concept",
+          "level": "Beginner",
+          "topic": "DOM Manipulation & Events",
+          "prompt": "When working with IntersectionObserver & ResizeObserver in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Replace scroll geometry checks with IntersectionObserver for smooth 60fps scrolling.",
+            "Always rely on \"Polling getBoundingClientRect() on every window scroll event\" as the default pattern",
+            "Ignore IntersectionObserver & ResizeObserver constraints during runtime execution",
+            "Replace IntersectionObserver & ResizeObserver with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Polling getBoundingClientRect() on every window scroll event. Recommended fix: Replace scroll geometry checks with IntersectionObserver for smooth 60fps scrolling."
+        },
+        {
+          "id": "javascript-s4-q9",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "DOM Manipulation & Events",
+          "prompt": "If a user clicks #btn inside #parent, in what order do the console logs appear?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "parent.addEventListener('click', () => console.log('P-cap'), { capture: true });\nparent.addEventListener('click', () => console.log('P-bub'));\nbtn.addEventListener('click', () => console.log('Btn'));"
+          },
+          "options": [
+            "P-cap -> Btn -> P-bub",
+            "Btn -> P-bub -> P-cap",
+            "P-bub -> Btn -> P-cap",
+            "P-cap -> P-bub -> Btn"
+          ],
+          "correctIndex": 0,
+          "explanation": "Events flow top-down in capture phase (P-cap), fire at target (Btn), then bubble bottom-up (P-bub)."
+        },
+        {
+          "id": "javascript-s4-q10",
+          "type": "output",
+          "level": "Beginner",
+          "topic": "DOM Manipulation & Events",
+          "prompt": "Why does removeEventListener fail to detach the listener in this snippet?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "btn.addEventListener('click', () => console.log('hi'));\nbtn.removeEventListener('click', () => console.log('hi'));"
+          },
+          "options": [
+            "Each arrow literal creates a different function reference in memory",
+            "Arrow functions cannot be removed from DOM nodes",
+            "removeEventListener requires a third boolean argument",
+            "click events are permanent once bound"
+          ],
+          "correctIndex": 0,
+          "explanation": "removeEventListener matches by exact function reference; store the function in a variable or use AbortController."
+        }
+      ]
+    },
+    {
+      "sectionId": "javascript-s5",
+      "sectionTitle": "Closures, Execution Context & this",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "javascript-s5-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Closures, Execution Context & this",
+          "prompt": "What does a closure capture from its outer scope?",
+          "options": [
+            "Live references to outer variable bindings",
+            "Immutable deep copies of outer values",
+            "Only primitive constants, never objects",
+            "Only global window variables"
+          ],
+          "correctIndex": 0,
+          "explanation": "Closures maintain live references to their enclosing lexical environment bindings."
+        },
+        {
+          "id": "javascript-s5-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Closures, Execution Context & this",
+          "prompt": "When working with Lexical Scoping & Closures Under the Hood in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Closures capture the live variable binding; if mutated later, the closure sees the updated value.",
+            "Always rely on \"Assuming closures freeze the value of a variable at function creation time\" as the default pattern",
+            "Ignore Lexical Scoping & Closures Under the Hood constraints during runtime execution",
+            "Replace Lexical Scoping & Closures Under the Hood with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Assuming closures freeze the value of a variable at function creation time. Recommended fix: Closures capture the live variable binding; if mutated later, the closure sees the updated value."
+        },
+        {
+          "id": "javascript-s5-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Closures, Execution Context & this",
+          "prompt": "Which binding rule has the HIGHEST precedence for a regular JavaScript function?",
+          "options": [
+            "new constructor invocation",
+            "Explicit call/apply/bind",
+            "Implicit obj.method() call",
+            "Global default binding"
+          ],
+          "correctIndex": 0,
+          "explanation": "new overrides even .bind()—precedence is new > explicit > implicit > default."
+        },
+        {
+          "id": "javascript-s5-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Closures, Execution Context & this",
+          "prompt": "When working with The 4 Rules of this Binding in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Inside the DOM callback, this becomes the DOM element instead of obj; bind it or wrap in an arrow () => obj.handleClick().",
+            "Always rely on \"Passing obj.handleClick directly to addEventListener without binding\" as the default pattern",
+            "Ignore The 4 Rules of this Binding constraints during runtime execution",
+            "Replace The 4 Rules of this Binding with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Passing obj.handleClick directly to addEventListener without binding. Recommended fix: Inside the DOM callback, this becomes the DOM element instead of obj; bind it or wrap in an arrow () => obj.handleClick()."
+        },
+        {
+          "id": "javascript-s5-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Closures, Execution Context & this",
+          "prompt": "Why does a memoized function store its cache inside an enclosing closure instead of a global object?",
+          "options": [
+            "Encapsulates private cache state per function instance without polluting global scope",
+            "Closures automatically persist caches to localStorage",
+            "Global objects cannot hold Map instances",
+            "Closures bypass garbage collection permanently"
+          ],
+          "correctIndex": 0,
+          "explanation": "Closures keep each memoized function’s cache isolated and private."
+        },
+        {
+          "id": "javascript-s5-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Closures, Execution Context & this",
+          "prompt": "When working with Memoization & Partial Application with Closures in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Use primitive keys or nested WeakMaps for object-key memoization.",
+            "Always rely on \"Memoizing with JSON.stringify(args) on objects containing circular references or functions\" as the default pattern",
+            "Ignore Memoization & Partial Application with Closures constraints during runtime execution",
+            "Replace Memoization & Partial Application with Closures with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Memoizing with JSON.stringify(args) on objects containing circular references or functions. Recommended fix: Use primitive keys or nested WeakMaps for object-key memoization."
+        },
+        {
+          "id": "javascript-s5-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Closures, Execution Context & this",
+          "prompt": "Where does a standard method declared inside class User { greet() {} } live?",
+          "options": [
+            "On User.prototype (shared by all instances)",
+            "Copied separately onto every User instance",
+            "On the global window object",
+            "Inside User’s private closure only"
+          ],
+          "correctIndex": 0,
+          "explanation": "Standard ES6 class methods are placed non-enumerably on Constructor.prototype."
+        },
+        {
+          "id": "javascript-s5-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Closures, Execution Context & this",
+          "prompt": "When working with Prototypes, Prototype Chain & Class Syntax in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Arrow class fields allocate a new function object per instance; prefer prototype methods for high-volume data classes.",
+            "Always rely on \"Defining arrow methods on classes instantiated 100,000 times\" as the default pattern",
+            "Ignore Prototypes, Prototype Chain & Class Syntax constraints during runtime execution",
+            "Replace Prototypes, Prototype Chain & Class Syntax with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Defining arrow methods on classes instantiated 100,000 times. Recommended fix: Arrow class fields allocate a new function object per instance; prefer prototype methods for high-volume data classes."
+        },
+        {
+          "id": "javascript-s5-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Closures, Execution Context & this",
+          "prompt": "What does this loop print after 10ms?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "for (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 10);\n}"
+          },
+          "options": [
+            "3, 3, 3",
+            "0, 1, 2",
+            "0, 0, 0",
+            "undefined, undefined, undefined"
+          ],
+          "correctIndex": 0,
+          "explanation": "var shares a single function-scoped i across all 3 closures; by the time timers run, the loop has incremented i to 3."
+        },
+        {
+          "id": "javascript-s5-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Closures, Execution Context & this",
+          "prompt": "What does this snippet output?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "const obj = {\n  val: 42,\n  regular() { return this.val; },\n  arrow: () => this?.val,\n};\nconsole.log(obj.regular(), obj.arrow());"
+          },
+          "options": [
+            "42 undefined",
+            "42 42",
+            "undefined undefined",
+            "undefined 42"
+          ],
+          "correctIndex": 0,
+          "explanation": "regular() uses implicit binding (this === obj -> 42); arrow inherits outer lexical this (not obj -> undefined)."
+        }
+      ]
+    },
+    {
+      "sectionId": "javascript-s6",
+      "sectionTitle": "Asynchronous JS: Promises & Async/Await",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "javascript-s6-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Asynchronous JS: Promises & Async/Await",
+          "prompt": "If a .catch() handler returns the string \"fallback\" without throwing, what state is the returned Promise in?",
+          "options": [
+            "Fulfilled with \"fallback\"",
+            "Still rejected with the original error",
+            "Pending forever",
+            "Fulfilled with undefined"
+          ],
+          "correctIndex": 0,
+          "explanation": "Returning normally from .catch() recovers the error and fulfills the downstream Promise with that return value."
+        },
+        {
+          "id": "javascript-s6-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Asynchronous JS: Promises & Async/Await",
+          "prompt": "When working with Promise States, Chaining & Rejection Handling in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Without return, the outer chain resolves immediately to undefined before the inner request finishes.",
+            "Always rely on \"Forgetting to return a nested Promise inside .then()\" as the default pattern",
+            "Ignore Promise States, Chaining & Rejection Handling constraints during runtime execution",
+            "Replace Promise States, Chaining & Rejection Handling with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Forgetting to return a nested Promise inside .then(). Recommended fix: Without return, the outer chain resolves immediately to undefined before the inner request finishes."
+        },
+        {
+          "id": "javascript-s6-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Asynchronous JS: Promises & Async/Await",
+          "prompt": "What happens if you write try { return fetchBadUrl(); } catch (e) { handle(e); } WITHOUT await?",
+          "options": [
+            "The catch block is bypassed and the rejection escapes to the caller",
+            "The catch block catches the network error normally",
+            "JavaScript throws a SyntaxError",
+            "fetchBadUrl runs synchronously"
+          ],
+          "correctIndex": 0,
+          "explanation": "Without await inside try, the function returns the Promise immediately before it rejects."
+        },
+        {
+          "id": "javascript-s6-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Asynchronous JS: Promises & Async/Await",
+          "prompt": "When working with async/await & Avoiding Sequential Waterfalls in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Launch them in parallel with Promise.all([fetchA(), fetchB()]).",
+            "Always rely on \"Awaiting independent API calls sequentially (await fetchA(); await fetchB();)\" as the default pattern",
+            "Ignore async/await & Avoiding Sequential Waterfalls constraints during runtime execution",
+            "Replace async/await & Avoiding Sequential Waterfalls with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Awaiting independent API calls sequentially (await fetchA(); await fetchB();). Recommended fix: Launch them in parallel with Promise.all([fetchA(), fetchB()])."
+        },
+        {
+          "id": "javascript-s6-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Asynchronous JS: Promises & Async/Await",
+          "prompt": "Which Promise combinator waits for all promises to finish regardless of whether some reject, returning an array of status objects?",
+          "options": [
+            "Promise.allSettled",
+            "Promise.all",
+            "Promise.any",
+            "Promise.race"
+          ],
+          "correctIndex": 0,
+          "explanation": "Promise.allSettled waits for every input promise to settle and returns { status: \"fulfilled\"|\"rejected\", ... }."
+        },
+        {
+          "id": "javascript-s6-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Asynchronous JS: Promises & Async/Await",
+          "prompt": "When working with Promise Combinators: all, allSettled, race & any in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Use Promise.allSettled to render successful panels while showing localized error states for failed ones.",
+            "Always rely on \"Using Promise.all when partial failures are acceptable\" as the default pattern",
+            "Ignore Promise Combinators: all, allSettled, race & any constraints during runtime execution",
+            "Replace Promise Combinators: all, allSettled, race & any with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using Promise.all when partial failures are acceptable. Recommended fix: Use Promise.allSettled to render successful panels while showing localized error states for failed ones."
+        },
+        {
+          "id": "javascript-s6-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Asynchronous JS: Promises & Async/Await",
+          "prompt": "What happens when fetch(\"/missing-endpoint\") receives an HTTP 404 Not Found response?",
+          "options": [
+            "The Promise resolves with a Response whose ok property is false and status is 404",
+            "The Promise automatically rejects with an HttpError",
+            "The Promise stays pending until timeout",
+            "fetch() retries 3 times automatically"
+          ],
+          "correctIndex": 0,
+          "explanation": "fetch() treats any received HTTP response—including 404 and 500—as a resolved Promise with response.ok === false."
+        },
+        {
+          "id": "javascript-s6-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Asynchronous JS: Promises & Async/Await",
+          "prompt": "When working with Fetch API Gotchas & Custom Error Classes in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Check if (!response.ok) explicitly and throw a structured error.",
+            "Always rely on \"Assuming .catch() triggers on an HTTP 500 response from fetch()\" as the default pattern",
+            "Ignore Fetch API Gotchas & Custom Error Classes constraints during runtime execution",
+            "Replace Fetch API Gotchas & Custom Error Classes with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Assuming .catch() triggers on an HTTP 500 response from fetch(). Recommended fix: Check if (!response.ok) explicitly and throw a structured error."
+        },
+        {
+          "id": "javascript-s6-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Asynchronous JS: Promises & Async/Await",
+          "prompt": "What does this Promise chain print?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "Promise.reject('E1')\n  .then(() => console.log('A'))\n  .catch((e) => { console.log(e); return 'OK'; })\n  .then((v) => console.log(v));"
+          },
+          "options": [
+            "E1 then OK",
+            "A then E1",
+            "E1 only",
+            "Unhandled rejection"
+          ],
+          "correctIndex": 0,
+          "explanation": "The first .then is skipped; .catch logs \"E1\" and returns \"OK\", recovering the chain for the final .then."
+        },
+        {
+          "id": "javascript-s6-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Asynchronous JS: Promises & Async/Await",
+          "prompt": "What does Promise.any([Promise.reject(\"a\"), Promise.resolve(\"b\"), Promise.resolve(\"c\")]) resolve to?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "Promise.any([\n  Promise.reject('a'),\n  Promise.resolve('b'),\n  Promise.resolve('c'),\n]).then(console.log);"
+          },
+          "options": [
+            "\"b\"",
+            "\"a\"",
+            "[\"b\", \"c\"]",
+            "Throws AggregateError"
+          ],
+          "correctIndex": 0,
+          "explanation": "Promise.any ignores rejections and resolves with the first fulfilled value (\"b\")."
+        }
+      ]
+    },
+    {
+      "sectionId": "javascript-s7",
+      "sectionTitle": "Prototypes, Classes & Object Internals",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "javascript-s7-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Prototypes, Classes & Object Internals",
+          "prompt": "What does Object.hasOwn(dev, \"toString\") return for a normal object literal const dev = { name: \"Ada\" }?",
+          "options": [
+            "false (toString is inherited from Object.prototype)",
+            "true",
+            "undefined",
+            "Throws a TypeError"
+          ],
+          "correctIndex": 0,
+          "explanation": "Object.hasOwn checks only direct own properties, ignoring inherited prototype methods like toString."
+        },
+        {
+          "id": "javascript-s7-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Prototypes, Classes & Object Internals",
+          "prompt": "When working with Prototype Chains, Object.create & Property Lookup in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Extending built-in prototypes causes naming collisions with future ECMAScript standards and third-party libraries.",
+            "Always rely on \"Mutating Object.prototype or Array.prototype directly\" as the default pattern",
+            "Ignore Prototype Chains, Object.create & Property Lookup constraints during runtime execution",
+            "Replace Prototype Chains, Object.create & Property Lookup with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Mutating Object.prototype or Array.prototype directly. Recommended fix: Extending built-in prototypes causes naming collisions with future ECMAScript standards and third-party libraries."
+        },
+        {
+          "id": "javascript-s7-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Prototypes, Classes & Object Internals",
+          "prompt": "What happens if a subclass constructor references this.name = \"A\" before calling super()?",
+          "options": [
+            "Throws a ReferenceError",
+            "Sets name on the parent prototype",
+            "Silently ignores the assignment",
+            "Creates a global variable name"
+          ],
+          "correctIndex": 0,
+          "explanation": "In derived classes, this is uninitialized until super() executes and returns the instance."
+        },
+        {
+          "id": "javascript-s7-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Prototypes, Classes & Object Internals",
+          "prompt": "When working with ES6 Classes, Private #Fields & Static Members in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Derived classes allocate this inside super(); reading this earlier throws ReferenceError.",
+            "Always rely on \"Accessing this before super() in a derived class constructor\" as the default pattern",
+            "Ignore ES6 Classes, Private #Fields & Static Members constraints during runtime execution",
+            "Replace ES6 Classes, Private #Fields & Static Members with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Accessing this before super() in a derived class constructor. Recommended fix: Derived classes allocate this inside super(); reading this earlier throws ReferenceError."
+        },
+        {
+          "id": "javascript-s7-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Prototypes, Classes & Object Internals",
+          "prompt": "What happens if you run const a = Object.freeze({ nested: { x: 1 } }); a.nested.x = 2;?",
+          "options": [
+            "a.nested.x becomes 2 because Object.freeze is shallow",
+            "Throws a TypeError in strict mode",
+            "a.nested.x stays 1",
+            "Deletes nested"
+          ],
+          "correctIndex": 0,
+          "explanation": "Object.freeze freezes only direct properties on a; the nested object itself is not frozen."
+        },
+        {
+          "id": "javascript-s7-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Prototypes, Classes & Object Internals",
+          "prompt": "When working with Property Descriptors, Object.freeze & Shallow vs Deep Cloning in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Object.freeze only freezes top-level properties; recursively freeze nested objects if deep immutability is needed.",
+            "Always rely on \"Assuming Object.freeze({ user: { role: \"guest\" } }) prevents obj.user.role = \"admin\"\" as the default pattern",
+            "Ignore Property Descriptors, Object.freeze & Shallow vs Deep Cloning constraints during runtime execution",
+            "Replace Property Descriptors, Object.freeze & Shallow vs Deep Cloning with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Assuming Object.freeze({ user: { role: \"guest\" } }) prevents obj.user.role = \"admin\". Recommended fix: Object.freeze only freezes top-level properties; recursively freeze nested objects if deep immutability is needed."
+        },
+        {
+          "id": "javascript-s7-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Prototypes, Classes & Object Internals",
+          "prompt": "What does function f() { try { return 1; } finally { console.log(\"done\"); } } do when called?",
+          "options": [
+            "Logs \"done\" and then returns 1",
+            "Returns 1 and skips finally",
+            "Logs \"done\" and returns undefined",
+            "Throws SyntaxError"
+          ],
+          "correctIndex": 0,
+          "explanation": "A finally block always runs right before control leaves the try/catch block, preserving the try return value unless finally itself returns."
+        },
+        {
+          "id": "javascript-s7-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Prototypes, Classes & Object Internals",
+          "prompt": "When working with Error Hierarchies, Custom Errors & Defensive Validation in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "At minimum log, rethrow, or surface a clear recovery state so failures never vanish invisibly.",
+            "Always rely on \"Writing catch (e) {} empty catch blocks that swallow errors silently\" as the default pattern",
+            "Ignore Error Hierarchies, Custom Errors & Defensive Validation constraints during runtime execution",
+            "Replace Error Hierarchies, Custom Errors & Defensive Validation with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing catch (e) {} empty catch blocks that swallow errors silently. Recommended fix: At minimum log, rethrow, or surface a clear recovery state so failures never vanish invisibly."
+        },
+        {
+          "id": "javascript-s7-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Prototypes, Classes & Object Internals",
+          "prompt": "What does this prototype shadowing snippet print?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "function User(name) { this.name = name; }\nUser.prototype.role = 'student';\nconst u = new User('Sam');\nu.role = 'admin';\ndelete u.role;\nconsole.log(u.role);"
+          },
+          "options": [
+            "\"student\"",
+            "undefined",
+            "\"admin\"",
+            "Throws ReferenceError"
+          ],
+          "correctIndex": 0,
+          "explanation": "delete u.role removes only the own shadowing property, revealing the inherited prototype property \"student\" again."
+        },
+        {
+          "id": "javascript-s7-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Prototypes, Classes & Object Internals",
+          "prompt": "What does this try/finally function return?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "function test() {\n  try { return 'A'; }\n  finally { return 'B'; }\n}\nconsole.log(test());"
+          },
+          "options": [
+            "\"B\"",
+            "\"A\"",
+            "undefined",
+            "Throws SyntaxError"
+          ],
+          "correctIndex": 0,
+          "explanation": "An explicit return inside finally overrides any pending return value from try or catch."
+        }
+      ]
+    },
+    {
+      "sectionId": "javascript-s8",
+      "sectionTitle": "Browser Storage, Fetch & Modern Web APIs",
+      "level": "Intermediate",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "javascript-s8-q1",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Browser Storage, Fetch & Modern Web APIs",
+          "prompt": "In which tab does the browser fire the window \"storage\" event when Tab A calls localStorage.setItem(\"theme\", \"dark\")?",
+          "options": [
+            "In other open tabs on the same origin (e.g., Tab B), NOT Tab A",
+            "Only in Tab A",
+            "In all open tabs across all domains",
+            "Only after the page refreshes"
+          ],
+          "correctIndex": 0,
+          "explanation": "The storage event notifies sibling tabs on the same origin so they can synchronize state."
+        },
+        {
+          "id": "javascript-s8-q2",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Browser Storage, Fetch & Modern Web APIs",
+          "prompt": "When working with localStorage, sessionStorage & Cross-Tab Synchronization in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Always guard both storage access and JSON.parse inside try/catch with a clean fallback.",
+            "Always rely on \"Assuming localStorage.getItem() never throws or returns corrupted JSON\" as the default pattern",
+            "Ignore localStorage, sessionStorage & Cross-Tab Synchronization constraints during runtime execution",
+            "Replace localStorage, sessionStorage & Cross-Tab Synchronization with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Assuming localStorage.getItem() never throws or returns corrupted JSON. Recommended fix: Always guard both storage access and JSON.parse inside try/catch with a clean fallback."
+        },
+        {
+          "id": "javascript-s8-q3",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Browser Storage, Fetch & Modern Web APIs",
+          "prompt": "Which browser API efficiently detects when an element enters the viewport without attaching a scroll event listener?",
+          "options": [
+            "IntersectionObserver",
+            "MutationObserver",
+            "PerformanceObserver",
+            "ScrollWatcher"
+          ],
+          "correctIndex": 0,
+          "explanation": "IntersectionObserver asynchronously notifies your callback whenever target elements cross visibility thresholds."
+        },
+        {
+          "id": "javascript-s8-q4",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Browser Storage, Fetch & Modern Web APIs",
+          "prompt": "When working with IntersectionObserver, ResizeObserver & MutationObserver in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Reading layout geometry on every scroll frame triggers forced reflows; use IntersectionObserver instead.",
+            "Always rely on \"Polling element.getBoundingClientRect() inside a window scroll listener\" as the default pattern",
+            "Ignore IntersectionObserver, ResizeObserver & MutationObserver constraints during runtime execution",
+            "Replace IntersectionObserver, ResizeObserver & MutationObserver with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Polling element.getBoundingClientRect() inside a window scroll listener. Recommended fix: Reading layout geometry on every scroll frame triggers forced reflows; use IntersectionObserver instead."
+        },
+        {
+          "id": "javascript-s8-q5",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Browser Storage, Fetch & Modern Web APIs",
+          "prompt": "How does URLSearchParams encode the value \"C++\" when serialized into a query string?",
+          "options": [
+            "C%2B%2B",
+            "C++ (unchanged)",
+            "C  (two spaces)",
+            "Throws URIError"
+          ],
+          "correctIndex": 0,
+          "explanation": "Because unencoded + represents a space in query strings, URLSearchParams encodes literal + signs as %2B."
+        },
+        {
+          "id": "javascript-s8-q6",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Browser Storage, Fetch & Modern Web APIs",
+          "prompt": "When working with URL, URLSearchParams & History Navigation APIs in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "A search for \"C# & .NET\" breaks parameter parsing; URLSearchParams encodes everything cleanly.",
+            "Always rely on \"Concatenating query strings manually like `?q=${input}` without encodeURIComponent\" as the default pattern",
+            "Ignore URL, URLSearchParams & History Navigation APIs constraints during runtime execution",
+            "Replace URL, URLSearchParams & History Navigation APIs with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Concatenating query strings manually like `?q=${input}` without encodeURIComponent. Recommended fix: A search for \"C# & .NET\" breaks parameter parsing; URLSearchParams encodes everything cleanly."
+        },
+        {
+          "id": "javascript-s8-q7",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Browser Storage, Fetch & Modern Web APIs",
+          "prompt": "Which built-in API sorts [\"Lesson 10\", \"Lesson 2\", \"Lesson 1\"] in natural numeric order with zero dependencies?",
+          "options": [
+            "new Intl.Collator(undefined, { numeric: true }).compare",
+            "Array.prototype.sort() with no arguments",
+            "JSON.stringify comparison",
+            "String.prototype.charCodeAt"
+          ],
+          "correctIndex": 0,
+          "explanation": "Intl.Collator with { numeric: true } compares embedded numbers numerically instead of lexicographically."
+        },
+        {
+          "id": "javascript-s8-q8",
+          "type": "concept",
+          "level": "Intermediate",
+          "topic": "Browser Storage, Fetch & Modern Web APIs",
+          "prompt": "When working with Intl APIs: Dates, Numbers, Currencies & Relative Time in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Currency symbols, decimals, and separators vary globally; use Intl.NumberFormat with style: \"currency\".",
+            "Always rely on \"Formatting currency with \"$\" + price.toFixed(2) for international users\" as the default pattern",
+            "Ignore Intl APIs: Dates, Numbers, Currencies & Relative Time constraints during runtime execution",
+            "Replace Intl APIs: Dates, Numbers, Currencies & Relative Time with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Formatting currency with \"$\" + price.toFixed(2) for international users. Recommended fix: Currency symbols, decimals, and separators vary globally; use Intl.NumberFormat with style: \"currency\"."
+        },
+        {
+          "id": "javascript-s8-q9",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Browser Storage, Fetch & Modern Web APIs",
+          "prompt": "What does this URLSearchParams snippet print?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "const p = new URLSearchParams('a=1&a=2');\nconsole.log(p.get('a'), p.getAll('a').length);"
+          },
+          "options": [
+            "1 2",
+            "2 2",
+            "[1,2] 1",
+            "1 1"
+          ],
+          "correctIndex": 0,
+          "explanation": "get(\"a\") returns the first matching value (\"1\"), while getAll(\"a\") returns [\"1\", \"2\"] of length 2."
+        },
+        {
+          "id": "javascript-s8-q10",
+          "type": "output",
+          "level": "Intermediate",
+          "topic": "Browser Storage, Fetch & Modern Web APIs",
+          "prompt": "What does numeric: \"auto\" produce for format(-1, \"day\")?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });\nconsole.log(rtf.format(-1, 'day'));"
+          },
+          "options": [
+            "\"yesterday\"",
+            "\"1 day ago\"",
+            "\"-1 day\"",
+            "\"last day\""
+          ],
+          "correctIndex": 0,
+          "explanation": "With numeric: \"auto\", Intl.RelativeTimeFormat uses natural words like \"yesterday\" instead of \"1 day ago\"."
+        }
+      ]
+    },
+    {
+      "sectionId": "javascript-s9",
+      "sectionTitle": "The Event Loop & Concurrency Internals",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "javascript-s9-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "The Event Loop & Concurrency Internals",
+          "prompt": "In what order do console logs run: sync code, Promise.then(), and setTimeout(..., 0)?",
+          "options": [
+            "Sync code -> Promise.then() (microtask) -> setTimeout (macrotask)",
+            "Sync code -> setTimeout -> Promise.then()",
+            "Promise.then() -> sync code -> setTimeout",
+            "Order is nondeterministic across browsers"
+          ],
+          "correctIndex": 0,
+          "explanation": "Synchronous stack finishes first, then the entire microtask queue drains before the next macrotask runs."
+        },
+        {
+          "id": "javascript-s9-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "The Event Loop & Concurrency Internals",
+          "prompt": "When working with Call Stack, Microtasks & Macrotasks Execution Order in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "The Promise constructor callback executes immediately and synchronously; only .then/.catch/.finally callbacks are queued as microtasks.",
+            "Always rely on \"Assuming code inside new Promise((resolve) => console.log(\"A\")) runs asynchronously\" as the default pattern",
+            "Ignore Call Stack, Microtasks & Macrotasks Execution Order constraints during runtime execution",
+            "Replace Call Stack, Microtasks & Macrotasks Execution Order with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Assuming code inside new Promise((resolve) => console.log(\"A\")) runs asynchronously. Recommended fix: The Promise constructor callback executes immediately and synchronously; only .then/.catch/.finally callbacks are queued as microtasks."
+        },
+        {
+          "id": "javascript-s9-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "The Event Loop & Concurrency Internals",
+          "prompt": "Why is requestAnimationFrame preferred over setInterval(fn, 16) for smooth DOM or canvas animations?",
+          "options": [
+            "It syncs with monitor VSync and pauses automatically when the tab is hidden",
+            "It runs code on a separate CPU thread automatically",
+            "It bypasses the microtask queue",
+            "It guarantees exact 16.00ms intervals even under heavy CPU load"
+          ],
+          "correctIndex": 0,
+          "explanation": "requestAnimationFrame aligns frames to display refresh cycles and throttles/pauses in background tabs."
+        },
+        {
+          "id": "javascript-s9-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "The Event Loop & Concurrency Internals",
+          "prompt": "When working with requestAnimationFrame, Idle Callbacks & Yielding Long Tasks in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Debounce input or offload heavy CPU work to a Web Worker.",
+            "Always rely on \"Running a 400ms synchronous filter/sort inside an input keydown handler\" as the default pattern",
+            "Ignore requestAnimationFrame, Idle Callbacks & Yielding Long Tasks constraints during runtime execution",
+            "Replace requestAnimationFrame, Idle Callbacks & Yielding Long Tasks with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Running a 400ms synchronous filter/sort inside an input keydown handler. Recommended fix: Debounce input or offload heavy CPU work to a Web Worker."
+        },
+        {
+          "id": "javascript-s9-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "The Event Loop & Concurrency Internals",
+          "prompt": "What happens to a Transferable ArrayBuffer on the main thread after worker.postMessage(buf, [buf])?",
+          "options": [
+            "It is transferred in O(1) and becomes detached (unusable) on the main thread",
+            "It is deep-copied so both threads mutate independent copies",
+            "Both threads share unsynchronized read/write access",
+            "It throws a DataCloneError"
+          ],
+          "correctIndex": 0,
+          "explanation": "Transferable objects move ownership instantaneously without copying bytes, detaching the sender’s handle."
+        },
+        {
+          "id": "javascript-s9-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "The Event Loop & Concurrency Internals",
+          "prompt": "When working with Web Workers & Off-Main-Thread Architecture in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Compute results in the Worker and postMessage lightweight results back to the main thread to render.",
+            "Always rely on \"Trying to update document.getElementById inside a Web Worker\" as the default pattern",
+            "Ignore Web Workers & Off-Main-Thread Architecture constraints during runtime execution",
+            "Replace Web Workers & Off-Main-Thread Architecture with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Trying to update document.getElementById inside a Web Worker. Recommended fix: Compute results in the Worker and postMessage lightweight results back to the main thread to render."
+        },
+        {
+          "id": "javascript-s9-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "The Event Loop & Concurrency Internals",
+          "prompt": "If module A exports let n = 1 and a function inc() { n++; }, what does module B see after calling inc()?",
+          "options": [
+            "n is 2 (ES modules export live bindings)",
+            "n remains 1 (copied at import time)",
+            "Throws a TypeError inside inc()",
+            "n becomes undefined"
+          ],
+          "correctIndex": 0,
+          "explanation": "ES module exports are live read-only references to the original variable binding."
+        },
+        {
+          "id": "javascript-s9-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "The Event Loop & Concurrency Internals",
+          "prompt": "When working with ES Modules: Live Bindings, Tree-Shaking & Dynamic import() in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Imported bindings are read-only views; mutate via an exported setter function instead.",
+            "Always rely on \"Attempting to reassign an imported binding directly (count = 5)\" as the default pattern",
+            "Ignore ES Modules: Live Bindings, Tree-Shaking & Dynamic import() constraints during runtime execution",
+            "Replace ES Modules: Live Bindings, Tree-Shaking & Dynamic import() with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Attempting to reassign an imported binding directly (count = 5). Recommended fix: Imported bindings are read-only views; mutate via an exported setter function instead."
+        },
+        {
+          "id": "javascript-s9-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "The Event Loop & Concurrency Internals",
+          "prompt": "What exact sequence does this code print?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "console.log('A');\nnew Promise((res) => {\n  console.log('B');\n  res('C');\n}).then((v) => console.log(v));\nsetTimeout(() => console.log('D'), 0);\nconsole.log('E');"
+          },
+          "options": [
+            "A, B, E, C, D",
+            "A, E, B, C, D",
+            "A, B, C, E, D",
+            "A, E, D, B, C"
+          ],
+          "correctIndex": 0,
+          "explanation": "Promise executor runs synchronously (B), then sync E, then microtask C, finally macrotask D."
+        },
+        {
+          "id": "javascript-s9-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "The Event Loop & Concurrency Internals",
+          "prompt": "What is printed by this async/await Event Loop puzzle?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "async function run() {\n  console.log(1);\n  await Promise.resolve();\n  console.log(2);\n}\nrun();\nconsole.log(3);"
+          },
+          "options": [
+            "1, 3, 2",
+            "1, 2, 3",
+            "3, 1, 2",
+            "1, 2"
+          ],
+          "correctIndex": 0,
+          "explanation": "1 runs synchronously; await yields and schedules console.log(2) as a microtask, so 3 runs before 2."
+        }
+      ]
+    },
+    {
+      "sectionId": "javascript-s10",
+      "sectionTitle": "Metaprogramming, Generators & Memory",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "javascript-s10-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Metaprogramming, Generators & Memory",
+          "prompt": "What does Symbol(\"a\") === Symbol(\"a\") evaluate to?",
+          "options": [
+            "false",
+            "true",
+            "undefined",
+            "Throws a TypeError"
+          ],
+          "correctIndex": 0,
+          "explanation": "Every invocation of Symbol() creates a unique primitive; the string argument is strictly a debug description."
+        },
+        {
+          "id": "javascript-s10-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Metaprogramming, Generators & Memory",
+          "prompt": "When working with Symbols & Custom Iterable Protocols in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "JSON.stringify ignores Symbol-keyed properties completely.",
+            "Always rely on \"Expecting Symbol properties to appear in JSON.stringify(obj)\" as the default pattern",
+            "Ignore Symbols & Custom Iterable Protocols constraints during runtime execution",
+            "Replace Symbols & Custom Iterable Protocols with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Expecting Symbol properties to appear in JSON.stringify(obj). Recommended fix: JSON.stringify ignores Symbol-keyed properties completely."
+        },
+        {
+          "id": "javascript-s10-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Metaprogramming, Generators & Memory",
+          "prompt": "When you invoke const g = myGenerator(); (before calling g.next()), how much of myGenerator’s body has executed?",
+          "options": [
+            "None of it—execution starts suspended until the first g.next()",
+            "Up to the first yield statement",
+            "The entire function body",
+            "Only variable declarations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Calling a generator constructs and returns the iterator in a suspended state before line 1 executes."
+        },
+        {
+          "id": "javascript-s10-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Metaprogramming, Generators & Memory",
+          "prompt": "When working with Generators (function*) & Async Generators in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "A generator starts suspended; you must call .next() (or iterate with for..of) to begin execution.",
+            "Always rely on \"Calling gen() expecting the body up to the first yield to run immediately\" as the default pattern",
+            "Ignore Generators (function*) & Async Generators constraints during runtime execution",
+            "Replace Generators (function*) & Async Generators with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Calling gen() expecting the body up to the first yield to run immediately. Recommended fix: A generator starts suspended; you must call .next() (or iterate with for..of) to begin execution."
+        },
+        {
+          "id": "javascript-s10-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Metaprogramming, Generators & Memory",
+          "prompt": "What happens in strict mode if a Proxy set trap mutates the target but forgets to return true?",
+          "options": [
+            "Throws a TypeError",
+            "Silently succeeds",
+            "Reverts the property change",
+            "Deletes the property"
+          ],
+          "correctIndex": 0,
+          "explanation": "The Proxy set invariant requires returning a truthy boolean (which Reflect.set returns automatically) or strict mode throws TypeError."
+        },
+        {
+          "id": "javascript-s10-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Metaprogramming, Generators & Memory",
+          "prompt": "When working with Proxy & Reflect Metaprogramming in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Strict mode throws TypeError: \"set\" on proxy returned falsish.",
+            "Always rely on \"Forgetting to return true (or Reflect.set(...)) in a Proxy set trap\" as the default pattern",
+            "Ignore Proxy & Reflect Metaprogramming constraints during runtime execution",
+            "Replace Proxy & Reflect Metaprogramming with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Forgetting to return true (or Reflect.set(...)) in a Proxy set trap. Recommended fix: Strict mode throws TypeError: \"set\" on proxy returned falsish."
+        },
+        {
+          "id": "javascript-s10-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Metaprogramming, Generators & Memory",
+          "prompt": "Does an unreachable circular reference ({ a -> b, b -> a }) cause a memory leak in modern V8 mark-and-sweep GC?",
+          "options": [
+            "No—mark-and-sweep collects any objects unreachable from GC roots, including cycles",
+            "Yes—circular references always leak forever in JavaScript",
+            "Only if both objects contain functions",
+            "Only inside strict mode"
+          ],
+          "correctIndex": 0,
+          "explanation": "Mark-and-sweep checks reachability from roots rather than reference counts, so unreachable cycles are reclaimed."
+        },
+        {
+          "id": "javascript-s10-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Metaprogramming, Generators & Memory",
+          "prompt": "When working with Garbage Collection, Memory Leaks & Debugging Tools in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Mark-and-sweep collects unreachable cycles automatically; leaks happen when something stays reachable from a live root.",
+            "Always rely on \"Assuming circular references (a.b = b; b.a = a) always leak in modern JS\" as the default pattern",
+            "Ignore Garbage Collection, Memory Leaks & Debugging Tools constraints during runtime execution",
+            "Replace Garbage Collection, Memory Leaks & Debugging Tools with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Assuming circular references (a.b = b; b.a = a) always leak in modern JS. Recommended fix: Mark-and-sweep collects unreachable cycles automatically; leaks happen when something stays reachable from a live root."
+        },
+        {
+          "id": "javascript-s10-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Metaprogramming, Generators & Memory",
+          "prompt": "What does this generator code print?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "function* nums() {\n  yield 10;\n  yield 20;\n  return 30;\n}\nconsole.log([...nums()]);"
+          },
+          "options": [
+            "[10, 20]",
+            "[10, 20, 30]",
+            "[30]",
+            "[]"
+          ],
+          "correctIndex": 0,
+          "explanation": "Spread (...) and for..of collect yielded values and stop when done: true, ignoring the final return value (30)."
+        },
+        {
+          "id": "javascript-s10-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Metaprogramming, Generators & Memory",
+          "prompt": "What does this Proxy code print?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "const p = new Proxy({ a: 1 }, {\n  get(t, k, r) { return k in t ? Reflect.get(t, k, r) : 0; }\n});\nconsole.log(p.a, p.missing);"
+          },
+          "options": [
+            "1 0",
+            "1 undefined",
+            "0 0",
+            "Throws ReferenceError"
+          ],
+          "correctIndex": 0,
+          "explanation": "Property a exists (returns 1); missing triggers the fallback returning 0."
+        }
+      ]
+    },
+    {
+      "sectionId": "javascript-s11",
+      "sectionTitle": "Functional Programming, Patterns & Immutability",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "javascript-s11-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Functional Programming, Patterns & Immutability",
+          "prompt": "Which ES2023 method returns a new array with element at index 1 replaced, without mutating the original array?",
+          "options": [
+            "arr.with(1, newValue)",
+            "arr.splice(1, 1, newValue)",
+            "arr.set(1, newValue)",
+            "arr.replace(1, newValue)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Array.prototype.with(index, value) returns a shallow copy with the specified index updated immutably."
+        },
+        {
+          "id": "javascript-s11-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Functional Programming, Patterns & Immutability",
+          "prompt": "When working with Pure Functions, Immutability & ES2023 Copy-by-Value Methods in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Use scores.toSorted() (or [...scores].sort()) so original state references remain unmutated.",
+            "Always rely on \"Calling scores.sort() directly on a state array in React or a shared store\" as the default pattern",
+            "Ignore Pure Functions, Immutability & ES2023 Copy-by-Value Methods constraints during runtime execution",
+            "Replace Pure Functions, Immutability & ES2023 Copy-by-Value Methods with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Calling scores.sort() directly on a state array in React or a shared store. Recommended fix: Use scores.toSorted() (or [...scores].sort()) so original state references remain unmutated."
+        },
+        {
+          "id": "javascript-s11-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Functional Programming, Patterns & Immutability",
+          "prompt": "Which utility ensures a search API call runs ONLY after the user stops typing for 300ms?",
+          "options": [
+            "Debounce",
+            "Throttle",
+            "Memoize",
+            "Curry"
+          ],
+          "correctIndex": 0,
+          "explanation": "Debounce resets the 300ms timer on every keystroke and invokes the function once typing pauses."
+        },
+        {
+          "id": "javascript-s11-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Functional Programming, Patterns & Immutability",
+          "prompt": "When working with Debounce, Throttle & Rate-Limiting Utilities in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Debounce won’t update until scrolling stops completely; use throttle (or rAF) for smooth ongoing updates.",
+            "Always rely on \"Confusing debounce and throttle on a live scroll progress bar\" as the default pattern",
+            "Ignore Debounce, Throttle & Rate-Limiting Utilities constraints during runtime execution",
+            "Replace Debounce, Throttle & Rate-Limiting Utilities with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Confusing debounce and throttle on a live scroll progress bar. Recommended fix: Debounce won’t update until scrolling stops completely; use throttle (or rAF) for smooth ongoing updates."
+        },
+        {
+          "id": "javascript-s11-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Functional Programming, Patterns & Immutability",
+          "prompt": "In pipe(f, g, h)(x), in what order are the functions applied to x?",
+          "options": [
+            "f first, then g, then h: h(g(f(x)))",
+            "h first, then g, then f: f(g(h(x)))",
+            "All three run in parallel",
+            "Only h(x) runs"
+          ],
+          "correctIndex": 0,
+          "explanation": "pipe flows data left-to-right using Array.prototype.reduce, so f runs first and h runs last."
+        },
+        {
+          "id": "javascript-s11-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Functional Programming, Patterns & Immutability",
+          "prompt": "When working with Function Composition, Currying & Memoization in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Caching impure outputs returns stale incorrect results on subsequent calls.",
+            "Always rely on \"Memoizing an impure function that reads Date.now() or Math.random()\" as the default pattern",
+            "Ignore Function Composition, Currying & Memoization constraints during runtime execution",
+            "Replace Function Composition, Currying & Memoization with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Memoizing an impure function that reads Date.now() or Math.random(). Recommended fix: Caching impure outputs returns stale incorrect results on subsequent calls."
+        },
+        {
+          "id": "javascript-s11-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Functional Programming, Patterns & Immutability",
+          "prompt": "Why does a well-designed store.subscribe(listener) method return a function?",
+          "options": [
+            "Calling the returned function unsubscribes that specific listener cleanly on teardown",
+            "It re-runs the entire application",
+            "It freezes the store state permanently",
+            "JavaScript requires all callbacks to return functions"
+          ],
+          "correctIndex": 0,
+          "explanation": "Returning a teardown thunk lets callers unsubscribe without retaining separate references to the listener and store."
+        },
+        {
+          "id": "javascript-s11-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Functional Programming, Patterns & Immutability",
+          "prompt": "When working with Pub/Sub Event Bus & Observable State Architecture in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Direct mutations bypass subscriber notifications, leaving the UI out of sync.",
+            "Always rely on \"Mutating state properties in place without calling setState()\" as the default pattern",
+            "Ignore Pub/Sub Event Bus & Observable State Architecture constraints during runtime execution",
+            "Replace Pub/Sub Event Bus & Observable State Architecture with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Mutating state properties in place without calling setState(). Recommended fix: Direct mutations bypass subscriber notifications, leaving the UI out of sync."
+        },
+        {
+          "id": "javascript-s11-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Functional Programming, Patterns & Immutability",
+          "prompt": "What does this ES2023 immutable array snippet print?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "const a = [3, 1, 2];\nconst b = a.toSorted((x, y) => x - y);\nconsole.log(a[0], b[0]);"
+          },
+          "options": [
+            "3 1",
+            "1 1",
+            "3 3",
+            "1 3"
+          ],
+          "correctIndex": 0,
+          "explanation": "toSorted() leaves original array a untouched (a[0] is 3) and returns a new sorted array b (b[0] is 1)."
+        },
+        {
+          "id": "javascript-s11-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Functional Programming, Patterns & Immutability",
+          "prompt": "If a debounced function with 200ms delay is called 5 times in 50ms, how many times does the inner function run?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "const log = debounce(() => console.log('run'), 200);\nfor (let i = 0; i < 5; i++) log();"
+          },
+          "options": [
+            "1 time (200ms after the 5th call)",
+            "5 times immediately",
+            "2 times (first and last)",
+            "0 times"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each call clears the previous timer; only the final scheduled timer completes once 200ms elapse."
+        }
+      ]
+    },
+    {
+      "sectionId": "javascript-s12",
+      "sectionTitle": "Security, Testing & V8 Engine Performance",
+      "level": "Advanced",
+      "passMark": 70,
+      "questions": [
+        {
+          "id": "javascript-s12-q1",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Security, Testing & V8 Engine Performance",
+          "prompt": "Which three property keys must a recursive JavaScript object merge utility explicitly block to prevent Prototype Pollution?",
+          "options": [
+            "__proto__, constructor, and prototype",
+            "id, key, and value",
+            "toString, valueOf, and length",
+            "this, super, and new"
+          ],
+          "correctIndex": 0,
+          "explanation": "Writing dynamically to __proto__, constructor, or prototype lets untrusted payloads mutate Object.prototype."
+        },
+        {
+          "id": "javascript-s12-q2",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Security, Testing & V8 Engine Performance",
+          "prompt": "When working with Client-Side Security: XSS, Prototype Pollution & Sanitization in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Escape HTML or sanitize with a vetted sanitizer like DOMPurify before inserting HTML.",
+            "Always rely on \"Rendering user-submitted markdown or comments with element.innerHTML = userInput\" as the default pattern",
+            "Ignore Client-Side Security: XSS, Prototype Pollution & Sanitization constraints during runtime execution",
+            "Replace Client-Side Security: XSS, Prototype Pollution & Sanitization with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Rendering user-submitted markdown or comments with element.innerHTML = userInput. Recommended fix: Escape HTML or sanitize with a vetted sanitizer like DOMPurify before inserting HTML."
+        },
+        {
+          "id": "javascript-s12-q3",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Security, Testing & V8 Engine Performance",
+          "prompt": "Why can calling delete obj.prop repeatedly on hot objects slow down V8 property access?",
+          "options": [
+            "It can break the object’s fast Hidden Class shape and transition it into slower dictionary mode",
+            "delete triggers a synchronous garbage collection sweep",
+            "delete freezes the entire object",
+            "V8 does not support delete in strict mode"
+          ],
+          "correctIndex": 0,
+          "explanation": "Deleting arbitrary keys disrupts fixed-offset hidden classes, forcing V8 to fall back to hash-table lookups."
+        },
+        {
+          "id": "javascript-s12-q4",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Security, Testing & V8 Engine Performance",
+          "prompt": "When working with V8 Hidden Classes, Inline Caches & JIT-Friendly Code in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "delete transitions V8 objects to slower hash-table dictionary mode; use Map for dynamic deletions.",
+            "Always rely on \"Using delete obj[key] inside a high-frequency animation or parser loop\" as the default pattern",
+            "Ignore V8 Hidden Classes, Inline Caches & JIT-Friendly Code constraints during runtime execution",
+            "Replace V8 Hidden Classes, Inline Caches & JIT-Friendly Code with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Using delete obj[key] inside a high-frequency animation or parser loop. Recommended fix: delete transitions V8 objects to slower hash-table dictionary mode; use Map for dynamic deletions."
+        },
+        {
+          "id": "javascript-s12-q5",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Security, Testing & V8 Engine Performance",
+          "prompt": "Why should you import from \"node:assert/strict\" instead of non-strict \"node:assert\"?",
+          "options": [
+            "Strict mode enforces === equality and deepStrictEqual, preventing silent type-coercion false passes",
+            "Non-strict assert cannot test strings",
+            "Strict mode runs tests in parallel automatically",
+            "Non-strict assert is removed in Node 22"
+          ],
+          "correctIndex": 0,
+          "explanation": "node:assert/strict avoids JS == coercion traps where 0 == \"\" or \"70\" == 70 would falsely pass."
+        },
+        {
+          "id": "javascript-s12-q6",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Security, Testing & V8 Engine Performance",
+          "prompt": "When working with Deterministic Unit Testing, Fakes & Async Test Patterns in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Always import node:assert/strict so === equality is enforced and \"70\" !== 70.",
+            "Always rely on \"Writing assertions using loose assert.equal when types matter without strict mode\" as the default pattern",
+            "Ignore Deterministic Unit Testing, Fakes & Async Test Patterns constraints during runtime execution",
+            "Replace Deterministic Unit Testing, Fakes & Async Test Patterns with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Writing assertions using loose assert.equal when types matter without strict mode. Recommended fix: Always import node:assert/strict so === equality is enforced and \"70\" !== 70."
+        },
+        {
+          "id": "javascript-s12-q7",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Security, Testing & V8 Engine Performance",
+          "prompt": "What is the main benefit of loading a PDF generator via await import(\"jspdf\") inside a click handler?",
+          "options": [
+            "Users who never export a PDF never download or parse the PDF library on initial page load",
+            "It makes the PDF file smaller in bytes",
+            "It bypasses browser CORS restrictions",
+            "It runs jsPDF on the backend automatically"
+          ],
+          "correctIndex": 0,
+          "explanation": "Dynamic import() moves heavy optional dependencies out of the critical initial bundle into an on-demand chunk."
+        },
+        {
+          "id": "javascript-s12-q8",
+          "type": "concept",
+          "level": "Advanced",
+          "topic": "Security, Testing & V8 Engine Performance",
+          "prompt": "When working with Strict Mode, Tooling & Production Bundle Discipline in JavaScript (Vanilla), which practice correctly prevents a common production bug?",
+          "options": [
+            "Dynamically import heavy features only when the user opens that view or clicks export.",
+            "Always rely on \"Statically importing giant libraries (like PDF engines or chart suites) on the landing page\" as the default pattern",
+            "Ignore Strict Mode, Tooling & Production Bundle Discipline constraints during runtime execution",
+            "Replace Strict Mode, Tooling & Production Bundle Discipline with unvalidated global state mutations"
+          ],
+          "correctIndex": 0,
+          "explanation": "Common pitfall: Statically importing giant libraries (like PDF engines or chart suites) on the landing page. Recommended fix: Dynamically import heavy features only when the user opens that view or clicks export."
+        },
+        {
+          "id": "javascript-s12-q9",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Security, Testing & V8 Engine Performance",
+          "prompt": "Which object key allows an unsafe recursive merge to pollute Object.prototype?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "const payload = JSON.parse('{\"__proto__\": {\"polluted\": true}}');"
+          },
+          "options": [
+            "\"__proto__\"",
+            "\"polluted\"",
+            "\"JSON\"",
+            "\"parse\""
+          ],
+          "correctIndex": 0,
+          "explanation": "Copying the \"__proto__\" key into a plain object without filtering mutates Object.prototype unless explicitly blocked."
+        },
+        {
+          "id": "javascript-s12-q10",
+          "type": "output",
+          "level": "Advanced",
+          "topic": "Security, Testing & V8 Engine Performance",
+          "prompt": "What does dynamic import(\"./math.js\") return?",
+          "codeSnippet": {
+            "language": "javascript",
+            "code": "const result = import('./math.js');\nconsole.log(result instanceof Promise);"
+          },
+          "options": [
+            "true",
+            "false",
+            "The default export directly",
+            "undefined"
+          ],
+          "correctIndex": 0,
+          "explanation": "Dynamic import() always returns a Promise that resolves to the module namespace object."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,506 @@
+{
+  "courseSlug": "html",
+  "title": "HTML Final Certification Exam",
+  "durationMinutes": 45,
+  "passMark": 70,
+  "questions": [
+    {
+      "id": "html-exam-beginner-1",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Document Structure & Metadata",
+      "prompt": "What DOM structure does the browser construct for this HTML snippet?",
+      "codeSnippet": {
+        "language": "html",
+        "code": "<p>Intro text\n  <div>Inner block</div>\n</p>"
+      },
+      "options": [
+        "<p> is auto-closed before <div>, making them sibling elements",
+        "<div> is nested cleanly inside <p>",
+        "The browser ignores the <div> tag completely",
+        "The page throws a fatal XML parsing error"
+      ],
+      "correctIndex": 0,
+      "explanation": "<p> only accepts phrasing content, so encountering <div> implicitly closes <p> and inserts <div> as its sibling."
+    },
+    {
+      "id": "html-exam-beginner-2",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Document Structure & Metadata",
+      "prompt": "What is the primary purpose of <!DOCTYPE html> at the top of an HTML file?",
+      "options": [
+        "Instruct the browser to render the page in Standards Mode",
+        "Import the latest HTML5 standard library from W3C",
+        "Enable JavaScript strict mode globally",
+        "Automatically set the page encoding to UTF-8"
+      ],
+      "correctIndex": 0,
+      "explanation": "<!DOCTYPE html> switches browsers into Standards Mode so CSS layout and DOM APIs behave consistently."
+    },
+    {
+      "id": "html-exam-beginner-3",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Document Structure & Metadata",
+      "prompt": "Which script attribute downloads in parallel and executes in document order after HTML parsing finishes?",
+      "options": [
+        "defer",
+        "async",
+        "nomodule",
+        "preload"
+      ],
+      "correctIndex": 0,
+      "explanation": "defer downloads asynchronously and guarantees ordered execution once the document is parsed."
+    },
+    {
+      "id": "html-exam-beginner-4",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Semantic Landmarks & Headings",
+      "prompt": "How many distinct navigation landmarks with accessible names are exposed by this markup?",
+      "codeSnippet": {
+        "language": "html",
+        "code": "<header>\n  <nav aria-label=\"Main Menu\"><a href=\"/\">Home</a></nav>\n</header>\n<footer>\n  <nav aria-label=\"Footer Links\"><a href=\"/about\">About</a></nav>\n</footer>"
+      },
+      "options": [
+        "2 named navigation landmarks",
+        "1 navigation landmark (footer nav is ignored)",
+        "0 landmarks because role=\"navigation\" is missing",
+        "4 landmarks (one per anchor)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Each <nav> natively maps to role=\"navigation\", and both provide distinct aria-label names."
+    },
+    {
+      "id": "html-exam-beginner-5",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Semantic Landmarks & Headings",
+      "prompt": "Which element should appear only once as the dominant content landmark per HTML document?",
+      "options": [
+        "<main>",
+        "<section>",
+        "<article>",
+        "<header>"
+      ],
+      "correctIndex": 0,
+      "explanation": "A document must not have more than one visible <main> element."
+    },
+    {
+      "id": "html-exam-beginner-6",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Semantic Landmarks & Headings",
+      "prompt": "Why should you avoid jumping directly from <h1> to <h4> in a page outline?",
+      "options": [
+        "It breaks logical hierarchy for screen readers and assistive navigation",
+        "Browsers refuse to render <h4> without an <h3> above it",
+        "CSS font-weight stops working on skipped headings",
+        "Search engines de-index any page containing an <h4> tag"
+      ],
+      "correctIndex": 0,
+      "explanation": "Assistive technologies announce heading depth; skipping levels disorients users navigating by headings."
+    },
+    {
+      "id": "html-exam-beginner-7",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Links, Navigation & Lists",
+      "prompt": "What numbering sequence does the browser render for this ordered list?",
+      "codeSnippet": {
+        "language": "html",
+        "code": "<ol start=\"5\" reversed>\n  <li>Alpha</li>\n  <li>Beta</li>\n  <li>Gamma</li>\n</ol>"
+      },
+      "options": [
+        "5. Alpha, 4. Beta, 3. Gamma",
+        "5. Alpha, 6. Beta, 7. Gamma",
+        "3. Alpha, 2. Beta, 1. Gamma",
+        "1. Alpha, 2. Beta, 3. Gamma"
+      ],
+      "correctIndex": 0,
+      "explanation": "start=\"5\" begins the counter at 5, and reversed decrements by 1 for each item: 5, 4, 3."
+    },
+    {
+      "id": "html-exam-beginner-8",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Links, Navigation & Lists",
+      "prompt": "Which rel value prevents a newly opened tab from manipulating window.opener?",
+      "options": [
+        "noopener",
+        "nofollow",
+        "canonical",
+        "alternate"
+      ],
+      "correctIndex": 0,
+      "explanation": "rel=\"noopener\" sets window.opener to null in the new browsing context, blocking reverse tabnabbing."
+    },
+    {
+      "id": "html-exam-beginner-9",
+      "type": "concept",
+      "level": "Beginner",
+      "topic": "Links, Navigation & Lists",
+      "prompt": "Which HTML element group is specifically designed for key-value metadata or glossary terms?",
+      "options": [
+        "<dl>, <dt>, and <dd>",
+        "<ul> and <li>",
+        "<menu> and <item>",
+        "<list> and <def>"
+      ],
+      "correctIndex": 0,
+      "explanation": "<dl> (description list) pairs <dt> (term) with <dd> (description)."
+    },
+    {
+      "id": "html-exam-beginner-10",
+      "type": "output",
+      "level": "Beginner",
+      "topic": "Images, Tables & Embedded Content",
+      "prompt": "How many data cells are merged horizontally in the second row of this table?",
+      "codeSnippet": {
+        "language": "html",
+        "code": "<table>\n  <tr><th>Name</th><th>Q1</th><th>Q2</th></tr>\n  <tr><td>Total</td><td colspan=\"2\">94%</td></tr>\n</table>"
+      },
+      "options": [
+        "2 columns merged into one cell",
+        "2 rows merged vertically",
+        "3 columns merged",
+        "Invalid attribute—must be span=\"2\""
+      ],
+      "correctIndex": 0,
+      "explanation": "colspan=\"2\" stretches the single <td> across both the Q1 and Q2 columns."
+    },
+    {
+      "id": "html-exam-intermediate-1",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Forms & Input Controls",
+      "prompt": "Which field values will be included when this form is submitted?",
+      "codeSnippet": {
+        "language": "html",
+        "code": "<form>\n  <input name=\"plan\" value=\"pro\" readonly />\n  <input name=\"coupon\" value=\"SAVE10\" disabled />\n  <input value=\"anonymous\" />\n</form>"
+      },
+      "options": [
+        "Only plan=\"pro\"",
+        "plan=\"pro\" and coupon=\"SAVE10\"",
+        "All three fields",
+        "Only coupon=\"SAVE10\""
+      ],
+      "correctIndex": 0,
+      "explanation": "readonly fields ARE submitted, disabled fields are excluded, and inputs without a name attribute are ignored."
+    },
+    {
+      "id": "html-exam-intermediate-2",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Forms & Input Controls",
+      "prompt": "What is the default behavior of a <button> inside a <form> when no type attribute is specified?",
+      "options": [
+        "It acts as type=\"submit\"",
+        "It acts as type=\"button\"",
+        "It acts as type=\"reset\"",
+        "It is disabled until JavaScript attaches a listener"
+      ],
+      "correctIndex": 0,
+      "explanation": "Per the HTML specification, the missing-value default for <button> type is submit."
+    },
+    {
+      "id": "html-exam-intermediate-3",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Forms & Input Controls",
+      "prompt": "Which input configuration best captures a 6-digit OTP code while preserving leading zeros and showing a mobile number pad?",
+      "options": [
+        "<input type=\"text\" inputmode=\"numeric\" autocomplete=\"one-time-code\" />",
+        "<input type=\"number\" maxlength=\"6\" />",
+        "<input type=\"tel\" min=\"0\" max=\"999999\" />",
+        "<input type=\"password\" inputmode=\"text\" />"
+      ],
+      "correctIndex": 0,
+      "explanation": "type=\"text\" preserves leading zeros and honors maxlength, while inputmode=\"numeric\" triggers the numeric keypad."
+    },
+    {
+      "id": "html-exam-intermediate-4",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Responsive Media & Graphics",
+      "prompt": "Which image file does a modern browser supporting WebP (but not AVIF) download here?",
+      "codeSnippet": {
+        "language": "html",
+        "code": "<picture>\n  <source type=\"image/avif\" srcset=\"/hero.avif\" />\n  <source type=\"image/webp\" srcset=\"/hero.webp\" />\n  <img src=\"/hero.jpg\" alt=\"Hero\" />\n</picture>"
+      },
+      "options": [
+        "/hero.webp",
+        "/hero.avif",
+        "/hero.jpg",
+        "Both /hero.webp and /hero.jpg"
+      ],
+      "correctIndex": 0,
+      "explanation": "The browser skips unsupported image/avif, matches image/webp, and downloads only /hero.webp."
+    },
+    {
+      "id": "html-exam-intermediate-5",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Responsive Media & Graphics",
+      "prompt": "If an image renders at 400px wide on a 2x pixel-density display, which srcset candidate is the closest optimal match?",
+      "options": [
+        "800w",
+        "400w",
+        "1600w",
+        "200w"
+      ],
+      "correctIndex": 0,
+      "explanation": "400 CSS px × 2x DPR = 800 device pixels, matching the 800w source cleanly."
+    },
+    {
+      "id": "html-exam-intermediate-6",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Responsive Media & Graphics",
+      "prompt": "In a <picture> element with AVIF, WebP, and JPEG options, where must the alt text be placed?",
+      "options": [
+        "On the inner <img> element",
+        "On the <picture> element",
+        "On every <source> element",
+        "Inside a <figcaption> only"
+      ],
+      "correctIndex": 0,
+      "explanation": "<picture> delegates rendering and accessibility attributes to its required fallback <img> child."
+    },
+    {
+      "id": "html-exam-intermediate-7",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Native Interactive Elements",
+      "prompt": "When the user clicks \"Confirm\" inside this modal dialog, what is dialog.returnValue?",
+      "codeSnippet": {
+        "language": "html",
+        "code": "<dialog id=\"d\">\n  <form method=\"dialog\">\n    <button value=\"cancel\">Cancel</button>\n    <button value=\"confirm\">Confirm</button>\n  </form>\n</dialog>"
+      },
+      "options": [
+        "\"confirm\"",
+        "\"Confirm\"",
+        "true",
+        "undefined"
+      ],
+      "correctIndex": 0,
+      "explanation": "Submitting a <form method=\"dialog\"> sets dialog.returnValue to the clicked submit button’s value attribute (\"confirm\")."
+    },
+    {
+      "id": "html-exam-intermediate-8",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Native Interactive Elements",
+      "prompt": "Which boolean attribute makes a <details> element expanded on initial page load?",
+      "options": [
+        "open",
+        "expanded",
+        "active",
+        "visible"
+      ],
+      "correctIndex": 0,
+      "explanation": "The open boolean attribute controls whether a <details> element displays its content."
+    },
+    {
+      "id": "html-exam-intermediate-9",
+      "type": "concept",
+      "level": "Intermediate",
+      "topic": "Native Interactive Elements",
+      "prompt": "Which JavaScript method opens a <dialog> in the browser top layer with a ::backdrop and Escape-to-close?",
+      "options": [
+        "dialog.showModal()",
+        "dialog.open()",
+        "dialog.show()",
+        "dialog.activateModal()"
+      ],
+      "correctIndex": 0,
+      "explanation": "showModal() promotes the dialog to the top layer and makes background content inert."
+    },
+    {
+      "id": "html-exam-intermediate-10",
+      "type": "output",
+      "level": "Intermediate",
+      "topic": "Metadata, Open Graph & Structured Data",
+      "prompt": "Will the browser execute JavaScript code placed inside this tag?",
+      "codeSnippet": {
+        "language": "html",
+        "code": "<script type=\"application/ld+json\">\n  alert(\"hello\");\n</script>"
+      },
+      "options": [
+        "No—it is ignored by the JS engine as a data block",
+        "Yes—it shows an alert popup",
+        "It throws a ReferenceError",
+        "It runs only in quirks mode"
+      ],
+      "correctIndex": 0,
+      "explanation": "Browsers only execute JavaScript MIME types (or module/importmap); application/ld+json is treated strictly as inert data."
+    },
+    {
+      "id": "html-exam-advanced-1",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "WAI-ARIA & Accessibility Engineering",
+      "prompt": "What accessible name will a screen reader announce for this button?",
+      "codeSnippet": {
+        "language": "html",
+        "code": "<span id=\"title\">Python Course</span>\n<button aria-labelledby=\"title\" aria-label=\"Ignore Me\">Open</button>"
+      },
+      "options": [
+        "\"Python Course\"",
+        "\"Ignore Me\"",
+        "\"Open\"",
+        "\"Python Course Open\""
+      ],
+      "correctIndex": 0,
+      "explanation": "aria-labelledby takes precedence over both aria-label and visible text content."
+    },
+    {
+      "id": "html-exam-advanced-2",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "WAI-ARIA & Accessibility Engineering",
+      "prompt": "What does adding role=\"button\" to a <div> NOT automatically provide?",
+      "options": [
+        "Keyboard focusability and Enter/Space activation",
+        "Announcement as a button in the accessibility tree",
+        "A valid WAI-ARIA role attribute",
+        "Compatibility with screen reader role queries"
+      ],
+      "correctIndex": 0,
+      "explanation": "ARIA only changes accessibility metadata; it never adds tabindex focusability or keyboard event handling."
+    },
+    {
+      "id": "html-exam-advanced-3",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "WAI-ARIA & Accessibility Engineering",
+      "prompt": "Which live-region setting should be used for a non-urgent \"Copied to clipboard\" toast notification?",
+      "options": [
+        "role=\"status\" (aria-live=\"polite\")",
+        "role=\"alert\" (aria-live=\"assertive\")",
+        "aria-live=\"off\"",
+        "role=\"dialog\""
+      ],
+      "correctIndex": 0,
+      "explanation": "Polite live regions wait for the screen reader to finish speaking before announcing routine status feedback."
+    },
+    {
+      "id": "html-exam-advanced-4",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Web Components & Shadow DOM",
+      "prompt": "What text renders inside <info-pill></info-pill> given this Declarative Shadow DOM template?",
+      "codeSnippet": {
+        "language": "html",
+        "code": "<info-pill>\n  <template shadowrootmode=\"open\">\n    <slot>Unassigned</slot>\n  </template>\n</info-pill>"
+      },
+      "options": [
+        "Unassigned",
+        "Empty string",
+        "<slot>Unassigned</slot>",
+        "Throws a ShadowRoot error"
+      ],
+      "correctIndex": 0,
+      "explanation": "Because no light-DOM child was supplied, the default <slot> renders its fallback content \"Unassigned\"."
+    },
+    {
+      "id": "html-exam-advanced-5",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Web Components & Shadow DOM",
+      "prompt": "Which of the following is a VALID Custom Element tag name?",
+      "options": [
+        "<code-viewer>",
+        "<codeviewer>",
+        "<Code-Viewer>",
+        "<1-code>"
+      ],
+      "correctIndex": 0,
+      "explanation": "Custom element names must start with a lowercase ASCII letter and contain at least one hyphen."
+    },
+    {
+      "id": "html-exam-advanced-6",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Web Components & Shadow DOM",
+      "prompt": "Which attribute on <template> creates a Declarative Shadow Root during HTML parsing without JavaScript?",
+      "options": [
+        "shadowrootmode=\"open\"",
+        "shadow=\"true\"",
+        "scoped-dom=\"open\"",
+        "encapsulate=\"shadow\""
+      ],
+      "correctIndex": 0,
+      "explanation": "<template shadowrootmode=\"open\"> instructs the HTML parser to attach a Shadow Root automatically."
+    },
+    {
+      "id": "html-exam-advanced-7",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "Performance, Security & Browser Pipeline",
+      "prompt": "Which protocol inside <a href=\"...\"> poses an XSS risk even if quotes and angle brackets are escaped?",
+      "codeSnippet": {
+        "language": "html",
+        "code": "<a href=\"javascript:document.title='hacked'\">Profile</a>"
+      },
+      "options": [
+        "javascript:",
+        "mailto:",
+        "https:",
+        "tel:"
+      ],
+      "correctIndex": 0,
+      "explanation": "javascript: URLs execute arbitrary script when clicked unless filtered to an allowlist of safe schemes (http:, https:, mailto:)."
+    },
+    {
+      "id": "html-exam-advanced-8",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Performance, Security & Browser Pipeline",
+      "prompt": "Why is the crossorigin attribute mandatory on <link rel=\"preload\" as=\"font\">?",
+      "options": [
+        "Without it, the preload cache key mismatches CSS font requests and downloads the font twice",
+        "Browsers refuse to parse WOFF2 files without crossorigin",
+        "It automatically compresses the font with Brotli",
+        "It prevents third-party sites from hotlinking the font"
+      ],
+      "correctIndex": 0,
+      "explanation": "Font fetches always use anonymous CORS mode, so matching crossorigin prevents duplicate downloads."
+    },
+    {
+      "id": "html-exam-advanced-9",
+      "type": "concept",
+      "level": "Advanced",
+      "topic": "Performance, Security & Browser Pipeline",
+      "prompt": "What does the browser do if a third-party stylesheet fails its integrity=\"sha384-...\" verification?",
+      "options": [
+        "Blocks the stylesheet from being applied",
+        "Applies the stylesheet anyway with a console warning",
+        "Falls back to HTTP without TLS",
+        "Prompts the user with a confirmation dialog"
+      ],
+      "correctIndex": 0,
+      "explanation": "SRI enforces fail-closed security: tampered resources are rejected completely."
+    },
+    {
+      "id": "html-exam-advanced-10",
+      "type": "output",
+      "level": "Advanced",
+      "topic": "HTML5 Browser APIs & Declarative Streaming",
+      "prompt": "What does el.dataset.courseLevel return for this element?",
+      "codeSnippet": {
+        "language": "html",
+        "code": "<div id=\"card\" data-course-level=\"Advanced\"></div>"
+      },
+      "options": [
+        "\"Advanced\"",
+        "undefined",
+        "\"course-level\"",
+        "Throws TypeError"
+      ],
+      "correctIndex": 0,
+      "explanation": "HTML data-course-level maps automatically to element.dataset.courseLevel."
+    }
+  ]
+}
