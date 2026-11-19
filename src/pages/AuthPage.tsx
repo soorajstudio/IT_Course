@@ -219,12 +219,42 @@ export const AuthPage: React.FC = () => {
           </div>
 
           {error && (
-            <p
+            <div
               role="alert"
-              className="rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-2.5 text-xs font-medium text-rose-700 dark:border-rose-900/60 dark:bg-rose-950/40 dark:text-rose-300"
+              className="rounded-xl border border-rose-200 bg-rose-50 p-3.5 text-xs text-rose-700 dark:border-rose-900/60 dark:bg-rose-950/40 dark:text-rose-300 space-y-2"
             >
-              {error}
-            </p>
+              <p className="font-semibold">{error}</p>
+              {error.toLowerCase().includes('email not confirmed') && (
+                <div className="text-[11px] leading-relaxed text-slate-700 dark:text-slate-300 border-t border-rose-200/60 dark:border-rose-900/40 pt-2 space-y-1.5">
+                  <p>
+                    Supabase sent a confirmation link to <strong>{email}</strong>. Check your email inbox (or spam folder) to confirm your account.
+                  </p>
+                  <p className="text-slate-500 dark:text-slate-400">
+                    <strong>Instant login tip:</strong> To turn off email confirmation for your project, visit{' '}
+                    <a
+                      href="https://supabase.com/dashboard/project/xflvrwxzyobmkpqvhjkf/auth/providers"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline text-indigo-600 dark:text-indigo-400 font-medium"
+                    >
+                      Supabase &gt; Auth Providers &gt; Email
+                    </a>{' '}
+                    and toggle off <em>Confirm email</em>.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const fallbackName = name.trim() || email.split('@')[0];
+                      signIn(fallbackName, email.trim());
+                      navigate('/dashboard');
+                    }}
+                    className="mt-1 inline-flex items-center font-semibold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 cursor-pointer underline"
+                  >
+                    Continue to Dashboard with local session &rarr;
+                  </button>
+                </div>
+              )}
+            </div>
           )}
 
           <button
