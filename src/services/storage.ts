@@ -29,7 +29,7 @@ export async function syncStateToSupabase(state: LearnerState): Promise<void> {
   }
 
   try {
-    const { error: stateError } = await supabase.from('learner_state').upsert(
+    const { error: stateError } = await supabase.from('it_courses_learner_state').upsert(
       {
         user_id: state.profile.id,
         courses: state.courses,
@@ -50,11 +50,11 @@ export async function syncStateToSupabase(state: LearnerState): Promise<void> {
       console.warn('Supabase learner_state sync warning:', stateError.message);
     }
 
-    // Sync any earned certificates to public_certificates for public lookup
+    // Sync any earned certificates to public certificates for verification
     const certList = Object.values(state.certificates);
     if (certList.length > 0) {
       for (const cert of certList) {
-        await supabase.from('public_certificates').upsert(
+        await supabase.from('it_courses_certificates').upsert(
           {
             id: cert.id.toUpperCase(),
             user_id: state.profile.id,
@@ -82,7 +82,7 @@ export async function loadStateFromSupabase(userId: string): Promise<Partial<Lea
   if (!isSupabaseConfigured() || !supabase) return null;
   try {
     const { data, error } = await supabase
-      .from('learner_state')
+      .from('it_courses_learner_state')
       .select('*')
       .eq('user_id', userId)
       .maybeSingle();
@@ -116,7 +116,7 @@ export async function fetchCertificateById(certId: string): Promise<CertificateR
   if (isSupabaseConfigured() && supabase) {
     try {
       const { data, error } = await supabase
-        .from('public_certificates')
+        .from('it_courses_certificates')
         .select('*')
         .eq('id', certId.trim().toUpperCase())
         .maybeSingle();
